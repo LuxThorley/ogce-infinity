@@ -16,7 +16,7 @@ Cloudflare Workers cannot run that Python process, so this repository adds a Wor
 | Piece | Cloudflare resource |
 |---|---|
 | `web/` (HTML, WebGL renderer, PWA) | Workers Static Assets |
-| `/health`, `/api/*`, `/ws` | One SQLite-backed Durable Object (`OGCEWorld`, instance `ogce-main`) |
+| `/health`, `/api/*`, `/ws` | One SQLite-backed Durable Object (`OGCEWorldV2`, instance `ogce-main`; v1 class deleted by migration `v2` to reset the world) |
 | SQLite database file | Durable Object SQLite storage (persistent) |
 | `OGCE_SERVICE_TOKEN` | Worker secret |
 

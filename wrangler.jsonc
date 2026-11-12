@@ -15,8 +15,14 @@
     "run_worker_first": true
   },
   "durable_objects": {
-    "bindings": [{ "name": "OGCE_WORLD", "class_name": "OGCEWorld" }]
+    "bindings": [{ "name": "OGCE_WORLD", "class_name": "OGCEWorldV2" }]
   },
-  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["OGCEWorld"] }],
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["OGCEWorld"] },
+    // v2 (12 Nov 2026): owner-approved world reset - engine moved to a fresh class OGCEWorldV2.
+    // v3 then deletes the old class, permanently erasing its storage (smoke-test accounts and state).
+    { "tag": "v2", "new_sqlite_classes": ["OGCEWorldV2"] },
+    { "tag": "v3", "deleted_classes": ["OGCEWorld"] }
+  ],
   "observability": { "enabled": true }
 }

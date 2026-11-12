@@ -3,7 +3,7 @@
 import { DurableObject } from 'cloudflare:workers';
 import { OGCEApp } from './app.js';
 
-export class OGCEWorld extends DurableObject {
+export class OGCEWorldV2 extends DurableObject {
   constructor(ctx, env) {
     super(ctx, env);
     const sql = ctx.storage.sql;
