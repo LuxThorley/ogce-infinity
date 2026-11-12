@@ -1,5 +1,5 @@
 {
-  // OGCE Infinity v8.2 on Cloudflare Workers (free tier):
+  // OGCE Infinity v8.3 on Cloudflare Workers (free tier):
   //  - ./web served as Workers Static Assets
   //  - /health, /api/*, /ws handled by one SQLite-backed Durable Object running the engine (cloudflare/src)
   // Secret (never commit): OGCE_SERVICE_TOKEN, set with `npx wrangler secret put OGCE_SERVICE_TOKEN`.
@@ -25,5 +25,20 @@
     { "tag": "v2", "new_sqlite_classes": ["OGCEWorldV2"] },
     { "tag": "v3", "deleted_classes": ["OGCEWorld"] }
   ],
-  "observability": { "enabled": true }
+  "observability": { "enabled": true },
+  // Non-production preview (v8.3 review): `npx wrangler deploy --env preview`.
+  // Separate Worker "ogce-infinity-preview" on workers.dev only (no custom domain/routes), with its own
+  // Durable Object and storage, so it never touches production data at ogce.malcolmai.live.
+  "env": {
+    "preview": {
+      "name": "ogce-infinity-preview",
+      "workers_dev": true,
+      "routes": [],
+      "preview_urls": false,
+      "durable_objects": {
+        "bindings": [{ "name": "OGCE_WORLD", "class_name": "OGCEWorldV2" }]
+      },
+      "migrations": [{ "tag": "v1", "new_sqlite_classes": ["OGCEWorldV2"] }]
+    }
+  }
 }

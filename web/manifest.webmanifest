@@ -1,10 +1,10 @@
 {
-  "name": "OGCE Infinity v7.4 \u2014 Sovereign Realms",
-  "short_name": "OGCE v7.4",
+  "name": "OGCE Infinity 8.3 — Aurelia",
+  "short_name": "OGCE 8.3",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#101820",
-  "theme_color": "#172630",
+  "background_color": "#0d1b22",
+  "theme_color": "#0d1b22",
   "icons": [
     {
       "src": "/icons/ogce.svg",
@@ -13,5 +13,6 @@
       "purpose": "any maskable"
     }
   ],
-  "description": "Explore, fight, craft and quest in a persistent 3D world."
+  "description": "Explore a 3D island, collect crystals, build campfires, complete quests, invent machines and test ideas like a scientist.",
+  "orientation": "any"
 }

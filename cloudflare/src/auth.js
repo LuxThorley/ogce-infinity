@@ -19,6 +19,7 @@ export class AuthStore {
     this.db = db;
     db.run('CREATE TABLE IF NOT EXISTS accounts(username TEXT PRIMARY KEY,salt TEXT NOT NULL,password_hash TEXT NOT NULL,iterations INTEGER NOT NULL,created REAL NOT NULL)');
     db.run('CREATE TABLE IF NOT EXISTS sessions(token_hash TEXT PRIMARY KEY,username TEXT NOT NULL,expires REAL NOT NULL)');
+    db.run('CREATE TABLE IF NOT EXISTS ws_tickets(ticket_hash TEXT PRIMARY KEY,username TEXT NOT NULL,expires REAL NOT NULL)');
   }
   async register(username, password) {
     username = String(username ?? 'None').trim().toLowerCase();
@@ -39,6 +40,23 @@ export class AuthStore {
     this.db.run('INSERT INTO sessions VALUES(?,?,?)', await sha256(token), username, now() + 43200);
     this.db.run('DELETE FROM sessions WHERE expires<?', now());
     return { token, username, expires_in: 43200 };
+  }
+  // v7.7 one-time 60-second WebSocket tickets (Python: AuthStore.issue_ws_ticket / consume_ws_ticket).
+  async issueWsTicket(token) {
+    const username = await this.validate(token);
+    if (!username) throw new ValueError('invalid_session');
+    const ticket = tokenUrlsafe(32);
+    this.db.run('DELETE FROM ws_tickets WHERE expires<?', now());
+    this.db.run('INSERT INTO ws_tickets VALUES(?,?,?)', await sha256(ticket), username, now() + 60);
+    return { ticket, expires_in: 60 };
+  }
+  async consumeWsTicket(ticket) {
+    if (!ticket) return null;
+    const digest = await sha256(ticket);
+    const row = this.db.all('SELECT username,expires FROM ws_tickets WHERE ticket_hash=?', digest)[0];
+    if (!row) return null;
+    this.db.run('DELETE FROM ws_tickets WHERE ticket_hash=?', digest);
+    return row.expires >= now() ? row.username : null;
   }
   async validate(token) {
     if (!token) return null;

@@ -14,7 +14,7 @@ const call = async (app, method, path, body, headers = {}) => {
 
 test('guest mode (no service token): health, world, actions, v8.2 character, μLux', async () => {
   const app = new OGCEApp(memoryDb(), '');
-  assert.equal((await call(app, 'GET', '/health')).data.version, '8.2.0');
+  assert.equal((await call(app, 'GET', '/health')).data.version, '8.3.0');
   const w = await call(app, 'GET', '/api/world/Aurelia');
   assert.equal(w.status, 200); assert.equal(w.data.state.seed, 707);
   const mv = await call(app, 'POST', '/api/world/Aurelia/action', { player_id: 'p1', action: { type: 'move', dx: 1, dy: 0 } });
@@ -66,4 +66,25 @@ test('persistence survives a fresh app instance over the same database', async (
   assert.equal((await call(b, 'GET', '/api/v82/world/R')).data.characters[0].id, 'z');
   assert.equal((await call(b, 'GET', '/api/mulux/world/R')).data.snapshot.tick, 5);
   assert.equal((await call(b, 'GET', '/api/world/R')).data.state.tick, 1);
+});
+
+test('v8.3 (v7.7 hardening): /ready, ws tickets are one-time, auth rate limit, strict world ids', async () => {
+  const { RateLimiter, validWorldId } = await import('../src/app.js');
+  const app = new OGCEApp(memoryDb(), '');
+  assert.equal((await call(app, 'GET', '/health')).data.version, '8.3.0');
+  assert.deepEqual((await call(app, 'GET', '/ready')).data, { status: 'ready' });
+  assert.equal((await call(app, 'GET', '/health')).data.accounts_required, false);
+  assert.equal((await call(new OGCEApp(memoryDb(), 'svc-token'), 'GET', '/health')).data.accounts_required, true);
+  assert.equal((await call(app, 'POST', '/api/auth/ws-ticket', {})).status, 401);
+  const reg = await call(app, 'POST', '/api/auth/register', { username: 'onlinehero', password: 'a-long-password-123' });
+  const t = await call(app, 'POST', '/api/auth/ws-ticket', {}, { Authorization: 'Bearer ' + reg.data.token });
+  assert.equal(t.data.expires_in, 60);
+  assert.equal(await app.auth.consumeWsTicket(t.data.ticket), 'onlinehero');
+  assert.equal(await app.auth.consumeWsTicket(t.data.ticket), null);
+  assert.equal((await call(app, 'GET', '/api/world/bad%20id')).status, 400);
+  assert.ok(validWorldId('AURELIA_2-x') && !validWorldId('../x') && !validWorldId('wörld') && !validWorldId('a'.repeat(65)));
+  const lim = new RateLimiter(2, 60); assert.ok(lim.allow('c', 1) && lim.allow('c', 2) && !lim.allow('c', 3) && lim.allow('c', 62));
+  const codes = [];
+  for (let i = 0; i < 13; i++) codes.push((await call(app, 'POST', '/api/auth/login', { username: 'nobody', password: 'x'.repeat(12) })).status);
+  assert.deepEqual(codes.slice(10), [400, 429, 429]); // 1 register + 11 logins allowed in the 12/min window
 });

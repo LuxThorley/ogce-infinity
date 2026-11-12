@@ -6,7 +6,21 @@ import { LivingWorld, leastFixedPoint, gradeClaim, decide, GRADES } from './mulu
 import { LivingWorld82, WorldError } from './living82.js';
 import { canonical, dumps, pyInt, pyStr, pyBool, ValueError } from './pyjson.js';
 
-export const VERSION = '8.2.0';
+export const VERSION = '8.3.0';
+const WORLD_ID = /^[A-Za-z0-9_-]{1,64}$/;
+export const validWorldId = (wid) => WORLD_ID.test(wid);
+// v7.7 sliding-window limiter for auth endpoints (per client IP, bounded memory).
+export class RateLimiter {
+  constructor(limit = 12, window = 60) { this.limit = limit; this.window = window; this.hits = new Map(); }
+  allow(key, nowS = Date.now() / 1000) {
+    if (!this.hits.has(key) && this.hits.size >= 10000) {
+      for (const [k, q] of this.hits) if (!q.length || q[q.length - 1] <= nowS - this.window) this.hits.delete(k);
+    }
+    const q = (this.hits.get(key) || []).filter((t) => t > nowS - this.window);
+    if (q.length >= this.limit) { this.hits.set(key, q); return false; }
+    q.push(nowS); this.hits.set(key, q); return true;
+  }
+}
 const sumOrd = (s) => [...s].reduce((n, c) => n + c.codePointAt(0), 0);
 const json = (code, data) => new Response(JSON.stringify(data), { status: code, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' } });
 function safeEqual(a, b) { if (a.length !== b.length) return false; let r = 0; for (let i = 0; i < a.length; i++) r |= a.charCodeAt(i) ^ b.charCodeAt(i); return r === 0; }
@@ -21,7 +35,7 @@ export class OGCEApp {
     db.run(`CREATE TABLE IF NOT EXISTS mulux_receipts(id INTEGER PRIMARY KEY AUTOINCREMENT, world_id TEXT NOT NULL,
       receipt TEXT NOT NULL, created REAL NOT NULL DEFAULT (unixepoch()))`);
     db.run('CREATE TABLE IF NOT EXISTS worlds_v82(world_id TEXT PRIMARY KEY, revision INTEGER NOT NULL, record TEXT NOT NULL)');
-    this.v82Worlds = new Map(); this.muluxWorlds = new Map();
+    this.v82Worlds = new Map(); this.muluxWorlds = new Map(); this.limiter = new RateLimiter();
   }
   async getV82(wid) {
     if (!this.v82Worlds.has(wid)) {
@@ -77,7 +91,10 @@ export class OGCEApp {
   }
   wid(path, prefix, sep) { return decodeURIComponent(path.slice(prefix.length).split(sep)[0]); }
   async get(request, path) {
-    if (path === '/health' || path === '/api/health') return json(200, { status: 'ok', engine: 'OGCE', version: VERSION, runtime: 'cloudflare-worker+durable-object' });
+    if (path === '/health' || path === '/api/health') return json(200, { status: 'ok', engine: 'OGCE', version: VERSION, runtime: 'cloudflare-worker+durable-object', accounts_required: Boolean(this.token) });
+    if (path === '/ready') {
+      try { this.db.all('SELECT 1'); return json(200, { status: 'ready' }); } catch { return json(503, { status: 'not_ready' }); }
+    }
     if (path.startsWith('/api/v82/world/')) {
       const id = await this.identity(request); if (id.unauthorized) return json(401, { error: 'unauthorized' });
       const wid = this.wid(path, '/api/v82/world/', '?');
@@ -92,7 +109,7 @@ export class OGCEApp {
     }
     if (path.startsWith('/api/world/')) {
       const wid = this.wid(path, '/api/world/', '?');
-      if (!wid || cpLen(wid) > 64) return json(400, { error: 'invalid_world' });
+      if (!validWorldId(wid)) return json(400, { error: 'invalid_world' });
       return json(200, this.db.transaction(() => this.runtime.load(wid)));
     }
     return json(404, { error: 'not_found' });
@@ -146,7 +163,15 @@ export class OGCEApp {
       if (operation === 'genesis') return json(200, leastFixedPoint(body.atoms ?? [], body.rules ?? [], body.axioms ?? []));
       return json(400, { error: 'unknown_mulux_operation' });
     }
+    if (path === '/api/auth/ws-ticket') {
+      const h = request.headers.get('Authorization') || '';
+      const account = await this.auth.validate(h.startsWith('Bearer ') ? h.slice(7) : '');
+      if (!account) return json(401, { error: 'valid_account_session_required' });
+      return json(200, await this.auth.issueWsTicket(h.slice(7)));
+    }
     if (path === '/api/auth/register' || path === '/api/auth/login') {
+      const ip = request.headers.get('CF-Connecting-IP') || 'local';
+      if (!this.limiter.allow('auth:' + ip)) return json(429, { error: 'rate_limited_try_again_later' });
       const body = await this.body(request, 4096);
       const result = path.endsWith('register') ? await this.auth.register(body.username, body.password) : await this.auth.login(body.username, body.password);
       return json(200, result);
@@ -158,7 +183,7 @@ export class OGCEApp {
     const body = await this.body(request, 16384);
     const playerId = account || pyStr(body.player_id ?? '').slice(0, 80);
     if (account && ![undefined, null, '', account].includes(body.player_id)) return json(403, { error: 'player_identity_mismatch' });
-    if (!wid || cpLen(wid) > 64) return json(400, { error: 'invalid_world' });
+    if (!validWorldId(wid)) return json(400, { error: 'invalid_world' });
     return json(200, this.db.transaction(() => this.runtime.act(wid, playerId, body.action)));
   }
 }

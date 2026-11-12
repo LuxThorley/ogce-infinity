@@ -1,7 +1,7 @@
 // Cloudflare Worker entry: static game client from Workers Static Assets (./web),
 // /health and /api/* routed to a single SQLite-backed Durable Object that runs the OGCE v8.2 engine.
 import { DurableObject } from 'cloudflare:workers';
-import { OGCEApp } from './app.js';
+import { OGCEApp, validWorldId } from './app.js';
 
 export class OGCEWorldV2 extends DurableObject {
   constructor(ctx, env) {
@@ -22,14 +22,15 @@ export class OGCEWorldV2 extends DurableObject {
   async upgrade(request) {
     const url = new URL(request.url);
     const ticket = url.searchParams.get('ticket') || '';
-    const account = await this.app.auth.validate(ticket);
+    // v7.7: one-time 60-second ticket from POST /api/auth/ws-ticket (never the raw session token).
+    const account = await this.app.auth.consumeWsTicket(ticket);
     const token = this.env.OGCE_SERVICE_TOKEN || '';
     const auth = request.headers.get('Authorization') || '';
     const headerOk = Boolean(token) && auth === 'Bearer ' + token;
     const pair = new WebSocketPair(); const [client, server] = Object.values(pair);
     this.ctx.acceptWebSocket(server);
     server.serializeAttachment({ account, room: null, player: null });
-    if (!account && !headerOk && token) server.close(4401, 'valid session ticket required');
+    if (!account && !headerOk && token) server.close(4401, 'one_time_ticket_required');
     return new Response(null, { status: 101, webSocket: client });
   }
   async webSocketMessage(ws, raw) {
@@ -40,6 +41,7 @@ export class OGCEWorldV2 extends DurableObject {
     try {
       if (msg.type === 'join') {
         const room = [...String(msg.world ?? 'Aurelia')].slice(0, 64).join('');
+        if (!validWorldId(room)) { ws.close(4400, 'invalid_world'); return; }
         const player = meta.account || [...String(msg.player_id ?? '')].slice(0, 80).join('');
         if (!player) { ws.close(4400, 'player_id required'); return; }
         if (meta.account && ![undefined, null, '', meta.account].includes(msg.player_id)) { ws.close(4403, 'identity mismatch'); return; }
@@ -64,17 +66,20 @@ const SECURITY_HEADERS = {
   'Referrer-Policy': 'strict-origin-when-cross-origin',
   'X-Frame-Options': 'DENY',
   'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+  'Content-Security-Policy': "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' ws: wss:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'",
 };
 const withHeaders = (res) => { const r = new Response(res.body, res); for (const [k, v] of Object.entries(SECURITY_HEADERS)) r.headers.set(k, v); return r; };
 
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    if (url.pathname === '/health' || url.pathname === '/ws' || url.pathname.startsWith('/api/')) {
+    if (url.pathname === '/health' || url.pathname === '/ready' || url.pathname === '/ws' || url.pathname.startsWith('/api/')) {
       const stub = env.OGCE_WORLD.get(env.OGCE_WORLD.idFromName('ogce-main'));
       const res = await stub.fetch(request);
       return res.status === 101 ? res : withHeaders(res);
     }
-    return withHeaders(await env.ASSETS.fetch(request));
+    const res = withHeaders(await env.ASSETS.fetch(request));
+    if (url.pathname === '/' || url.pathname === '/index.html' || url.pathname === '/sw.js') res.headers.set('Cache-Control', 'no-cache');
+    return res;
   },
 };

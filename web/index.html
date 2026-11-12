@@ -1,54 +1,216 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#101820"><title>OGCE v8.2 — The Living Omniverse</title><link rel="manifest" href="/manifest.webmanifest"><link rel="stylesheet" href="/style.css"></head>
-<body><header><div><small>OMNIGENESIS GAME ENGINE</small><h1>OMNIVERSAL REALMS <span class="version">v8.2</span></h1></div><div id="connection">LOCAL WORLD</div></header>
-<main><section class="hero"><div><h2>One universe. Countless paths.</h2><p>Explore, survive, gather, build and shape a persistent living world.</p></div><div class="worldpill">WORLD <b id="world">AURELIA</b></div></section>
-<div class="layout"><section class="game"><div class="scene"><canvas id="worldview" aria-label="Explorable animated 3D game world"></canvas><div class="scene-top"><span>✦ AURELIA · LIVING FRONTIER</span><span id="weather">CLEAR</span></div><div class="scene-bottom"><span>POSITION <b id="coords">2, 2</b></span><span>NEARBY <b id="nearby">Wilderness</b></span><span>DRAG TO LOOK · SCROLL TO ZOOM</span></div><div id="toast" role="status"></div></div><small class="renderhint">Procedural 3D terrain · animated explorer · day/night cycle · weather · forests · rivers · resource landmarks</small><div class="controls"><button data-move="0,-1">▲</button><div><button data-move="-1,0">◀</button><button data-move="0,1">▼</button><button data-move="1,0">▶</button></div></div><p class="hint">Explore, gather, craft, fight hostile creatures and complete quests. Move with WASD / arrow keys or touch controls; drag to orbit and scroll to zoom.</p></section>
-<aside><section class="panel"><h3>Explorer</h3><div id="player">Player</div><div class="stats"><span>Health <b id="health">100</b></span><span>Level <b id="level">1</b></span><span>Experience <b id="xp">0</b></span><span>Hunger <b id="hunger">0</b></span><span>World tick <b id="tick">0</b></span></div></section>
-<section class="panel"><h3>Inventory &amp; discoveries</h3><div id="inventory">Empty</div></section>
-<section class="panel"><h3>World actions</h3><button id="gather">Gather nearby resource</button><button id="attack">Attack nearest creature</button><button id="campfire">Build campfire (2 wood, 1 stone)</button><button id="advance">Advance world time</button></section>
-<section class="panel"><h3>Crafting &amp; survival</h3><div>Healing potions <b id="potions">0</b></div><div>Weapon <b id="weapon">Traveller Blade</b></div><button id="potioncraft">Craft healing potion (2 crystal)</button><button id="stoneweapon">Craft stone edge (5 stone, 2 wood)</button><button id="crystalweapon">Craft crystal sabre (5 crystal, 3 stone, 2 wood)</button><button id="drink">Drink healing potion</button><button id="rest">Rest at camp</button></section>
-<section class="panel"><h3>Quests</h3><div id="queststatus">Frontier Hunt · defeat two Moss Wolves</div><button id="questhunt">Accept Frontier Hunt</button><button id="questgather">Accept Gatherer's Path</button><button id="questclaim">Claim completed quest</button></section>
-<section class="panel mulux-panel"><h3>μLux · Living Lattice</h3>
-<div class="muted">A bounded artificial-life ecosystem, rule genesis, evidence grades and integrity ledger.</div>
-<div class="stats"><span>Agents <b id="life-population">—</b></span><span>Life tick <b id="life-tick">—</b></span><span>Ledger <b id="life-integrity">—</b></span></div>
-<button id="life-refresh">Inspect living world</button><button id="life-tick-button">Advance life simulation × 12</button><button id="life-receipt">Create integrity receipt</button>
-<div id="life-report" class="small-report">Life simulation not yet inspected.</div>
-<label for="claim-text">Evidence-grade a world claim</label><input id="claim-text" value="The simulated ecosystem is persistent and deterministic.">
-<button id="grade-claim">Grade claim</button><div id="grade-result" class="small-report">No claim graded.</div>
-<label for="genesis-rules">Horn rule set</label><textarea id="genesis-rules" rows="3">b: a
-c: a,b</textarea><button id="run-genesis">Compute μΓ least fixed point</button><div id="genesis-result" class="small-report">No closure computed.</div>
-<div class="muted">Simulation agency is not evidence of consciousness. Claims are graded only to the evidence supplied.</div></section>
-<section class="panel v82-panel"><h3>✧ v8.2 · The Awakening of Arcana & Discovery</h3>
-<p class="muted">Fictional arcane arts, celestial lore, reproducible in-world experiments and civilization-changing invention.</p>
-<div class="stats"><span>World tick <b id="v82-tick">0</b></span><span>Integrity <b id="v82-ledger">—</b></span></div>
-<label>Character ID <input id="v82-character-id" value="wanderer"></label>
-<label>Character name <input id="v82-name" value="Aurelian Seeker"></label>
-<label>Path <select id="v82-path"><option value="hybrid">Arcane-scientific hybrid</option><option value="arcane">Arcane adept</option><option value="scientific">Scientific scholar</option></select></label>
-<label>Birth cycle <input id="v82-birth" type="number" min="0" max="11" value="2"></label>
-<button id="v82-create">Awaken character</button>
-<div class="small-report" id="v82-characters">No character yet.</div>
-<div class="row"><label>Spell <select id="v82-spell"><option value="ember_bolt">Ember Bolt</option><option value="verdant_mend">Verdant Mend</option><option value="aegis_ward">Aegis Ward</option><option value="star_sight">Star Sight</option><option value="rune_spark">Rune Spark</option></select></label><button id="v82-cast">Cast spell</button><button id="v82-reading">Read celestial signs</button></div>
-<div class="small-report" id="v82-celestial">Celestial calendar awaits.</div>
-<h4>Scientific method &amp; discovery</h4>
-<label>Research title <input id="v82-title" value="Aether crystal resonance"></label>
-<label>Discipline <select id="v82-discipline"><option>physics</option><option>chemistry</option><option>biology</option><option>astronomy</option><option>ecology</option><option>archaeology</option></select></label>
-<label>Hypothesis <input id="v82-hypothesis-text" value="Crystal resonance changes under a simulated celestial alignment."></label>
-<button id="v82-hypothesis">Submit hypothesis</button>
-<label>Research ID <input id="v82-research-id" value="r00001"></label>
-<label>Observation <input id="v82-observation" value="Resonance increased by one unit."></label>
-<label><input type="checkbox" id="v82-repeat"> Mark as repeat observation</label>
-<button id="v82-experiment">Record experiment</button>
-<div class="small-report" id="v82-research-list">No research yet.</div>
-<h4>Technological invention</h4>
-<label>Practice discipline <select id="v82-train-discipline"><option>engineering</option><option>materials</option><option>energy</option><option>computing</option><option>automation</option><option>transport</option></select></label>
-<button id="v82-train">Train skill (+5)</button>
-<label>Blueprint <select id="v82-tech"><option value="windmill">Windmill</option><option value="crystal_lens">Crystal lens</option><option value="star_charting">Star charting</option><option value="field_medicine">Field medicine</option><option value="automata">Automata</option><option value="aether_dynamo">Aether dynamo</option><option value="living_architecture">Living architecture</option><option value="celestial_engine">Celestial engine</option></select></label>
-<button id="v82-invent">Invent technology</button><button id="v82-tick-button">Advance living world</button>
-<div class="small-report" id="v82-inventions">No inventions yet.</div>
-<div class="small-report" id="v82-civilization">Civilization effects await.</div>
-<div class="small-report" id="v82-status" role="status">v8.2 systems ready.</div>
-<p class="muted">This is a game simulation. Astrology and supernatural powers are fictional narrative systems; experiment outcomes apply only to this simulated world. Simulation is not evidence of consciousness.</p>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0d1b22">
+<title>OGCE Infinity 8.3 — Aurelia</title>
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icons/ogce.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<script type="module" src="/js/app.js"></script>
+</head>
+<body>
+<div id="stage">
+  <canvas id="worldview" aria-label="3D game world. Use W A S D or arrow keys to walk, click the ground to walk there."></canvas>
+  <canvas id="map2d" class="hidden" aria-hidden="true"></canvas>
+  <div id="labels" aria-hidden="true"></div>
+</div>
+
+<header id="topbar">
+  <div class="brand"><b>OGCE</b> Infinity <span class="ver">8.3</span></div>
+  <div class="pills">
+    <span class="pill" title="The world you are playing in">🌍 <b id="world">Aurelia</b></span>
+    <span class="pill" id="timepill" title="Time of day and weather">☀️ <b id="daytime">Morning</b> · <b id="weather">Clear</b></span>
+    <span class="pill" id="netpill" title="Connection"><b id="netstatus">Offline</b></span>
+  </div>
+  <div class="topbtns">
+    <button id="helpbtn" class="iconbtn" title="Controls help (H)" aria-label="Controls help">?</button>
+    <button id="panelbtn" class="iconbtn" title="Show or hide the side panel" aria-label="Toggle side panel">☰</button>
+  </div>
+</header>
+
+<section id="hud" aria-label="Your explorer">
+  <div class="who"><span id="player">Explorer</span> · Level <b id="level">1</b></div>
+  <div class="bar" title="Health — if it reaches zero you wake up back at camp"><span>❤️</span><div class="track"><div id="hpfill" class="fill hp"></div></div><b id="health">100/100</b></div>
+  <div class="bar" title="Hunger — rest by a campfire to feel better"><span>🍖</span><div class="track"><div id="hungerfill" class="fill hunger"></div></div><b id="hunger">0</b></div>
+  <div class="bar" title="Experience points (XP) — earn them to level up"><span>⭐</span><div class="track"><div id="xpfill" class="fill xp"></div></div><b id="xp">0</b></div>
+  <div class="bag" title="Your backpack"><span id="inventory">Empty backpack</span> · 🧪 <b id="potions">0</b> · ⚔️ <b id="weapon">Traveller’s Blade</b></div>
+  <div class="small muted">Square <b id="coords">2, 2</b> · Day <b id="tick">0</b></div>
 </section>
-<section class="panel"><h3>World chronicle</h3><div id="chronicle">Your story begins.</div></section>
-<section class="panel"><h3>Player account</h3><input id="username" placeholder="Username" autocomplete="username"><input id="password" type="password" placeholder="Password (12+ characters)" autocomplete="current-password"><button id="register">Create account</button><button id="login">Sign in</button><small id="authstatus">Guest mode is available on local development server.</small></section><section class="panel"><h3>Multiplayer connection</h3><input id="wsurl" aria-label="WebSocket server URL" placeholder="wss://ogce-infinity.oliverluxthorley.workers.dev/ws"><button id="connect">Connect multiplayer</button><small id="netstatus">Offline local mode</small></section></aside></div></main>
-<script src="/renderer3d.js"></script><script src="/app.js"></script><script src="/mulux.js"></script><script src="/v82.js"></script></body></html>
+
+<div id="hint" role="status" aria-live="polite"><span id="hinticon">🧭</span><span id="hinttext">Loading the world…</span><button id="hintclose" title="Hide tips" aria-label="Hide tips">×</button></div>
+<button id="hintshow" class="hidden" title="Show tips again">🧭 Tips</button>
+
+<canvas id="minimap" width="168" height="168" title="Map: you are the teal dot. Blue = crystal, brown = wood, grey = stone, red = wolves, gold = quest board."></canvas>
+
+<div id="actionbar">
+  <button id="contextbtn" class="context hidden"></button>
+  <div class="hotbar">
+    <button id="gather" title="Collect the nearest thing (E)"><kbd>E</kbd>Collect</button>
+    <button id="attack" title="Attack the nearest creature (F)"><kbd>F</kbd>Attack</button>
+    <button id="campfire" title="Build a campfire: 2 wood + 1 stone (B)"><kbd>B</kbd>Campfire</button>
+    <button id="rest" title="Rest next to a campfire (R)"><kbd>R</kbd>Rest</button>
+    <button id="potioncraft" title="Make a healing potion: 2 crystals (P)"><kbd>P</kbd>Make potion</button>
+    <button id="drink" title="Drink a healing potion (Q)"><kbd>Q</kbd>Drink</button>
+    <button id="advance" title="Let time pass (T)"><kbd>T</kbd>Wait</button>
+  </div>
+</div>
+
+<div id="joystick" class="hidden" aria-hidden="true"><div id="knob"></div></div>
+
+<aside id="panel">
+  <nav class="tabs" role="tablist">
+    <button class="tab active" data-tab="adventure" role="tab">🗺️ Adventure</button>
+    <button class="tab" data-tab="academy" role="tab">✨🔬 Magic &amp; Science</button>
+    <button class="tab" data-tab="lifelab" role="tab">🦠 Tiny Life Lab</button>
+  </nav>
+
+  <section class="tabpage active" id="tab-adventure">
+    <div class="card" id="accountcard">
+      <h3>Your account</h3>
+      <div id="signedout">
+        <input id="username" placeholder="Username (letters, numbers, _)" autocomplete="username" maxlength="24">
+        <input id="password" type="password" placeholder="Password (12+ characters)" autocomplete="current-password" maxlength="256">
+        <div class="row"><button id="register" class="primary">Make free account</button><button id="login">Sign in</button></div>
+        <p class="small muted">Tip: a short sentence makes a strong password, like “purple wolves love tea”. Ask a grown-up if you’re not sure.</p>
+      </div>
+      <div id="signedin" class="hidden"><span id="whoami"></span> <button id="logout" class="link">Sign out</button></div>
+      <small id="authstatus" role="status"></small>
+    </div>
+
+    <div class="card">
+      <h3>Quests</h3>
+      <div id="questlist"></div>
+      <div id="queststatus" class="small muted"></div>
+    </div>
+
+    <div class="card">
+      <h3>Crafting</h3>
+      <button id="stoneweapon" class="craft">⚔️ Stone Sword <span class="cost">5 🪨 + 2 🪵</span></button>
+      <button id="crystalweapon" class="craft">💎 Crystal Sabre <span class="cost">5 💎 + 3 🪨 + 2 🪵</span></button>
+      <button id="potioncraft2" class="craft">🧪 Healing potion <span class="cost">2 💎</span></button>
+      <button id="campfire2" class="craft">🔥 Campfire <span class="cost">2 🪵 + 1 🪨</span></button>
+      <p class="small muted">Better swords hit harder: Traveller’s Blade 12 · Stone Sword 18 · Crystal Sabre 27.</p>
+    </div>
+
+    <div class="card">
+      <h3>What’s happening</h3>
+      <ul id="chronicle" class="story"><li>Your story begins.</li></ul>
+    </div>
+
+    <details class="card">
+      <summary>Settings &amp; online play</summary>
+      <label class="check"><input type="checkbox" id="opt-tips" checked> Show tips</label>
+      <label class="check"><input type="checkbox" id="opt-labels" checked> Show name labels</label>
+      <label class="check"><input type="checkbox" id="opt-joystick"> Always show touch joystick</label>
+      <label>Graphics <select id="opt-quality"><option value="auto">Automatic (recommended)</option><option value="2">High</option><option value="1">Medium</option><option value="0">Low (fast)</option></select></label>
+      <label>Camera speed <input type="range" id="opt-camspeed" min="0.4" max="2" step="0.1" value="1"></label>
+      <p class="small muted">Live mode connects automatically when you sign in, so you see other players move straight away.</p>
+      <label>Custom live server (advanced) <input id="wsurl" placeholder="leave empty to use this website"></label>
+      <button id="connect">Reconnect live mode</button>
+      <p class="small muted" id="perf"></p>
+    </details>
+  </section>
+
+  <section class="tabpage" id="tab-academy">
+    <p class="notice">✨ <b>Magic and star signs here are make-believe</b> — they’re part of the game story, not real. 🔬 The science is a game version of how real scientists test ideas.</p>
+    <div class="card">
+      <h3>1 · Your character</h3>
+      <div id="v82-mychar" class="charcard">No character yet.</div>
+      <div id="v82-createbox">
+        <label>Name <input id="v82-name" value="Aurelian Seeker" maxlength="64"></label>
+        <label>Type <select id="v82-path"><option value="hybrid">Wizard-Scientist (a bit of both)</option><option value="arcane">Wizard (make-believe magic)</option><option value="scientific">Scientist (experiments)</option></select></label>
+        <label>Star sign <span class="tag">make-believe</span> <select id="v82-birth"></select></label>
+        <button id="v82-create" class="primary">Create character</button>
+      </div>
+    </div>
+    <div class="card">
+      <h3>2 · Spells <span class="tag">make-believe</span></h3>
+      <div id="v82-spells" class="small muted">Create a Wizard or Wizard-Scientist to use spells.</div>
+      <div class="row"><select id="v82-learn-spell"></select><button id="v82-learn">Learn spell</button></div>
+      <button id="v82-reading">🌟 Read my star story <span class="tag">make-believe</span></button>
+      <div id="v82-celestial" class="result"></div>
+    </div>
+    <div class="card">
+      <h3>3 · Science lab</h3>
+      <p class="small">Real scientists make a guess, test it, then <b>test it again</b>. If you get the same result twice, your idea is supported!</p>
+      <label>Subject <select id="v82-discipline"></select></label>
+      <label>Name your project <input id="v82-title" value="Do crystals glow brighter at night?" maxlength="100"></label>
+      <label>Your guess (what do you think will happen?) <input id="v82-hypothesis-text" value="Crystals glow brighter when it is dark." maxlength="500"></label>
+      <button id="v82-hypothesis" class="primary">Write down my guess</button>
+      <label>Which project? <select id="v82-research-id"></select></label>
+      <label>What did you see? <input id="v82-observation" value="The crystal glowed brighter." maxlength="300"></label>
+      <div class="row"><button id="v82-experiment">Record what I saw</button><button id="v82-repeat-btn">Repeat the test to check</button></div>
+      <div id="v82-research-list" class="list"></div>
+    </div>
+    <div class="card">
+      <h3>4 · Inventions</h3>
+      <p class="small">Invention points = your XP + 3 × your practice in that skill. Practise a skill to unlock bigger inventions.</p>
+      <div class="row"><select id="v82-train-discipline"></select><button id="v82-train">Practise (+5)</button></div>
+      <div id="v82-techs" class="list"></div>
+    </div>
+    <div class="card">
+      <h3>Your town</h3>
+      <div id="v82-civilization" class="stats"></div>
+      <div class="row"><button id="v82-tick-button">⏳ Let time pass</button><span class="small muted">Day <b id="v82-tick">0</b> · Record book: <b id="v82-ledger">—</b></span></div>
+      <div id="v82-status" class="result" role="status"></div>
+    </div>
+    <details class="card"><summary>All characters in this world</summary><div id="v82-characters" class="list"></div></details>
+  </section>
+
+  <section class="tabpage" id="tab-lifelab">
+    <p class="notice">🦠 A tiny pretend world of little creatures that find food, grow and have babies. It isn’t alive or aware — it’s a computer model, like a very clever game of Snakes and Ladders.</p>
+    <div class="card">
+      <h3>Tiny creatures</h3>
+      <div class="stats"><span>Creatures alive <b id="life-population">—</b></span><span>Steps so far <b id="life-tick">—</b></span><span>Diary check <b id="life-integrity">—</b></span></div>
+      <div class="row"><button id="life-tick-button" class="primary">▶ Watch 12 steps</button><button id="life-refresh">Look again</button></div>
+      <button id="life-receipt">🔏 Make a proof stamp</button>
+      <div id="life-report" class="result">Press “Look again” to peek at the tiny world.</div>
+      <p class="small muted">The world keeps a tamper-proof diary: every page is linked to the one before, so nobody can secretly change what happened.</p>
+    </div>
+    <div class="card">
+      <h3>How sure can we be?</h3>
+      <label>Write a statement <input id="claim-text" value="The tiny creatures keep finding food." maxlength="300"></label>
+      <label>How do you know? <select id="claim-evidence">
+        <option value="measurement">I measured or counted it</option><option value="computation">I worked it out (maths or computer)</option>
+        <option value="citation">A trusted book or expert says so</option><option value="premise">It follows from something I already know</option><option value="">I just think so</option></select></label>
+      <button id="grade-claim">Check my statement</button>
+      <div id="grade-result" class="result"></div>
+    </div>
+    <div class="card">
+      <h3>If-then puzzle</h3>
+      <p class="small">You start knowing <b>a</b>. Each line is a rule: <code>b: a</code> means “if you know a, then you know b”. Use commas for “and”: <code>c: a, b</code>.</p>
+      <textarea id="genesis-rules" rows="3">b: a
+c: a, b</textarea>
+      <button id="run-genesis">Solve the puzzle</button>
+      <div id="genesis-result" class="result"></div>
+    </div>
+  </section>
+</aside>
+
+<div id="help" class="overlay hidden" role="dialog" aria-labelledby="helptitle">
+  <div class="sheet">
+    <h2 id="helptitle">How to play</h2>
+    <table id="keytable"></table>
+    <p class="small">On a phone or tablet: use the joystick in the bottom-left corner to walk, tap the ground to walk there, drag with one finger to turn the camera and pinch to zoom.</p>
+    <button id="helpclose" class="primary">Got it!</button>
+  </div>
+</div>
+
+<div id="joinmodal" class="overlay hidden" role="dialog" aria-labelledby="jointitle">
+  <div class="sheet">
+    <h2 id="jointitle">Welcome to Aurelia! 🌄</h2>
+    <p>To play on this server you need a free account. Pick a username and a password (12+ characters — a short sentence works great).</p>
+    <input id="j-username" placeholder="Username" autocomplete="username" maxlength="24">
+    <input id="j-password" type="password" placeholder="Password (12+ characters)" autocomplete="new-password" maxlength="256">
+    <div class="row"><button id="j-register" class="primary">Make my account</button><button id="j-login">I already have one</button></div>
+    <small id="j-status" role="status"></small>
+    <button id="j-close" class="link">Just look around first</button>
+  </div>
+</div>
+
+<div id="toast" role="status" aria-live="polite"></div>
+<noscript>OGCE needs JavaScript to run.</noscript>
+</body>
+</html>

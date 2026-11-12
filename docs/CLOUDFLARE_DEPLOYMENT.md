@@ -64,3 +64,10 @@ create an account to act — the same rule the Python server enforces.
 `POST /api/v82/world/{id}` with `{"operation":"character"}` returned `400 unknown_v82_operation` in `ogce4/v70/server.py`
 because the operation dispatch chain had no `character` branch. Fixed in Python (with regression test
 `tests/test_v82_http.py`) and in the Worker.
+
+## v8.3 non-production preview
+* Separate Worker **`ogce-infinity-preview`** defined in `wrangler.jsonc` → `env.preview`
+  (workers.dev only, no routes/custom domain, its own Durable Object and storage).
+* Deploy: `npx wrangler deploy --env preview`. Secret: `npx wrangler secret put OGCE_SERVICE_TOKEN --env preview`.
+* URL: https://ogce-infinity-preview.oliverluxthorley.workers.dev
+* Production (`ogce.malcolmai.live`) is only deployed by Workers Builds from `main`; branch `v8.3` never deploys it.
