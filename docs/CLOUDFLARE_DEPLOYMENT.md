@@ -6,10 +6,10 @@ Cloudflare Workers cannot run that Python process, so this repository adds a Wor
 `ogce4/v70/server.py` in JavaScript.
 
 ## Live deployment
-- URL: https://ogce-infinity.oliverluxthorley.workers.dev (Worker `ogce-infinity`, workers.dev, free plan)
+- URL: https://ogce.malcolmai.live (Workers Custom Domain) and https://ogce-infinity.oliverluxthorley.workers.dev (Worker `ogce-infinity`, free plan)
 - Continuous deployment: Cloudflare Workers Builds is connected to this repository; every push to `main`
   runs `npm test` and then `npx wrangler deploy`.
-- Multiplayer WebSocket: `wss://ogce-infinity.oliverluxthorley.workers.dev/ws` (sign in first).
+- Multiplayer WebSocket: `wss://ogce.malcolmai.live/ws` or `wss://ogce-infinity.oliverluxthorley.workers.dev/ws` (sign in first).
 
 ## Architecture
 
