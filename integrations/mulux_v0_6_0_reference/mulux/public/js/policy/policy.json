@@ -1,0 +1,37 @@
+{
+  "policy": "omni-policy/mulux",
+  "version": "1.2.0",
+  "default": "deny",
+  "on_error": "deny_all",
+  "integrity": { "sha256_pinned": true, "unknown_field": "deny" },
+  "network": {
+    "allow_origins": ["self"],
+    "allow_routes": ["/api/healthz", "/api/malcolm/", "/api/pulse/"],
+    "note": "Engine modules make no network calls; the OmniGenesis bridge only previews requests. Malcolm is reached only through the same-origin mulux-api Worker (/api/), which holds the token as a secret and is disabled until owner YES; direct browser calls to Malcolm stay denied."
+  },
+  "actions": {
+    "compute_local": "allow",
+    "export_file": "allow",
+    "store_local": "allow",
+    "world_autonomy": "allow",
+    "narrate_via_malcolm": "deny",
+    "bridge_ollama": "deny",
+    "malcolm_via_worker": "allow",
+    "label_as_source_communication": "deny",
+    "publish_certificate": "needs_owner_yes",
+    "deploy": "needs_owner_yes",
+    "post_social": "deny",
+    "send_message": "deny",
+    "spend": "deny",
+    "execute_binary": "deny"
+  },
+  "claims": {
+    "grades": ["FACT", "INFERENCE", "SPECULATION", "BELIEF", "SSR INTERPRETATION", "OPEN CONJECTURE"],
+    "rise_requires_evidence": true,
+    "forbid": ["medical_advice", "future_prediction", "supernatural_efficacy", "legal_or_statutory_authority", "source_communication_claim"],
+    "layer_b_label": "Symbolic counsel — not evidence"
+  },
+  "intention_lab": { "preregistration_required": true, "optional_stopping": false, "publish_nulls": true },
+  "secrets": { "client_bundle": "none", "server": "worker_secrets_only", "log_redaction": true },
+  "governor": { "max_atoms": 144000, "max_steps": 144000, "max_ms": 12320 }
+}

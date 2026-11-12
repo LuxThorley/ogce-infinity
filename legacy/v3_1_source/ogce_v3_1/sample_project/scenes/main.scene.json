@@ -1,0 +1,7 @@
+{
+  "name": "MainScene",
+  "root_nodes": [
+    {"name":"PlayerSpawn","node_id":"player_spawn_root","tags":["spawn","player"],"components":{"spawn":{"kind":"player"}}},
+    {"name":"GroundPlane","node_id":"ground_plane_root","tags":["renderable"],"components":{"mesh":{"asset_ref":"content/meshes/ground_plane.obj","material":"default_lit"}}}
+  ]
+}

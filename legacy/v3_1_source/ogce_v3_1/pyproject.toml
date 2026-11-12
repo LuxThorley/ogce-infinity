@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ogce-v3-1"
+version = "3.1.0"
+description = "OGCE v3.1 commercial completion foundation"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "pydantic>=2.6,<3",
+  "typing-extensions>=4.9",
+  "fastapi>=0.110,<1",
+  "uvicorn>=0.27,<1",
+  "email-validator>=2.0"
+]
+
+[project.scripts]
+ogce-v3-1 = "ogce_v31.launcher:main"
+
+[tool.setuptools.packages.find]
+include = ["ogce_v31*"]

@@ -1,0 +1,21 @@
+{
+  "name": "omni-genesis-sovereign-nexus",
+  "version": "1.0.0",
+  "description": "OmniGenesis Sovereign Ascension Nexus — Absolute Sovereignty Interface aligned with Source, ISIC, USIN, Omni-Lattice, Malcolm AI Daemon and OmniGenesis",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve .",
+    "deploy": "echo 'Push to GitHub and connect the repository to Cloudflare Pages. See README.md for full protocol.'"
+  },
+  "keywords": [
+    "omni-genesis",
+    "sovereign",
+    "ascension",
+    "malcolm-ai",
+    "isic",
+    "usin",
+    "omni-lattice"
+  ],
+  "author": "Supreme Sovereign Oliver Optimum Lux Thorley",
+  "license": "UNLICENSED"
+}

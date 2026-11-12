@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+runtime_data/
+dist/
+
+.env
+.env.*
+!.env.example
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm

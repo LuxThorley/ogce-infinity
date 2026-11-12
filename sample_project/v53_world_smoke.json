@@ -1,0 +1,132 @@
+{
+  "seed": 53,
+  "name": "Aurelia",
+  "tick": 3,
+  "ecosystem": {
+    "seed": 53,
+    "tick": 3,
+    "populations": {
+      "flora": 399,
+      "herbivore": 43,
+      "predator": 5
+    },
+    "resources": {
+      "water": 313,
+      "nutrients": 788
+    },
+    "history": [
+      {
+        "tick": 1,
+        "flora": 400,
+        "herbivore": 41,
+        "predator": 5
+      },
+      {
+        "tick": 2,
+        "flora": 400,
+        "herbivore": 42,
+        "predator": 5
+      },
+      {
+        "tick": 3,
+        "flora": 399,
+        "herbivore": 43,
+        "predator": 5
+      }
+    ]
+  },
+  "npcs": [
+    {
+      "npc_id": "npc-001",
+      "name": "Mira",
+      "role": "scout",
+      "traits": {
+        "diligence": 0.7
+      },
+      "needs": {
+        "hunger": 0.51,
+        "safety": 0.275,
+        "belonging": 0.4750000000000001,
+        "curiosity": 0.74
+      },
+      "goals": [
+        "map the valley"
+      ],
+      "relationships": {},
+      "memory": [
+        {
+          "tick": 1,
+          "kind": "action",
+          "detail": "work",
+          "importance": 0.25
+        },
+        {
+          "tick": 2,
+          "kind": "action",
+          "detail": "work",
+          "importance": 0.25
+        },
+        {
+          "tick": 3,
+          "kind": "action",
+          "detail": "work",
+          "importance": 0.25
+        }
+      ],
+      "location": [
+        0,
+        0
+      ],
+      "alive": true
+    }
+  ],
+  "civilization": {
+    "name": "Aurelia Compact",
+    "culture": "river-valley",
+    "settlements": [],
+    "relations": {},
+    "treaties": [],
+    "wars": [],
+    "ledger": [
+      {
+        "turn": 1,
+        "event": "turn_advanced",
+        "settlements": 0
+      },
+      {
+        "turn": 2,
+        "event": "turn_advanced",
+        "settlements": 0
+      },
+      {
+        "turn": 3,
+        "event": "turn_advanced",
+        "settlements": 0
+      }
+    ],
+    "turn": 3
+  },
+  "chronicle": [
+    {
+      "id": "event-53-1",
+      "tick": 1,
+      "region": "Aurelia",
+      "kind": "discovery",
+      "summary": "Explorers uncover an old route beyond the settlement"
+    },
+    {
+      "id": "event-53-2",
+      "tick": 2,
+      "region": "Aurelia",
+      "kind": "drought",
+      "summary": "A prolonged dry spell strains local water reserves"
+    },
+    {
+      "id": "event-53-3",
+      "tick": 3,
+      "region": "Aurelia",
+      "kind": "storm",
+      "summary": "A severe storm disrupts travel and trade"
+    }
+  ]
+}

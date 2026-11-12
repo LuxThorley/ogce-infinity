@@ -1,0 +1,23 @@
+*{box-sizing:border-box}body{margin:0;background:#101820;color:#eaf1f4;font:16px system-ui}header{padding:18px max(20px,calc((100vw - 1180px)/2));display:flex;justify-content:space-between;align-items:center;background:#172630;border-bottom:1px solid #314653}header small{letter-spacing:.18em;color:#74d6c4;font-size:10px}h1{font-size:clamp(20px,3vw,30px);margin:4px 0}.hero,main{max-width:1180px;margin:auto}.hero{padding:24px 20px;display:flex;justify-content:space-between;align-items:center;gap:20px}.hero h2{margin:0 0 6px}.hero p,.hint{color:#a9bac2}.worldpill,.panel{background:#1a2b36;border:1px solid #314653;border-radius:14px;padding:14px}.layout{padding:0 20px 40px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(270px,.8fr);gap:16px}.game{min-width:0}canvas{width:100%;height:auto;aspect-ratio:1/1;background:#182c2b;border-radius:16px;border:1px solid #3d5d5b;display:block}.controls{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px}.controls div{display:flex;gap:8px}.controls button{width:52px;height:44px}button{border:1px solid #4b827e;background:#245b58;color:white;padding:12px;border-radius:9px;font-weight:650;cursor:pointer;margin:4px}button:active{transform:scale(.97)}aside{display:grid;gap:12px;align-content:start}.panel h3{margin:0 0 12px;color:#8fe0cf}.panel button{width:100%;margin:5px 0}.stats{display:grid;gap:7px;margin-top:12px;color:#b7c9ce}.stats span{display:flex;justify-content:space-between}.hint,small{font-size:12px}input{width:100%;padding:10px;border-radius:8px;background:#101820;border:1px solid #48606b;color:white}#chronicle{font-size:13px;line-height:1.6;color:#bdcbd0}#connection{font-size:11px;color:#8fe0cf}@media(max-width:760px){.layout{grid-template-columns:1fr}.hero{align-items:flex-start;flex-direction:column}header{padding:14px 18px}canvas{max-height:65vh}}\n#password,#username{margin:4px 0}.renderhint{display:block;color:#9eb8bd;margin:8px 2px}\n
+.version{font-size:11px;vertical-align:middle;color:#86dfc8;letter-spacing:.12em}
+.scene{position:relative;border:1px solid #45675f;border-radius:16px;overflow:hidden;background:#122b32;box-shadow:0 18px 48px #0006}
+.scene canvas{aspect-ratio:1.22/1;border:0;border-radius:0;touch-action:pan-y}
+.scene-top,.scene-bottom{position:absolute;left:0;right:0;display:flex;justify-content:space-between;gap:10px;padding:12px 15px;pointer-events:none;font-size:10px;letter-spacing:.12em;text-shadow:0 2px 5px #000}
+.scene-top{top:0;background:linear-gradient(#07141bcc,transparent);color:#d8f5e8}
+.scene-bottom{bottom:0;flex-wrap:wrap;background:linear-gradient(transparent,#07141bdd);color:#c0d8d2}
+.scene-bottom b{color:#fff}
+#toast{position:absolute;left:50%;bottom:52px;transform:translate(-50%,12px);opacity:0;background:#102a2beF;border:1px solid #6caaa0;padding:10px 14px;border-radius:10px;font-size:12px;transition:.2s;pointer-events:none;white-space:nowrap}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+.renderhint{padding:6px 3px}
+@media(max-width:760px){.scene canvas{aspect-ratio:1/1;max-height:58vh}.scene-bottom{font-size:9px}}
+
+.panel div{margin:5px 0;color:#c8d7d8;font-size:13px}
+.panel button{font-size:13px}
+
+.mulux-panel{border:1px solid #6c87a4}.mulux-panel label{display:block;margin:12px 0 5px;color:#b8c8d8;font-size:.85rem}.mulux-panel textarea{width:100%;resize:vertical;background:#111c27;color:#e8f0f7;border:1px solid #52677a;border-radius:8px;padding:9px}.small-report{font-size:.82rem;line-height:1.5;color:#c6d5e2;overflow-wrap:anywhere;margin:10px 0}.muted{font-size:.78rem;color:#94a8bb;line-height:1.45;margin:8px 0}
+
+.v82-panel{border:1px solid rgba(190,160,255,.35);background:linear-gradient(145deg,rgba(34,25,54,.96),rgba(15,28,39,.98))}
+.v82-panel h3{color:#e5d2ff}.v82-panel h4{margin:18px 0 8px;color:#c9b5ff}
+.v82-panel label{display:block;margin:9px 0;font-size:.88rem;color:#cbd5df}
+.v82-panel input,.v82-panel select{max-width:100%;box-sizing:border-box}
+.v82-panel .small-report{white-space:pre-wrap;overflow-wrap:anywhere;max-height:180px;overflow:auto;margin:8px 0;padding:9px;border-radius:8px;background:rgba(0,0,0,.22);font-size:.82rem}

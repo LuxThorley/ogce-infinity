@@ -1,0 +1,1 @@
+The μLux v0.6.0 source archive was supplied by the user and is preserved unchanged as a reference. Its own LICENSE and notices remain in the extracted mulux/ directory. OGCE's native v8.0 integration is a separate Python implementation inspired by compatible documented mechanics.

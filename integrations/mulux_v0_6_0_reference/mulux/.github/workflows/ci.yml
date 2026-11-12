@@ -1,0 +1,60 @@
+# μLux CI — NOT PUSHED. When this folder moves to apps/mulux/ in LuxThorley/omni-genesis-sovereign-nexus,
+# move this file to the repository root at .github/workflows/mulux-ci.yml (GitHub only reads workflows there).
+name: mulux-ci
+on:
+  pull_request:
+    paths: ['apps/mulux/**']
+  push:
+    branches: ['feature/mulux']
+    paths: ['apps/mulux/**']
+  workflow_dispatch: {}
+permissions:
+  contents: read
+concurrency:
+  group: mulux-${{ github.ref }}
+  cancel-in-progress: true
+defaults:
+  run:
+    working-directory: apps/mulux
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Unit, property and parity tests (73-check Proof Ledger, policy fuzz, hygiene)
+        run: node --test "tests/*.test.mjs"
+      - name: Policy pin is current
+        run: |
+          node tools/pin-policy.mjs
+          git diff --exit-code -- public/js/policy/pinned.js
+  smoke:
+    runs-on: ubuntu-latest
+    needs: test
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Playwright + Chromium (free; browser stage is skipped if absent)
+        run: |
+          pip install playwright
+          python3 -m playwright install --with-deps chromium
+      - name: Static server + headless browser smoke test (routes, console errors, Proof Ledger, offline)
+        run: python3 tools/smoke.py docs/screenshots
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: mulux-screenshots
+          path: apps/mulux/docs/screenshots
+      - name: Upload site artefact (no deployment)
+        uses: actions/upload-artifact@v4
+        with:
+          name: mulux-public
+          path: apps/mulux/public
+  # Deployment is deliberately absent. Adding a Cloudflare Pages deploy job requires Oliver's explicit YES,
+  # a manual workflow_dispatch trigger, a protected environment with required reviewer, and secrets stored only in GitHub.

@@ -1,0 +1,10 @@
+{$OGCE_DOMAIN} {
+    encode zstd gzip
+    reverse_proxy game:8787
+    header {
+        X-Content-Type-Options nosniff
+        Referrer-Policy strict-origin-when-cross-origin
+        X-Frame-Options DENY
+        Permissions-Policy "camera=(), microphone=(), geolocation=()"
+    }
+}

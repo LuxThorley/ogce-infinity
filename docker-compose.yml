@@ -1,0 +1,29 @@
+services:
+  game:
+    build: .
+    restart: unless-stopped
+    environment:
+      OGCE_SERVICE_TOKEN: ${OGCE_SERVICE_TOKEN:?Set a random 32+ character service token}
+    volumes:
+      - ogce_data:/data
+    expose: ["8787"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8787/health', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    depends_on: [game]
+    environment:
+      OGCE_DOMAIN: ${OGCE_DOMAIN:?Set your public domain}
+    ports: ["80:80", "443:443"]
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+volumes:
+  ogce_data:
+  caddy_data:
+  caddy_config:

@@ -1,0 +1,4 @@
+[
+  {"asset_id":"mesh_ground","logical_path":"content/meshes/ground_plane.obj","asset_type":"mesh","metadata":{"name":"ground_plane"}},
+  {"asset_id":"mat_default","logical_path":"content/materials/default_lit.material.json","asset_type":"material","metadata":{"name":"default_lit"}}
+]

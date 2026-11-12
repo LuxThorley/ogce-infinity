@@ -1,0 +1,8 @@
+{
+  "name": "Sample OGCE Project",
+  "engine_version": "3.1.0",
+  "template": "open_world_rpg",
+  "company": "OGCE Demo Studio",
+  "startup_scene": "scenes/main.scene.json",
+  "modules": ["runtime","renderer","editor","viewport","scene","assets","matchmaking","anti_cheat","platform","billing","updater","plugin_registry","reports","biofeedback","metaphysics","integrations"]
+}

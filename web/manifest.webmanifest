@@ -1,0 +1,17 @@
+{
+  "name": "OGCE Infinity v7.4 \u2014 Sovereign Realms",
+  "short_name": "OGCE v7.4",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#101820",
+  "theme_color": "#172630",
+  "icons": [
+    {
+      "src": "/icons/ogce.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "description": "Explore, fight, craft and quest in a persistent 3D world."
+}

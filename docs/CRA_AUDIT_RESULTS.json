@@ -1,0 +1,39 @@
+{
+  "suite": "OGCE v5.0 CRA audit",
+  "checks": {
+    "carrier_has_33_atoms": true,
+    "fixed_point_has_31_atoms": true,
+    "ungenerated_atoms_are_exact": true,
+    "totality_marker_generated": true,
+    "least_fixed_point_is_fixed": true,
+    "iteration_has_9_transitions": true,
+    "toy_monotonicity_exhaustive": true,
+    "restriction_actuality_T8": true,
+    "epsilon_filter_nontransitivity_witness": true,
+    "indexical_filter_counterexample": true
+  },
+  "passed": 10,
+  "failed": 0,
+  "cra": {
+    "carrier": 33,
+    "fixed_point": 31,
+    "transitions": 9,
+    "trace_sizes": [
+      3,
+      5,
+      10,
+      13,
+      18,
+      21,
+      24,
+      27,
+      30,
+      31,
+      31
+    ]
+  },
+  "limitations": [
+    "The full 33-atom power set is not exhaustively enumerated (2^33 states).",
+    "CRA labels are formal model strata, not demonstrated physical dimensions or timeline operations."
+  ]
+}

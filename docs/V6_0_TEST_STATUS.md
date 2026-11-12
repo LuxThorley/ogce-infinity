@@ -1,0 +1,1 @@
+v6.0 validation results are recorded in `V6_0_RELEASE_VALIDATION.md` in this package. Passing automated tests only cover the listed local behavior; they are not a security audit, live provider certification, or multiplayer deployment certification.

@@ -1,0 +1,22 @@
+# mulux-api — NOT DEPLOYED. Deploying needs Oliver's explicit YES.
+# Secrets are set with `wrangler secret put MALCOLM_OMNIAPI_TOKEN` (never in this file, never in the client).
+name = "mulux-api"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+workers_dev = false            # serve only on the μLux origin route below (same origin → CSP connect-src 'self' holds)
+
+# routes = [{ pattern = "mulux.luxthorley.one/api/*", zone_name = "luxthorley.one" }]   # enable after YES + DNS
+
+[vars]
+ALLOWED_ORIGINS = "https://mulux.luxthorley.one,https://mulux.pages.dev"
+MULUX_MALCOLM_ENABLED = "no"   # Omni-Policy switch: set to "yes" only after Oliver's YES
+MALCOLM_UPSTREAM = "https://malcolmai-live.oliverluxthorley.workers.dev"
+# Canonical public API (reference): https://malcolm-infinity-omniapi.pages.dev
+
+# Free Workers Rate Limiting binding (optional; falls back to a per-isolate window if absent)
+[[ratelimits]]
+name = "RATE_LIMITER"
+namespace_id = "1001"
+  [ratelimits.simple]
+  limit = 12
+  period = 60

@@ -1,0 +1,7 @@
+name = "omni-genesis-sovereign-nexus"
+compatibility_date = "2026-07-01"
+pages_build_output_dir = "."
+
+# Optional: bind secrets later for real JWT signing
+# [vars]
+# SOVEREIGN_SIGNING_KEY = "replace-via-cloudflare-dashboard"

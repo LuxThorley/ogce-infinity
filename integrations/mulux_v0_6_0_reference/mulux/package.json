@@ -1,0 +1,15 @@
+{
+  "name": "mulux",
+  "version": "0.6.0",
+  "description": "μLux — The Living Lattice. Local-first PWA built from the OmniLux Prime Doctrine (Masterpiece Edition).",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node --test \"tests/*.test.mjs\"",
+    "pin-policy": "node tools/pin-policy.mjs",
+    "serve": "python3 -m http.server 8000 --directory public",
+    "smoke": "python3 tools/smoke.py"
+  }
+}

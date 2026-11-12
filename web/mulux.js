@@ -1,0 +1,12 @@
+(()=>{"use strict";
+const $=id=>document.getElementById(id);let last=null;
+async function get(){const r=await fetch("/api/mulux/world/Aurelia");if(!r.ok)throw Error("μLux service unavailable");last=await r.json();render(last);return last}
+function render(d){$("life-population").textContent=d.snapshot.population;$("life-tick").textContent=d.snapshot.tick;$("life-integrity").textContent=d.integrity.valid?"VERIFIED":"FAILED";$("life-report").textContent=`Seed ${d.snapshot.seed} · ${d.integrity.events} hash-chained events · head ${String(d.integrity.head||"").slice(0,16)}…`}
+async function post(body){const r=await fetch("/api/mulux/world/Aurelia",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});const d=await r.json();if(!r.ok)throw Error(d.error||"Request failed");return d}
+$("life-refresh").onclick=()=>get().catch(e=>$("life-report").textContent=e.message);
+$("life-tick-button").onclick=async()=>{try{const d=await post({operation:"tick",count:12});const base=await get();base.snapshot=d.snapshot;base.integrity=d.integrity;render(base)}catch(e){$("life-report").textContent=e.message}};
+$("life-receipt").onclick=async()=>{try{const d=await post({operation:"receipt"});$("life-report").textContent="Receipt SHA-256: "+d.receipt.sha256; }catch(e){$("life-report").textContent=e.message}};
+$("grade-claim").onclick=async()=>{try{const d=await post({operation:"grade",claim:$("claim-text").value,grade:"FACT",evidence:[{kind:"computation"}]});$("grade-result").textContent=`${d.grade} · evidence rank ${d.evidence_rank} · flags: ${d.flags.join(", ")||"none"}`}catch(e){$("grade-result").textContent=e.message}};
+$("run-genesis").onclick=async()=>{try{const rules=$("genesis-rules").value.split(/\n/).map(x=>x.trim()).filter(Boolean).map(x=>{const [head,body]=x.split(":");return {then:head.trim(),if:(body||"").split(",").map(y=>y.trim()).filter(Boolean)}});const atoms=[...new Set(["a",...rules.flatMap(r=>[r.then,...r.if])])];const d=await post({operation:"genesis",atoms,axioms:["a"],rules});$("genesis-result").textContent=`μΓ = { ${d.closure.join(", ")} } · ${d.steps} steps · ${d.converged?"converged":"not converged"}`}catch(e){$("genesis-result").textContent=e.message}};
+get().catch(e=>$("life-report").textContent=e.message);
+})();

@@ -1,0 +1,3783 @@
+{
+ "C1_pairs_checked": 81,
+ "C1_monotone": true,
+ "C1_table": [
+  {
+   "X": "∅",
+   "GX": "{a}",
+   "prefixed": false,
+   "fixed": false
+  },
+  {
+   "X": "{a}",
+   "GX": "{a, b}",
+   "prefixed": false,
+   "fixed": false
+  },
+  {
+   "X": "{b}",
+   "GX": "{a, c}",
+   "prefixed": false,
+   "fixed": false
+  },
+  {
+   "X": "{c}",
+   "GX": "{a}",
+   "prefixed": false,
+   "fixed": false
+  },
+  {
+   "X": "{d}",
+   "GX": "{a, c, d}",
+   "prefixed": false,
+   "fixed": false
+  },
+  {
+   "X": "{a, b}",
+   "GX": "{a, b, c}",
+   "prefixed": false,
+   "fixed": false
+  },
+  {
+   "X": "{a, c}",
+   "GX": "{a, b}",
+   "prefixed": false,
+   "fixed": false
+  },
+  {
+   "X": "{a, d}",
+   "GX": "{a, b, c, d}",
+   "prefixed": false,
+   "fixed": false
+  },
+  {
+   "X": "{b, c}",
+   "GX": "{a, c}",
+   "prefixed": false,
+   "fixed": false
+  },
+  {
+   "X": "{b, d}",
+   "GX": "{a, c, d}",
+   "prefixed": false,
+   "fixed": false
+  },
+  {
+   "X": "{c, d}",
+   "GX": "{a, c, d}",
+   "prefixed": false,
+   "fixed": false
+  },
+  {
+   "X": "{a, b, c}",
+   "GX": "{a, b, c}",
+   "prefixed": true,
+   "fixed": true
+  },
+  {
+   "X": "{a, b, d}",
+   "GX": "{a, b, c, d}",
+   "prefixed": false,
+   "fixed": false
+  },
+  {
+   "X": "{a, c, d}",
+   "GX": "{a, b, c, d}",
+   "prefixed": false,
+   "fixed": false
+  },
+  {
+   "X": "{b, c, d}",
+   "GX": "{a, c, d}",
+   "prefixed": false,
+   "fixed": false
+  },
+  {
+   "X": "{a, b, c, d}",
+   "GX": "{a, b, c, d}",
+   "prefixed": true,
+   "fixed": true
+  }
+ ],
+ "C1_fixed": [
+  "{a, b, c}",
+  "{a, b, c, d}"
+ ],
+ "C1_prefixed": [
+  "{a, b, c}",
+  "{a, b, c, d}"
+ ],
+ "C1_meet_prefixed": "{a, b, c}",
+ "C1_kleene": [
+  "∅",
+  "{a}",
+  "{a, b}",
+  "{a, b, c}"
+ ],
+ "C1_lfp": "{a, b, c}",
+ "C1_steps": 3,
+ "C1_lfp_equals_meet": true,
+ "C1_tight_monotone": true,
+ "C1_tight_kleene": [
+  "∅",
+  "{a}",
+  "{a, b}"
+ ],
+ "C1_tight_steps": 2,
+ "C2_join_preserving": true,
+ "C2_rows": [
+  {
+   "X": "∅",
+   "FX": "∅",
+   "FGX": "{a}",
+   "LFX": "{a}",
+   "eq": true,
+   "lax": true
+  },
+  {
+   "X": "{a}",
+   "FX": "{a}",
+   "FGX": "{a, b}",
+   "LFX": "{a, b}",
+   "eq": true,
+   "lax": true
+  },
+  {
+   "X": "{b}",
+   "FX": "{b}",
+   "FGX": "{a, c}",
+   "LFX": "{a, c}",
+   "eq": true,
+   "lax": true
+  },
+  {
+   "X": "{c}",
+   "FX": "{c}",
+   "FGX": "{a}",
+   "LFX": "{a}",
+   "eq": true,
+   "lax": true
+  },
+  {
+   "X": "{d}",
+   "FX": "∅",
+   "FGX": "{a, c}",
+   "LFX": "{a}",
+   "eq": false,
+   "lax": true
+  },
+  {
+   "X": "{a, b}",
+   "FX": "{a, b}",
+   "FGX": "{a, b, c}",
+   "LFX": "{a, b, c}",
+   "eq": true,
+   "lax": true
+  },
+  {
+   "X": "{a, c}",
+   "FX": "{a, c}",
+   "FGX": "{a, b}",
+   "LFX": "{a, b}",
+   "eq": true,
+   "lax": true
+  },
+  {
+   "X": "{a, d}",
+   "FX": "{a}",
+   "FGX": "{a, b, c}",
+   "LFX": "{a, b}",
+   "eq": false,
+   "lax": true
+  },
+  {
+   "X": "{b, c}",
+   "FX": "{b, c}",
+   "FGX": "{a, c}",
+   "LFX": "{a, c}",
+   "eq": true,
+   "lax": true
+  },
+  {
+   "X": "{b, d}",
+   "FX": "{b}",
+   "FGX": "{a, c}",
+   "LFX": "{a, c}",
+   "eq": true,
+   "lax": true
+  },
+  {
+   "X": "{c, d}",
+   "FX": "{c}",
+   "FGX": "{a, c}",
+   "LFX": "{a}",
+   "eq": false,
+   "lax": true
+  },
+  {
+   "X": "{a, b, c}",
+   "FX": "{a, b, c}",
+   "FGX": "{a, b, c}",
+   "LFX": "{a, b, c}",
+   "eq": true,
+   "lax": true
+  },
+  {
+   "X": "{a, b, d}",
+   "FX": "{a, b}",
+   "FGX": "{a, b, c}",
+   "LFX": "{a, b, c}",
+   "eq": true,
+   "lax": true
+  },
+  {
+   "X": "{a, c, d}",
+   "FX": "{a, c}",
+   "FGX": "{a, b, c}",
+   "LFX": "{a, b}",
+   "eq": false,
+   "lax": true
+  },
+  {
+   "X": "{b, c, d}",
+   "FX": "{b, c}",
+   "FGX": "{a, c}",
+   "LFX": "{a, c}",
+   "eq": true,
+   "lax": true
+  },
+  {
+   "X": "{a, b, c, d}",
+   "FX": "{a, b, c}",
+   "FGX": "{a, b, c}",
+   "LFX": "{a, b, c}",
+   "eq": true,
+   "lax": true
+  }
+ ],
+ "C2_U1_failures": [
+  "{d}",
+  "{a, d}",
+  "{c, d}",
+  "{a, c, d}"
+ ],
+ "C2_U1_fail_count": 4,
+ "C2_lax_all": true,
+ "C2_U1_on_downset": true,
+ "C2_U1_on_chain": true,
+ "C2_F_lfp": "{a, b, c}",
+ "C2_lfp_Lambda": "{a, b, c}",
+ "C2_transfer": true,
+ "C2_Lambda_monotone": true,
+ "C3_join_preserving": true,
+ "C3_Lambda_monotone": true,
+ "C3_rows": [
+  {
+   "X": "∅",
+   "FX": "∅",
+   "FGX": "{a}",
+   "LFX": "{a}",
+   "eq": true
+  },
+  {
+   "X": "{a}",
+   "FX": "{a}",
+   "FGX": "{a, b}",
+   "LFX": "{a, b}",
+   "eq": true
+  },
+  {
+   "X": "{b}",
+   "FX": "{b}",
+   "FGX": "{a, c}",
+   "LFX": "{a, c}",
+   "eq": true
+  },
+  {
+   "X": "{c}",
+   "FX": "{c}",
+   "FGX": "{a}",
+   "LFX": "{a}",
+   "eq": true
+  },
+  {
+   "X": "{d}",
+   "FX": "{c, δ}",
+   "FGX": "{a, c, δ}",
+   "LFX": "{a, c, δ}",
+   "eq": true
+  },
+  {
+   "X": "{a, b}",
+   "FX": "{a, b}",
+   "FGX": "{a, b, c}",
+   "LFX": "{a, b, c}",
+   "eq": true
+  },
+  {
+   "X": "{a, c}",
+   "FX": "{a, c}",
+   "FGX": "{a, b}",
+   "LFX": "{a, b}",
+   "eq": true
+  },
+  {
+   "X": "{a, d}",
+   "FX": "{a, c, δ}",
+   "FGX": "{a, b, c, δ}",
+   "LFX": "{a, b, c, δ}",
+   "eq": true
+  },
+  {
+   "X": "{b, c}",
+   "FX": "{b, c}",
+   "FGX": "{a, c}",
+   "LFX": "{a, c}",
+   "eq": true
+  },
+  {
+   "X": "{b, d}",
+   "FX": "{b, c, δ}",
+   "FGX": "{a, c, δ}",
+   "LFX": "{a, c, δ}",
+   "eq": true
+  },
+  {
+   "X": "{c, d}",
+   "FX": "{c, δ}",
+   "FGX": "{a, c, δ}",
+   "LFX": "{a, c, δ}",
+   "eq": true
+  },
+  {
+   "X": "{a, b, c}",
+   "FX": "{a, b, c}",
+   "FGX": "{a, b, c}",
+   "LFX": "{a, b, c}",
+   "eq": true
+  },
+  {
+   "X": "{a, b, d}",
+   "FX": "{a, b, c, δ}",
+   "FGX": "{a, b, c, δ}",
+   "LFX": "{a, b, c, δ}",
+   "eq": true
+  },
+  {
+   "X": "{a, c, d}",
+   "FX": "{a, c, δ}",
+   "FGX": "{a, b, c, δ}",
+   "LFX": "{a, b, c, δ}",
+   "eq": true
+  },
+  {
+   "X": "{b, c, d}",
+   "FX": "{b, c, δ}",
+   "FGX": "{a, c, δ}",
+   "LFX": "{a, c, δ}",
+   "eq": true
+  },
+  {
+   "X": "{a, b, c, d}",
+   "FX": "{a, b, c, δ}",
+   "FGX": "{a, b, c, δ}",
+   "LFX": "{a, b, c, δ}",
+   "eq": true
+  }
+ ],
+ "C3_U1_all16": true,
+ "C3_kleene_Lambda": [
+  "∅",
+  "{a}",
+  "{a, b}",
+  "{a, b, c}"
+ ],
+ "C3_F_lfp": "{a, b, c}",
+ "C3_lfp_Lambda": "{a, b, c}",
+ "C3_transfer": true,
+ "C3_chain_images": [
+  "∅",
+  "{a}",
+  "{a, b}",
+  "{a, b, c}"
+ ],
+ "C3_fixed_Lambda": [
+  "{a, b, c}",
+  "{a, b, c, δ}"
+ ],
+ "C3_F_of_fixed": [
+  "{a, b, c}",
+  "{a, b, c, δ}"
+ ],
+ "C4_galois": true,
+ "C4_Lsharp_monotone": true,
+ "C4_sound_all": true,
+ "C4_kleene": [
+  "∅",
+  "{a, c}",
+  "{a, b, c}"
+ ],
+ "C4_lfp": "{a, b, c}",
+ "C4_sound_lfp": true,
+ "C4_exact": true,
+ "C4_table": [
+  {
+   "Y": "∅",
+   "L": "{a, c}"
+  },
+  {
+   "Y": "{a}",
+   "L": "{a, b, c}"
+  },
+  {
+   "Y": "{b}",
+   "L": "{a, c}"
+  },
+  {
+   "Y": "{c}",
+   "L": "{a, c}"
+  },
+  {
+   "Y": "{a, b}",
+   "L": "{a, b, c}"
+  },
+  {
+   "Y": "{a, c}",
+   "L": "{a, b, c}"
+  },
+  {
+   "Y": "{b, c}",
+   "L": "{a, c}"
+  },
+  {
+   "Y": "{a, b, c}",
+   "L": "{a, b, c}"
+  }
+ ],
+ "C5_norm": 0.9999999999999998,
+ "C5_CHSH": 2.82842712474619,
+ "C5_2sqrt2": 2.8284271247461903,
+ "C5_classical": 2,
+ "C5_bob_marg_maxdev": 2.220446049250313e-16,
+ "C6_bulbs": [
+  {
+   "angle": "1/2",
+   "root": "-0.750000+0.000000i",
+   "centre": "-1.000000+0.000000i",
+   "period": 2,
+   "dist": 0.25
+  },
+  {
+   "angle": "1/3",
+   "root": "-0.125000+0.649519i",
+   "centre": "-0.122561+0.744862i",
+   "period": 3,
+   "dist": 0.0953739009279184
+  },
+  {
+   "angle": "2/5",
+   "root": "-0.481763+0.531657i",
+   "centre": "-0.504340+0.562766i",
+   "period": 5,
+   "dist": 0.03843840005881728
+  },
+  {
+   "angle": "3/8",
+   "root": "-0.353553+0.603553i",
+   "centre": "-0.359102+0.617353i",
+   "period": 8,
+   "dist": 0.014873907660766909
+  },
+  {
+   "angle": "5/13",
+   "root": "-0.404390+0.579739i",
+   "centre": "-0.407104+0.584853i",
+   "period": 13,
+   "dist": 0.0057900550311270225
+  },
+  {
+   "angle": "8/21",
+   "root": "-0.385208+0.589387i",
+   "centre": "-0.386160+0.591404i",
+   "period": 21,
+   "dist": 0.002230513321367344
+  },
+  {
+   "angle": "13/34",
+   "root": "-0.392572+0.585781i",
+   "centre": "-0.392959+0.586546i",
+   "period": 34,
+   "dist": 0.0008573916603404624
+  }
+ ],
+ "C6_periods_fib": true,
+ "C6_ratio_limit": [
+  1.5,
+  1.6666666666666667,
+  1.6,
+  1.625,
+  1.6153846153846154,
+  1.619047619047619
+ ],
+ "C6_phi": 1.618033988749895,
+ "C6_inv_phi2": 0.38196601125010515,
+ "C7_rs_m": 2953.3393820668784,
+ "C7_S_over_kB": 1.0489548861789662e+77,
+ "C7_S_J_per_K": 1.4482385146481035e+54,
+ "C7_lp": 1.61625502392855e-35,
+ "C8_rows": [
+  {
+   "T": 253.15,
+   "dG": 440.6999999999998
+  },
+  {
+   "T": 263.15,
+   "dG": 220.70000000000073
+  },
+  {
+   "T": 273.15,
+   "dG": 0.7000000000007276
+  },
+  {
+   "T": 283.15,
+   "dG": -219.29999999999927
+  },
+  {
+   "T": 293.15,
+   "dG": -439.2999999999993
+  }
+ ],
+ "C8_T_eq": 273.1818181818182,
+ "C9_probs": [
+  0.2919239653682848,
+  0.7080760346317154
+ ],
+ "C9_sum": 1.0000000000000002,
+ "C9_144beats_seconds": {
+  "60": 144.0,
+  "72": 120.0,
+  "100": 86.4
+ },
+ "C10_6pi5": 1836.1181087116884,
+ "C10_abs": 0.034564714311727585,
+ "C10_rel": 1.8824531757065025e-05,
+ "C10_ppm": 18.824531757065024,
+ "C11_tau": 878.4,
+ "C11_half": 608.8604834038559,
+ "C11_half_unc": 0.34657359027997264,
+ "C11_half_beam": 615.3067521830635,
+ "C12_T_sun": 365.25689832762095,
+ "C12_T_sun_earth_moon": 365.2563430593791,
+ "C12_T_pi3": 348.79464520352826,
+ "C12_short": 16.462253124092683,
+ "C12_sidereal": 365.256363,
+ "C13_register": [
+  {
+   "n": 13,
+   "factors": "13",
+   "tau": 2,
+   "sigma": 14,
+   "cls": "deficient",
+   "claimed": "13",
+   "ok": true
+  },
+  {
+   "n": 26000,
+   "factors": "2^4 · 5^3 · 13",
+   "tau": 40,
+   "sigma": 67704,
+   "cls": "abundant",
+   "claimed": "2^4 · 5^3 · 13",
+   "ok": true
+  },
+  {
+   "n": 144,
+   "factors": "2^4 · 3^2",
+   "tau": 15,
+   "sigma": 403,
+   "cls": "abundant",
+   "claimed": "2^4 · 3^2",
+   "ok": true
+  },
+  {
+   "n": 144000,
+   "factors": "2^7 · 3^2 · 5^3",
+   "tau": 96,
+   "sigma": 517140,
+   "cls": "abundant",
+   "claimed": "2^7 · 3^2 · 5^3",
+   "ok": true
+  },
+  {
+   "n": 333,
+   "factors": "3^2 · 37",
+   "tau": 6,
+   "sigma": 494,
+   "cls": "deficient",
+   "claimed": "3^2 · 37",
+   "ok": true
+  },
+  {
+   "n": 33,
+   "factors": "3 · 11",
+   "tau": 4,
+   "sigma": 48,
+   "cls": "deficient",
+   "claimed": "3 · 11",
+   "ok": true
+  },
+  {
+   "n": 31,
+   "factors": "31",
+   "tau": 2,
+   "sigma": 32,
+   "cls": "deficient",
+   "claimed": "31",
+   "ok": true
+  },
+  {
+   "n": 11954563,
+   "factors": "11954563",
+   "tau": 2,
+   "sigma": 11954564,
+   "cls": "deficient",
+   "claimed": "11954563",
+   "ok": true
+  },
+  {
+   "n": 22876830,
+   "factors": "2 · 3^4 · 5 · 61 · 463",
+   "tau": 80,
+   "sigma": 62656704,
+   "cls": "abundant",
+   "claimed": "2 · 3^4 · 5 · 61 · 463",
+   "ok": true
+  },
+  {
+   "n": 1126,
+   "factors": "2 · 563",
+   "tau": 4,
+   "sigma": 1692,
+   "cls": "deficient",
+   "claimed": "2 · 563",
+   "ok": true
+  },
+  {
+   "n": 1495,
+   "factors": "5 · 13 · 23",
+   "tau": 8,
+   "sigma": 2016,
+   "cls": "deficient",
+   "claimed": "5 · 13 · 23",
+   "ok": true
+  },
+  {
+   "n": 7476,
+   "factors": "2^2 · 3 · 7 · 89",
+   "tau": 24,
+   "sigma": 20160,
+   "cls": "abundant",
+   "claimed": "2^2 · 3 · 7 · 89",
+   "ok": true
+  },
+  {
+   "n": 411,
+   "factors": "3 · 137",
+   "tau": 4,
+   "sigma": 552,
+   "cls": "deficient",
+   "claimed": "3 · 137",
+   "ok": true
+  },
+  {
+   "n": 20000,
+   "factors": "2^5 · 5^4",
+   "tau": 30,
+   "sigma": 49203,
+   "cls": "abundant",
+   "claimed": "2^5 · 5^4",
+   "ok": true
+  },
+  {
+   "n": 9192631770,
+   "factors": "2 · 3^2 · 5 · 7^2 · 47 · 44351",
+   "tau": 144,
+   "sigma": 28395214848,
+   "cls": "abundant",
+   "claimed": "2 · 3^2 · 5 · 7^2 · 47 · 44351",
+   "ok": true
+  },
+  {
+   "n": 299792458,
+   "factors": "2 · 7 · 73 · 293339",
+   "tau": 16,
+   "sigma": 520971840,
+   "cls": "deficient",
+   "claimed": "2 · 7 · 73 · 293339",
+   "ok": true
+  },
+  {
+   "n": 149597870700,
+   "factors": "2^2 · 3 · 5^2 · 73 · 877 · 7789",
+   "tau": 144,
+   "sigma": 439322471840,
+   "cls": "abundant",
+   "claimed": "2^2 · 3 · 5^2 · 73 · 877 · 7789",
+   "ok": true
+  },
+  {
+   "n": 1836,
+   "factors": "2^2 · 3^3 · 17",
+   "tau": 24,
+   "sigma": 5040,
+   "cls": "abundant",
+   "claimed": "2^2 · 3^3 · 17",
+   "ok": true
+  },
+  {
+   "n": 1420,
+   "factors": "2^2 · 5 · 71",
+   "tau": 12,
+   "sigma": 3024,
+   "cls": "abundant",
+   "claimed": "2^2 · 5 · 71",
+   "ok": true
+  }
+ ],
+ "C13_all_ok": true,
+ "C13_gcd": [
+  {
+   "a": 13,
+   "b": 26000,
+   "g": 13,
+   "l": 26000
+  },
+  {
+   "a": 13,
+   "b": 144,
+   "g": 1,
+   "l": 1872
+  },
+  {
+   "a": 13,
+   "b": 144000,
+   "g": 1,
+   "l": 1872000
+  },
+  {
+   "a": 13,
+   "b": 333,
+   "g": 1,
+   "l": 4329
+  },
+  {
+   "a": 144,
+   "b": 144000,
+   "g": 144,
+   "l": 144000
+  },
+  {
+   "a": 144,
+   "b": 12,
+   "g": 12,
+   "l": 144
+  },
+  {
+   "a": 9,
+   "b": 333,
+   "g": 9,
+   "l": 333
+  },
+  {
+   "a": 9,
+   "b": 144,
+   "g": 9,
+   "l": 144
+  },
+  {
+   "a": 9,
+   "b": 33,
+   "g": 3,
+   "l": 99
+  },
+  {
+   "a": 33,
+   "b": 11,
+   "g": 11,
+   "l": 33
+  },
+  {
+   "a": 4,
+   "b": 12,
+   "g": 4,
+   "l": 12
+  },
+  {
+   "a": 4,
+   "b": 144,
+   "g": 4,
+   "l": 144
+  },
+  {
+   "a": 5,
+   "b": 144000,
+   "g": 5,
+   "l": 144000
+  },
+  {
+   "a": 333,
+   "b": 144000,
+   "g": 9,
+   "l": 5328000
+  },
+  {
+   "a": 31,
+   "b": 33,
+   "g": 1,
+   "l": 1023
+  },
+  {
+   "a": 411,
+   "b": 3,
+   "g": 3,
+   "l": 411
+  },
+  {
+   "a": 1126,
+   "b": 2,
+   "g": 2,
+   "l": 1126
+  }
+ ],
+ "C13_137_index": 33,
+ "C13_137_prime": true,
+ "C13_weekdays": {
+  "2025-11-11": "Tuesday",
+  "2025-11-13": "Thursday",
+  "2025-12-12": "Friday"
+ },
+ "C13_doy": {
+  "2025-11-11": 315,
+  "2025-11-13": 317,
+  "2025-12-12": 346
+ },
+ "C13_poisson_ge10": 0.0002015412715667248,
+ "C13_p_131313": 1.1574074074074073e-05,
+ "C13_p_HHHHHH": 0.0002777777777777778,
+ "C13_phi_lp": 0.0010994755130387373,
+ "C13_prec_ratio": 1.0088663834080283,
+ "C13_wien_mm": 1.063215270337702,
+ "C13_ly": 9460730472580800.0,
+ "B_ratio_exact": "28125/77",
+ "B_ratio": 365.2597402597402,
+ "B_year_diffs": {
+  "tropical (mean, J2000)": {
+   "days": 365.24219,
+   "diff_d": 0.017550259740232832,
+   "diff_min": 25.272374025935278
+  },
+  "Gregorian calendar": {
+   "days": 365.2425,
+   "diff_d": 0.0172402597402197,
+   "diff_min": 24.825974025916366
+  },
+  "Julian": {
+   "days": 365.25,
+   "diff_d": 0.00974025974022652,
+   "diff_min": 14.025974025926189
+  },
+  "sidereal": {
+   "days": 365.256363,
+   "diff_d": 0.003377259740204863,
+   "diff_min": 4.863254025895003
+  },
+  "anomalistic": {
+   "days": 365.259636,
+   "diff_d": 0.00010425974022609807,
+   "diff_min": 0.15013402592558123
+  }
+ },
+ "B_tritium_days_from_years": {
+  "tropical (mean, J2000)": 4499.7837808,
+  "Gregorian calendar": 4499.787600000001,
+  "Julian": 4499.88,
+  "sidereal": 4499.958392160001,
+  "anomalistic": 4499.99871552
+ },
+ "B_tritium_years_from_4500": {
+  "tropical (mean, J2000)": 12.320591988565177,
+  "Gregorian calendar": 12.320581531448283,
+  "Julian": 12.320328542094456,
+  "sidereal": 12.320113914073003,
+  "anomalistic": 12.320003516621803
+ },
+ "B_unc_range": [
+  364.6103896103896,
+  365.9090909090909
+ ],
+ "B_alt_years": {
+  "NNDC/ENSDF 12.32 y": 365.2597402597402,
+  "DDEP 12.312 y": 365.49707602339186,
+  "NIST 4500 d ÷ Julian-yr 12.3203": 365.25
+ },
+ "B_factors": {
+  "4500": {
+   "n": 4500,
+   "factors": "2^2 · 3^2 · 5^3",
+   "tau": 36,
+   "sigma": 14196,
+   "cls": "abundant"
+  },
+  "1232": {
+   "n": 1232,
+   "factors": "2^4 · 7 · 11",
+   "tau": 20,
+   "sigma": 2976,
+   "cls": "abundant"
+  },
+  "72": {
+   "n": 72,
+   "factors": "2^3 · 3^2",
+   "tau": 12,
+   "sigma": 195,
+   "cls": "abundant"
+  },
+  "144": {
+   "n": 144,
+   "factors": "2^4 · 3^2",
+   "tau": 15,
+   "sigma": 403,
+   "cls": "abundant"
+  },
+  "144000": {
+   "n": 144000,
+   "factors": "2^7 · 3^2 · 5^3",
+   "tau": 96,
+   "sigma": 517140,
+   "cls": "abundant"
+  },
+  "26000": {
+   "n": 26000,
+   "factors": "2^4 · 5^3 · 13",
+   "tau": 40,
+   "sigma": 67704,
+   "cls": "abundant"
+  },
+  "360": {
+   "n": 360,
+   "factors": "2^3 · 3^2 · 5",
+   "tau": 24,
+   "sigma": 1170,
+   "cls": "abundant"
+  },
+  "25920": {
+   "n": 25920,
+   "factors": "2^6 · 3^4 · 5",
+   "tau": 70,
+   "sigma": 92202,
+   "cls": "abundant"
+  }
+ },
+ "B_rel": {
+  "360/5": 72.0,
+  "144/2": 72.0,
+  "144000/144": 1000.0,
+  "144000/72": 2000.0,
+  "144000/4500": 32.0,
+  "4500/72": 62.5,
+  "4500/144": 31.25,
+  "72*360": 25920,
+  "gcd(4500,144000)": 4500,
+  "gcd(4500,72)": 36,
+  "cos72": 0.30901699437494745,
+  "(phi-1)/2": 0.30901699437494745,
+  "2cos36": 1.618033988749895,
+  "precession yr/deg": 71.5875,
+  "26000/72": 361.1111111111111,
+  "26000/360 (yr per deg)": 72.22222222222223,
+  "25920/360": 72.0,
+  "26000/25920": 1.0030864197530864,
+  "26000/25771.5": 1.0088663834080283,
+  "gcd(26000,4500)": 500,
+  "gcd(26000,144000)": 2000,
+  "26000/12.32": 2110.3896103896104,
+  "1232 = 12.32*100": 1232,
+  "4500/1232 (=4500/12.32/100)": 3.6525974025974026,
+  "25920 vs 25771.5 %": 0.5762179151388214
+ },
+ "B_lookelsewhere_hits": [
+  [
+   "H-3 (yr)",
+   4500,
+   365.2597,
+   "tropical (mean, J2000)"
+  ],
+  [
+   "H-3 (yr)",
+   4500,
+   365.2597,
+   "Gregorian calendar"
+  ],
+  [
+   "H-3 (yr)",
+   4500,
+   365.2597,
+   "Julian"
+  ],
+  [
+   "H-3 (yr)",
+   4500,
+   365.2597,
+   "sidereal"
+  ],
+  [
+   "H-3 (yr)",
+   4500,
+   365.2597,
+   "anomalistic"
+  ]
+ ],
+ "C14_commuting_perms": [
+  "abcd"
+ ],
+ "C14_sym_commutes": true,
+ "C14_sym_involution": true,
+ "C14_sym_lfp": "a, a′, b, b′",
+ "C14_sym_invariant": true,
+ "C14_sym_monotone": true,
+ "C14_max_chain_len": 5,
+ "C15_chain_family": [
+  {
+   "n": 4,
+   "steps": 4,
+   "lfp_size": 4,
+   "d_in_lfp": false,
+   "U1_on_chain": true,
+   "U1_global_at_d": false,
+   "transfer": true,
+   "fixed": true
+  },
+  {
+   "n": 72,
+   "steps": 72,
+   "lfp_size": 72,
+   "d_in_lfp": false,
+   "U1_on_chain": true,
+   "U1_global_at_d": false,
+   "transfer": true,
+   "fixed": true
+  },
+  {
+   "n": 144,
+   "steps": 144,
+   "lfp_size": 144,
+   "d_in_lfp": false,
+   "U1_on_chain": true,
+   "U1_global_at_d": false,
+   "transfer": true,
+   "fixed": true
+  },
+  {
+   "n": 4500,
+   "steps": 4500,
+   "lfp_size": 4500,
+   "d_in_lfp": false,
+   "U1_on_chain": true,
+   "U1_global_at_d": false,
+   "transfer": true,
+   "fixed": true
+  }
+ ],
+ "C15_mono_samples_144": 2000,
+ "C15_mono_144": true,
+ "C15_n144000_lfp_size": 144000,
+ "C15_n144000_rounds": 144000,
+ "C15_Z144_steps": 36,
+ "C15_Z144_lfp_size": 72,
+ "C15_Z144_lfp_is_evens": true,
+ "C15_Z144_R_invariant": true,
+ "C15_Z144_commute_samples": true,
+ "C15_Z144_mono_samples": true,
+ "C15_Z144_involution": true,
+ "C15_Z144_other_shifts": [
+  72
+ ],
+ "C15_chsh_5deg": 2.8284271247461907,
+ "C15_chsh_72deg": 2.73606797749979,
+ "C15_chsh_quintile_bound": true,
+ "C15_chsh_72deg_closed": true,
+ "C15_bulb_55_144": {
+  "root": "(-0.39042760409197647+0.5868437783307666j)",
+  "centre": "(-0.3904485511766179+0.5868870366948242j)",
+  "period": 144,
+  "dist": 4.806315029122387e-05
+ },
+ "C15_BH_mass_S144000": {
+  "kg": 2.3298173981259025e-06,
+  "planck_masses": 107.04744696916624
+ },
+ "C15_BH_mass_S4500": {
+  "kg": 4.11857420285306e-07,
+  "planck_masses": 18.923493915151198
+ },
+ "C15_beats_72bpm_s": 120.0,
+ "C15_RNG_min_detectable_bias_144000": 0.003691412645123582,
+ "C15_gibbs_T_for_72": null,
+ "C15_ERAM_doublings_144000": 17,
+ "C15_ERAM_years_at_12_32": 209.44,
+ "B2_period_from_rate": 25770.53092066017,
+ "B2_epochs": {
+  "measured ≈25,772 yr": {
+   "period": 25772,
+   "astronomical_year": -23746,
+   "label": "23747 BCE"
+  },
+  "traditional 25,920 = 72 × 360": {
+   "period": 25920,
+   "astronomical_year": -23894,
+   "label": "23895 BCE"
+  },
+  "rounded 26,000": {
+   "period": 26000,
+   "astronomical_year": -23974,
+   "label": "23975 BCE"
+  }
+ },
+ "B2_years_since_26000BCE": 28025,
+ "C16_circ_per_s_design": 7.49481145,
+ "C16_circ_per_s_meridian": 7.493338462540403,
+ "C16_circ_per_s_equator": 7.480781863397975,
+ "C16_quadrant_actual": 10001965.72925,
+ "C16_quadrant_excess_pct": 0.019657292499997148,
+ "C16_c_in_units": {
+  "m/s": 299792458,
+  "km/h": 1079252848.8,
+  "mi/s": 186282.39705122088,
+  "ft/ns": 0.9835710564304462,
+  "au/day": 173.14463267424034,
+  "light-years per Julian year": 1.0,
+  "Planck units": 1.0
+ },
+ "C16_au_light_s": 499.00478383615643,
+ "C16_new_metre_in_old": 0.9993081933333333,
+ "C16_shrink_pct": 0.06918066666666667,
+ "C16_lam_exact": "149896229/150000000",
+ "C16_alpha": 0.007297352564341724,
+ "C16_inv_alpha": 137.0359991768066,
+ "C16_alpha_new": 0.007297352564341722,
+ "C16_alpha_rel_change": 3.3306690738754696e-16,
+ "C16_c_new": 300000000.0,
+ "C16_mu": 1836.1526734215265,
+ "C16_relabel": {
+  "100 m sprint": 100.06922855944562,
+  "Everest 8,848.86 m": 8854.98593830536,
+  "marathon 42,195 m": 42224.21099065808,
+  "Earth equator 40,075,016.686 m": 40102760.04274931,
+  "au 149,597,870,700 m": 149701435150.84692
+ },
+ "C16_tritium_yr_from_days_julian": 12.320328542094456,
+ "C16_tritium_yr_from_days_tropical": 12.320591988565177,
+ "C16_Teq_K": 254.0308532393655,
+ "C16_greenhouse_K": 33.96914676063449,
+ "C16_moon_earth_mass": 0.012300036542508419,
+ "C17_U": 33,
+ "C17_steps": 9,
+ "C17_n_mu": 31,
+ "C17_ungenerated": [
+  "act:non-indexical",
+  "timeline:aperiodic"
+ ],
+ "C17_axioms_in_mu": true,
+ "C17_totality_in_mu": true,
+ "C17_kleene_sizes": [
+  0,
+  5,
+  10,
+  13,
+  18,
+  21,
+  24,
+  27,
+  30,
+  31
+ ],
+ "C17_kleene_strata": [
+  [],
+  [
+   "M0"
+  ],
+  [
+   "M0",
+   "M1"
+  ],
+  [
+   "M0",
+   "M1",
+   "M2"
+  ],
+  [
+   "M0",
+   "M1",
+   "M2",
+   "M3"
+  ],
+  [
+   "M0",
+   "M1",
+   "M2",
+   "M3",
+   "M4"
+  ],
+  [
+   "M0",
+   "M1",
+   "M2",
+   "M3",
+   "M4",
+   "M5"
+  ],
+  [
+   "M0",
+   "M1",
+   "M2",
+   "M3",
+   "M4",
+   "M5",
+   "M6"
+  ],
+  [
+   "M0",
+   "M1",
+   "M2",
+   "M3",
+   "M4",
+   "M5",
+   "M6",
+   "M7+"
+  ],
+  [
+   "M0",
+   "M1",
+   "M2",
+   "M3",
+   "M4",
+   "M5",
+   "M6",
+   "M7+",
+   "M∞"
+  ]
+ ],
+ "C17_cra_monotone_samples": true,
+ "C17_realisations": [
+  {
+   "name": "Ψ_id-toy  F=id, Λ=Γ on P({a,b,c,d})",
+   "steps": 3,
+   "n_states": 4,
+   "U1_on_chain": true,
+   "transfer": true,
+   "fixed": true,
+   "n_mu": 3,
+   "n_Fmu": 3,
+   "n_muLam": 3,
+   "audit": [
+    {
+     "k": 0,
+     "X": "∅",
+     "GX": "{a}",
+     "FX": "∅",
+     "FGX": "{a}",
+     "LFX": "{a}",
+     "eq": true,
+     "nX": 0,
+     "nGX": 1,
+     "nFX": 0
+    },
+    {
+     "k": 1,
+     "X": "{a}",
+     "GX": "{a, b}",
+     "FX": "{a}",
+     "FGX": "{a, b}",
+     "LFX": "{a, b}",
+     "eq": true,
+     "nX": 1,
+     "nGX": 2,
+     "nFX": 1
+    },
+    {
+     "k": 2,
+     "X": "{a, b}",
+     "GX": "{a, b, c}",
+     "FX": "{a, b}",
+     "FGX": "{a, b, c}",
+     "LFX": "{a, b, c}",
+     "eq": true,
+     "nX": 2,
+     "nGX": 3,
+     "nFX": 2
+    },
+    {
+     "k": 3,
+     "X": "{a, b, c}",
+     "GX": "{a, b, c}",
+     "FX": "{a, b, c}",
+     "FGX": "{a, b, c}",
+     "LFX": "{a, b, c}",
+     "eq": true,
+     "nX": 3,
+     "nGX": 3,
+     "nFX": 3
+    }
+   ]
+  },
+  {
+   "name": "Ψ_F  F(X)=X∩{a,b,c}, Λ(Y)=Γ(Y)∩{a,b,c}",
+   "steps": 3,
+   "n_states": 4,
+   "U1_on_chain": true,
+   "transfer": true,
+   "fixed": true,
+   "n_mu": 3,
+   "n_Fmu": 3,
+   "n_muLam": 3,
+   "audit": [
+    {
+     "k": 0,
+     "X": "∅",
+     "GX": "{a}",
+     "FX": "∅",
+     "FGX": "{a}",
+     "LFX": "{a}",
+     "eq": true,
+     "nX": 0,
+     "nGX": 1,
+     "nFX": 0
+    },
+    {
+     "k": 1,
+     "X": "{a}",
+     "GX": "{a, b}",
+     "FX": "{a}",
+     "FGX": "{a, b}",
+     "LFX": "{a, b}",
+     "eq": true,
+     "nX": 1,
+     "nGX": 2,
+     "nFX": 1
+    },
+    {
+     "k": 2,
+     "X": "{a, b}",
+     "GX": "{a, b, c}",
+     "FX": "{a, b}",
+     "FGX": "{a, b, c}",
+     "LFX": "{a, b, c}",
+     "eq": true,
+     "nX": 2,
+     "nGX": 3,
+     "nFX": 2
+    },
+    {
+     "k": 3,
+     "X": "{a, b, c}",
+     "GX": "{a, b, c}",
+     "FX": "{a, b, c}",
+     "FGX": "{a, b, c}",
+     "LFX": "{a, b, c}",
+     "eq": true,
+     "nX": 3,
+     "nGX": 3,
+     "nFX": 3
+    }
+   ]
+  },
+  {
+   "name": "Ψ_Fδ  exactly commuting homomorphism into P({a,b,c,δ})",
+   "steps": 3,
+   "n_states": 4,
+   "U1_on_chain": true,
+   "transfer": true,
+   "fixed": true,
+   "n_mu": 3,
+   "n_Fmu": 3,
+   "n_muLam": 3,
+   "audit": [
+    {
+     "k": 0,
+     "X": "∅",
+     "GX": "{a}",
+     "FX": "∅",
+     "FGX": "{a}",
+     "LFX": "{a}",
+     "eq": true,
+     "nX": 0,
+     "nGX": 1,
+     "nFX": 0
+    },
+    {
+     "k": 1,
+     "X": "{a}",
+     "GX": "{a, b}",
+     "FX": "{a}",
+     "FGX": "{a, b}",
+     "LFX": "{a, b}",
+     "eq": true,
+     "nX": 1,
+     "nGX": 2,
+     "nFX": 1
+    },
+    {
+     "k": 2,
+     "X": "{a, b}",
+     "GX": "{a, b, c}",
+     "FX": "{a, b}",
+     "FGX": "{a, b, c}",
+     "LFX": "{a, b, c}",
+     "eq": true,
+     "nX": 2,
+     "nGX": 3,
+     "nFX": 2
+    },
+    {
+     "k": 3,
+     "X": "{a, b, c}",
+     "GX": "{a, b, c}",
+     "FX": "{a, b, c}",
+     "FGX": "{a, b, c}",
+     "LFX": "{a, b, c}",
+     "eq": true,
+     "nX": 3,
+     "nGX": 3,
+     "nFX": 3
+    }
+   ]
+  },
+  {
+   "name": "Ψ_id-CRA  F=id, Λ=Γ_C on P(U_CRA), |U|=33",
+   "steps": 9,
+   "n_states": 10,
+   "U1_on_chain": true,
+   "transfer": true,
+   "fixed": true,
+   "n_mu": 31,
+   "n_Fmu": 31,
+   "n_muLam": 31,
+   "audit": [
+    {
+     "k": 0,
+     "X": "∅",
+     "GX": "{M0:observable, M0:primitive, M0:relation, constraint:monotonicity, source:Gamma_C}",
+     "FX": "∅",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, constraint:monotonicity, source:Gamma_C}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, constraint:monotonicity, source:Gamma_C}",
+     "eq": true,
+     "nX": 0,
+     "nGX": 5,
+     "nFX": 0
+    },
+    {
+     "k": 1,
+     "X": "{M0:observable, M0:primitive, M0:relation, constraint:monotonicity, source:Gamma_C}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, constraint:CLAAL, constraint:monotonicity, constraint:recoverability, source:Gamma_C}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, constraint:monotonicity, source:Gamma_C}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, constraint:CLAAL, constraint:monotonicity, constraint:recoverability, source:Gamma_C}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, constraint:CLAAL, constraint:monotonicity, constraint:recoverability, source:Gamma_C}",
+     "eq": true,
+     "nX": 5,
+     "nGX": 10,
+     "nFX": 5
+    },
+    {
+     "k": 2,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, constraint:CLAAL, constraint:monotonicity, constraint:recoverability, source:Gamma_C}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, constraint:CLAAL, … +3}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, constraint:CLAAL, constraint:monotonicity, constraint:recoverability, source:Gamma_C}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, constraint:CLAAL, … +3}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, constraint:CLAAL, … +3}",
+     "eq": true,
+     "nX": 10,
+     "nGX": 13,
+     "nFX": 10
+    },
+    {
+     "k": 3,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, constraint:CLAAL, … +3}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, constraint:CLAAL, … +3}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "eq": true,
+     "nX": 13,
+     "nGX": 18,
+     "nFX": 13
+    },
+    {
+     "k": 4,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "eq": true,
+     "nX": 18,
+     "nGX": 21,
+     "nFX": 18
+    },
+    {
+     "k": 5,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "eq": true,
+     "nX": 21,
+     "nGX": 24,
+     "nFX": 21
+    },
+    {
+     "k": 6,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +17}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +17}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +17}",
+     "eq": true,
+     "nX": 24,
+     "nGX": 27,
+     "nFX": 24
+    },
+    {
+     "k": 7,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +17}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +20}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +17}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +20}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +20}",
+     "eq": true,
+     "nX": 27,
+     "nGX": 30,
+     "nFX": 27
+    },
+    {
+     "k": 8,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +20}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +20}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "eq": true,
+     "nX": 30,
+     "nGX": 31,
+     "nFX": 30
+    },
+    {
+     "k": 9,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "eq": true,
+     "nX": 31,
+     "nGX": 31,
+     "nFX": 31
+    }
+   ]
+  },
+  {
+   "name": "Ψ_r0  F=r_0 (keep strata ≤ M0), Λ=r_0∘Γ_C",
+   "steps": 9,
+   "n_states": 10,
+   "U1_on_chain": true,
+   "transfer": true,
+   "fixed": true,
+   "n_mu": 31,
+   "n_Fmu": 3,
+   "n_muLam": 3,
+   "audit": [
+    {
+     "k": 0,
+     "X": "∅",
+     "GX": "{M0:observable, M0:primitive, M0:relation, constraint:monotonicity, source:Gamma_C}",
+     "FX": "∅",
+     "FGX": "{M0:observable, M0:primitive, M0:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation}",
+     "eq": true,
+     "nX": 0,
+     "nGX": 5,
+     "nFX": 0
+    },
+    {
+     "k": 1,
+     "X": "{M0:observable, M0:primitive, M0:relation, constraint:monotonicity, source:Gamma_C}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, constraint:CLAAL, constraint:monotonicity, constraint:recoverability, source:Gamma_C}",
+     "FX": "{M0:observable, M0:primitive, M0:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation}",
+     "eq": true,
+     "nX": 5,
+     "nGX": 10,
+     "nFX": 3
+    },
+    {
+     "k": 2,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, constraint:CLAAL, constraint:monotonicity, constraint:recoverability, source:Gamma_C}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, constraint:CLAAL, … +3}",
+     "FX": "{M0:observable, M0:primitive, M0:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation}",
+     "eq": true,
+     "nX": 10,
+     "nGX": 13,
+     "nFX": 3
+    },
+    {
+     "k": 3,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, constraint:CLAAL, … +3}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "FX": "{M0:observable, M0:primitive, M0:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation}",
+     "eq": true,
+     "nX": 13,
+     "nGX": 18,
+     "nFX": 3
+    },
+    {
+     "k": 4,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "FX": "{M0:observable, M0:primitive, M0:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation}",
+     "eq": true,
+     "nX": 18,
+     "nGX": 21,
+     "nFX": 3
+    },
+    {
+     "k": 5,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "FX": "{M0:observable, M0:primitive, M0:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation}",
+     "eq": true,
+     "nX": 21,
+     "nGX": 24,
+     "nFX": 3
+    },
+    {
+     "k": 6,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +17}",
+     "FX": "{M0:observable, M0:primitive, M0:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation}",
+     "eq": true,
+     "nX": 24,
+     "nGX": 27,
+     "nFX": 3
+    },
+    {
+     "k": 7,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +17}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +20}",
+     "FX": "{M0:observable, M0:primitive, M0:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation}",
+     "eq": true,
+     "nX": 27,
+     "nGX": 30,
+     "nFX": 3
+    },
+    {
+     "k": 8,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +20}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "FX": "{M0:observable, M0:primitive, M0:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation}",
+     "eq": true,
+     "nX": 30,
+     "nGX": 31,
+     "nFX": 3
+    },
+    {
+     "k": 9,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "FX": "{M0:observable, M0:primitive, M0:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation}",
+     "eq": true,
+     "nX": 31,
+     "nGX": 31,
+     "nFX": 3
+    }
+   ]
+  },
+  {
+   "name": "Ψ_r1  F=r_1 (keep strata ≤ M1), Λ=r_1∘Γ_C",
+   "steps": 9,
+   "n_states": 10,
+   "U1_on_chain": true,
+   "transfer": true,
+   "fixed": true,
+   "n_mu": 31,
+   "n_Fmu": 6,
+   "n_muLam": 6,
+   "audit": [
+    {
+     "k": 0,
+     "X": "∅",
+     "GX": "{M0:observable, M0:primitive, M0:relation, constraint:monotonicity, source:Gamma_C}",
+     "FX": "∅",
+     "FGX": "{M0:observable, M0:primitive, M0:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation}",
+     "eq": true,
+     "nX": 0,
+     "nGX": 5,
+     "nFX": 0
+    },
+    {
+     "k": 1,
+     "X": "{M0:observable, M0:primitive, M0:relation, constraint:monotonicity, source:Gamma_C}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, constraint:CLAAL, constraint:monotonicity, constraint:recoverability, source:Gamma_C}",
+     "FX": "{M0:observable, M0:primitive, M0:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "eq": true,
+     "nX": 5,
+     "nGX": 10,
+     "nFX": 3
+    },
+    {
+     "k": 2,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, constraint:CLAAL, constraint:monotonicity, constraint:recoverability, source:Gamma_C}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, constraint:CLAAL, … +3}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "eq": true,
+     "nX": 10,
+     "nGX": 13,
+     "nFX": 6
+    },
+    {
+     "k": 3,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, constraint:CLAAL, … +3}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "eq": true,
+     "nX": 13,
+     "nGX": 18,
+     "nFX": 6
+    },
+    {
+     "k": 4,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "eq": true,
+     "nX": 18,
+     "nGX": 21,
+     "nFX": 6
+    },
+    {
+     "k": 5,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "eq": true,
+     "nX": 21,
+     "nGX": 24,
+     "nFX": 6
+    },
+    {
+     "k": 6,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +17}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "eq": true,
+     "nX": 24,
+     "nGX": 27,
+     "nFX": 6
+    },
+    {
+     "k": 7,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +17}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +20}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "eq": true,
+     "nX": 27,
+     "nGX": 30,
+     "nFX": 6
+    },
+    {
+     "k": 8,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +20}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "eq": true,
+     "nX": 30,
+     "nGX": 31,
+     "nFX": 6
+    },
+    {
+     "k": 9,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "eq": true,
+     "nX": 31,
+     "nGX": 31,
+     "nFX": 6
+    }
+   ]
+  },
+  {
+   "name": "Ψ_r2  F=r_2 (keep strata ≤ M2), Λ=r_2∘Γ_C",
+   "steps": 9,
+   "n_states": 10,
+   "U1_on_chain": true,
+   "transfer": true,
+   "fixed": true,
+   "n_mu": 31,
+   "n_Fmu": 9,
+   "n_muLam": 9,
+   "audit": [
+    {
+     "k": 0,
+     "X": "∅",
+     "GX": "{M0:observable, M0:primitive, M0:relation, constraint:monotonicity, source:Gamma_C}",
+     "FX": "∅",
+     "FGX": "{M0:observable, M0:primitive, M0:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation}",
+     "eq": true,
+     "nX": 0,
+     "nGX": 5,
+     "nFX": 0
+    },
+    {
+     "k": 1,
+     "X": "{M0:observable, M0:primitive, M0:relation, constraint:monotonicity, source:Gamma_C}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, constraint:CLAAL, constraint:monotonicity, constraint:recoverability, source:Gamma_C}",
+     "FX": "{M0:observable, M0:primitive, M0:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "eq": true,
+     "nX": 5,
+     "nGX": 10,
+     "nFX": 3
+    },
+    {
+     "k": 2,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, constraint:CLAAL, constraint:monotonicity, constraint:recoverability, source:Gamma_C}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, constraint:CLAAL, … +3}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "eq": true,
+     "nX": 10,
+     "nGX": 13,
+     "nFX": 6
+    },
+    {
+     "k": 3,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, constraint:CLAAL, … +3}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "eq": true,
+     "nX": 13,
+     "nGX": 18,
+     "nFX": 9
+    },
+    {
+     "k": 4,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "eq": true,
+     "nX": 18,
+     "nGX": 21,
+     "nFX": 9
+    },
+    {
+     "k": 5,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "eq": true,
+     "nX": 21,
+     "nGX": 24,
+     "nFX": 9
+    },
+    {
+     "k": 6,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +17}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "eq": true,
+     "nX": 24,
+     "nGX": 27,
+     "nFX": 9
+    },
+    {
+     "k": 7,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +17}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +20}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "eq": true,
+     "nX": 27,
+     "nGX": 30,
+     "nFX": 9
+    },
+    {
+     "k": 8,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +20}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "eq": true,
+     "nX": 30,
+     "nGX": 31,
+     "nFX": 9
+    },
+    {
+     "k": 9,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "eq": true,
+     "nX": 31,
+     "nGX": 31,
+     "nFX": 9
+    }
+   ]
+  },
+  {
+   "name": "Ψ_r3  F=r_3 (keep strata ≤ M3), Λ=r_3∘Γ_C",
+   "steps": 9,
+   "n_states": 10,
+   "U1_on_chain": true,
+   "transfer": true,
+   "fixed": true,
+   "n_mu": 31,
+   "n_Fmu": 12,
+   "n_muLam": 12,
+   "audit": [
+    {
+     "k": 0,
+     "X": "∅",
+     "GX": "{M0:observable, M0:primitive, M0:relation, constraint:monotonicity, source:Gamma_C}",
+     "FX": "∅",
+     "FGX": "{M0:observable, M0:primitive, M0:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation}",
+     "eq": true,
+     "nX": 0,
+     "nGX": 5,
+     "nFX": 0
+    },
+    {
+     "k": 1,
+     "X": "{M0:observable, M0:primitive, M0:relation, constraint:monotonicity, source:Gamma_C}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, constraint:CLAAL, constraint:monotonicity, constraint:recoverability, source:Gamma_C}",
+     "FX": "{M0:observable, M0:primitive, M0:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "eq": true,
+     "nX": 5,
+     "nGX": 10,
+     "nFX": 3
+    },
+    {
+     "k": 2,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, constraint:CLAAL, constraint:monotonicity, constraint:recoverability, source:Gamma_C}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, constraint:CLAAL, … +3}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "eq": true,
+     "nX": 10,
+     "nGX": 13,
+     "nFX": 6
+    },
+    {
+     "k": 3,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, constraint:CLAAL, … +3}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "eq": true,
+     "nX": 13,
+     "nGX": 18,
+     "nFX": 9
+    },
+    {
+     "k": 4,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "eq": true,
+     "nX": 18,
+     "nGX": 21,
+     "nFX": 12
+    },
+    {
+     "k": 5,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "eq": true,
+     "nX": 21,
+     "nGX": 24,
+     "nFX": 12
+    },
+    {
+     "k": 6,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +17}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "eq": true,
+     "nX": 24,
+     "nGX": 27,
+     "nFX": 12
+    },
+    {
+     "k": 7,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +17}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +20}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "eq": true,
+     "nX": 27,
+     "nGX": 30,
+     "nFX": 12
+    },
+    {
+     "k": 8,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +20}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "eq": true,
+     "nX": 30,
+     "nGX": 31,
+     "nFX": 12
+    },
+    {
+     "k": 9,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "eq": true,
+     "nX": 31,
+     "nGX": 31,
+     "nFX": 12
+    }
+   ]
+  },
+  {
+   "name": "Ψ_r4  F=r_4 (keep strata ≤ M4), Λ=r_4∘Γ_C",
+   "steps": 9,
+   "n_states": 10,
+   "U1_on_chain": true,
+   "transfer": true,
+   "fixed": true,
+   "n_mu": 31,
+   "n_Fmu": 15,
+   "n_muLam": 15,
+   "audit": [
+    {
+     "k": 0,
+     "X": "∅",
+     "GX": "{M0:observable, M0:primitive, M0:relation, constraint:monotonicity, source:Gamma_C}",
+     "FX": "∅",
+     "FGX": "{M0:observable, M0:primitive, M0:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation}",
+     "eq": true,
+     "nX": 0,
+     "nGX": 5,
+     "nFX": 0
+    },
+    {
+     "k": 1,
+     "X": "{M0:observable, M0:primitive, M0:relation, constraint:monotonicity, source:Gamma_C}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, constraint:CLAAL, constraint:monotonicity, constraint:recoverability, source:Gamma_C}",
+     "FX": "{M0:observable, M0:primitive, M0:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "eq": true,
+     "nX": 5,
+     "nGX": 10,
+     "nFX": 3
+    },
+    {
+     "k": 2,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, constraint:CLAAL, constraint:monotonicity, constraint:recoverability, source:Gamma_C}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, constraint:CLAAL, … +3}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "eq": true,
+     "nX": 10,
+     "nGX": 13,
+     "nFX": 6
+    },
+    {
+     "k": 3,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, constraint:CLAAL, … +3}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "eq": true,
+     "nX": 13,
+     "nGX": 18,
+     "nFX": 9
+    },
+    {
+     "k": 4,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "eq": true,
+     "nX": 18,
+     "nGX": 21,
+     "nFX": 12
+    },
+    {
+     "k": 5,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "eq": true,
+     "nX": 21,
+     "nGX": 24,
+     "nFX": 15
+    },
+    {
+     "k": 6,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +17}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "eq": true,
+     "nX": 24,
+     "nGX": 27,
+     "nFX": 15
+    },
+    {
+     "k": 7,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +17}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +20}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "eq": true,
+     "nX": 27,
+     "nGX": 30,
+     "nFX": 15
+    },
+    {
+     "k": 8,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +20}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "eq": true,
+     "nX": 30,
+     "nGX": 31,
+     "nFX": 15
+    },
+    {
+     "k": 9,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "eq": true,
+     "nX": 31,
+     "nGX": 31,
+     "nFX": 15
+    }
+   ]
+  },
+  {
+   "name": "Ψ_r5  F=r_5 (keep strata ≤ M5), Λ=r_5∘Γ_C",
+   "steps": 9,
+   "n_states": 10,
+   "U1_on_chain": true,
+   "transfer": true,
+   "fixed": true,
+   "n_mu": 31,
+   "n_Fmu": 18,
+   "n_muLam": 18,
+   "audit": [
+    {
+     "k": 0,
+     "X": "∅",
+     "GX": "{M0:observable, M0:primitive, M0:relation, constraint:monotonicity, source:Gamma_C}",
+     "FX": "∅",
+     "FGX": "{M0:observable, M0:primitive, M0:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation}",
+     "eq": true,
+     "nX": 0,
+     "nGX": 5,
+     "nFX": 0
+    },
+    {
+     "k": 1,
+     "X": "{M0:observable, M0:primitive, M0:relation, constraint:monotonicity, source:Gamma_C}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, constraint:CLAAL, constraint:monotonicity, constraint:recoverability, source:Gamma_C}",
+     "FX": "{M0:observable, M0:primitive, M0:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "eq": true,
+     "nX": 5,
+     "nGX": 10,
+     "nFX": 3
+    },
+    {
+     "k": 2,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, constraint:CLAAL, constraint:monotonicity, constraint:recoverability, source:Gamma_C}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, constraint:CLAAL, … +3}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "eq": true,
+     "nX": 10,
+     "nGX": 13,
+     "nFX": 6
+    },
+    {
+     "k": 3,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, constraint:CLAAL, … +3}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "eq": true,
+     "nX": 13,
+     "nGX": 18,
+     "nFX": 9
+    },
+    {
+     "k": 4,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "eq": true,
+     "nX": 18,
+     "nGX": 21,
+     "nFX": 12
+    },
+    {
+     "k": 5,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "eq": true,
+     "nX": 21,
+     "nGX": 24,
+     "nFX": 15
+    },
+    {
+     "k": 6,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +17}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "eq": true,
+     "nX": 24,
+     "nGX": 27,
+     "nFX": 18
+    },
+    {
+     "k": 7,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +17}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +20}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "eq": true,
+     "nX": 27,
+     "nGX": 30,
+     "nFX": 18
+    },
+    {
+     "k": 8,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +20}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "eq": true,
+     "nX": 30,
+     "nGX": 31,
+     "nFX": 18
+    },
+    {
+     "k": 9,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "eq": true,
+     "nX": 31,
+     "nGX": 31,
+     "nFX": 18
+    }
+   ]
+  },
+  {
+   "name": "Ψ_r6  F=r_6 (keep strata ≤ M6), Λ=r_6∘Γ_C",
+   "steps": 9,
+   "n_states": 10,
+   "U1_on_chain": true,
+   "transfer": true,
+   "fixed": true,
+   "n_mu": 31,
+   "n_Fmu": 21,
+   "n_muLam": 21,
+   "audit": [
+    {
+     "k": 0,
+     "X": "∅",
+     "GX": "{M0:observable, M0:primitive, M0:relation, constraint:monotonicity, source:Gamma_C}",
+     "FX": "∅",
+     "FGX": "{M0:observable, M0:primitive, M0:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation}",
+     "eq": true,
+     "nX": 0,
+     "nGX": 5,
+     "nFX": 0
+    },
+    {
+     "k": 1,
+     "X": "{M0:observable, M0:primitive, M0:relation, constraint:monotonicity, source:Gamma_C}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, constraint:CLAAL, constraint:monotonicity, constraint:recoverability, source:Gamma_C}",
+     "FX": "{M0:observable, M0:primitive, M0:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "eq": true,
+     "nX": 5,
+     "nGX": 10,
+     "nFX": 3
+    },
+    {
+     "k": 2,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, constraint:CLAAL, constraint:monotonicity, constraint:recoverability, source:Gamma_C}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, constraint:CLAAL, … +3}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "eq": true,
+     "nX": 10,
+     "nGX": 13,
+     "nFX": 6
+    },
+    {
+     "k": 3,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, constraint:CLAAL, … +3}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "eq": true,
+     "nX": 13,
+     "nGX": 18,
+     "nFX": 9
+    },
+    {
+     "k": 4,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "eq": true,
+     "nX": 18,
+     "nGX": 21,
+     "nFX": 12
+    },
+    {
+     "k": 5,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "eq": true,
+     "nX": 21,
+     "nGX": 24,
+     "nFX": 15
+    },
+    {
+     "k": 6,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +17}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "eq": true,
+     "nX": 24,
+     "nGX": 27,
+     "nFX": 18
+    },
+    {
+     "k": 7,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +17}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +20}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "eq": true,
+     "nX": 27,
+     "nGX": 30,
+     "nFX": 21
+    },
+    {
+     "k": 8,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +20}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "eq": true,
+     "nX": 30,
+     "nGX": 31,
+     "nFX": 21
+    },
+    {
+     "k": 9,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "eq": true,
+     "nX": 31,
+     "nGX": 31,
+     "nFX": 21
+    }
+   ]
+  },
+  {
+   "name": "Ψ_r7  F=r_7 (keep strata ≤ M7+), Λ=r_7∘Γ_C",
+   "steps": 9,
+   "n_states": 10,
+   "U1_on_chain": true,
+   "transfer": true,
+   "fixed": true,
+   "n_mu": 31,
+   "n_Fmu": 24,
+   "n_muLam": 24,
+   "audit": [
+    {
+     "k": 0,
+     "X": "∅",
+     "GX": "{M0:observable, M0:primitive, M0:relation, constraint:monotonicity, source:Gamma_C}",
+     "FX": "∅",
+     "FGX": "{M0:observable, M0:primitive, M0:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation}",
+     "eq": true,
+     "nX": 0,
+     "nGX": 5,
+     "nFX": 0
+    },
+    {
+     "k": 1,
+     "X": "{M0:observable, M0:primitive, M0:relation, constraint:monotonicity, source:Gamma_C}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, constraint:CLAAL, constraint:monotonicity, constraint:recoverability, source:Gamma_C}",
+     "FX": "{M0:observable, M0:primitive, M0:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "eq": true,
+     "nX": 5,
+     "nGX": 10,
+     "nFX": 3
+    },
+    {
+     "k": 2,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, constraint:CLAAL, constraint:monotonicity, constraint:recoverability, source:Gamma_C}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, constraint:CLAAL, … +3}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "eq": true,
+     "nX": 10,
+     "nGX": 13,
+     "nFX": 6
+    },
+    {
+     "k": 3,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, constraint:CLAAL, … +3}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "eq": true,
+     "nX": 13,
+     "nGX": 18,
+     "nFX": 9
+    },
+    {
+     "k": 4,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "eq": true,
+     "nX": 18,
+     "nGX": 21,
+     "nFX": 12
+    },
+    {
+     "k": 5,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "eq": true,
+     "nX": 21,
+     "nGX": 24,
+     "nFX": 15
+    },
+    {
+     "k": 6,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +17}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "eq": true,
+     "nX": 24,
+     "nGX": 27,
+     "nFX": 18
+    },
+    {
+     "k": 7,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +17}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +20}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "eq": true,
+     "nX": 27,
+     "nGX": 30,
+     "nFX": 21
+    },
+    {
+     "k": 8,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +20}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "eq": true,
+     "nX": 30,
+     "nGX": 31,
+     "nFX": 24
+    },
+    {
+     "k": 9,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "eq": true,
+     "nX": 31,
+     "nGX": 31,
+     "nFX": 24
+    }
+   ]
+  },
+  {
+   "name": "Ψ_r8  F=r_8 (keep strata ≤ M∞), Λ=r_8∘Γ_C",
+   "steps": 9,
+   "n_states": 10,
+   "U1_on_chain": true,
+   "transfer": true,
+   "fixed": true,
+   "n_mu": 31,
+   "n_Fmu": 25,
+   "n_muLam": 25,
+   "audit": [
+    {
+     "k": 0,
+     "X": "∅",
+     "GX": "{M0:observable, M0:primitive, M0:relation, constraint:monotonicity, source:Gamma_C}",
+     "FX": "∅",
+     "FGX": "{M0:observable, M0:primitive, M0:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation}",
+     "eq": true,
+     "nX": 0,
+     "nGX": 5,
+     "nFX": 0
+    },
+    {
+     "k": 1,
+     "X": "{M0:observable, M0:primitive, M0:relation, constraint:monotonicity, source:Gamma_C}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, constraint:CLAAL, constraint:monotonicity, constraint:recoverability, source:Gamma_C}",
+     "FX": "{M0:observable, M0:primitive, M0:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "eq": true,
+     "nX": 5,
+     "nGX": 10,
+     "nFX": 3
+    },
+    {
+     "k": 2,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, constraint:CLAAL, constraint:monotonicity, constraint:recoverability, source:Gamma_C}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, constraint:CLAAL, … +3}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "eq": true,
+     "nX": 10,
+     "nGX": 13,
+     "nFX": 6
+    },
+    {
+     "k": 3,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, constraint:CLAAL, … +3}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "eq": true,
+     "nX": 13,
+     "nGX": 18,
+     "nFX": 9
+    },
+    {
+     "k": 4,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +2}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "eq": true,
+     "nX": 18,
+     "nGX": 21,
+     "nFX": 12
+    },
+    {
+     "k": 5,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +5}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "eq": true,
+     "nX": 21,
+     "nGX": 24,
+     "nFX": 15
+    },
+    {
+     "k": 6,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +17}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +8}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "eq": true,
+     "nX": 24,
+     "nGX": 27,
+     "nFX": 18
+    },
+    {
+     "k": 7,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +17}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +20}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +11}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "eq": true,
+     "nX": 27,
+     "nGX": 30,
+     "nFX": 21
+    },
+    {
+     "k": 8,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +20}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +14}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +15}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +15}",
+     "eq": true,
+     "nX": 30,
+     "nGX": 31,
+     "nFX": 24
+    },
+    {
+     "k": 9,
+     "X": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "GX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +21}",
+     "FX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +15}",
+     "FGX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +15}",
+     "LFX": "{M0:observable, M0:primitive, M0:relation, M1:observable, M1:primitive, M1:relation, M2:observable, M2:primitive, M2:relation, M3:observable, … +15}",
+     "eq": true,
+     "nX": 31,
+     "nGX": 31,
+     "nFX": 25
+    }
+   ]
+  },
+  {
+   "name": "Ψ_chain-4  F(X)=X\\{d} on U_n={x1..x4, d}",
+   "steps": 4,
+   "n_states": 5,
+   "U1_on_chain": true,
+   "transfer": true,
+   "fixed": true,
+   "n_mu": 4,
+   "n_Fmu": 4,
+   "n_muLam": 4,
+   "audit": [
+    {
+     "k": 0,
+     "X": "∅",
+     "GX": "{x1}",
+     "FX": "∅",
+     "FGX": "{x1}",
+     "LFX": "{x1}",
+     "eq": true,
+     "nX": 0,
+     "nGX": 1,
+     "nFX": 0
+    },
+    {
+     "k": 1,
+     "X": "{x1}",
+     "GX": "{x1, x2}",
+     "FX": "{x1}",
+     "FGX": "{x1, x2}",
+     "LFX": "{x1, x2}",
+     "eq": true,
+     "nX": 1,
+     "nGX": 2,
+     "nFX": 1
+    },
+    {
+     "k": 2,
+     "X": "{x1, x2}",
+     "GX": "{x1, x2, x3}",
+     "FX": "{x1, x2}",
+     "FGX": "{x1, x2, x3}",
+     "LFX": "{x1, x2, x3}",
+     "eq": true,
+     "nX": 2,
+     "nGX": 3,
+     "nFX": 2
+    },
+    {
+     "k": 3,
+     "X": "{x1, x2, x3}",
+     "GX": "{x1, x2, x3, x4}",
+     "FX": "{x1, x2, x3}",
+     "FGX": "{x1, x2, x3, x4}",
+     "LFX": "{x1, x2, x3, x4}",
+     "eq": true,
+     "nX": 3,
+     "nGX": 4,
+     "nFX": 3
+    },
+    {
+     "k": 4,
+     "X": "{x1, x2, x3, x4}",
+     "GX": "{x1, x2, x3, x4}",
+     "FX": "{x1, x2, x3, x4}",
+     "FGX": "{x1, x2, x3, x4}",
+     "LFX": "{x1, x2, x3, x4}",
+     "eq": true,
+     "nX": 4,
+     "nGX": 4,
+     "nFX": 4
+    }
+   ]
+  },
+  {
+   "name": "Ψ_chain-72  F(X)=X\\{d} on U_n={x1..x72, d}",
+   "steps": 72,
+   "n_states": 73,
+   "U1_on_chain": true,
+   "transfer": true,
+   "fixed": true,
+   "n_mu": 72,
+   "n_Fmu": 72,
+   "n_muLam": 72,
+   "audit": [
+    {
+     "k": 0,
+     "X": "∅",
+     "GX": "{x1}",
+     "FX": "∅",
+     "FGX": "{x1}",
+     "LFX": "{x1}",
+     "eq": true,
+     "nX": 0,
+     "nGX": 1,
+     "nFX": 0
+    },
+    {
+     "k": 1,
+     "X": "{x1}",
+     "GX": "{x1, x2}",
+     "FX": "{x1}",
+     "FGX": "{x1, x2}",
+     "LFX": "{x1, x2}",
+     "eq": true,
+     "nX": 1,
+     "nGX": 2,
+     "nFX": 1
+    },
+    {
+     "k": 2,
+     "X": "{x1, x2}",
+     "GX": "{x1, x2, x3}",
+     "FX": "{x1, x2}",
+     "FGX": "{x1, x2, x3}",
+     "LFX": "{x1, x2, x3}",
+     "eq": true,
+     "nX": 2,
+     "nGX": 3,
+     "nFX": 2
+    },
+    {
+     "k": 70,
+     "X": "{x1, x10, x11, x12, x13, x14, x15, x16, x17, x18, … +60}",
+     "GX": "{x1, x10, x11, x12, x13, x14, x15, x16, x17, x18, … +61}",
+     "FX": "{x1, x10, x11, x12, x13, x14, x15, x16, x17, x18, … +60}",
+     "FGX": "{x1, x10, x11, x12, x13, x14, x15, x16, x17, x18, … +61}",
+     "LFX": "{x1, x10, x11, x12, x13, x14, x15, x16, x17, x18, … +61}",
+     "eq": true,
+     "nX": 70,
+     "nGX": 71,
+     "nFX": 70
+    },
+    {
+     "k": 71,
+     "X": "{x1, x10, x11, x12, x13, x14, x15, x16, x17, x18, … +61}",
+     "GX": "{x1, x10, x11, x12, x13, x14, x15, x16, x17, x18, … +62}",
+     "FX": "{x1, x10, x11, x12, x13, x14, x15, x16, x17, x18, … +61}",
+     "FGX": "{x1, x10, x11, x12, x13, x14, x15, x16, x17, x18, … +62}",
+     "LFX": "{x1, x10, x11, x12, x13, x14, x15, x16, x17, x18, … +62}",
+     "eq": true,
+     "nX": 71,
+     "nGX": 72,
+     "nFX": 71
+    },
+    {
+     "k": 72,
+     "X": "{x1, x10, x11, x12, x13, x14, x15, x16, x17, x18, … +62}",
+     "GX": "{x1, x10, x11, x12, x13, x14, x15, x16, x17, x18, … +62}",
+     "FX": "{x1, x10, x11, x12, x13, x14, x15, x16, x17, x18, … +62}",
+     "FGX": "{x1, x10, x11, x12, x13, x14, x15, x16, x17, x18, … +62}",
+     "LFX": "{x1, x10, x11, x12, x13, x14, x15, x16, x17, x18, … +62}",
+     "eq": true,
+     "nX": 72,
+     "nGX": 72,
+     "nFX": 72
+    }
+   ]
+  },
+  {
+   "name": "Ψ_chain-144  F(X)=X\\{d} on U_n={x1..x144, d}",
+   "steps": 144,
+   "n_states": 145,
+   "U1_on_chain": true,
+   "transfer": true,
+   "fixed": true,
+   "n_mu": 144,
+   "n_Fmu": 144,
+   "n_muLam": 144,
+   "audit": [
+    {
+     "k": 0,
+     "X": "∅",
+     "GX": "{x1}",
+     "FX": "∅",
+     "FGX": "{x1}",
+     "LFX": "{x1}",
+     "eq": true,
+     "nX": 0,
+     "nGX": 1,
+     "nFX": 0
+    },
+    {
+     "k": 1,
+     "X": "{x1}",
+     "GX": "{x1, x2}",
+     "FX": "{x1}",
+     "FGX": "{x1, x2}",
+     "LFX": "{x1, x2}",
+     "eq": true,
+     "nX": 1,
+     "nGX": 2,
+     "nFX": 1
+    },
+    {
+     "k": 2,
+     "X": "{x1, x2}",
+     "GX": "{x1, x2, x3}",
+     "FX": "{x1, x2}",
+     "FGX": "{x1, x2, x3}",
+     "LFX": "{x1, x2, x3}",
+     "eq": true,
+     "nX": 2,
+     "nGX": 3,
+     "nFX": 2
+    },
+    {
+     "k": 142,
+     "X": "{x1, x10, x100, x101, x102, x103, x104, x105, x106, x107, … +132}",
+     "GX": "{x1, x10, x100, x101, x102, x103, x104, x105, x106, x107, … +133}",
+     "FX": "{x1, x10, x100, x101, x102, x103, x104, x105, x106, x107, … +132}",
+     "FGX": "{x1, x10, x100, x101, x102, x103, x104, x105, x106, x107, … +133}",
+     "LFX": "{x1, x10, x100, x101, x102, x103, x104, x105, x106, x107, … +133}",
+     "eq": true,
+     "nX": 142,
+     "nGX": 143,
+     "nFX": 142
+    },
+    {
+     "k": 143,
+     "X": "{x1, x10, x100, x101, x102, x103, x104, x105, x106, x107, … +133}",
+     "GX": "{x1, x10, x100, x101, x102, x103, x104, x105, x106, x107, … +134}",
+     "FX": "{x1, x10, x100, x101, x102, x103, x104, x105, x106, x107, … +133}",
+     "FGX": "{x1, x10, x100, x101, x102, x103, x104, x105, x106, x107, … +134}",
+     "LFX": "{x1, x10, x100, x101, x102, x103, x104, x105, x106, x107, … +134}",
+     "eq": true,
+     "nX": 143,
+     "nGX": 144,
+     "nFX": 143
+    },
+    {
+     "k": 144,
+     "X": "{x1, x10, x100, x101, x102, x103, x104, x105, x106, x107, … +134}",
+     "GX": "{x1, x10, x100, x101, x102, x103, x104, x105, x106, x107, … +134}",
+     "FX": "{x1, x10, x100, x101, x102, x103, x104, x105, x106, x107, … +134}",
+     "FGX": "{x1, x10, x100, x101, x102, x103, x104, x105, x106, x107, … +134}",
+     "LFX": "{x1, x10, x100, x101, x102, x103, x104, x105, x106, x107, … +134}",
+     "eq": true,
+     "nX": 144,
+     "nGX": 144,
+     "nFX": 144
+    }
+   ]
+  }
+ ],
+ "C17_n_realisations": 16,
+ "C17_all_deployed_U1_and_transfer": true,
+ "C17_formal_condition": "(U1′)  F(Γ(X_n)) = Λ(F(X_n)) for every state X_n on the Kleene sequence of Γ. Then Theorem T2 yields F(μΓ) = μΛ. This is the precise guarantee; it is weaker than global (U1).",
+ "C18_pairs_checked": 5193,
+ "C18_failures": 0,
+ "C18_n_states": 577,
+ "C18_holds": true,
+ "C19_pairs": [
+  {
+   "tag": "μΓ vs μΓ \\ {act:indexical}",
+   "same_class": true,
+   "dist": 0.0,
+   "eps": 0.5,
+   "filter_indist": true,
+   "K_act_A": true,
+   "K_act_B": false,
+   "parity_A": 1,
+   "parity_B": 0,
+   "nA": 31,
+   "nB": 30,
+   "strata_A": [
+    "M0",
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5",
+    "M6",
+    "M7+",
+    "M∞"
+   ],
+   "strata_B": [
+    "M0",
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5",
+    "M6",
+    "M7+",
+    "M∞"
+   ],
+   "K_act_differs": true,
+   "parity_differs": true
+  },
+  {
+   "tag": "μΓ vs μΓ \\ {M0:observable}",
+   "same_class": true,
+   "dist": 0.33333333333333337,
+   "eps": 0.5,
+   "filter_indist": true,
+   "K_act_A": true,
+   "K_act_B": true,
+   "parity_A": 1,
+   "parity_B": 0,
+   "nA": 31,
+   "nB": 30,
+   "strata_A": [
+    "M0",
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5",
+    "M6",
+    "M7+",
+    "M∞"
+   ],
+   "strata_B": [
+    "M0",
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5",
+    "M6",
+    "M7+",
+    "M∞"
+   ],
+   "K_act_differs": false,
+   "parity_differs": true
+  },
+  {
+   "tag": "μΓ \\ {M0:observable} vs μΓ \\ {M0:observable, M0:relation}",
+   "same_class": true,
+   "dist": 0.3333333333333333,
+   "eps": 0.5,
+   "filter_indist": true,
+   "K_act_A": true,
+   "K_act_B": true,
+   "parity_A": 0,
+   "parity_B": 1,
+   "nA": 30,
+   "nB": 29,
+   "strata_A": [
+    "M0",
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5",
+    "M6",
+    "M7+",
+    "M∞"
+   ],
+   "strata_B": [
+    "M0",
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5",
+    "M6",
+    "M7+",
+    "M∞"
+   ],
+   "K_act_differs": false,
+   "parity_differs": true
+  },
+  {
+   "tag": "μΓ vs μΓ \\ {M0:observable, M0:relation}",
+   "same_class": true,
+   "dist": 0.6666666666666667,
+   "eps": 0.5,
+   "filter_indist": false,
+   "K_act_A": true,
+   "K_act_B": true,
+   "parity_A": 1,
+   "parity_B": 1,
+   "nA": 31,
+   "nB": 29,
+   "strata_A": [
+    "M0",
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5",
+    "M6",
+    "M7+",
+    "M∞"
+   ],
+   "strata_B": [
+    "M0",
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5",
+    "M6",
+    "M7+",
+    "M∞"
+   ],
+   "K_act_differs": false,
+   "parity_differs": false
+  }
+ ],
+ "C19_epsilon": 0.5,
+ "C19_max_distance": 3.3166247903554,
+ "C19_act_invisible": true,
+ "C19_parity_cex": true,
+ "C19_dist_act": 0.0,
+ "C19_dist_obs": 0.33333333333333337,
+ "C19_dist_obs2": 0.3333333333333333,
+ "C19_dist_AC": 0.6666666666666667,
+ "C19_filter_not_transitive": true,
+ "C19_index_on_test_states": 124,
+ "C19_max_index": 512,
+ "C19_closed_tested": 32,
+ "C19_closed_Kact_iff_M3": true,
+ "C19_verdict": "H1 (sufficiency of ε-tolerant finite-index recoverability for any K constant on filter-indistinguishable pairs) is a theorem (definitional). H1+ (necessity of the declared CRA structure (~_C, φ, ε=0.5) for recovering an arbitrary agency-like predicate on the whole of P(U)) is FALSE: K_act = 1_{act:indexical ∈ X} differs on a filter-indistinguishable pair, and so does cardinality parity after deleting M0:observable (distance 1/3 ≤ 0.5). On Fix(Γ_C), K_act holds if and only if M3 is active, hence factors through ~_C. T6 (H1+ᶜ) is this conditional theorem.",
+ "C20_finite3_injections": 6,
+ "C20_finite3_injections_are_bijections": true,
+ "C20_identity_is_trivial_embedding": true,
+ "C20_N_parity_preserves_on_0_39": true,
+ "C20_N_plus2_injective_on_sample": true,
+ "C20_N_plus2_misses": [
+  0,
+  1
+ ],
+ "C20_theorem": "T7. Let D be a set and K : D → {0,1}. There exists a proper (injective and not surjective) self-map e : D → D with K ∘ e = K if and only if some fibre K⁻¹(i) is infinite. Identity always works and is never proper. Every finite agency-supporting carrier (in particular each three-atom finite stratum of the CRA demo) therefore admits no proper K-preserving self-embedding.",
+ "C20_finite_strata_admit_proper": false,
+ "C20_original_claim_if_identity_allowed": true,
+ "C20_original_claim_if_proper_required": false,
+ "C21_n": 144000,
+ "C21_alpha": 0.05,
+ "C21_power_target": 0.8,
+ "C21_z_alpha": 1.959963984540054,
+ "C21_z_power": 0.8416212335729143,
+ "C21_mdb": 0.003691412645123582,
+ "C21_delta_design": 0.0037,
+ "C21_power_at_mdb": 0.8000073815615836,
+ "C21_power_at_0037": 0.8018269955330886,
+ "C21_crit_abs": 0.0025824793012690066,
+ "C21_crit_k": 72371.87701938274,
+ "C21_trials_existing": 0,
+ "C21_data_invented": false,
+ "C21_n_for_1e-4": 196221993.3587272,
+ "C21_power_144000_at_1e-4": 0.05066007071360511,
+ "C21_power_curve": [
+  {
+   "delta": 0.0005,
+   "power": 0.06665355722603192
+  },
+  {
+   "delta": 0.001,
+   "power": 0.11814658182951968
+  },
+  {
+   "delta": 0.002,
+   "power": 0.3294704339382357
+  },
+  {
+   "delta": 0.003,
+   "power": 0.624344623432431
+  },
+  {
+   "delta": 0.0037,
+   "power": 0.8018269955330886
+  },
+  {
+   "delta": 0.003691412645123582,
+   "power": 0.8000073815615836
+  },
+  {
+   "delta": 0.004,
+   "power": 0.8590046844680973
+  },
+  {
+   "delta": 0.005,
+   "power": 0.9667368570840749
+  },
+  {
+   "delta": 0.006,
+   "power": 0.9952553319542651
+  },
+  {
+   "delta": 0.008,
+   "power": 0.9999803991961327
+  },
+  {
+   "delta": 0.01,
+   "power": 0.9999999910223019
+  }
+ ],
+ "C21_mc_typeI": 0.05275,
+ "C21_mc_n": 4000,
+ "C21_mc_note": "Monte Carlo under H0 (p=1/2) to calibrate the z-test; not experimental intention data.",
+ "C21_status": "OPEN CONJECTURE — instrumented, zero trials collected in this edition",
+ "C21_stopping": "Fixed n = 144000; no optional stopping. If a group-sequential analysis is later added it must be pre-registered with an alpha-spending function (O’Brien–Fleming).",
+ "C21_primary": "Two-sided test of H0: p = 1/2 against H1: |p − 1/2| ≥ 0.0037 (or the computed MDB). Test statistic z = (2K − n)/√n; reject H0 at |z| > z_{1−α/2}. Report the exact binomial p-value as well, the point estimate, and a 95% CI.",
+ "C22_n_qubits": 12,
+ "C22_page": [
+  {
+   "k": 0,
+   "m": 1,
+   "n": 4096,
+   "S_page": 0.0,
+   "S_page_bits": 0.0,
+   "S_hawking_bits": 0,
+   "S_max_bits": 0.0
+  },
+  {
+   "k": 1,
+   "m": 2,
+   "n": 2048,
+   "S_page": 0.6927809845236083,
+   "S_page_bits": 0.9994716907943834,
+   "S_hawking_bits": 1,
+   "S_max_bits": 1.0
+  },
+  {
+   "k": 2,
+   "m": 4,
+   "n": 1024,
+   "S_page": 1.3844633809381834,
+   "S_page_bits": 1.9973584539718852,
+   "S_hawking_bits": 2,
+   "S_max_bits": 2.0
+  },
+  {
+   "k": 3,
+   "m": 8,
+   "n": 512,
+   "S_page": 2.0717514249166014,
+   "S_page_bits": 2.9889055066818244,
+   "S_hawking_bits": 3,
+   "S_max_bits": 3.0
+  },
+  {
+   "k": 4,
+   "m": 16,
+   "n": 256,
+   "S_page": 2.7414620591490495,
+   "S_page_bits": 3.95509371751958,
+   "S_hawking_bits": 4,
+   "S_max_bits": 4.0
+  },
+  {
+   "k": 5,
+   "m": 32,
+   "n": 128,
+   "S_page": 3.3408630543771616,
+   "S_page_bits": 4.819846560839086,
+   "S_hawking_bits": 5,
+   "S_max_bits": 5.0
+  },
+  {
+   "k": 6,
+   "m": 64,
+   "n": 64,
+   "S_page": 3.6590254932605575,
+   "S_page_bits": 5.2788579336133,
+   "S_hawking_bits": 6,
+   "S_max_bits": 6.0
+  },
+  {
+   "k": 7,
+   "m": 128,
+   "n": 32,
+   "S_page": 3.3408630543771616,
+   "S_page_bits": 4.819846560839086,
+   "S_hawking_bits": 7,
+   "S_max_bits": 5.0
+  },
+  {
+   "k": 8,
+   "m": 256,
+   "n": 16,
+   "S_page": 2.7414620591490495,
+   "S_page_bits": 3.95509371751958,
+   "S_hawking_bits": 8,
+   "S_max_bits": 4.0
+  },
+  {
+   "k": 9,
+   "m": 512,
+   "n": 8,
+   "S_page": 2.0717514249166014,
+   "S_page_bits": 2.9889055066818244,
+   "S_hawking_bits": 9,
+   "S_max_bits": 3.0
+  },
+  {
+   "k": 10,
+   "m": 1024,
+   "n": 4,
+   "S_page": 1.3844633809381834,
+   "S_page_bits": 1.9973584539718852,
+   "S_hawking_bits": 10,
+   "S_max_bits": 2.0
+  },
+  {
+   "k": 11,
+   "m": 2048,
+   "n": 2,
+   "S_page": 0.6927809845236083,
+   "S_page_bits": 0.9994716907943834,
+   "S_hawking_bits": 11,
+   "S_max_bits": 1.0
+  },
+  {
+   "k": 12,
+   "m": 4096,
+   "n": 1,
+   "S_page": 0.0,
+   "S_page_bits": 0.0,
+   "S_hawking_bits": 12,
+   "S_max_bits": 0.0
+  }
+ ],
+ "C22_page_time_k": 6,
+ "C22_S_page_mid_bits": 5.2788579336133,
+ "C22_S_end": 0.0,
+ "C22_S_start": 0.0,
+ "C22_S_eq_64": 3.6590254932605575,
+ "C22_S_eq_64_bits": 5.2788579336133,
+ "C22_island_formula": "S(R) = min_I ext_I [ Area(∂I)/(4 G_N) + S_matter(R ∪ I) ]",
+ "C22_conjecture": "Unitary-evaporation conjecture (strong form): the joint state of an evaporating black hole and its Hawking radiation, in a complete quantum theory of gravity, is (approximately) pure at all times if the initial state is pure; equivalently, the fine-grained entropy of the radiation follows a Page curve, returning to zero at complete evaporation.",
+ "C22_status": "OPEN CONJECTURE — not settled by replica-wormhole calculations in toy models, nor by this Doctrine",
+ "C22_would_settle": "A derivation of the Page curve (or of information-preserving evaporation) for realistic four-dimensional, asymptotically flat (or de Sitter) black holes from a complete quantum gravity; or a no-go theorem ruling unitary evaporation out; or a decisive observational signature. Reproduction of a Page curve in two-dimensional JT gravity via replica wormholes and the island formula is necessary-style evidence in a toy model, not a settlement.",
+ "CHECKS": [
+  {
+   "name": "C1-monotone",
+   "ok": true,
+   "detail": "Γ monotone on all comparable pairs of P(U)"
+  },
+  {
+   "name": "C1-lfp",
+   "ok": true,
+   "detail": "{a, b, c}"
+  },
+  {
+   "name": "C1-lfp-equals-meet",
+   "ok": true,
+   "detail": "{a, b, c}"
+  },
+  {
+   "name": "C1-kleene-steps-le-4",
+   "ok": true,
+   "detail": "3"
+  },
+  {
+   "name": "C1-tight-monotone",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C2-join-preserving",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C2-U1-fail-count-is-4",
+   "ok": true,
+   "detail": "['{d}', '{a, d}', '{c, d}', '{a, c, d}']"
+  },
+  {
+   "name": "C2-lax-all-16",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C2-U1-on-kleene-chain",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C2-U1-on-downset-mu",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C2-transfer-via-T2",
+   "ok": true,
+   "detail": "F(μΓ)={a, b, c} μΛ={a, b, c}"
+  },
+  {
+   "name": "C3-join-preserving",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C3-U1-all-16",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C3-transfer",
+   "ok": true,
+   "detail": "Fδ(μΓ)={a, b, c} μΛδ={a, b, c}"
+  },
+  {
+   "name": "C4-galois",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C4-sound-all-16",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C4-sound-lfp",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C4-exact-lfp",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C5-norm-1",
+   "ok": true,
+   "detail": "0.9999999999999998"
+  },
+  {
+   "name": "C5-CHSH-tsirelson",
+   "ok": true,
+   "detail": "2.82842712474619"
+  },
+  {
+   "name": "C5-classical-max-2",
+   "ok": true,
+   "detail": "2"
+  },
+  {
+   "name": "C5-no-signalling",
+   "ok": true,
+   "detail": "2.220446049250313e-16"
+  },
+  {
+   "name": "C6-fibonacci-periods",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C7-rs-positive",
+   "ok": true,
+   "detail": "2953.3393820668784"
+  },
+  {
+   "name": "C7-entropy-far-from-zero",
+   "ok": true,
+   "detail": "1.0489548861789662e+77"
+  },
+  {
+   "name": "C8-Teq-near-273",
+   "ok": true,
+   "detail": "273.1818181818182"
+  },
+  {
+   "name": "C9-born-sums-to-1",
+   "ok": true,
+   "detail": "1.0000000000000002"
+  },
+  {
+   "name": "C10-rel-error-18.8ppm",
+   "ok": true,
+   "detail": "18.824531757065024"
+  },
+  {
+   "name": "C11-half-is-tau-ln2",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C12-sidereal-near-T2",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C13-register-all-ok",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C13-137-is-33rd-prime",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C14-toy-only-identity-aut",
+   "ok": true,
+   "detail": "['abcd']"
+  },
+  {
+   "name": "C14-reciprocal-toy",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C15-chain-family-T2",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C15-mono-144",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C15-n144000-lfp",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C15-Z144-involution-and-lfp",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C15-CHSH-72grid-above-2",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C15-bulb-period-144",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C15-ERAM-17-doublings",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C16-metre-shrink",
+   "ok": true,
+   "detail": "0.06918066666666667"
+  },
+  {
+   "name": "C16-alpha-invariant",
+   "ok": true,
+   "detail": "3.3306690738754696e-16"
+  },
+  {
+   "name": "B-ratio-365.25974",
+   "ok": true,
+   "detail": "365.2597402597402"
+  },
+  {
+   "name": "B2-26000-epoch",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C17-CRA-|U|-33",
+   "ok": true,
+   "detail": "33"
+  },
+  {
+   "name": "C17-CRA-9-steps",
+   "ok": true,
+   "detail": "9"
+  },
+  {
+   "name": "C17-CRA-|mu|-31",
+   "ok": true,
+   "detail": "31"
+  },
+  {
+   "name": "C17-CRA-ungenerated",
+   "ok": true,
+   "detail": "['act:non-indexical', 'timeline:aperiodic']"
+  },
+  {
+   "name": "C17-CRA-fixed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C17-CRA-axioms-in-mu",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C17-CRA-M∞-in-mu",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C17-CRA-monotone-samples",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C17-all-deployed-Psi-satisfy-U1prime-and-T2",
+   "ok": true,
+   "detail": "16 realisations"
+  },
+  {
+   "name": "C18-coherence-T8",
+   "ok": true,
+   "detail": "5193 pairs"
+  },
+  {
+   "name": "C19-act-indexical-invisible",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C19-parity-counterexample",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C19-filter-not-transitive",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C19-dist-obs-is-1/3",
+   "ok": true,
+   "detail": "0.33333333333333337"
+  },
+  {
+   "name": "C19-dist-AC-is-2/3",
+   "ok": true,
+   "detail": "0.6666666666666667"
+  },
+  {
+   "name": "C19-closed-Kact-iff-M3",
+   "ok": true,
+   "detail": "32"
+  },
+  {
+   "name": "C20-finite-injections-are-bijections",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C20-N-parity-embedding-sample",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C21-mdb-near-0.00369",
+   "ok": true,
+   "detail": "0.003691412645123582"
+  },
+  {
+   "name": "C21-power-at-mdb-near-0.8",
+   "ok": true,
+   "detail": "0.8000073815615836"
+  },
+  {
+   "name": "C21-zero-trials",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C21-no-invented-data",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C21-typeI-near-alpha",
+   "ok": true,
+   "detail": "0.05275"
+  },
+  {
+   "name": "C22-page-S-start-0",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C22-page-S-end-0",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C22-page-mid-below-max",
+   "ok": true,
+   "detail": "5.2788579336133"
+  },
+  {
+   "name": "C22-page-unimodal",
+   "ok": true,
+   "detail": "[0.0, 0.9994716907943834, 1.9973584539718852, 2.9889055066818244, 3.95509371751958, 4.819846560839086, 5.2788579336133, 4.819846560839086, 3.95509371751958, 2.9889055066818244, 1.9973584539718852, 0.9994716907943834, 0.0]"
+  },
+  {
+   "name": "C22-page-symmetric",
+   "ok": true,
+   "detail": ""
+  }
+ ],
+ "n_pass": 73,
+ "n_fail": 0,
+ "n_checks": 73,
+ "edition": "The OmniLux Prime Doctrine — Masterpiece Edition",
+ "edition_date": "10 November 2026",
+ "generated_uk": "2026-11-10 03:49:39 Europe/London"
+}
