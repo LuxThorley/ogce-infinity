@@ -1,0 +1,22 @@
+{
+  // OGCE Infinity v8.2 on Cloudflare Workers (free tier):
+  //  - ./web served as Workers Static Assets
+  //  - /health, /api/*, /ws handled by one SQLite-backed Durable Object running the engine (cloudflare/src)
+  // Secret (never commit): OGCE_SERVICE_TOKEN, set with `npx wrangler secret put OGCE_SERVICE_TOKEN`.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ogce-infinity",
+  "main": "cloudflare/src/index.js",
+  "compatibility_date": "2026-11-01",
+  "workers_dev": true,
+  "preview_urls": false,
+  "assets": {
+    "directory": "./web",
+    "binding": "ASSETS",
+    "run_worker_first": true
+  },
+  "durable_objects": {
+    "bindings": [{ "name": "OGCE_WORLD", "class_name": "OGCEWorld" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["OGCEWorld"] }],
+  "observability": { "enabled": true }
+}

@@ -1,0 +1,197 @@
+// JS port of ogce4/v70/runtime.py (authoritative v7.4 world simulation) over a synchronous SQL adapter.
+import { pyInt, pyStr, cpSlice, ValueError } from './pyjson.js';
+
+const now = () => Date.now() / 1000;
+const nowInt = () => Math.floor(Date.now() / 1000);
+const has = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
+const sumOrd = (s) => [...s].reduce((n, c) => n + c.codePointAt(0), 0);
+
+export function initialWorld(worldId) {
+  return {
+    id: worldId, tick: 0, seed: sumOrd(worldId), players: {},
+    entities: [
+      { id: 'crystal-01', kind: 'resource', x: 5, y: 4, resource: 'crystal', quantity: 8 },
+      { id: 'wood-01', kind: 'resource', x: 8, y: 6, resource: 'wood', quantity: 12 },
+      { id: 'stone-01', kind: 'resource', x: 3, y: 8, resource: 'stone', quantity: 10 },
+      { id: 'crystal-02', kind: 'resource', x: 14, y: 12, resource: 'crystal', quantity: 6 },
+      { id: 'wood-02', kind: 'resource', x: 22, y: 18, resource: 'wood', quantity: 10 },
+      { id: 'quest-board', kind: 'quest_board', x: 4, y: 3 },
+    ],
+    creatures: [
+      { id: 'moss-wolf-01', species: 'moss_wolf', name: 'Mossfang', x: 12, y: 8, health: 32, max_health: 32, hostile: true, alive: true, level: 1, respawn: 0 },
+      { id: 'moss-wolf-02', species: 'moss_wolf', name: 'Fernstalker', x: 18, y: 14, health: 32, max_health: 32, hostile: true, alive: true, level: 1, respawn: 0 },
+      { id: 'silverhart-01', species: 'silverhart', name: 'Silverhart', x: 9, y: 18, health: 18, max_health: 18, hostile: false, alive: true, level: 1, respawn: 0 },
+    ],
+    resources: { wood: 0, stone: 0, crystal: 0 }, weather: 'clear', chronicle: [],
+  };
+}
+
+const dist = (a, b) => Math.abs(pyInt(a.x) - pyInt(b.x)) + Math.abs(pyInt(a.y) - pyInt(b.y));
+const clamp = (v) => Math.max(0, Math.min(63, v));
+
+export class GameRuntime {
+  constructor(db) {
+    this.db = db;
+    db.run('CREATE TABLE IF NOT EXISTS worlds(id TEXT PRIMARY KEY, state TEXT NOT NULL, revision INTEGER NOT NULL)');
+    db.run('CREATE TABLE IF NOT EXISTS events(id INTEGER PRIMARY KEY AUTOINCREMENT, world_id TEXT NOT NULL, revision INTEGER NOT NULL, event TEXT NOT NULL, created REAL NOT NULL)');
+    db.run('CREATE TABLE IF NOT EXISTS players(id TEXT PRIMARY KEY, world_id TEXT NOT NULL, state TEXT NOT NULL, updated REAL NOT NULL)');
+  }
+  load(worldId = 'Aurelia') {
+    const row = this.db.all('SELECT state,revision FROM worlds WHERE id=?', worldId)[0];
+    if (!row) {
+      const state = initialWorld(worldId);
+      this.db.run('INSERT INTO worlds VALUES(?,?,0)', worldId, JSON.stringify(state));
+      return { revision: 0, state };
+    }
+    const state = JSON.parse(row.state);
+    const known = new Set((state.entities ?? []).map((e) => e.id));
+    const additions = initialWorld(worldId).entities.slice(1);
+    const missing = additions.filter((e) => !known.has(e.id));
+    if (missing.length) (state.entities ??= []).push(...missing);
+    if (!has(state, 'creatures')) { state.creatures = initialWorld(worldId).creatures; missing.push({ id: 'creature-population', kind: 'system' }); }
+    if (missing.length) {
+      const next = row.revision + 1;
+      this.db.run('UPDATE worlds SET state=?,revision=? WHERE id=? AND revision=?', JSON.stringify(state), next, worldId, row.revision);
+      this.db.run('INSERT INTO events(world_id,revision,event,created) VALUES(?,?,?,?)', worldId, next,
+        JSON.stringify({ type: 'world_upgrade', version: '7.4.0', added: missing.map((e) => e.id) }), now());
+      return { revision: next, state };
+    }
+    return { revision: row.revision, state };
+  }
+  _commit(worldId, expected, state, event) {
+    const rows = this.db.all('UPDATE worlds SET state=?,revision=revision+1 WHERE id=? AND revision=? RETURNING revision', JSON.stringify(state), worldId, expected);
+    if (rows.length !== 1) throw new ValueError('revision_conflict');
+    this.db.run('INSERT INTO events(world_id,revision,event,created) VALUES(?,?,?,?)', worldId, expected + 1, JSON.stringify(event), now());
+    return expected + 1;
+  }
+  _simulateTick(state, player) {
+    state.tick += 1;
+    player.hunger = Math.min(100, (player.hunger ?? 0) + 1);
+    state.weather = ['clear', 'rain', 'wind', 'mist', 'clear'][Math.floor(state.tick / 5) % 5];
+    const notes = [];
+    for (const c of state.creatures ?? []) {
+      if (!(c.alive ?? true)) {
+        c.respawn = Math.max(0, pyInt(c.respawn ?? 0) - 1);
+        if (c.respawn === 0) { c.alive = true; c.health = c.max_health ?? 24; notes.push(`${c.name} returns to the wild`); }
+        continue;
+      }
+      const d = dist(c, player);
+      if (c.hostile && d <= 6) {
+        if (d > 1) {
+          const dx = c.x === player.x ? 0 : (player.x > c.x ? 1 : -1);
+          const dy = c.y === player.y ? 0 : (player.y > c.y ? 1 : -1);
+          if (Math.abs(player.x - c.x) >= Math.abs(player.y - c.y)) c.x = clamp(c.x + dx); else c.y = clamp(c.y + dy);
+        } else {
+          const damage = Math.max(1, 3 + pyInt(c.level ?? 1));
+          player.health = Math.max(0, (player.health ?? 100) - damage);
+          notes.push(`${c.name} strikes for ${damage}`);
+        }
+      } else if (!c.hostile && d <= 3) {
+        const dx = c.x >= player.x ? 1 : -1, dy = c.y >= player.y ? 1 : -1;
+        if (Math.abs(c.x - player.x) >= Math.abs(c.y - player.y)) c.x = clamp(c.x + dx); else c.y = clamp(c.y + dy);
+      }
+    }
+    if (player.health <= 0) { player.health = 50; player.x = 2; player.y = 2; notes.push('You awaken at the frontier camp'); }
+    (state.chronicle ??= []).push(...notes.map((n) => ({ type: 'simulation', message: n, at: nowInt() })));
+    state.chronicle = state.chronicle.slice(-100);
+    return notes;
+  }
+  act(worldId, playerId, action) {
+    if (!action || typeof action !== 'object' || Array.isArray(action)) throw new ValueError('action_must_be_object');
+    const kind = action.type;
+    const allowed = new Set(['move', 'gather', 'build', 'chat', 'advance', 'attack', 'craft', 'drink_potion', 'quest', 'interact', 'rest']);
+    if (!allowed.has(kind)) throw new ValueError('unsupported_action');
+    const row = this.db.all('SELECT state,revision FROM worlds WHERE id=?', worldId)[0];
+    let state, rev;
+    if (!row) { state = initialWorld(worldId); rev = 0; this.db.run('INSERT INTO worlds VALUES(?,?,0)', worldId, JSON.stringify(state)); }
+    else { state = JSON.parse(row.state); rev = row.revision; }
+    const players = state.players;
+    if (!has(players, playerId)) players[playerId] = { x: 2, y: 2, health: 100, max_health: 100, hunger: 0, inventory: {}, name: cpSlice(playerId, 12), level: 1, xp: 0, equipment: { weapon: 'traveller_blade' }, quests: {}, potions: 0 };
+    const p = players[playerId];
+    p.max_health ??= 100; p.level ??= 1; p.xp ??= 0; p.equipment ??= { weapon: 'traveller_blade' }; p.quests ??= {}; p.potions ??= 0; p.inventory ??= {};
+    let message = '', qty = 0, target = null;
+    const levelUp = () => { while (p.xp >= p.level * 100) { p.xp -= p.level * 100; p.level += 1; p.max_health += 10; p.health = p.max_health; } };
+    if (kind === 'move') {
+      const dx = pyInt(action.dx ?? 0), dy = pyInt(action.dy ?? 0);
+      if (Math.abs(dx) + Math.abs(dy) !== 1) throw new ValueError('movement_must_be_one_cardinal_tile');
+      const nx = clamp(p.x + dx), ny = clamp(p.y + dy);
+      if (state.entities.some((e) => e.kind === 'structure' && e.structure === 'shelter' && e.x === nx && e.y === ny)) throw new ValueError('movement_blocked');
+      p.x = nx; p.y = ny;
+    } else if (kind === 'gather') {
+      target = state.entities.find((e) => e.id === action.target) ?? null;
+      if (!target || target.kind !== 'resource') throw new ValueError('resource_not_found');
+      if (dist(p, target) > 1) throw new ValueError('resource_out_of_reach');
+      qty = Math.min(3, target.quantity);
+      if (qty <= 0) throw new ValueError('resource_depleted');
+      target.quantity -= qty; const resource = target.resource;
+      p.inventory[resource] = (p.inventory[resource] ?? 0) + qty;
+      message = `Gathered ${qty} ${resource}`;
+    } else if (kind === 'build') {
+      const recipe = action.recipe; const costs = { campfire: { wood: 2, stone: 1 }, shelter: { wood: 4, stone: 2 } };
+      if (typeof recipe !== 'string' || !has(costs, recipe)) throw new ValueError('unknown_recipe');
+      const inv = p.inventory;
+      if (Object.entries(costs[recipe]).some(([k, v]) => (inv[k] ?? 0) < v)) throw new ValueError('insufficient_materials');
+      for (const [k, v] of Object.entries(costs[recipe])) inv[k] -= v;
+      if (state.entities.some((e) => e.kind === 'structure' && e.x === p.x && e.y === p.y)) throw new ValueError('tile_occupied');
+      state.entities.push({ id: crypto.randomUUID().slice(0, 8), kind: 'structure', structure: recipe, x: p.x, y: p.y });
+      message = `Built ${recipe}`;
+    } else if (kind === 'attack') {
+      target = (state.creatures ?? []).find((c) => c.id === action.target && (c.alive ?? true)) ?? null;
+      if (!target) throw new ValueError('creature_not_found');
+      if (dist(p, target) > 2) throw new ValueError('target_out_of_reach');
+      const weapon = p.equipment.weapon ?? 'traveller_blade';
+      const damage = { traveller_blade: 12, stone_edge: 18, crystal_sabre: 27 }[weapon] ?? 10;
+      target.health = Math.max(0, target.health - damage);
+      if (target.health === 0) {
+        target.alive = false; target.respawn = 8;
+        const loot = target.species === 'moss_wolf' ? { wood: 2 } : { crystal: 1 };
+        for (const [item, q] of Object.entries(loot)) p.inventory[item] = (p.inventory[item] ?? 0) + q;
+        const xp = 25 * pyInt(target.level ?? 1); p.xp += xp; levelUp();
+        message = `${target.name} defeated · +${xp} XP`;
+      } else message = `Hit ${target.name} for ${damage}`;
+    } else if (kind === 'craft') {
+      const recipe = action.recipe;
+      const recipes = { healing_potion: [{ crystal: 2 }, { potions: 1 }], stone_edge: [{ stone: 5, wood: 2 }, { weapon: 'stone_edge' }], crystal_sabre: [{ crystal: 5, stone: 3, wood: 2 }, { weapon: 'crystal_sabre' }] };
+      if (typeof recipe !== 'string' || !has(recipes, recipe)) throw new ValueError('unknown_recipe');
+      const [costs, reward] = recipes[recipe]; const inv = p.inventory;
+      if (Object.entries(costs).some(([k, v]) => (inv[k] ?? 0) < v)) throw new ValueError('insufficient_materials');
+      for (const [k, v] of Object.entries(costs)) inv[k] -= v;
+      for (const [k, v] of Object.entries(reward)) { if (k === 'potions') p.potions = (p.potions ?? 0) + v; else p.equipment[k] = v; }
+      message = `Crafted ${recipe}`;
+    } else if (kind === 'drink_potion') {
+      if ((p.potions ?? 0) < 1) throw new ValueError('no_healing_potions');
+      if (p.health >= p.max_health) throw new ValueError('health_already_full');
+      p.potions -= 1; p.health = Math.min(p.max_health, p.health + 45); message = 'Healing potion restored health';
+    } else if (kind === 'quest' || kind === 'interact') {
+      const op = action.operation ?? 'accept'; const qid = pyStr(action.quest_id ?? 'frontier_hunt');
+      const quests = { frontier_hunt: { title: 'The Frontier Hunt', target: 'moss_wolf', count: 2, reward: { xp: 80, crystal: 2 } },
+        gatherer_path: { title: "The Gatherer's Path", target: 'gather_any', count: 6, reward: { xp: 50, wood: 3 } } };
+      if (!has(quests, qid)) throw new ValueError('quest_not_found');
+      const q = quests[qid]; if (!has(p.quests, qid)) p.quests[qid] = { accepted: false, progress: 0, claimed: false };
+      const progress = p.quests[qid];
+      if (op === 'accept') { progress.accepted = true; message = `Quest accepted: ${q.title}`; }
+      else if (op === 'claim') {
+        if (!progress.accepted || progress.progress < q.count) throw new ValueError('quest_objective_incomplete');
+        if (progress.claimed) throw new ValueError('quest_already_claimed');
+        progress.claimed = true; const reward = q.reward; p.xp += reward.xp; levelUp();
+        for (const [item, n] of Object.entries(reward)) if (item !== 'xp') p.inventory[item] = (p.inventory[item] ?? 0) + n;
+        message = `Quest completed: ${q.title}`;
+      } else throw new ValueError('unknown_quest_operation');
+    } else if (kind === 'rest') {
+      if (!state.entities.some((e) => e.kind === 'structure' && ['campfire', 'shelter'].includes(e.structure) && dist(p, e) <= 1)) throw new ValueError('rest_requires_nearby_camp');
+      p.health = Math.min(p.max_health, p.health + 25); p.hunger = Math.max(0, p.hunger - 10); message = 'Rested by the camp';
+    } else if (kind === 'chat') {
+      const msg = cpSlice(pyStr(action.message ?? ''), 240);
+      if (!msg.trim()) throw new ValueError('empty_message');
+      state.chronicle.push({ type: 'chat', player: cpSlice(playerId, 12), message: msg, at: nowInt() });
+    } else if (kind === 'advance') { this._simulateTick(state, p); message = 'The world moves onward'; }
+    if (kind === 'gather') for (const [qid, pr] of Object.entries(p.quests)) if (pr.accepted && !pr.claimed && qid === 'gatherer_path') pr.progress += qty;
+    if (kind === 'attack' && message.includes('defeated')) for (const [qid, pr] of Object.entries(p.quests)) if (qid === 'frontier_hunt' && pr.accepted && !pr.claimed && target.species === 'moss_wolf') pr.progress += 1;
+    if (message && kind !== 'chat') (state.chronicle ??= []).push({ type: kind, player: cpSlice(playerId, 12), message, at: nowInt() });
+    state.chronicle = (state.chronicle ?? []).slice(-100);
+    const event = { player: playerId, action, tick: state.tick };
+    const newrev = this._commit(worldId, rev, state, event);
+    this.db.run('INSERT OR REPLACE INTO players VALUES(?,?,?,?)', playerId, worldId, JSON.stringify(p), now());
+    return { revision: newrev, state, event };
+  }
+}

@@ -206,3 +206,11 @@ Start the HTTP browser server with:
 For public deployment, bind only behind a TLS reverse proxy and set a strong
 `OGCE_SERVICE_TOKEN` (at least 32 characters). The v8.2 persistence adapter is
 SQLite; PostgreSQL schema is a migration foundation, not a live adapter.
+
+---
+
+## Cloudflare Workers deployment (added in this repository)
+
+This repository also runs on Cloudflare Workers: `web/` is served as static assets and the engine API runs in a
+SQLite-backed Durable Object (`cloudflare/`). See `docs/CLOUDFLARE_DEPLOYMENT.md` for the architecture,
+Python↔JS parity tests and known deviations. `npm install && npm test && npx wrangler deploy`.
