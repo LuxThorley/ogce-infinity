@@ -160,7 +160,8 @@ window.addEventListener('keyup', (e) => held.delete(e.key.toLowerCase()));
 window.addEventListener('blur', () => held.clear());
 
 function stepTick() {
-  if (inflight || !state || guestBlocked && !session) return;
+  if (guestBlocked && !session) { if (held.size || tapped.size || joy.right || joy.forward) { held.clear(); tapped.clear(); joy = { right: 0, forward: 0 }; if (!joinDismissed) openJoin(); else toast(friendlyError('unauthorized')); } return; }
+  if (inflight || !state) return;
   const now = performance.now(); if (now - lastMoveAt < 150) return;
   let [r, f] = heldVector(new Set([...held, ...tapped])); tapped.clear();
   if (!r && !f && (joy.right || joy.forward)) { r = Math.abs(joy.right) > 0.38 ? Math.sign(joy.right) : 0; f = Math.abs(joy.forward) > 0.38 ? Math.sign(joy.forward) : 0; }
