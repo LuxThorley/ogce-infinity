@@ -93,7 +93,8 @@ def make_handler(runtime, token, web_root=None, auth=None):
                         character=world.character(cid)
                         if account and character.get("owner")!=account:
                             return self._send(403,{"error":"character_not_owned_by_account"})
-                    if op=="cast": result=world.cast(cid,str(body.get("spell","")),body.get("target"))
+                    if op=="character": pass  # result already set above; fall through to save
+                    elif op=="cast": result=world.cast(cid,str(body.get("spell","")),body.get("target"))
                     elif op=="learn_spell": result=world.learn_spell(cid,str(body.get("spell","")))
                     elif op=="reading": result=world.celestial_reading(cid)
                     elif op=="hypothesis": result=world.submit_hypothesis(cid,body.get("title","Untitled inquiry"),body.get("discipline","physics"),body.get("hypothesis",""),body.get("method","controlled comparison"))
