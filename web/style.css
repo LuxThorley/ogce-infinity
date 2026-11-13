@@ -252,3 +252,17 @@ body.offline-solo #netpill { background: #5b21b6; }
 .glyphs { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; } .card.glyph canvas { width: 100%; max-width: 140px; aspect-ratio: 1; display: block; margin: 0 auto; }
 #sky-body .tabs button.on, #sky-body .tabs button.active { background: #86198f; color: #fff; }
 body:has(.overlay:not(.hidden)) #tutorialcard, body:has(#opening:not(.hidden)) #tutorialcard { display: none; }
+
+/* v9.0 phone layout (≤600px): status pills and toolbar on their own rows (toolbar scrolls sideways), compact HUD and minimap, tutorial below them */
+@media (max-width: 600px) {
+  #topbar { flex-wrap: wrap; gap: .3em; padding: .3em .4em; padding-top: max(.3em, env(safe-area-inset-top)); }
+  .pills { flex: 1 1 100%; flex-wrap: nowrap; overflow: hidden; font-size: .78em; }
+  #timepill, #eventpill { display: none; }
+  .topbtns { flex: 1 1 100%; flex-wrap: nowrap; overflow-x: auto; pointer-events: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: 2px; }
+  .topbtns::-webkit-scrollbar { display: none; }
+  .topbtns .iconbtn { flex: 0 0 auto; width: 2.15em; height: 2.15em; }
+  #hud { top: 5.4rem; width: min(210px, 56vw); font-size: .8em; padding: .4em .55em; }
+  #hud .bag, #hud > .small { display: none; }
+  #minimap { top: 5.4rem !important; right: .5em !important; left: auto !important; bottom: auto !important; width: 96px !important; height: 96px !important; }
+  #tutorialcard { top: 12.4rem; left: .5em; right: .5em; max-width: none; font-size: .78rem; padding: 6px 8px; }
+}
