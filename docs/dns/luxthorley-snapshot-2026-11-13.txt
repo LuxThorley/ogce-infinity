@@ -1,0 +1,98 @@
+# Read-only DNS snapshot of luxthorley.one (authoritative: ns33/ns34.domaincontrol.com, GoDaddy). Captured 2026-11-13T06:39:28 Europe/London.
+# Method: DNS-over-HTTPS through Cloudflare (1.1.1.1) and Google (8.8.8.8) resolvers, because outbound port 53 is blocked from this box (dig could not reach GoDaddy directly).
+# TTLs shown are the remaining cache TTL as seen by the resolver (<= the authoritative TTL).
+# Probed 76 labels x types A AAAA CNAME MX TXT CAA SRV NS SOA HTTPS; a random wildcard probe label is included.
+
+_dmarc.luxthorley.one                      3600 TXT    "v=DMARC1; p=quarantine; adkim=r; aspf=r; rua=mailto:dmarc_rua@onsecureserver.net;"   (seen via cloudflare+google)
+_domainconnect.luxthorley.one              3600 CNAME  _domainconnect.gd.domaincontrol.com.   (seen via cloudflare+google)
+_github-pages-challenge-luxthorley.luxthorley.one   3600 TXT    "0cfb570140f12134608818b4079d19"   (seen via cloudflare+google)
+dc-aa8e722993._spfm.luxthorley.one         3600 TXT    "v=spf1 include:_spf.google.com ~all"   (seen via cloudflare+google)
+luxthorley.one                             3600 A      13.248.243.5   (seen via cloudflare+google)
+luxthorley.one                             3600 A      185.199.108.153   (seen via cloudflare+google)
+luxthorley.one                             3600 A      185.199.109.153   (seen via cloudflare+google)
+luxthorley.one                             3600 A      185.199.110.153   (seen via cloudflare+google)
+luxthorley.one                             3600 A      185.199.111.153   (seen via cloudflare+google)
+luxthorley.one                             3600 A      76.223.105.230   (seen via cloudflare+google)
+luxthorley.one                             3600 MX     1 aspmx.l.google.com.   (seen via cloudflare+google)
+luxthorley.one                             3600 MX     10 alt3.aspmx.l.google.com.   (seen via cloudflare+google)
+luxthorley.one                             3600 MX     10 alt4.aspmx.l.google.com.   (seen via cloudflare+google)
+luxthorley.one                             3600 MX     5 alt1.aspmx.l.google.com.   (seen via cloudflare+google)
+luxthorley.one                             3600 MX     5 alt2.aspmx.l.google.com.   (seen via cloudflare+google)
+luxthorley.one                             3600 NS     ns33.domaincontrol.com.   (seen via cloudflare+google)
+luxthorley.one                             3600 NS     ns34.domaincontrol.com.   (seen via cloudflare+google)
+luxthorley.one                             3600 SOA    ns33.domaincontrol.com. dns.jomax.net. 2026032804 28800 7200 604800 600   (seen via cloudflare+google)
+luxthorley.one                             3600 TXT    "google-site-verification=ch1RHKV1Ekj5_2CNbBwr8tnlulNXxWfLBlYF2DvEZpQ"   (seen via cloudflare+google)
+luxthorley.one                             3600 TXT    "v=spf1 include:dc-aa8e722993._spfm.luxthorley.one ~all"   (seen via cloudflare+google)
+www.luxthorley.one                         3600 CNAME  luxthorley.one.   (seen via cloudflare+google)
+
+# Names that returned NXDOMAIN (do not exist):
+_autodiscover._tcp.luxthorley.one
+_caldavs._tcp.luxthorley.one
+_carddavs._tcp.luxthorley.one
+_imaps._tcp.luxthorley.one
+_mta-sts.luxthorley.one
+_sip._tls.luxthorley.one
+_sipfederationtls._tcp.luxthorley.one
+_smtp._tls.luxthorley.one
+_submission._tcp.luxthorley.one
+_xmpp-client._tcp.luxthorley.one
+_xmpp-server._tcp.luxthorley.one
+admin.luxthorley.one
+api.luxthorley.one
+app.luxthorley.one
+autoconfig.luxthorley.one
+autodiscover.luxthorley.one
+blog.luxthorley.one
+bounce.luxthorley.one
+calendar.luxthorley.one
+cpanel.luxthorley.one
+default._domainkey.luxthorley.one
+dev.luxthorley.one
+dkim._domainkey.luxthorley.one
+docs.luxthorley.one
+em.luxthorley.one
+email.luxthorley.one
+files.luxthorley.one
+fm1._domainkey.luxthorley.one
+fm2._domainkey.luxthorley.one
+fm3._domainkey.luxthorley.one
+ftp.luxthorley.one
+game.luxthorley.one
+gd1._domainkey.luxthorley.one
+google._domainkey.luxthorley.one
+imap.luxthorley.one
+k1._domainkey.luxthorley.one
+lux.luxthorley.one
+m.luxthorley.one
+mail.luxthorley.one
+malcolm.luxthorley.one
+mta-sts.luxthorley.one
+mx._domainkey.luxthorley.one
+ogce.luxthorley.one
+oliver.luxthorley.one
+pay.luxthorley.one
+play.luxthorley.one
+pop.luxthorley.one
+portal.luxthorley.one
+protonmail._domainkey.luxthorley.one
+protonmail2._domainkey.luxthorley.one
+protonmail3._domainkey.luxthorley.one
+resend._domainkey.luxthorley.one
+s1._domainkey.luxthorley.one
+s2._domainkey.luxthorley.one
+secure.luxthorley.one
+secureserver1._domainkey.luxthorley.one
+selector1._domainkey.luxthorley.one
+selector2._domainkey.luxthorley.one
+send.luxthorley.one
+shop.luxthorley.one
+sig1._domainkey.luxthorley.one
+smtp.luxthorley.one
+staging.luxthorley.one
+store.luxthorley.one
+strata.luxthorley.one
+webmail.luxthorley.one
+zoho._domainkey.luxthorley.one
+zz-wildcard-probe-7f3a.luxthorley.one
+
+# Resolver disagreements (cache timing): none

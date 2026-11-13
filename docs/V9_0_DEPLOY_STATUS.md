@@ -1,6 +1,8 @@
 # Strata: Lux Genesis (v9.0): deployment status (13 Nov 2026)
 
 ## Where it runs
+* **Production (v9.0, approved 13 Nov 2026):** NEW Worker `strata-lux-genesis` at **https://strata.malcolmai.live** (Workers Custom Domain) and https://strata-lux-genesis.oliverluxthorley.workers.dev, with its own fresh Durable Object storage (`OGCEWorldV2`), deployed from branch `v9.0` with `npx wrangler deploy --env strata`. Secrets: `OGCE_SERVICE_TOKEN` (new, kept in `/workspace/ogce/secrets/strata_service_token` on the build box, never committed), `MALCOLM_INFINITY_BOT_TOKEN`, `OGCE_MALCOLM_ENABLED=yes`.
+  Roll back: `npx wrangler rollback --env strata <version-id>` (list versions with `npx wrangler deployments list --env strata`); take it offline by removing the custom domain (Workers → strata-lux-genesis → Domains) or `npx wrangler delete --env strata` (this also deletes its storage).
 * **Preview (v9.0):** Worker `ogce-infinity-preview` at https://ogce-infinity-preview.oliverluxthorley.workers.dev
   (workers.dev only, no custom domain, its own Durable Object storage). Deployed from branch `v9.0`.
 * **Production (unchanged, v8.3):** Worker `ogce-infinity` at https://ogce.malcolmai.live. Not touched.
@@ -23,3 +25,8 @@ A Worker custom domain needs the zone to be on Cloudflare, so the Worker cannot 
 Voice is peer-to-peer WebRTC with **STUN only** (`stun.cloudflare.com`, free and unlimited). No TURN is configured, so players behind strict/symmetric NATs cannot hear each other. Findings:
 * Cloudflare Realtime TURN costs $0.05/GB after 1,000 GB a month, shared with the SFU. There is **no spending cap**, so it is not "genuinely free".
 * Metered "Open Relay" has a free tier that is **hard-capped with no overage**: 500 MB a month without a card (20 GB with a card on file). It is genuinely £0, but it needs a new third-party account and API key. Needs Oliver's YES. The key would be a Worker secret; the Worker would mint short-lived ICE credentials.
+
+## luxthorley.one nameserver move (approved 13 Nov 2026): waiting on one permission
+* Snapshot of the current GoDaddy records: `docs/dns/luxthorley-snapshot-2026-11-13.txt` (21 records; no DNSSEC/DS, so the move is safe).
+* Exact copy for Cloudflare: `docs/dns/luxthorley.one.zone` (BIND import, all DNS-only) or `docs/dns/apply_luxthorley.js` (API, proxied:false).
+* **Blocked:** neither the box API token nor the Cloudflare connector has `account.zone.create`, so the zone could not be added. Oliver needs to either add `luxthorley.one` in the dashboard (Add a domain → Free plan → skip the record scan or delete what it finds), or grant Zone:Edit / zone-create to the connector. The records and the `strata.luxthorley.one` custom domain can then be applied in minutes. The nameservers to set at GoDaddy are shown only after the zone is created.

@@ -1,0 +1,22 @@
+; luxthorley.one: exact copy of the GoDaddy records captured 13 Nov 2026 (see /workspace/ogce/dns-luxthorley-snapshot.txt).
+; For Cloudflare "DNS > Records > Import": LEAVE "Proxy imported DNS records" UNTICKED (all DNS-only, same behaviour as today).
+; SOA/NS are not imported (Cloudflare supplies its own). TTL 3600 as at GoDaddy.
+$ORIGIN luxthorley.one.
+@                                   3600 IN A     13.248.243.5
+@                                   3600 IN A     76.223.105.230
+@                                   3600 IN A     185.199.108.153
+@                                   3600 IN A     185.199.109.153
+@                                   3600 IN A     185.199.110.153
+@                                   3600 IN A     185.199.111.153
+www                                 3600 IN CNAME luxthorley.one.
+@                                   3600 IN MX    1 aspmx.l.google.com.
+@                                   3600 IN MX    5 alt1.aspmx.l.google.com.
+@                                   3600 IN MX    5 alt2.aspmx.l.google.com.
+@                                   3600 IN MX    10 alt3.aspmx.l.google.com.
+@                                   3600 IN MX    10 alt4.aspmx.l.google.com.
+@                                   3600 IN TXT   "v=spf1 include:dc-aa8e722993._spfm.luxthorley.one ~all"
+@                                   3600 IN TXT   "google-site-verification=ch1RHKV1Ekj5_2CNbBwr8tnlulNXxWfLBlYF2DvEZpQ"
+dc-aa8e722993._spfm                 3600 IN TXT   "v=spf1 include:_spf.google.com ~all"
+_dmarc                              3600 IN TXT   "v=DMARC1; p=quarantine; adkim=r; aspf=r; rua=mailto:dmarc_rua@onsecureserver.net;"
+_domainconnect                      3600 IN CNAME _domainconnect.gd.domaincontrol.com.
+_github-pages-challenge-luxthorley  3600 IN TXT   "0cfb570140f12134608818b4079d19"
