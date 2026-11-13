@@ -1,9 +1,9 @@
 {
   "name": "ogce-infinity",
-  "version": "8.2.0",
+  "version": "9.0.0",
   "private": true,
   "type": "module",
-  "description": "OGCE Infinity v8.2 browser game on Cloudflare Workers (static assets + Durable Object engine)",
+  "description": "Strata: Lux Genesis (OGCE engine v9.0) browser game on Cloudflare Workers (static assets + Durable Object engine)",
   "scripts": {
     "test": "node --test cloudflare/test/*.test.mjs",
     "test:python": "python -m pytest -q",

@@ -1,3 +1,18 @@
+# Strata: Lux Genesis (v9.0), built on the OGCE engine
+
+A browser game for curious players aged about 13 and up: explore Aurelia's strata, survive and craft, study GCSE-level science in the Codex,
+invent things the world reacts to, talk freely with Shakespeare-inspired characters (typed or spoken), and roam infinite seeded worlds.
+Stratified Source Realism (SSR) and the Chronological Realignment Array (CRA) are Oliver Lux Prime Thorley's own theory and are always labelled as such.
+Creatures and characters are simulated; magic is make-believe.
+
+* What's new: `docs/CHANGELOG_V9_0.md` · Every feature from every version: `docs/FEATURE_MATRIX.md` · Architecture: `docs/V9_0_ARCHITECTURE.md`
+* Design backbone, combat, camera: `docs/V9_0_DESIGN.md` · Safety and the Children's Code: `docs/V9_0_SAFETY.md` · Renderer: `docs/RENDERER.md`
+* Play together: open 👥 (key 6), create a room and share the invite code (2–8 players). Installable as an app; plays offline in a private practice world.
+* Tests: `pytest -q` (Python) and `node --test cloudflare/test/*.test.mjs` (Worker parity and API)
+* Preview deploy: `npx wrangler deploy --env preview`
+
+The history of earlier OGCE releases follows.
+
 # OGCE Infinity v8.0 — The Living Omniverse
 
 v8.0 retains the v7.7 cross-platform online game foundation and integrates compatible μLux v0.6.0

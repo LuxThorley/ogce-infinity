@@ -1,4 +1,4 @@
-// Plain-English wording for OGCE v8.3. Written for curious players aged about 11 and up.
+// Plain-English wording for Strata: Lux Genesis (v9.0, OGCE engine). Written for curious players aged about 11 and up.
 // Pure data + functions so it can be unit-tested in Node and used in the browser.
 
 export const RESOURCE = { crystal: 'crystal', wood: 'wood', stone: 'stone' };
@@ -167,4 +167,12 @@ export const KEYS = [
   ['Mouse wheel / pinch', 'Zoom in and out'],
   ['C', 'Reset the camera'],
   ['H or ?', 'Show or hide this help'],
+  ['J', 'Journal: your rank, bounties, story arcs and achievements'],
+  ['K', 'Codex: GCSE lessons, graphs and quizzes'],
+  ['M', 'Talk to Malcolm, your guide'],
+  ['O', 'Expedition: endless worlds, wildlife, people and your workshop'],
+  ['Enter', 'Chat with nearby players'],
+  ['Hold V', 'Speak a command (push-to-talk)'],
+  ['/', 'Type a command'],
+  ['Esc', 'Close windows'],
 ];

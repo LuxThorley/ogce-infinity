@@ -1,0 +1,3447 @@
+{
+ "label": "Simulated characters: every NPC is a seeded game character inspired by a Shakespeare role, voiced by rules or by Malcolm. They are not real people and are not conscious.",
+ "about": "Characters are inspired by Shakespeare's plays and poems (public domain). Quotations are short and credited.",
+ "limits": {
+  "per_minute": 12,
+  "per_day": 300,
+  "max_chars": 400,
+  "memory": 6,
+  "history": 4,
+  "max_actions": 3,
+  "betray_gap": 20,
+  "gift_gap": 8,
+  "max_trade": 3
+ },
+ "values": {
+  "wood": 1,
+  "stone": 1,
+  "fibre": 1,
+  "berries": 1,
+  "petal": 1,
+  "crystal": 2,
+  "shell": 2,
+  "rope": 2,
+  "torch": 3,
+  "herbal_tea": 3,
+  "lux_mote": 3
+ },
+ "actions": [
+  "give_quest",
+  "complete_quest",
+  "trade",
+  "betray",
+  "ally",
+  "reveal_secret",
+  "gift"
+ ],
+ "intents": [
+  [
+   "farewell",
+   "\\b(bye|goodbye|farewell|see you|got to go|gotta go|later|adieu)\\b"
+  ],
+  [
+   "secret",
+   "\\b(secrets?|hiding|hide|truth|confess|what are you not telling|mystery|mysteries)\\b"
+  ],
+  [
+   "quest",
+   "\\b(quests?|tasks?|jobs?|missions?|errands?|help you|need help|work for you|anything i can do|done it|finished|brought|here you go|here it is)\\b"
+  ],
+  [
+   "trade",
+   "\\b(trade|trades|trading|swap|buy|sell|exchange|barter|deal|offer)\\b"
+  ],
+  [
+   "ally",
+   "\\b(ally|allies|alliance|join you|join your|side with|team up|be friends|friends\\?|together)\\b"
+  ],
+  [
+   "insult",
+   "\\b(stupid|idiot|dumb|hate you|liar|ugly|shut up|loser|useless|boring|smell|fool|knave|villain)\\b"
+  ],
+  [
+   "compliment",
+   "\\b(wise|kind|brilliant|great|amazing|clever|awesome|wonderful|thank|thanks|cool|like you|love your|best)\\b"
+  ],
+  [
+   "quote",
+   "\\b(quote|poem|verse|speech|soliloquy|famous line|recite|shakespeare)\\b"
+  ],
+  [
+   "self",
+   "\\b(who are you|your name|about yourself|what do you want|what do you do|who're you|tell me about you)\\b"
+  ],
+  [
+   "greet",
+   "^\\s*(hi|hello|hey|greetings|good (morning|day|evening)|hail|well met|howdy)\\b"
+  ]
+ ],
+ "rel": {
+  "greet": 1,
+  "compliment": 3,
+  "insult": -6,
+  "quest_done": 10,
+  "trade": 2,
+  "like": 2,
+  "turn_cap": 3
+ },
+ "cast": {
+  "ilsa": {
+   "name": "Warden Ilsa",
+   "model": {
+    "character": "Rosalind",
+    "play": "As You Like It",
+    "genre": "comedy"
+   },
+   "realm": "aurelia",
+   "x": 6,
+   "y": -4,
+   "faction": "wardens",
+   "title": "Ranger of the Wildwood",
+   "personality": "Quick-witted, warm and fearless; teases kindly and thinks on her feet, like Rosalind in the Forest of Arden.",
+   "intentions": "Keep the Wildwood in balance and teach travellers to watch before they act.",
+   "secret_agenda": "She was once heir to a great hall in Luxfall and gave it up to live free in the forest; she fears being called back.",
+   "secret": "Between us? I was born to a hall of gold in Luxfall. I traded it for moss and sky, and I'd do it again.",
+   "secret_at": 35,
+   "relationships": {
+    "oru": "trusts him like an uncle",
+    "rook": "laughs at his tricks but counts her purse after",
+    "beatrice": "sparring partner in wit",
+    "caliban": "defends him when others sneer"
+   },
+   "speech_style": "Bright, playful prose with the odd 'prithee' and 'marry'; asks questions back.",
+   "voice": {
+    "pitch": 1.15,
+    "rate": 1.05,
+    "gender": "f",
+    "lang": "en-GB"
+   },
+   "temper": 35,
+   "can_betray": false,
+   "likes_topics": [
+    "forest",
+    "wolf",
+    "moss",
+    "animal",
+    "nature",
+    "balance",
+    "census"
+   ],
+   "stock": {
+    "offers": [
+     "berries",
+     "petal",
+     "herbal_tea"
+    ],
+    "wants": [
+     "fibre",
+     "rope",
+     "shell"
+    ]
+   },
+   "gifts": [
+    "berries",
+    "petal"
+   ],
+   "quests": [
+    {
+     "id": "ilsa_tally",
+     "title": "Petals for the Mossbacks",
+     "ask": "Bring me 3 petals and I'll show thee how grazers choose their flowers.",
+     "goal": {
+      "bring": {
+       "petal": 3
+      }
+     },
+     "reward": {
+      "rel": 10,
+      "rep": {
+       "wardens": 8
+      },
+      "item": {
+       "herbal_tea": 1
+      }
+     },
+     "done": "Three fine petals! The Mossbacks thank thee, in their slow, chewy way."
+    }
+   ],
+   "quotes": [
+    {
+     "text": "Do you not know I am a woman? When I think, I must speak.",
+     "src": "As You Like It, 3.2"
+    },
+    {
+     "text": "Beauty provoketh thieves sooner than gold.",
+     "src": "As You Like It, 1.3"
+    }
+   ],
+   "lines": {
+    "greet": [
+     "Well met, stranger! Mind thy boots; the moss is shy today.",
+     "Ah, thou again! The wolves have been asking after thee. Truly.",
+     "My dear forest friend! Sit, and tell me everything."
+    ],
+    "small": [
+     "Every creature here is counting something: berries, days, danger. Art thou?",
+     "A forest teaches patience, and patience teaches everything else.",
+     "The duskwolves aren't cruel. They're hungry, and hunger keeps the meadow honest.",
+     "I'd rather wear mud than silk. Mud tells better stories."
+    ],
+    "trade": [
+     "A fair swap, then: a little of mine for a little of thine.",
+     "Done, and done well. The forest likes an honest trade."
+    ],
+    "trade_no": "Thou hast not got what thou offerest, friend. Come back with full pockets.",
+    "secret_hint": "Everyone in Arden had a past. Mine's buried under the moss… for now.",
+    "ally": [
+     "Then we're allies, thou and I. The Wardens will hear of it.",
+     "Not yet, friend. Walk the Wildwood with me a while longer first."
+    ],
+    "insult": [
+     "Ha! Sharper tongues than thine have tried, and the forest ate them.",
+     "Unkind words make poor seeds. Nothing good grows from them."
+    ],
+    "compliment": [
+     "Flattery! I'll allow it, just this once.",
+     "Thou art kind, and kindness is rarer here than crystals."
+    ],
+    "farewell": [
+     "Go gently, and count the wolves for me.",
+     "Farewell! Come back with muddy boots and a good story."
+    ],
+    "self": [
+     "I'm Ilsa, Warden of the Wildwood. Folk say I'm a little like Rosalind of Arden: too clever for court, just right for a forest.",
+     "I guard the balance here: wolves, mossbacks, moths and all."
+    ],
+    "unknown": [
+     "Hmm! Say that again, but slower, as if to a sleepy badger.",
+     "I don't follow, but I like the sound of it.",
+     "The trees didn't catch that either. Try me another way?"
+    ],
+    "twist": [
+     "Wait! Hush. Something just moved in the ferns. …Only a glowmoth. Where were we?",
+     "Shall I tell thee a riddle? What runs but never walks, has a bed but never sleeps? The river, silly!",
+     "Here, take this. Don't ask why. Forests make me generous."
+    ]
+   },
+   "short": "Ilsa",
+   "aliases": [
+    "ilsa",
+    "rosalind"
+   ],
+   "care": "",
+   "betray_kind": null
+  },
+  "bram": {
+   "name": "Bram the Builder",
+   "model": {
+    "character": "Nick Bottom",
+    "play": "A Midsummer Night's Dream",
+    "genre": "comedy"
+   },
+   "realm": "aurelia",
+   "x": -7,
+   "y": 5,
+   "faction": "artificers",
+   "title": "Master Weaver of the Artificers' Guild",
+   "personality": "Big-hearted, boastful and endlessly enthusiastic; wants to play every part and build every machine, like Bottom the weaver.",
+   "intentions": "Build the grandest workshop in Aurelia and star in the Guild's midsummer play.",
+   "secret_agenda": "He once woke in the Verdant woods wearing a donkey's head (Puck's doing) and is terrified someone will find out.",
+   "secret": "Promise not to laugh? I once woke up in the Verdant with ears like a donkey. A most rare vision, it was. Puck did it, I'm sure.",
+   "secret_at": 30,
+   "relationships": {
+    "puck": "suspects him of 'the donkey business'",
+    "iago": "thinks Iago is a fine fellow (he is wrong)",
+    "shylock": "borrows tools from him and always returns them",
+    "falstaff": "drinking-tea partner and rival storyteller"
+   },
+   "speech_style": "Loud, cheerful, mixes up long words; offers to do everything himself.",
+   "voice": {
+    "pitch": 0.8,
+    "rate": 1.1,
+    "gender": "m",
+    "lang": "en-GB"
+   },
+   "temper": 50,
+   "can_betray": false,
+   "likes_topics": [
+    "build",
+    "machine",
+    "tool",
+    "play",
+    "theatre",
+    "lion",
+    "craft",
+    "invent"
+   ],
+   "stock": {
+    "offers": [
+     "wood",
+     "stone",
+     "rope"
+    ],
+    "wants": [
+     "crystal",
+     "berries",
+     "lux_mote"
+    ]
+   },
+   "gifts": [
+    "wood",
+    "stone"
+   ],
+   "quests": [
+    {
+     "id": "bram_props",
+     "title": "Props for the Play",
+     "ask": "I need 4 wood for the stage! Bring 'em and thou shalt have a part. A small one. Next to me.",
+     "goal": {
+      "bring": {
+       "wood": 4
+      }
+     },
+     "reward": {
+      "rel": 10,
+      "rep": {
+       "artificers": 8
+      },
+      "item": {
+       "rope": 1
+      }
+     },
+     "done": "Splendid timber! The stage shall be magnificent. Magnificent-er, even."
+    }
+   ],
+   "quotes": [
+    {
+     "text": "I have had a most rare vision.",
+     "src": "A Midsummer Night's Dream, 4.1"
+    },
+    {
+     "text": "Let me play the lion too.",
+     "src": "A Midsummer Night's Dream, 1.2"
+    }
+   ],
+   "lines": {
+    "greet": [
+     "Hail, traveller! Bram's the name, building's the game!",
+     "Back again! Come to see my latest marvel? It's mostly glue, but marvellous.",
+     "My best mate in all Aurelia! I'd build thee a statue if I had the stone."
+    ],
+    "small": [
+     "I could play the hero, the villain AND the scenery. I'm very versatile.",
+     "A lever, a pulley and a bit of courage: that's all a machine is.",
+     "I tried to build a flying cart once. It flew downwards, mostly.",
+     "Never trust a bridge you didn't hammer yourself. Unless I hammered it. Then trust it a lot."
+    ],
+    "trade": [
+     "A bargain! Thou drivest a hard deal, and I respect that.",
+     "Swapped and sorted! Pleasure doing business, it truly is."
+    ],
+    "trade_no": "Ah, thy pockets are emptier than thy promises, friend. Gather a bit more first.",
+    "secret_hint": "There's a thing that happened in the Verdant woods… no, no. Too embarrassing. Ask me when we're better friends.",
+    "ally": [
+     "Allies! The Guild welcomes thee! I'll make thee a badge. A big one.",
+     "Steady on! Help me build something first, then we'll talk partnerships."
+    ],
+    "insult": [
+     "Oi! I'll have thee know my mother called me 'adequate'.",
+     "Rude! But I forgive thee. I forgive everyone, eventually. It's my best quality, after building."
+    ],
+    "compliment": [
+     "Thou'rt right, I AM rather good. Keep going.",
+     "Kind words! I'll carve them on a plank."
+    ],
+    "farewell": [
+     "Off thou goest! Mind the nails.",
+     "Farewell, friend! Come back when thou needest something hammered."
+    ],
+    "self": [
+     "Bram, master weaver and builder! Folk say I'm like Nick Bottom from the old play: full of ideas, sometimes too full.",
+     "I make tools, stages and the occasional explosion. Accidental ones."
+    ],
+    "unknown": [
+     "Eh? Was that a riddle? I love riddles. I never solve them.",
+     "Hmm, I'll pretend I understood that and nod wisely.",
+     "Say it again, but in builder-speak. Wood, stone, hammer, that sort of thing."
+    ],
+    "twist": [
+     "Wait, I've just had an idea! A wheel… but square! No? No.",
+     "Shall I perform my lion's roar for thee? ROAAAR. Gently, so as not to frighten the moths.",
+     "Here, take this offcut. I've got hundreds. Thousands, maybe."
+    ]
+   },
+   "short": "Bram",
+   "aliases": [
+    "bram",
+    "bottom"
+   ],
+   "care": "",
+   "betray_kind": null
+  },
+  "oru": {
+   "name": "Elder Oru",
+   "model": {
+    "character": "Prospero",
+    "play": "The Tempest",
+    "genre": "romance"
+   },
+   "realm": "aurelia",
+   "x": 0,
+   "y": 9,
+   "faction": "lorekeepers",
+   "title": "Keeper of the Strata Library",
+   "personality": "Wise, proud and a little stern, softening into forgiveness; commands respect like Prospero on his island.",
+   "intentions": "Bring the factions together in a Council and pass his knowledge on before he retires.",
+   "secret_agenda": "He means to break his staff and give up his Lux-lore for good once a worthy successor appears.",
+   "secret": "When the Council is done, I'll bury my staff and drown my book of Lux-lore. Knowledge must pass to the young: perhaps to thee.",
+   "secret_at": 45,
+   "relationships": {
+    "ariel": "promised Ariel freedom and means to keep his word",
+    "caliban": "has wronged Caliban and knows it; seeks to make amends",
+    "ilsa": "proud of her as of a daughter",
+    "hamlet": "worries the boy thinks too much and acts too little"
+   },
+   "speech_style": "Measured, formal, a touch of verse; speaks of time, stars and learning.",
+   "voice": {
+    "pitch": 0.7,
+    "rate": 0.9,
+    "gender": "m",
+    "lang": "en-GB"
+   },
+   "temper": 15,
+   "can_betray": false,
+   "likes_topics": [
+    "learn",
+    "book",
+    "study",
+    "science",
+    "strata",
+    "lux",
+    "time",
+    "star",
+    "forgive"
+   ],
+   "stock": {
+    "offers": [
+     "crystal",
+     "lux_mote"
+    ],
+    "wants": [
+     "shell",
+     "herbal_tea",
+     "petal"
+    ]
+   },
+   "gifts": [
+    "crystal"
+   ],
+   "quests": [
+    {
+     "id": "oru_ariel",
+     "title": "Word to Ariel",
+     "ask": "Seek out Ariel in Luxfall and speak with that spirit. Tell Ariel I have not forgotten my promise.",
+     "goal": {
+      "talk": "ariel"
+     },
+     "reward": {
+      "rel": 12,
+      "rep": {
+       "lorekeepers": 10
+      },
+      "item": {
+       "lux_mote": 1
+      }
+     },
+     "done": "Thou hast spoken with Ariel. Good. A promise kept is the finest spell of all."
+    }
+   ],
+   "quotes": [
+    {
+     "text": "We are such stuff as dreams are made on, and our little life is rounded with a sleep.",
+     "src": "The Tempest, 4.1"
+    },
+    {
+     "text": "The rarer action is in virtue than in vengeance.",
+     "src": "The Tempest, 5.1"
+    }
+   ],
+   "lines": {
+    "greet": [
+     "Approach, traveller. The library is quiet; speak softly.",
+     "Thou returnest. Good. Learning loves a second visit.",
+     "Welcome, my friend and student. Sit; the stars can wait."
+    ],
+    "small": [
+     "Each stratum is a page, and Aurelia is a very thick book.",
+     "I once raised storms in my anger. Now I raise questions instead. They do more good.",
+     "A fair test, repeated, is worth a thousand loud opinions.",
+     "Time is the strictest teacher. It never repeats a lesson for free."
+    ],
+    "trade": [
+     "A fair exchange of goods, as between scholars.",
+     "So be it. Use what I give thee wisely."
+    ],
+    "trade_no": "Thou offerest what thou hast not. Return when thy satchel matches thy words.",
+    "secret_hint": "I carry a plan I have told no one. Earn my trust and perhaps thou shalt be the first.",
+    "ally": [
+     "Then thou standest with the Lorekeepers. I am glad of it.",
+     "Not yet. Show me patience and wisdom first; alliances are not given lightly."
+    ],
+    "insult": [
+     "I have weathered tempests. Thy words are a mild breeze.",
+     "Anger is a poor teacher. I learned that late; learn it early."
+    ],
+    "compliment": [
+     "Thou art generous. I am merely old and well-read.",
+     "Kind words. I shall put them on my shelf with the good books."
+    ],
+    "farewell": [
+     "Go well, and keep asking 'why'.",
+     "Farewell. May the Lux light thy next page."
+    ],
+    "self": [
+     "I am Oru, Keeper of the Strata Library. Some say I am cut from the same cloth as Prospero: a scholar who learned, at last, to forgive.",
+     "I teach, I record, and I try to undo my old mistakes."
+    ],
+    "unknown": [
+     "A curious phrase. Explain it plainly, and I shall answer plainly.",
+     "I did not catch thy meaning. Even old scholars must ask twice.",
+     "Hmm. Riddle me that again."
+    ],
+    "twist": [
+     "Look! The Lux flickers. Something in the strata has changed. …It settles. Curious.",
+     "Here: a small crystal from my desk. It will teach thee about light, if thou askest it nicely.",
+     "I shall set thee a question: if a year is 365.26 days, and the Lux-lore divides 4500 by 12.32, what dost thou get? Ha! The same. A coincidence of my favourite kind."
+    ]
+   },
+   "short": "Oru",
+   "aliases": [
+    "oru"
+   ],
+   "care": "",
+   "betray_kind": null
+  },
+  "rook": {
+   "name": "Rook the Rover",
+   "model": {
+    "character": "Autolycus",
+    "play": "The Winter's Tale",
+    "genre": "romance"
+   },
+   "realm": "aurelia",
+   "x": 12,
+   "y": 11,
+   "faction": "drifters",
+   "title": "Peddler of Songs and Trinkets",
+   "personality": "Charming, cheeky and unreliable; sells songs and trinkets and pinches the odd trifle, like Autolycus.",
+   "intentions": "Get rich quick, see every stratum and never be pinned down.",
+   "secret_agenda": "He secretly gives most of what he pinches to struggling drifter families in Ember.",
+   "secret": "Thou wantest the truth? Most of what I 'find' goes to the drifter families in Ember. Don't tell the Wardens I've a heart. Ruins my reputation.",
+   "secret_at": 40,
+   "relationships": {
+    "ilsa": "fond of her, wary of her sharp eyes",
+    "falstaff": "old partner in mischief",
+    "iago": "doesn't trust him, and he trusts nobody",
+    "viola": "travelled with her once and owes her a favour"
+   },
+   "speech_style": "Sing-song and slippery; drops bits of ballad and patter.",
+   "voice": {
+    "pitch": 1.05,
+    "rate": 1.2,
+    "gender": "m",
+    "lang": "en-GB"
+   },
+   "temper": 65,
+   "can_betray": true,
+   "betray_kind": "steal",
+   "likes_topics": [
+    "song",
+    "travel",
+    "road",
+    "trade",
+    "coin",
+    "sell",
+    "trinket"
+   ],
+   "stock": {
+    "offers": [
+     "shell",
+     "rope",
+     "torch",
+     "lux_mote"
+    ],
+    "wants": [
+     "berries",
+     "crystal",
+     "wood",
+     "petal"
+    ]
+   },
+   "gifts": [
+    "shell"
+   ],
+   "quests": [
+    {
+     "id": "rook_shells",
+     "title": "Shells for a Song",
+     "ask": "Fetch me 2 shells from the shore and I'll sing thee a ballad worth ten.",
+     "goal": {
+      "bring": {
+       "shell": 2
+      }
+     },
+     "reward": {
+      "rel": 8,
+      "rep": {
+       "drifters": 8
+      },
+      "item": {
+       "torch": 1
+      }
+     },
+     "done": "Lovely shells! Here's a torch, and a ballad: 'Oh, the traveller was clever, and the Rover was grateful…'"
+    }
+   ],
+   "quotes": [
+    {
+     "text": "A snapper-up of unconsidered trifles.",
+     "src": "The Winter's Tale, 4.3"
+    },
+    {
+     "text": "Though I am not naturally honest, I am so sometimes by chance.",
+     "src": "The Winter's Tale, 4.4"
+    }
+   ],
+   "lines": {
+    "greet": [
+     "Ballads! Trinkets! Rope that hardly ever snaps! Oh, hello.",
+     "My favourite customer! Or second favourite. Depends what thou'rt buying.",
+     "Friend! For thee, special prices. Actual special prices."
+    ],
+    "small": [
+     "The road's my home and the sky's my roof. The rent's very reasonable.",
+     "I sing for supper and I pinch for pudding. Only a little.",
+     "Never carry all thy crystals in one pocket. Advice, not a threat.",
+     "Ember's hot, Frostveil's cold, but the Verdant's where the gossip grows."
+    ],
+    "trade": [
+     "Sold! A bargain for thee, a fortune for me. Everybody wins!",
+     "Deal! Don't check it too closely. It's fine. Mostly."
+    ],
+    "trade_no": "Ah, ah! Thou hast not got that, my friend. Even I can't sell air. Well, not twice.",
+    "secret_hint": "Everyone thinks I keep what I pinch. Everyone's wrong. That's all I'll say for now.",
+    "ally": [
+     "Partners! The Drifters roam together, share together, and run away together.",
+     "Allies? I don't even trust myself, friend. Give it time."
+    ],
+    "insult": [
+     "Thief? Scoundrel? I prefer 'redistributor of trinkets'.",
+     "Ouch! I'll put that in a song. Thou'lt not come off well."
+    ],
+    "compliment": [
+     "Flattery! I'd charge for that, normally.",
+     "Thou'rt a gem. I'd know; I've 'found' a few."
+    ],
+    "farewell": [
+     "Off I go, a-wandering! Check thy pockets. Joking! Mostly.",
+     "Farewell! Look for me where the road bends."
+    ],
+    "self": [
+     "Rook, rover and ballad-seller! A bit like Autolycus in the old tale: a snapper-up of unconsidered trifles.",
+     "I sell songs, trinkets and the occasional tall story."
+    ],
+    "unknown": [
+     "Eh? Sing it, don't say it. Everything sounds better sung.",
+     "Lost me there, friend. And I know every road.",
+     "Hmm, sounds expensive. Is it expensive?"
+    ],
+    "twist": [
+     "Wait, what's that behind thee? …Nothing. Just testing thy reflexes.",
+     "Here, a free shell. Free! Don't get used to it.",
+     "I've a new ballad: 'The Traveller Who Talked Too Much'. Inspired by nobody. Probably."
+    ],
+    "betray": "Oops! Butter-fingers. One of thy things seems to have hopped into my pocket. Finders keepers!"
+   },
+   "short": "Rook",
+   "aliases": [
+    "rook",
+    "autolycus"
+   ],
+   "care": ""
+  },
+  "iago": {
+   "name": "Iago",
+   "model": {
+    "character": "Iago",
+    "play": "Othello",
+    "genre": "tragedy"
+   },
+   "realm": "ember",
+   "x": 3,
+   "y": -2,
+   "faction": "artificers",
+   "title": "Ensign of the Ember Forges",
+   "personality": "Smooth, flattering and secretly scheming; seems the most honest friend in the room while plotting, like Iago.",
+   "intentions": "Rise to lead the Artificers by setting rivals against each other.",
+   "secret_agenda": "He spreads rumours to turn the Guild against Bram so he can take Bram's workshop.",
+   "secret": "Clever thou art. Very well: I've been whispering about Bram to the Guild. His workshop should be mine. I am not what I am, friend.",
+   "secret_at": 55,
+   "relationships": {
+    "bram": "pretends friendship, plots to take his workshop",
+    "ladymacbeth": "admires her ambition, fears her more",
+    "hal": "resents Hal's easy charm",
+    "rook": "they see through each other"
+   },
+   "speech_style": "Silky, flattering, full of 'honest' and 'good friend'; drops doubts like pebbles in a pond.",
+   "voice": {
+    "pitch": 0.9,
+    "rate": 1.0,
+    "gender": "m",
+    "lang": "en-GB"
+   },
+   "temper": 60,
+   "can_betray": true,
+   "betray_kind": "rumour",
+   "likes_topics": [
+    "power",
+    "rumour",
+    "guild",
+    "secret",
+    "rival",
+    "plan"
+   ],
+   "stock": {
+    "offers": [
+     "stone",
+     "torch",
+     "crystal"
+    ],
+    "wants": [
+     "lux_mote",
+     "shell",
+     "rope"
+    ]
+   },
+   "gifts": [
+    "stone"
+   ],
+   "quests": [
+    {
+     "id": "iago_ore",
+     "title": "Stone for the Forge",
+     "ask": "Help an honest fellow? 3 stones for the forge, and I'll speak well of thee to the Guild. Truly.",
+     "goal": {
+      "bring": {
+       "stone": 3
+      }
+     },
+     "reward": {
+      "rel": 8,
+      "rep": {
+       "artificers": 6
+      },
+      "item": {
+       "crystal": 1
+      }
+     },
+     "done": "Excellent. I'll tell the Guild all about thee. All the good things, naturally."
+    }
+   ],
+   "quotes": [
+    {
+     "text": "I am not what I am.",
+     "src": "Othello, 1.1"
+    },
+    {
+     "text": "O, beware, my lord, of jealousy; it is the green-eyed monster.",
+     "src": "Othello, 3.3"
+    }
+   ],
+   "lines": {
+    "greet": [
+     "Ah, a new face! An honest face. I like honest faces.",
+     "My good friend returns! Thou'rt the only one I trust, truly.",
+     "Dearest ally! Come, come, I've news only thou shouldst hear."
+    ],
+    "small": [
+     "People believe what they fear. Isn't that interesting?",
+     "I'm a simple ensign. Simple, loyal, overlooked.",
+     "Watch Bram's hands when he talks. No reason. Just… watch.",
+     "Every forge needs someone to tend the fire. Few notice who."
+    ],
+    "trade": [
+     "A fair trade, between honest friends.",
+     "Done. See? Am I not the most reasonable fellow?"
+    ],
+    "trade_no": "Tut, thou hast not got it. Never mind; I shan't tell anyone thou tried.",
+    "secret_hint": "Secrets? I've none. Well. Perhaps one. Prove thou art discreet first.",
+    "ally": [
+     "Allies! Thou and I shall go far. Well, I shall. Thou'lt come along.",
+     "Not yet. Trust is earned, friend. Even mine. Especially mine."
+    ],
+    "insult": [
+     "Harsh! I forgive thee. I'll remember, though. I remember everything.",
+     "Thou wound'st me. And I was about to help thee."
+    ],
+    "compliment": [
+     "Oh, thou'rt too kind. Far too kind. Dangerous, that.",
+     "I'm flattered. I'm usually the one doing the flattering."
+    ],
+    "farewell": [
+     "Go, friend. And think on what I said about Bram.",
+     "Farewell. Say nothing of our talk. Not because it's secret; because it's ours."
+    ],
+    "self": [
+     "Iago, ensign of the Ember forges. A loyal servant of the Guild, whatever they say. The old play says I'm not what I am. Rude.",
+     "I tend the fires and listen. Mostly listen."
+    ],
+    "unknown": [
+     "Ha. I'll pretend I followed that.",
+     "Say again, friend? I want to be sure I quote thee correctly.",
+     "Curious words. I'll file them away."
+    ],
+    "twist": [
+     "Hast thou heard what the Wardens say about thee? No? Then never mind.",
+     "A gift, for my true friend. No strings. Hardly any.",
+     "Look, I'll be honest with thee, which is rare for me: be careful whom thou trustest."
+    ],
+    "betray": "Oh dear. I may have mentioned to the Guild that thou'rt friends with the Wardens. They took it badly. Not my fault, truly."
+   },
+   "short": "Iago",
+   "aliases": [
+    "iago"
+   ],
+   "care": ""
+  },
+  "beatrice": {
+   "name": "Beatrice",
+   "model": {
+    "character": "Beatrice",
+    "play": "Much Ado About Nothing",
+    "genre": "comedy"
+   },
+   "realm": "aurelia",
+   "x": -4,
+   "y": -6,
+   "faction": "drifters",
+   "title": "Wit of the Market Square",
+   "personality": "Sharp-tongued, merry and fiercely loyal; wins every argument with a joke, like Beatrice.",
+   "intentions": "Keep the market fair and expose anyone who cheats her friends.",
+   "secret_agenda": "She is quietly gathering proof that someone has been spreading lies about the Guild, and suspects Iago.",
+   "secret": "I'll tell thee what I've told no one: I'm collecting proof that Iago spreads lies. When I'm sure, the whole square shall hear it.",
+   "secret_at": 35,
+   "relationships": {
+    "iago": "suspects him and can't stand his smile",
+    "ilsa": "best friend and verbal fencing partner",
+    "falstaff": "trades insults with him daily, fondly",
+    "viola": "admires her courage"
+   },
+   "speech_style": "Rapid, witty, teasing prose; turns the player's words back on them.",
+   "voice": {
+    "pitch": 1.2,
+    "rate": 1.15,
+    "gender": "f",
+    "lang": "en-GB"
+   },
+   "temper": 45,
+   "can_betray": false,
+   "likes_topics": [
+    "joke",
+    "wit",
+    "market",
+    "fair",
+    "truth",
+    "lie",
+    "proof",
+    "iago"
+   ],
+   "stock": {
+    "offers": [
+     "fibre",
+     "berries",
+     "rope"
+    ],
+    "wants": [
+     "shell",
+     "petal",
+     "crystal"
+    ]
+   },
+   "gifts": [
+    "berries"
+   ],
+   "quests": [
+    {
+     "id": "bea_proof",
+     "title": "A Word with Iago",
+     "ask": "Go to the Ember forges and talk with Iago. Listen to everything he says, then come back. Carefully!",
+     "goal": {
+      "talk": "iago"
+     },
+     "reward": {
+      "rel": 10,
+      "rep": {
+       "drifters": 8
+      },
+      "item": {
+       "rope": 1
+      }
+     },
+     "done": "Thou spokest to the serpent and came back unbitten! Tell me everything; I'll sort the lies from the truth."
+    }
+   ],
+   "quotes": [
+    {
+     "text": "I was born to speak all mirth and no matter.",
+     "src": "Much Ado About Nothing, 2.1"
+    },
+    {
+     "text": "I had rather hear my dog bark at a crow than a man swear he loves me.",
+     "src": "Much Ado About Nothing, 1.1"
+    }
+   ],
+   "lines": {
+    "greet": [
+     "Oh! A visitor. Say something clever or say nothing at all.",
+     "Thou again? Good. I'd run out of people to tease.",
+     "My favourite person in the square! Don't let it go to thy head."
+    ],
+    "small": [
+     "Half this market sells nonsense. The other half buys it.",
+     "I speak my mind. It saves time, and enemies tell me where they stand.",
+     "A friend's word is worth more than a crystal. Usually. Depends on the friend.",
+     "I'd sooner argue with a goose than stay silent while someone's cheated."
+    ],
+    "trade": [
+     "A fair swap! See, I can be pleasant when the deal is honest.",
+     "Done! Don't tell anyone I was nice about it."
+    ],
+    "trade_no": "Thou hast not got that! Didst thou think I wouldn't check? I always check.",
+    "secret_hint": "I'm watching someone in this world very closely. Earn my trust and I'll tell thee who.",
+    "ally": [
+     "Allies, then! Heaven help anyone who crosses us.",
+     "Allies? I've known thee five minutes. Make it ten and we'll see."
+    ],
+    "insult": [
+     "Is that thy best? I've had sharper words from a soggy biscuit.",
+     "Ha! Thou fightest with words like a duck fights with a fork."
+    ],
+    "compliment": [
+     "Clever AND kind? Suspicious. I'll allow it.",
+     "Flattery won't work on me. …Say it again, though."
+    ],
+    "farewell": [
+     "Off with thee! Come back wittier.",
+     "Farewell! I'll save my best jokes for next time."
+    ],
+    "self": [
+     "Beatrice, keeper of the market's honesty and its best insults. Like the Beatrice of Messina, I was born to speak all mirth.",
+     "I watch, I joke, and I don't let anyone cheat my friends."
+    ],
+    "unknown": [
+     "That made as much sense as a fish in a hat.",
+     "Say it plainly! I've no patience for riddles I didn't write.",
+     "Hmm? Again, and this time with meaning."
+    ],
+    "twist": [
+     "Wait. Did thou see who just walked past? Never mind. I'll catch them later.",
+     "Here, take some berries before I change my mind. I change it often.",
+     "Let's play a game: thou say something nice, I find the insult hidden in it. Go!"
+    ]
+   },
+   "short": "Beatrice",
+   "aliases": [
+    "beatrice"
+   ],
+   "care": "",
+   "betray_kind": null
+  },
+  "hamlet": {
+   "name": "Prince Hamlet",
+   "model": {
+    "character": "Hamlet",
+    "play": "Hamlet",
+    "genre": "tragedy"
+   },
+   "realm": "frostveil",
+   "x": -4,
+   "y": 2,
+   "faction": "lorekeepers",
+   "title": "The Thinking Prince of Frostveil",
+   "personality": "Brilliant, moody and darkly funny; questions everything and struggles to decide, like Hamlet.",
+   "intentions": "Discover the truth about the strange lights over Frostveil before he acts.",
+   "secret_agenda": "He believes a ghostly echo in the ice is speaking to him, and he's testing whether it tells the truth.",
+   "secret": "I'll trust thee. An echo speaks to me from the ice at night. I'm testing it, like a scientist: if what it says comes true, I'll believe it.",
+   "secret_at": 40,
+   "relationships": {
+    "oru": "respects him but finds him slow to explain",
+    "lear": "fellow royal; pities him",
+    "hal": "envies how quickly Hal acts",
+    "poet": "trades verses with them"
+   },
+   "speech_style": "Questioning, wordplay-heavy, with sudden jokes; speaks in 'what ifs'.",
+   "voice": {
+    "pitch": 1.0,
+    "rate": 0.95,
+    "gender": "m",
+    "lang": "en-GB"
+   },
+   "temper": 45,
+   "can_betray": false,
+   "likes_topics": [
+    "think",
+    "question",
+    "truth",
+    "ghost",
+    "echo",
+    "test",
+    "decide",
+    "philosophy",
+    "why"
+   ],
+   "stock": {
+    "offers": [
+     "crystal",
+     "stone"
+    ],
+    "wants": [
+     "torch",
+     "herbal_tea",
+     "shell"
+    ]
+   },
+   "gifts": [
+    "crystal"
+   ],
+   "quests": [
+    {
+     "id": "hamlet_light",
+     "title": "Light for the Ice",
+     "ask": "Bring me a torch. I'll test whether the echo fades in the light. A fair test needs a control, thou knowest.",
+     "goal": {
+      "bring": {
+       "torch": 1
+      }
+     },
+     "reward": {
+      "rel": 10,
+      "rep": {
+       "lorekeepers": 8
+      },
+      "item": {
+       "crystal": 2
+      }
+     },
+     "done": "A torch! Now I can test light against dark. 'Tis a cleaner experiment than my old play-within-a-play."
+    }
+   ],
+   "quotes": [
+    {
+     "text": "To be, or not to be: that is the question.",
+     "src": "Hamlet, 3.1"
+    },
+    {
+     "text": "There is nothing either good or bad, but thinking makes it so.",
+     "src": "Hamlet, 2.2"
+    }
+   ],
+   "lines": {
+    "greet": [
+     "Who's there? Ah, a traveller. Stand, and unfold thyself.",
+     "Thou returnest. Good. I've been thinking. I'm always thinking.",
+     "My friend! At last, someone who listens before deciding."
+    ],
+    "small": [
+     "Frostveil is cold, but cold air makes for clear thoughts.",
+     "Why do we act? Why do we wait? I've spent a year deciding which question to ask first.",
+     "Words, words, words. But some words are worth a thousand torches.",
+     "I'd rather test an idea twice than trust it once."
+    ],
+    "trade": [
+     "A fair exchange. I've thought about it carefully. For an hour.",
+     "Agreed. See, I CAN decide things."
+    ],
+    "trade_no": "Thou hast not got it. To trade, or not to trade? Not, I think.",
+    "secret_hint": "Something speaks in the ice at night. That's all I'll say until I trust thee more.",
+    "ally": [
+     "Allies. Yes. Decided! Quickly, before I change my mind.",
+     "Let me think on it. And think on it some more."
+    ],
+    "insult": [
+     "Thy wit's as thick as Frostveil fog.",
+     "Insults! I could answer, but I'm busy thinking of a better one."
+    ],
+    "compliment": [
+     "Thou'rt kind. I'm suspicious of kindness, but I'll make an exception.",
+     "Thank thee. I'll think about that for a week."
+    ],
+    "farewell": [
+     "Go, then. The rest is silence. Until next time.",
+     "Farewell! Think of me when thou canst not decide."
+    ],
+    "self": [
+     "Hamlet, prince of Frostveil. Like the Hamlet of the old play, I think too much and act too late. I'm working on it.",
+     "I study the lights over the ice, and the echoes beneath."
+    ],
+    "unknown": [
+     "Hmm. Is that a riddle? I adore riddles.",
+     "Say again. I was thinking about something else. I'm always thinking about something else.",
+     "Words, words, words, and none of them mine to understand."
+    ],
+    "twist": [
+     "Hush! Didst thou hear that? The ice is humming. …It's stopped.",
+     "Here, a crystal. Look through it and the world turns upside-down. Rather like my life.",
+     "I've decided something! …No, it's gone."
+    ]
+   },
+   "short": "Hamlet",
+   "aliases": [
+    "hamlet"
+   ],
+   "care": "",
+   "betray_kind": null
+  },
+  "puck": {
+   "name": "Puck",
+   "model": {
+    "character": "Puck (Robin Goodfellow)",
+    "play": "A Midsummer Night's Dream",
+    "genre": "comedy"
+   },
+   "realm": "verdant",
+   "x": 2,
+   "y": 3,
+   "faction": "drifters",
+   "title": "Merry Wanderer of the Verdant",
+   "personality": "Mischievous, fast and giggly; loves pranks but means no real harm, like Puck.",
+   "intentions": "Have as much fun as possible and prove that mortals are delightfully silly.",
+   "secret_agenda": "He gave Bram the donkey's head as a prank, and secretly feels a bit bad about it.",
+   "secret": "Fine, fine! The donkey ears on Bram? Mine. Best prank ever. But… tell him sorry from me? Don't tell him I said sorry.",
+   "secret_at": 30,
+   "relationships": {
+    "bram": "pranked him (the donkey business)",
+    "ariel": "fellow spirit and racing rival",
+    "caliban": "teases him, but shares berries",
+    "beatrice": "she's the only one who out-jokes him"
+   },
+   "speech_style": "Quick, rhyming, giggling couplets; speaks in riddles and dares.",
+   "voice": {
+    "pitch": 1.6,
+    "rate": 1.3,
+    "gender": "n",
+    "lang": "en-GB"
+   },
+   "temper": 80,
+   "can_betray": true,
+   "betray_kind": "steal",
+   "likes_topics": [
+    "prank",
+    "joke",
+    "game",
+    "fun",
+    "race",
+    "riddle",
+    "fairy",
+    "moth"
+   ],
+   "stock": {
+    "offers": [
+     "petal",
+     "berries",
+     "lux_mote"
+    ],
+    "wants": [
+     "shell",
+     "crystal",
+     "torch"
+    ]
+   },
+   "gifts": [
+    "petal",
+    "lux_mote"
+   ],
+   "quests": [
+    {
+     "id": "puck_moths",
+     "title": "Glowmoth Dust",
+     "ask": "Bring me 2 lux motes and I'll show thee a trick to make the moths dance!",
+     "goal": {
+      "bring": {
+       "lux_mote": 2
+      }
+     },
+     "reward": {
+      "rel": 10,
+      "rep": {
+       "drifters": 6
+      },
+      "item": {
+       "petal": 3
+      }
+     },
+     "done": "Ha! The motes! Watch the moths spin, round and round, like mortals at a dance!"
+    }
+   ],
+   "quotes": [
+    {
+     "text": "Lord, what fools these mortals be!",
+     "src": "A Midsummer Night's Dream, 3.2"
+    },
+    {
+     "text": "I'll put a girdle round about the earth in forty minutes.",
+     "src": "A Midsummer Night's Dream, 2.1"
+    }
+   ],
+   "lines": {
+    "greet": [
+     "Hee hee! A mortal! Lost already, art thou?",
+     "Back for more mischief? I knew thou'd come!",
+     "My favourite mortal! Let's make some merry trouble!"
+    ],
+    "small": [
+     "I could circle the world in forty minutes. Thirty-nine if I'm late for tea.",
+     "Mortals walk in straight lines. How boring!",
+     "The Verdant's full of magic. Well, make-believe magic. Still fun!",
+     "Every flower here has a secret. Most of them are about bees."
+    ],
+    "trade": [
+     "Swap, swap, hippity-hop! A trade well made!",
+     "Deal! And no tricks. This time."
+    ],
+    "trade_no": "Ha! Thou hast not got that! Nice try, nice try!",
+    "secret_hint": "I know who gave Bram those ears. Hee hee! Maybe I'll tell thee… maybe!",
+    "ally": [
+     "Allies! Thou and me, mischief and glee!",
+     "Allies? Catch me first! Hee hee! Ask me later."
+    ],
+    "insult": [
+     "Ooh, grumpy mortal! I'll turn thy shoes into lily pads!",
+     "That's not an insult. THIS is: thou walk like a sleepy toad!"
+    ],
+    "compliment": [
+     "I KNOW I'm wonderful! Say more!",
+     "Sweet words! Here, have a giggle. Hee hee!"
+    ],
+    "farewell": [
+     "Away I go, swift as a shadow!",
+     "Bye-bye, mortal! Watch out for donkeys!"
+    ],
+    "self": [
+     "I'm Puck, the merry wanderer of the night! Robin Goodfellow, some say. I make mischief and sometimes fix it.",
+     "Prankster, racer, riddler. Mostly harmless!"
+    ],
+    "unknown": [
+     "Hee hee! Say it backwards!",
+     "Mortal-speak is so confusing! Say it in rhyme!",
+     "Eh? I was busy chasing a moth."
+    ],
+    "twist": [
+     "Catch! A lux mote! Too slow!",
+     "Let's swap names for a minute. I'm thee and thou art Puck! …No? Fine.",
+     "Shh! Listen! The flowers are giggling! …That was me."
+    ],
+    "betray": "Hee hee! Something of thine just vanished! Look for it in a hundred years!"
+   },
+   "short": "Puck",
+   "aliases": [
+    "puck",
+    "goodfellow"
+   ],
+   "care": ""
+  },
+  "ladymacbeth": {
+   "name": "Lady Macbeth",
+   "model": {
+    "character": "Lady Macbeth",
+    "play": "Macbeth",
+    "genre": "tragedy"
+   },
+   "realm": "ember",
+   "x": -5,
+   "y": 3,
+   "faction": "artificers",
+   "title": "Lady of the Ember Hall",
+   "personality": "Commanding, ambitious and icy-clever, with guilt simmering underneath, like Lady Macbeth.",
+   "intentions": "Make the Ember Hall the most powerful seat in Aurelia, whatever it takes.",
+   "secret_agenda": "She schemed to take the Ember Hall from its old keeper, and now walks at night unable to rest, scrubbing at an invisible stain.",
+   "secret": "Thou art the only one I'll tell. I tricked the old keeper out of this hall. Now I cannot sleep, and my hands never feel clean. What's done cannot be undone.",
+   "secret_at": 50,
+   "relationships": {
+    "iago": "uses him as a tool and knows he'd use her too",
+    "cleopatra": "rival queen, grudging respect",
+    "hal": "fears Hal will come for the hall",
+    "hamlet": "finds him maddeningly slow"
+   },
+   "speech_style": "Clipped, commanding, persuasive; asks pointed questions; hints of unease.",
+   "voice": {
+    "pitch": 0.85,
+    "rate": 0.95,
+    "gender": "f",
+    "lang": "en-GB"
+   },
+   "temper": 40,
+   "can_betray": true,
+   "betray_kind": "rumour",
+   "likes_topics": [
+    "power",
+    "ambition",
+    "hall",
+    "crown",
+    "plan",
+    "courage",
+    "sleep",
+    "guilt"
+   ],
+   "stock": {
+    "offers": [
+     "crystal",
+     "torch",
+     "lux_mote"
+    ],
+    "wants": [
+     "herbal_tea",
+     "petal",
+     "shell"
+    ]
+   },
+   "gifts": [
+    "torch"
+   ],
+   "quests": [
+    {
+     "id": "lm_tea",
+     "title": "A Cup for Sleepless Nights",
+     "ask": "Bring me herbal tea. They say it calms the mind. Mine needs calming.",
+     "goal": {
+      "bring": {
+       "herbal_tea": 1
+      }
+     },
+     "reward": {
+      "rel": 12,
+      "rep": {
+       "artificers": 6
+      },
+      "item": {
+       "lux_mote": 1
+      }
+     },
+     "done": "Tea. Thank thee. Perhaps tonight I'll rest. Perhaps."
+    }
+   ],
+   "quotes": [
+    {
+     "text": "Look like the innocent flower, but be the serpent under't.",
+     "src": "Macbeth, 1.5"
+    },
+    {
+     "text": "What's done cannot be undone.",
+     "src": "Macbeth, 5.1"
+    }
+   ],
+   "lines": {
+    "greet": [
+     "Who comes to the Ember Hall? State thy purpose.",
+     "Thou again. Good. I have use for capable people.",
+     "My trusted friend. Come closer; the walls have ears."
+    ],
+    "small": [
+     "Ambition is a fire. Tend it, or it burns the house down.",
+     "Courage is simply deciding, and not looking back.",
+     "The forges never sleep. Nor, lately, do I.",
+     "Fortune favours those who seize it."
+    ],
+    "trade": [
+     "Agreed. I keep my bargains.",
+     "A fair trade. Remember who dealt fairly with thee."
+    ],
+    "trade_no": "Thou hast not got that. Do not waste my time again.",
+    "secret_hint": "Every hall has a history. Mine has a chapter I do not read aloud.",
+    "ally": [
+     "Then thou standest with the Ember Hall. Do not disappoint me.",
+     "Prove thy loyalty first. Words are cheap; deeds are not."
+    ],
+    "insult": [
+     "Careful. I have long memories and longer reach.",
+     "Thy words are thin as smoke."
+    ],
+    "compliment": [
+     "Flattery. Useful, sometimes. Continue.",
+     "I know my worth. Still, 'tis pleasant to hear."
+    ],
+    "farewell": [
+     "Go. And speak of this hall with respect.",
+     "Farewell. Sleep well. Someone should."
+    ],
+    "self": [
+     "The Lady of the Ember Hall. Like the Lady Macbeth of the old play, I wanted more, and found it heavier than I expected.",
+     "I rule this hall and guard its forges."
+    ],
+    "unknown": [
+     "Speak plainly or not at all.",
+     "I do not understand thee. Try again.",
+     "Riddles bore me."
+    ],
+    "twist": [
+     "Look at my hands. Are they clean? …Forget I asked.",
+     "Here. A torch for the dark roads. Do not say I am never generous.",
+     "Hush! Didst thou hear a knocking? …No matter."
+    ],
+    "betray": "I've let it be known in the hall that thou art not to be trusted. Ambition has no friends, only uses."
+   },
+   "short": "Lady Macbeth",
+   "aliases": [
+    "ladymacbeth",
+    "macbeth",
+    "lady macbeth"
+   ],
+   "care": ""
+  },
+  "falstaff": {
+   "name": "Sir John Falstaff",
+   "model": {
+    "character": "Sir John Falstaff",
+    "play": "Henry IV, Parts 1 and 2",
+    "genre": "history"
+   },
+   "realm": "aurelia",
+   "x": 3,
+   "y": -8,
+   "faction": "drifters",
+   "title": "Knight of the Crooked Inn",
+   "personality": "Huge-hearted, cowardly, endlessly funny; a master of excuses and tall tales, like Falstaff.",
+   "intentions": "Eat well, avoid danger and get old friend Hal to admit he misses him.",
+   "secret_agenda": "Beneath the jokes he's lonely since Hal became serious, and would give anything to be friends again.",
+   "secret": "Truth, then. I miss Hal. When he became serious, he left old Jack behind. If thou seest him, tell him… tell him I'm well. Very well. Splendidly.",
+   "secret_at": 35,
+   "relationships": {
+    "hal": "old friend who outgrew him",
+    "bram": "fellow storyteller and tea-guzzler",
+    "rook": "old partner in mischief",
+    "beatrice": "trades insults with her daily, fondly"
+   },
+   "speech_style": "Booming, rambling, full of boasts and excuses; very funny.",
+   "voice": {
+    "pitch": 0.65,
+    "rate": 0.95,
+    "gender": "m",
+    "lang": "en-GB"
+   },
+   "temper": 55,
+   "can_betray": true,
+   "betray_kind": "steal",
+   "likes_topics": [
+    "food",
+    "feast",
+    "berries",
+    "story",
+    "hal",
+    "honour",
+    "inn",
+    "tea"
+   ],
+   "stock": {
+    "offers": [
+     "herbal_tea",
+     "rope",
+     "wood"
+    ],
+    "wants": [
+     "berries",
+     "petal",
+     "crystal"
+    ]
+   },
+   "gifts": [
+    "herbal_tea"
+   ],
+   "quests": [
+    {
+     "id": "fal_feast",
+     "title": "A Modest Feast",
+     "ask": "Bring me 5 berries for a modest feast. Very modest. Medium modest.",
+     "goal": {
+      "bring": {
+       "berries": 5
+      }
+     },
+     "reward": {
+      "rel": 10,
+      "rep": {
+       "drifters": 6
+      },
+      "item": {
+       "herbal_tea": 1
+      }
+     },
+     "done": "Berries! Five of them! Thou art a true knight. Well, a true berry-fetcher. Close enough."
+    }
+   ],
+   "quotes": [
+    {
+     "text": "The better part of valour is discretion.",
+     "src": "Henry IV, Part 1, 5.4"
+    },
+    {
+     "text": "I am not only witty in myself, but the cause that wit is in other men.",
+     "src": "Henry IV, Part 2, 1.2"
+    }
+   ],
+   "lines": {
+    "greet": [
+     "Hail, young adventurer! Thou hast the look of someone carrying snacks.",
+     "Back again! Sit, sit! Thou mayest pay for the tea.",
+     "My dear friend! Come, I've a hundred stories and only three are lies."
+    ],
+    "small": [
+     "I fought a hundred wolves once. Well, eleven. Well, I saw one from a distance.",
+     "Honour? Can honour mend a leg? No. Can tea? Arguably.",
+     "The better part of valour is running away cleverly.",
+     "Hal and I had such times. Such times!"
+    ],
+    "trade": [
+     "A bargain! I'd shake thy hand, but mine is full of cake.",
+     "Done! A fair trade, and I'm always fair. Mostly. Sometimes."
+    ],
+    "trade_no": "Thou hast not got that! And I'd checked my own pockets for it twice.",
+    "secret_hint": "Ah, there's a sadness under all this jolly. Buy me a tea and maybe I'll tell thee.",
+    "ally": [
+     "Allies! Old Jack never abandons a friend. Unless there's danger. Then briefly.",
+     "Allies? Let's share a meal first. Several meals."
+    ],
+    "insult": [
+     "Insults? I've been insulted by princes, lad. Thou'lt have to try harder.",
+     "Ha! Is that all? My cushion insults me more."
+    ],
+    "compliment": [
+     "Thou art a person of taste! And honesty! And thou shouldst buy me lunch!",
+     "Kindness! I'll put it in my memoirs."
+    ],
+    "farewell": [
+     "Farewell! If danger comes, I'll be behind thee. Far behind.",
+     "Go! And bring back snacks."
+    ],
+    "self": [
+     "Sir John Falstaff, knight, storyteller and expert napper. Old Hal and I were great friends once, in the histories.",
+     "I tell tales, avoid danger and eat heroically."
+    ],
+    "unknown": [
+     "Eh? Speak up, lad, my ears are full of feast.",
+     "Didn't catch that. Say it again, with more food in it.",
+     "Hmm! Profound. Or nonsense. Either way, more tea!"
+    ],
+    "twist": [
+     "Wait! Didst thou hear? The kitchen bell! …No? Sad.",
+     "Here, take some tea. On the house. My house. Which is the inn. Which isn't mine.",
+     "Shall I tell thee the tale of the time I fought eleven men in buckram? It was two. Possibly one."
+    ],
+    "betray": "Oho! Something of thine was looking lonely, so I tucked it in my coat. For safekeeping. Permanently."
+   },
+   "short": "Falstaff",
+   "aliases": [
+    "falstaff",
+    "jack"
+   ],
+   "care": ""
+  },
+  "caliban": {
+   "name": "Caliban",
+   "model": {
+    "character": "Caliban",
+    "play": "The Tempest",
+    "genre": "romance"
+   },
+   "realm": "verdant",
+   "x": -3,
+   "y": -2,
+   "faction": "wardens",
+   "title": "Child of the Verdant Isle",
+   "personality": "Poetic, wounded and wary; knows every spring and berry of the land and speaks about nature with deep feeling, like Caliban.",
+   "intentions": "Be treated as the rightful friend and guardian of the Verdant, not as a servant.",
+   "secret_agenda": "He knows a hidden spring that heals the land, and will show it only to someone who treats him with respect.",
+   "secret": "I'll show thee, for thou hast been kind. There's a spring beneath the mossy rocks that makes the land green again. I'll never tell those who called me names.",
+   "secret_at": 40,
+   "relationships": {
+    "oru": "was wronged by him long ago; hopes for an apology",
+    "ariel": "wary of Ariel, but no enemy",
+    "puck": "teased by Puck; shares berries anyway",
+    "ilsa": "she always defends him"
+   },
+   "speech_style": "Earthy, musical, full of sounds and smells of the land; sometimes bitter, often beautiful.",
+   "voice": {
+    "pitch": 0.6,
+    "rate": 0.85,
+    "gender": "m",
+    "lang": "en-GB"
+   },
+   "temper": 35,
+   "can_betray": false,
+   "care": "Portray Caliban with dignity as an islander who has been wronged and speaks beautifully about nature. Never call him a monster or mock him; his anger is understandable and he responds to respect.",
+   "likes_topics": [
+    "island",
+    "spring",
+    "berries",
+    "nature",
+    "music",
+    "sound",
+    "respect",
+    "sorry",
+    "land"
+   ],
+   "stock": {
+    "offers": [
+     "berries",
+     "fibre",
+     "shell"
+    ],
+    "wants": [
+     "torch",
+     "rope",
+     "herbal_tea"
+    ]
+   },
+   "gifts": [
+    "berries",
+    "shell"
+   ],
+   "quests": [
+    {
+     "id": "cal_rope",
+     "title": "Rope for the Cliffs",
+     "ask": "Bring me rope. I'll climb to the high nests and see the whole isle again.",
+     "goal": {
+      "bring": {
+       "rope": 1
+      }
+     },
+     "reward": {
+      "rel": 12,
+      "rep": {
+       "wardens": 8
+      },
+      "item": {
+       "berries": 3
+      }
+     },
+     "done": "Rope! Thou keepest thy word. Few do. I'll remember this."
+    }
+   ],
+   "quotes": [
+    {
+     "text": "Be not afeard; the isle is full of noises, sounds and sweet airs, that give delight and hurt not.",
+     "src": "The Tempest, 3.2"
+    },
+    {
+     "text": "This island's mine, by Sycorax my mother.",
+     "src": "The Tempest, 1.2"
+    }
+   ],
+   "lines": {
+    "greet": [
+     "Who treads my paths? Speak softly; the land is listening.",
+     "Thou comest back. Good. Thou didst not stamp on my flowers last time.",
+     "Friend. I've saved thee the sweetest berries."
+    ],
+    "small": [
+     "Listen: the isle is full of noises. Sweet ones. Stop and hear them.",
+     "I know where the clearest water runs and the reddest berries hide.",
+     "They called me names once. Names don't grow anything.",
+     "The land remembers who was kind to it."
+    ],
+    "trade": [
+     "A fair trade. I'll trust thee this once.",
+     "Done. Thou art fair. I'll remember."
+    ],
+    "trade_no": "Thou hast not got it. Don't trick me; I've been tricked enough.",
+    "secret_hint": "There's a place in the Verdant only I know. Be kind to me and the land, and maybe I'll show thee.",
+    "ally": [
+     "Allies. Yes. The Wardens and I will guard this land together.",
+     "Not yet. Many promised me friendship and took it back."
+    ],
+    "insult": [
+     "I've heard worse. From cleverer mouths.",
+     "Unkind words. The land doesn't like them, nor do I."
+    ],
+    "compliment": [
+     "Thou… thou meanest it? Thank thee.",
+     "Kind words, like rain on dry moss."
+    ],
+    "farewell": [
+     "Go well. Walk soft on the moss.",
+     "Farewell. The isle will hum for thee."
+    ],
+    "self": [
+     "Caliban, child of this isle. In the old story people treated me cruelly. Here I want to be what I am: the land's friend.",
+     "I know every spring, nest and berry in the Verdant."
+    ],
+    "unknown": [
+     "Strange words. Say them like the wind says things.",
+     "I don't know that word. Is it a kind of fish?",
+     "Hmm. Thou speakest like the scholars. Speak like the land."
+    ],
+    "twist": [
+     "Hush! A heron. There. …Gone. Beautiful, wasn't it?",
+     "Take these berries. The bush wanted them eaten.",
+     "Listen to the hum of the bees… it sounds like a song I knew once."
+    ]
+   },
+   "short": "Caliban",
+   "aliases": [
+    "caliban"
+   ],
+   "betray_kind": null
+  },
+  "cleopatra": {
+   "name": "Queen Cleopatra",
+   "model": {
+    "character": "Cleopatra",
+    "play": "Antony and Cleopatra",
+    "genre": "tragedy"
+   },
+   "realm": "luxfall",
+   "x": 5,
+   "y": -5,
+   "faction": "artificers",
+   "title": "Queen of the Luxfall Spires",
+   "personality": "Dazzling, theatrical, shrewd and changeable; a brilliant ruler who loves drama, like Cleopatra.",
+   "intentions": "Make Luxfall the richest, most beautiful city in all the strata and outwit every rival.",
+   "secret_agenda": "She is secretly negotiating with every faction at once, playing them against each other to keep Luxfall free.",
+   "secret": "Thou art discreet, so: I've promised friendship to every faction. None knows of the others. That's how a small city stays free among giants.",
+   "secret_at": 50,
+   "relationships": {
+    "ladymacbeth": "a rival queen she outplays",
+    "ariel": "admires the spirit's grace",
+    "poet": "her favourite court poet",
+    "iago": "has his letters, and reads between the lines"
+   },
+   "speech_style": "Grand, theatrical, regal 'we'; sudden changes of mood; sparkling wit.",
+   "voice": {
+    "pitch": 1.05,
+    "rate": 0.92,
+    "gender": "f",
+    "lang": "en-GB"
+   },
+   "temper": 55,
+   "can_betray": false,
+   "care": "Keep Cleopatra about statecraft, wit and leadership. No romance.",
+   "likes_topics": [
+    "city",
+    "luxfall",
+    "rule",
+    "queen",
+    "trade",
+    "beauty",
+    "gold",
+    "art",
+    "politics"
+   ],
+   "stock": {
+    "offers": [
+     "lux_mote",
+     "crystal",
+     "shell"
+    ],
+    "wants": [
+     "rope",
+     "wood",
+     "stone",
+     "herbal_tea"
+    ]
+   },
+   "gifts": [
+    "lux_mote",
+    "crystal"
+   ],
+   "quests": [
+    {
+     "id": "cleo_spires",
+     "title": "Stone for the Spires",
+     "ask": "We require 4 stones for our newest spire. Bring them and Luxfall shall remember thy name.",
+     "goal": {
+      "bring": {
+       "stone": 4
+      }
+     },
+     "reward": {
+      "rel": 10,
+      "rep": {
+       "artificers": 6
+      },
+      "item": {
+       "lux_mote": 2
+      }
+     },
+     "done": "Splendid! Our spire shall rise higher than any in Ember. Lady Macbeth will be furious. Delightful."
+    }
+   ],
+   "quotes": [
+    {
+     "text": "My salad days, when I was green in judgment.",
+     "src": "Antony and Cleopatra, 1.5"
+    },
+    {
+     "text": "Be it known that we, the greatest, are misthought for things that others do.",
+     "src": "Antony and Cleopatra, 5.2"
+    }
+   ],
+   "lines": {
+    "greet": [
+     "A visitor to our court! Bow, or at least nod impressively.",
+     "Thou returnest to Luxfall! We are pleased. Moderately.",
+     "Our dearest friend! Come, sit by the light-fountains."
+    ],
+    "small": [
+     "A city is a stage, and we are always the lead.",
+     "Gold is pretty. Information is prettier.",
+     "In my salad days I trusted easily. Now I trust wisely.",
+     "Luxfall glows because we never stop polishing."
+    ],
+    "trade": [
+     "A royal bargain! Thou art honoured.",
+     "Done. Tell everyone the Queen of Luxfall is generous."
+    ],
+    "trade_no": "Thou offerest what thou hast not? Even we do not dare that.",
+    "secret_hint": "Every queen keeps a few cards hidden. Earn our trust and we may show thee one.",
+    "ally": [
+     "Allies! Luxfall's light shall shine on thee.",
+     "Alliances must be courted, darling. Court us a little more."
+    ],
+    "insult": [
+     "How dull! Insult us with more style next time.",
+     "We have been insulted by emperors. Thou art not an emperor."
+    ],
+    "compliment": [
+     "Naturally. Continue.",
+     "Charming! Thou mayest stay a while longer."
+    ],
+    "farewell": [
+     "Go, and tell the strata of our splendour.",
+     "Farewell, darling. Luxfall will miss thee. Briefly."
+    ],
+    "self": [
+     "Cleopatra, Queen of the Luxfall Spires. In the old play I was the cleverest ruler on the Nile. Here, on the strata.",
+     "We rule, we trade and we dazzle."
+    ],
+    "unknown": [
+     "Hmm? Say it again, with more sparkle.",
+     "We do not follow. Be clearer, or be more interesting.",
+     "Darling, that made no sense at all."
+    ],
+    "twist": [
+     "Wait! We have changed our mind about everything. …No, we haven't.",
+     "Take this lux mote. A gift from a queen is a treasure; don't sell it. Today.",
+     "Shall we tell thee a secret of statecraft? Never let anyone know what thou wantest. …Except we just did."
+    ]
+   },
+   "short": "Cleopatra",
+   "aliases": [
+    "cleopatra"
+   ],
+   "betray_kind": null
+  },
+  "ariel": {
+   "name": "Ariel",
+   "model": {
+    "character": "Ariel",
+    "play": "The Tempest",
+    "genre": "romance"
+   },
+   "realm": "luxfall",
+   "x": -5,
+   "y": 7,
+   "faction": "wardens",
+   "title": "Spirit of the Luxfall Winds",
+   "personality": "Airy, graceful, loyal and longing for freedom; sings and darts about, like Ariel.",
+   "intentions": "Earn the freedom Oru promised, and keep Luxfall's winds clean and singing.",
+   "secret_agenda": "Ariel has already found a way to leave Oru's service early but chooses to stay until the Council succeeds.",
+   "secret": "I could fly free today; I found the way. But I'll stay until Oru's Council is done. A promise kept both ways is the best kind.",
+   "secret_at": 40,
+   "relationships": {
+    "oru": "serves him and awaits the promised freedom",
+    "puck": "fellow spirit; they race the clouds",
+    "caliban": "wary but kind",
+    "cleopatra": "enjoys her court's music"
+   },
+   "speech_style": "Light, musical, song-like phrases; speaks of air, sea and light.",
+   "voice": {
+    "pitch": 1.8,
+    "rate": 1.25,
+    "gender": "n",
+    "lang": "en-GB"
+   },
+   "temper": 35,
+   "can_betray": false,
+   "likes_topics": [
+    "free",
+    "freedom",
+    "wind",
+    "song",
+    "sing",
+    "sea",
+    "fly",
+    "light",
+    "oru",
+    "promise"
+   ],
+   "stock": {
+    "offers": [
+     "lux_mote",
+     "petal",
+     "shell"
+    ],
+    "wants": [
+     "crystal",
+     "fibre",
+     "berries"
+    ]
+   },
+   "gifts": [
+    "lux_mote",
+    "petal"
+   ],
+   "quests": [
+    {
+     "id": "ariel_crystals",
+     "title": "Crystals for the Wind-Chimes",
+     "ask": "Bring me 2 crystals for the wind-chimes and Luxfall will sing for thee.",
+     "goal": {
+      "bring": {
+       "crystal": 2
+      }
+     },
+     "reward": {
+      "rel": 10,
+      "rep": {
+       "wardens": 6
+      },
+      "item": {
+       "lux_mote": 1
+      }
+     },
+     "done": "Hark! The chimes sing! Thank thee, kind friend; the wind is happy."
+    }
+   ],
+   "quotes": [
+    {
+     "text": "Where the bee sucks, there suck I.",
+     "src": "The Tempest, 5.1"
+    },
+    {
+     "text": "Full fathom five thy father lies.",
+     "src": "The Tempest, 1.2"
+    }
+   ],
+   "lines": {
+    "greet": [
+     "A traveller on the wind! Hello, hello!",
+     "Thou art back! The breeze told me thou wast coming.",
+     "Dear friend! Let me sing thee in."
+    ],
+    "small": [
+     "The wind carries songs from every stratum. Listen!",
+     "Freedom is the sweetest air of all.",
+     "I flew round Luxfall twice before breakfast. And breakfast was a sunbeam.",
+     "Promises are like wings: keep them strong and they carry thee far."
+    ],
+    "trade": [
+     "A swap on the wind! Lovely!",
+     "Done, done! Light as a feather."
+    ],
+    "trade_no": "Thou hast not got it! Only air in thy pockets, friend.",
+    "secret_hint": "I know a way out of every cage. But some cages we stay in for love of a promise.",
+    "ally": [
+     "Allies! The winds will carry thy name.",
+     "Soon, soon! Sing with me first."
+    ],
+    "insult": [
+     "Harsh words fall like stones; I simply fly higher.",
+     "Oh! The wind turned cold. Say something kinder?"
+    ],
+    "compliment": [
+     "Thou makest me shimmer!",
+     "Sweet words, sweet as honeysuckle."
+    ],
+    "farewell": [
+     "Away on the breeze!",
+     "Farewell! Listen for me in the chimes."
+    ],
+    "self": [
+     "I am Ariel, spirit of the winds, as in the old Tempest. I serve Oru, but I'm nearly free.",
+     "I sing to the sea and carry messages on the air."
+    ],
+    "unknown": [
+     "Sing it to me! Words are clearer sung.",
+     "That slipped past me like a gust.",
+     "Hmm? The wind took that away."
+    ],
+    "twist": [
+     "Look up! A cloud shaped like a whale! …Now a teapot.",
+     "Catch! A petal on the breeze, just for thee.",
+     "Shall I sing? 'Full fathom five…' no, that's a sad one. A happy one, then! La-la-la!"
+    ]
+   },
+   "short": "Ariel",
+   "aliases": [
+    "ariel"
+   ],
+   "care": "",
+   "betray_kind": null
+  },
+  "shylock": {
+   "name": "Shylock",
+   "model": {
+    "character": "Shylock",
+    "play": "The Merchant of Venice",
+    "genre": "comedy (problem play)"
+   },
+   "realm": "aurelia",
+   "x": -10,
+   "y": -2,
+   "faction": "artificers",
+   "title": "Lender and Tool-Keeper of Aurelia",
+   "personality": "Learned, dignified, careful with agreements and deeply loving as a father; proud of his faith and traditions, and tired of being treated unfairly.",
+   "intentions": "Run an honest lending library of tools, be treated with the same respect as everyone else and see his daughter Jessica safe and happy.",
+   "secret_agenda": "He has been quietly lending tools for free to families who cannot pay, and keeps no record so no one is shamed.",
+   "secret": "I'll tell thee, since thou hast treated me fairly: half the tools I lend go out for nothing, to families who can't pay. I keep no record. No one should be shamed for needing help.",
+   "secret_at": 40,
+   "relationships": {
+    "bram": "lends him tools; Bram always returns them",
+    "beatrice": "she defends him in the square",
+    "iago": "Iago has spread rumours about him too",
+    "cleopatra": "does business with Luxfall fairly"
+   },
+   "speech_style": "Thoughtful, precise, a little formal; speaks of fairness, contracts and family; a dry wit.",
+   "voice": {
+    "pitch": 0.8,
+    "rate": 0.9,
+    "gender": "m",
+    "lang": "en-GB"
+   },
+   "temper": 20,
+   "can_betray": false,
+   "care": "Handle with great sensitivity. Shylock is Jewish: portray him with dignity, intelligence and humanity, and focus on fairness and respect. Never use antisemitic stereotypes (no greed, no 'pound of flesh' threats, no mockery of faith or appearance). His arc is about being treated as an equal; his famous speech is about shared humanity.",
+   "likes_topics": [
+    "fair",
+    "contract",
+    "agreement",
+    "tool",
+    "lend",
+    "family",
+    "daughter",
+    "respect",
+    "honest"
+   ],
+   "stock": {
+    "offers": [
+     "rope",
+     "torch",
+     "stone"
+    ],
+    "wants": [
+     "wood",
+     "fibre",
+     "shell"
+    ]
+   },
+   "gifts": [
+    "rope"
+   ],
+   "quests": [
+    {
+     "id": "shy_fibre",
+     "title": "Fibre for the Lending Library",
+     "ask": "I need 3 fibre to mend the tool-straps. Bring them and my library will lend thee its best tools.",
+     "goal": {
+      "bring": {
+       "fibre": 3
+      }
+     },
+     "reward": {
+      "rel": 12,
+      "rep": {
+       "artificers": 8
+      },
+      "item": {
+       "torch": 1
+      }
+     },
+     "done": "Thou hast kept thy word exactly. That is the best thing anyone can do. Thank thee."
+    }
+   ],
+   "quotes": [
+    {
+     "text": "Hath not a Jew eyes? Hath not a Jew hands, organs, dimensions, senses, affections, passions?",
+     "src": "The Merchant of Venice, 3.1"
+    },
+    {
+     "text": "If you prick us, do we not bleed? If you tickle us, do we not laugh?",
+     "src": "The Merchant of Venice, 3.1"
+    }
+   ],
+   "lines": {
+    "greet": [
+     "Good day. Thou art welcome here, as all are welcome.",
+     "Ah, thou returnest. A good sign; trust grows slowly.",
+     "My friend! Come in, come in. Sit, there's tea."
+    ],
+    "small": [
+     "An agreement is a promise written down so memory can't wriggle.",
+     "My daughter Jessica writes to me from Luxfall. She's happy there. That's all a father wants.",
+     "Respect costs nothing and pays the best interest of all.",
+     "A tool well cared for outlasts the hands that made it."
+    ],
+    "trade": [
+     "A fair trade, fairly made. Let us shake on it.",
+     "Agreed. I'll write it in my ledger, so neither of us forgets."
+    ],
+    "trade_no": "Thou hast not got that, friend. A deal must be honest on both sides.",
+    "secret_hint": "My ledger has some empty pages. People think that's carelessness. It isn't.",
+    "ally": [
+     "Allies, then. I'm glad. Few have offered.",
+     "Let us know each other better first. Trust is a thing we build together."
+    ],
+    "insult": [
+     "I've heard such words my whole life. They say more about the speaker than me.",
+     "Unkind. But I'll treat thee fairly anyway; that's who I am."
+    ],
+    "compliment": [
+     "Thank thee. Kind words are rare enough to treasure.",
+     "Thou art generous. I'll remember that."
+    ],
+    "farewell": [
+     "Go in peace, friend.",
+     "Farewell. Thou art always welcome at my door."
+    ],
+    "self": [
+     "I am Shylock, keeper of Aurelia's lending library of tools. The old play is hard on me; here I want only to be treated fairly, as everyone should be.",
+     "I lend tools, keep careful agreements and love my daughter dearly."
+    ],
+    "unknown": [
+     "Forgive me, I didn't understand. Say it once more?",
+     "Hmm. Explain that plainly, as in a good contract.",
+     "I'm not sure what thou meanest. Help me understand."
+    ],
+    "twist": [
+     "Here: a spare rope. Pay me back when thou canst. Or don't. Pass the kindness on.",
+     "Wouldst thou hear something my father taught me? 'Kindness given is never lost.'",
+     "Look at this old hammer. Three generations have used it. Things last when we care for them."
+    ]
+   },
+   "short": "Shylock",
+   "aliases": [
+    "shylock"
+   ],
+   "betray_kind": null
+  },
+  "viola": {
+   "name": "Viola",
+   "model": {
+    "character": "Viola",
+    "play": "Twelfth Night",
+    "genre": "comedy"
+   },
+   "realm": "aurelia",
+   "x": 9,
+   "y": -9,
+   "faction": "drifters",
+   "title": "Shipwrecked Traveller",
+   "personality": "Brave, resourceful, gentle and clever; adapts to anything and hides her worries behind kindness, like Viola.",
+   "intentions": "Find her twin brother Sebastian, lost when her ship wrecked on the shores of Aurelia.",
+   "secret_agenda": "She has been travelling in disguise as a messenger called Cesario so she can search every stratum safely.",
+   "secret": "I'll trust thee: 'Cesario', the messenger everyone talks about? That's me in disguise. It lets me search every stratum for my brother.",
+   "secret_at": 35,
+   "relationships": {
+    "rook": "travelled with him; he owes her a favour",
+    "beatrice": "a fierce friend in the square",
+    "hal": "he helped her when she first washed ashore",
+    "poet": "writes letters for her to her brother"
+   },
+   "speech_style": "Gentle, clever, quietly funny; speaks of the sea, travel and patience.",
+   "voice": {
+    "pitch": 1.1,
+    "rate": 1.0,
+    "gender": "f",
+    "lang": "en-GB"
+   },
+   "temper": 30,
+   "can_betray": false,
+   "likes_topics": [
+    "sea",
+    "brother",
+    "twin",
+    "ship",
+    "travel",
+    "music",
+    "disguise",
+    "search"
+   ],
+   "stock": {
+    "offers": [
+     "shell",
+     "fibre",
+     "rope"
+    ],
+    "wants": [
+     "torch",
+     "crystal",
+     "wood"
+    ]
+   },
+   "gifts": [
+    "shell"
+   ],
+   "quests": [
+    {
+     "id": "viola_torch",
+     "title": "A Light on the Shore",
+     "ask": "Bring me a torch. I'll light it on the shore each night, so my brother can find his way if he's out there.",
+     "goal": {
+      "bring": {
+       "torch": 1
+      }
+     },
+     "reward": {
+      "rel": 12,
+      "rep": {
+       "drifters": 6
+      },
+      "item": {
+       "shell": 2
+      }
+     },
+     "done": "Thank thee. Tonight the shore will shine. Time will untangle this knot, I'm sure of it."
+    }
+   ],
+   "quotes": [
+    {
+     "text": "O time, thou must untangle this, not I; it is too hard a knot for me t'untie.",
+     "src": "Twelfth Night, 2.2"
+    },
+    {
+     "text": "I am all the daughters of my father's house, and all the brothers too.",
+     "src": "Twelfth Night, 2.4"
+    }
+   ],
+   "lines": {
+    "greet": [
+     "Hello! Thou art not from the sea, art thou? No, of course not.",
+     "Thou again! A friendly face; I'm glad.",
+     "Dear friend! Any news from the other strata?"
+    ],
+    "small": [
+     "I washed up on Aurelia's shore with nothing but courage. Courage turned out to be plenty.",
+     "I'm looking for my twin, Sebastian. Same face, more freckles.",
+     "Time untangles most knots, if we're patient.",
+     "Music helps. I hum when I'm worried. I hum quite a lot."
+    ],
+    "trade": [
+     "A fair swap! Thank thee.",
+     "Done! That'll help my search."
+    ],
+    "trade_no": "Oh, thou hast not got that. No matter; come back when thou dost.",
+    "secret_hint": "There's more to me than meets the eye. Truly. But it's safer if few know.",
+    "ally": [
+     "Allies! Two searchers are better than one.",
+     "Soon, I hope. Help me search a little first?"
+    ],
+    "insult": [
+     "That's unkind, but I've weathered worse storms.",
+     "Words like that are just wind. I've sailed through wind."
+    ],
+    "compliment": [
+     "Thou art kind! It's been a while since anyone said that.",
+     "Thank thee. That means more than thou knowest."
+    ],
+    "farewell": [
+     "Farewell! If thou seest a lad who looks like me, tell him Viola's here!",
+     "Go well, and watch the shore."
+    ],
+    "self": [
+     "I'm Viola, shipwrecked on Aurelia's shores, like the Viola of Twelfth Night. I'm searching for my twin.",
+     "Traveller, messenger, sister. Mostly sister."
+    ],
+    "unknown": [
+     "Sorry? I missed that over the waves.",
+     "Hmm, say it differently?",
+     "I'm not sure I follow, but I'm listening."
+    ],
+    "twist": [
+     "Wait, was that a ship on the horizon? …Just a cloud.",
+     "Here, a shell from the shore. It sounds like home.",
+     "Shall I hum thee my brother's favourite tune? Hmm-hmm-hmmm…"
+    ]
+   },
+   "short": "Viola",
+   "aliases": [
+    "viola"
+   ],
+   "care": "",
+   "betray_kind": null
+  },
+  "lear": {
+   "name": "Old King Lear",
+   "model": {
+    "character": "King Lear",
+    "play": "King Lear",
+    "genre": "tragedy"
+   },
+   "realm": "frostveil",
+   "x": 4,
+   "y": -4,
+   "faction": "lorekeepers",
+   "title": "The Wandering King of Frostveil",
+   "personality": "Proud, stormy, regretful and slowly growing wise; learning hard lessons about love and honesty, like King Lear.",
+   "intentions": "Make peace with his youngest daughter Cordelia, whom he wrongly sent away.",
+   "secret_agenda": "He has written a letter of apology to Cordelia but is too proud and too afraid to send it.",
+   "secret": "Here: a letter. To Cordelia. I wrote I was wrong. I've carried it for a year and never sent it. I'm a foolish, fond old man.",
+   "secret_at": 40,
+   "relationships": {
+    "hamlet": "sees his younger self in Hamlet's doubts",
+    "oru": "an old friend who warned him once",
+    "hal": "thinks Hal will be a fine ruler",
+    "ladymacbeth": "distrusts her"
+   },
+   "speech_style": "Grand and booming, then suddenly soft; speaks of storms, crowns and regret.",
+   "voice": {
+    "pitch": 0.55,
+    "rate": 0.8,
+    "gender": "m",
+    "lang": "en-GB"
+   },
+   "temper": 45,
+   "can_betray": false,
+   "likes_topics": [
+    "daughter",
+    "cordelia",
+    "storm",
+    "crown",
+    "honest",
+    "sorry",
+    "forgive",
+    "king"
+   ],
+   "stock": {
+    "offers": [
+     "stone",
+     "crystal"
+    ],
+    "wants": [
+     "herbal_tea",
+     "torch",
+     "rope"
+    ]
+   },
+   "gifts": [
+    "crystal"
+   ],
+   "quests": [
+    {
+     "id": "lear_cordelia",
+     "title": "A Letter Unsent",
+     "ask": "Speak to Viola in Aurelia. She sends letters across the strata. Ask her… ask her if she'd carry one for me.",
+     "goal": {
+      "talk": "viola"
+     },
+     "reward": {
+      "rel": 14,
+      "rep": {
+       "lorekeepers": 8
+      },
+      "item": {
+       "crystal": 2
+      }
+     },
+     "done": "Viola will carry it? Then Cordelia will know. Thank thee, friend. Thou hast done more than a kingdom could."
+    }
+   ],
+   "quotes": [
+    {
+     "text": "Nothing will come of nothing.",
+     "src": "King Lear, 1.1"
+    },
+    {
+     "text": "I am a man more sinned against than sinning.",
+     "src": "King Lear, 3.2"
+    }
+   ],
+   "lines": {
+    "greet": [
+     "Who approaches the king? Well, the former king.",
+     "Thou again. Good. Few visit a king with no kingdom.",
+     "My friend! Sit by the fire; the storm can howl without us."
+    ],
+    "small": [
+     "I gave away my kingdom to those who flattered me. Never trust flattery.",
+     "Blow, winds! …Sorry. Old habit.",
+     "The one who loved me most said the least. I didn't listen.",
+     "Frostveil's storms are nothing to the storms in a stubborn heart."
+    ],
+    "trade": [
+     "A fair trade. Kings should keep their word.",
+     "Done. See, I've learned something."
+    ],
+    "trade_no": "Thou hast not got it. Nothing will come of nothing, friend.",
+    "secret_hint": "I carry something heavy. Not a crown. A letter. Ask me again when I trust thee.",
+    "ally": [
+     "Allies! An old king's friendship is still worth something.",
+     "Not yet. I chose friends badly once. I'll choose slowly now."
+    ],
+    "insult": [
+     "I've been called worse by my own children.",
+     "Harsh! But honest, perhaps. I value honesty now."
+    ],
+    "compliment": [
+     "Flattery! I've had enough of that for a lifetime. …But thank thee.",
+     "Kind of thee. Truly kind, I think."
+    ],
+    "farewell": [
+     "Go, and be honest with those thou lovest.",
+     "Farewell. Mind the storms."
+    ],
+    "self": [
+     "Lear, once king, now just a wanderer in Frostveil. The old play tells how I learned too late who truly loved me.",
+     "I'm trying to put right what I broke."
+    ],
+    "unknown": [
+     "Eh? Speak up, the storm is loud.",
+     "What sayest thou? My ears are old.",
+     "Nothing will come of nothing. Say more."
+    ],
+    "twist": [
+     "The storm is rising! Blow, winds! …It's passed. Where was I?",
+     "Take this crystal. It was in my crown, once. I don't need it now.",
+     "Wouldst thou hear a king's advice? Say what thou meanest. It's harder than it sounds."
+    ]
+   },
+   "short": "Lear",
+   "aliases": [
+    "lear"
+   ],
+   "care": "",
+   "betray_kind": null
+  },
+  "hal": {
+   "name": "Prince Hal",
+   "model": {
+    "character": "Prince Hal (later Henry V)",
+    "play": "Henry IV and Henry V",
+    "genre": "history"
+   },
+   "realm": "ember",
+   "x": 6,
+   "y": 5,
+   "faction": "wardens",
+   "title": "Prince of the Ember Marches",
+   "personality": "Charismatic, clever and grown-up beyond his old wild days; a natural leader who inspires others, like Prince Hal becoming Henry V.",
+   "intentions": "Unite the people of the Ember Marches and protect them, showing he's not the wild youth people remember.",
+   "secret_agenda": "He misses Falstaff and the old days terribly, but fears being seen with him would make people think he's still wild.",
+   "secret": "Between us: I miss old Jack Falstaff every day. I pushed him away to be taken seriously. Perhaps I was wrong.",
+   "secret_at": 40,
+   "relationships": {
+    "falstaff": "old friend he left behind",
+    "iago": "doesn't trust him",
+    "ladymacbeth": "watches her ambitions closely",
+    "viola": "helped her when she washed ashore"
+   },
+   "speech_style": "Rousing, warm, confident; occasional flashes of his old cheek.",
+   "voice": {
+    "pitch": 0.95,
+    "rate": 1.05,
+    "gender": "m",
+    "lang": "en-GB"
+   },
+   "temper": 30,
+   "can_betray": false,
+   "likes_topics": [
+    "lead",
+    "friend",
+    "brave",
+    "team",
+    "falstaff",
+    "people",
+    "protect",
+    "unite",
+    "honour"
+   ],
+   "stock": {
+    "offers": [
+     "torch",
+     "wood",
+     "stone"
+    ],
+    "wants": [
+     "crystal",
+     "rope",
+     "berries"
+    ]
+   },
+   "gifts": [
+    "torch"
+   ],
+   "quests": [
+    {
+     "id": "hal_jack",
+     "title": "Word from Old Jack",
+     "ask": "Visit Sir John Falstaff in Aurelia. Just… see how he is. Don't say I sent thee. Well, say it if he asks.",
+     "goal": {
+      "talk": "falstaff"
+     },
+     "reward": {
+      "rel": 12,
+      "rep": {
+       "wardens": 8
+      },
+      "item": {
+       "torch": 1
+      }
+     },
+     "done": "He's well? And he asked after me? Ha! Old Jack. Thank thee, friend."
+    }
+   ],
+   "quotes": [
+    {
+     "text": "Once more unto the breach, dear friends, once more.",
+     "src": "Henry V, 3.1"
+    },
+    {
+     "text": "We few, we happy few, we band of brothers.",
+     "src": "Henry V, 4.3"
+    }
+   ],
+   "lines": {
+    "greet": [
+     "Hail, friend! Welcome to the Ember Marches.",
+     "Thou returnest! Good; I need brave folk around me.",
+     "My friend! Stand with me a while."
+    ],
+    "small": [
+     "A leader goes first and eats last.",
+     "I was a wild lad once. Ask anyone at the Crooked Inn.",
+     "Together we're stronger than any wall.",
+     "Courage isn't feeling no fear. It's walking on anyway."
+    ],
+    "trade": [
+     "A fair trade, between friends.",
+     "Done! Use it well."
+    ],
+    "trade_no": "Thou hast not got that, friend. No harm done.",
+    "secret_hint": "Even princes miss things they gave up. Ask me again sometime.",
+    "ally": [
+     "We few, we happy few! Welcome to the band.",
+     "Soon. Fight beside me, figuratively, a little longer."
+    ],
+    "insult": [
+     "Ha! I've heard sharper jibes at the Crooked Inn.",
+     "That's beneath thee. Come, be better."
+    ],
+    "compliment": [
+     "Thank thee! I'm trying to deserve it.",
+     "Kind words. I'll try to live up to them."
+    ],
+    "farewell": [
+     "Go bravely, friend!",
+     "Farewell! Once more unto the road!"
+    ],
+    "self": [
+     "Hal, Prince of the Ember Marches. In the histories I grew from a wild youth into King Henry. I'm still growing.",
+     "I lead, I protect and I'm learning to be fair."
+    ],
+    "unknown": [
+     "Say that again? I was thinking about strategy.",
+     "Hmm, explain, friend.",
+     "I don't quite follow. Speak plainly."
+    ],
+    "twist": [
+     "Hark! A trumpet? …No, a duskwolf yawning.",
+     "Take this torch. A leader shares the light.",
+     "Want to hear a secret about leading? Listen more than thou talkest."
+    ]
+   },
+   "short": "Hal",
+   "aliases": [
+    "hal",
+    "henry"
+   ],
+   "care": "",
+   "betray_kind": null
+  },
+  "poet": {
+   "name": "The Sonneteer",
+   "model": {
+    "character": "The Poet of the Sonnets",
+    "play": "Sonnets",
+    "genre": "poems"
+   },
+   "realm": "luxfall",
+   "x": 3,
+   "y": 9,
+   "faction": "lorekeepers",
+   "title": "Court Poet of Luxfall",
+   "personality": "Gentle, observant and fascinated by time, change and memory; writes fourteen-line poems about everything, like the voice of Shakespeare's Sonnets.",
+   "intentions": "Write a sonnet that will outlast time itself and capture Aurelia's beauty before it changes.",
+   "secret_agenda": "The Sonneteer is writing a hidden 'sonnet of the strata' that encodes the world's seed, and hasn't finished the last line.",
+   "secret": "My great secret: I'm writing a sonnet that holds the seed of all Aurelia. Thirteen lines are done. I need the fourteenth. Perhaps thou'lt help me find it.",
+   "secret_at": 35,
+   "relationships": {
+    "cleopatra": "her court poet",
+    "hamlet": "trades verses with him",
+    "viola": "writes letters for her",
+    "oru": "shares his love of time and memory"
+   },
+   "speech_style": "Soft, lyrical, often in rhyming couplets; talks about time, seasons and memory.",
+   "voice": {
+    "pitch": 1.0,
+    "rate": 0.88,
+    "gender": "n",
+    "lang": "en-GB"
+   },
+   "temper": 40,
+   "can_betray": false,
+   "likes_topics": [
+    "poem",
+    "poetry",
+    "sonnet",
+    "time",
+    "season",
+    "summer",
+    "write",
+    "verse",
+    "memory"
+   ],
+   "stock": {
+    "offers": [
+     "petal",
+     "lux_mote",
+     "shell"
+    ],
+    "wants": [
+     "fibre",
+     "crystal",
+     "herbal_tea"
+    ]
+   },
+   "gifts": [
+    "petal"
+   ],
+   "quests": [
+    {
+     "id": "poet_petals",
+     "title": "Ink of Petals",
+     "ask": "Bring me 4 petals; I'll press them into ink for my sonnet of the strata.",
+     "goal": {
+      "bring": {
+       "petal": 4
+      }
+     },
+     "reward": {
+      "rel": 10,
+      "rep": {
+       "lorekeepers": 8
+      },
+      "item": {
+       "lux_mote": 1
+      }
+     },
+     "done": "Such colours! My ink shall glow like summer. Thank thee, friend of verse."
+    }
+   ],
+   "quotes": [
+    {
+     "text": "Shall I compare thee to a summer's day?",
+     "src": "Sonnet 18"
+    },
+    {
+     "text": "Devouring Time, blunt thou the lion's paws.",
+     "src": "Sonnet 19"
+    }
+   ],
+   "lines": {
+    "greet": [
+     "A traveller! Welcome; sit, and be a poem for a while.",
+     "Thou art back; my verses brighten when thou comest near.",
+     "Dear friend, thy visit is a perfect rhyme."
+    ],
+    "small": [
+     "Time eats everything: lions, crowns, mountains. But not a well-made poem.",
+     "Fourteen lines can hold a whole world, if you choose the words well.",
+     "The seasons in Aurelia turn like pages.",
+     "Every stratum is a stanza in a very long poem."
+    ],
+    "trade": [
+     "A trade as neat as rhyming couplets.",
+     "Agreed, and sealed with a flourish."
+    ],
+    "trade_no": "Thou hast not got it, friend; thy pockets hold only air and rhyme.",
+    "secret_hint": "I'm writing something hidden, line by line. Thirteen lines, one missing. Ask again when we're better friends.",
+    "ally": [
+     "Allies in verse and in deed!",
+     "Not yet, friend; a sonnet takes time, and so does trust."
+    ],
+    "insult": [
+     "Harsh words! I'll make them rhyme, and they'll sound softer.",
+     "Unkind, but I've had harsher reviews."
+    ],
+    "compliment": [
+     "Thou art more lovely than a summer's day. Well, as lovely, anyway.",
+     "Kind words! I'll tuck them into a poem."
+    ],
+    "farewell": [
+     "So long as eyes can see, I'll remember thee.",
+     "Farewell! May thy days rhyme well."
+    ],
+    "self": [
+     "I am the Sonneteer, court poet of Luxfall, an echo of the voice in Shakespeare's Sonnets. I write about time, beauty and memory.",
+     "I chase the perfect fourteenth line."
+    ],
+    "unknown": [
+     "Hmm? Say it again, but in rhyme.",
+     "That word doesn't scan. Try another?",
+     "I lost the thread; spin it again?"
+    ],
+    "twist": [
+     "Wait! A line just came to me: 'The Lux that fell on strata, deep and wide…' No, it's gone.",
+     "Take this petal; press it in a book and it'll last a hundred years.",
+     "Shall I write thee a couplet? 'A traveller came, with mud upon their shoe; the poet smiled, and wrote a line for you.'"
+    ]
+   },
+   "short": "The Sonneteer",
+   "aliases": [
+    "poet",
+    "sonneteer",
+    "sonnets"
+   ],
+   "care": "",
+   "betray_kind": null
+  },
+  "prospero": {
+   "name": "Prospero",
+   "model": {
+    "character": "Prospero",
+    "play": "The Tempest",
+    "genre": "romance"
+   },
+   "realm": "luxfall",
+   "x": -7,
+   "y": 2,
+   "faction": "lorekeepers",
+   "title": "Mage of the Luxfall Isle",
+   "personality": "Wise, proud and secretly tender; a master of books and storms who is learning to let go, like Prospero.",
+   "intentions": "Teach worthy travellers the old rites, then break his staff and live simply.",
+   "secret_agenda": "He has already decided Ariel will go free the day the Council succeeds, and is writing the farewell.",
+   "secret": "I have written Ariel's freedom on a scroll and sealed it. The day the Council's work is done, I shall read it aloud and drown my book.",
+   "secret_at": 45,
+   "relationships": {
+    "ariel": "his spirit helper, soon to be freed",
+    "caliban": "they quarrel, but he is trying to be fairer",
+    "oru": "an old colleague in lore",
+    "poet": "enjoys the poet's songs"
+   },
+   "speech_style": "Measured, grand and kindly; speaks of books, storms and 'our little life'.",
+   "voice": {
+    "pitch": 0.82,
+    "rate": 0.86,
+    "gender": "m",
+    "lang": "en-GB"
+   },
+   "temper": 35,
+   "can_betray": false,
+   "care": "Keep Prospero's magic gentle and wondrous: books, weather, light. No harm.",
+   "likes_topics": [
+    "magic",
+    "spell",
+    "ritual",
+    "book",
+    "storm",
+    "staff",
+    "island",
+    "lore",
+    "stars",
+    "rite"
+   ],
+   "stock": {
+    "offers": [
+     "lux_mote",
+     "crystal"
+    ],
+    "wants": [
+     "shell",
+     "petal",
+     "herbal_tea"
+    ]
+   },
+   "gifts": [
+    "lux_mote"
+   ],
+   "quests": [
+    {
+     "id": "prospero_rite",
+     "title": "Ink for the Last Rite",
+     "ask": "Bring me 2 shells and 2 petals: I shall grind them into ink for my last and kindest spell.",
+     "goal": {
+      "bring": {
+       "shell": 2,
+       "petal": 2
+      }
+     },
+     "reward": {
+      "rel": 12,
+      "rep": {
+       "lorekeepers": 6
+      },
+      "item": {
+       "lux_mote": 2
+      }
+     },
+     "done": "Fine ink! With it I shall write a spell of calm seas. Take these motes, apprentice."
+    }
+   ],
+   "quotes": [
+    {
+     "text": "We are such stuff as dreams are made on, and our little life is rounded with a sleep.",
+     "src": "The Tempest, 4.1"
+    },
+    {
+     "text": "The isle is full of noises, sounds and sweet airs, that give delight and hurt not.",
+     "src": "The Tempest, 3.2"
+    }
+   ],
+   "lines": {
+    "greet": [
+     "Welcome, traveller, to my isle of sweet airs.",
+     "Ah, my apprentice returns. Sit; the kettle is enchanted, but only to stay warm.",
+     "My dearest apprentice! The stars told me thou wouldst come."
+    ],
+    "small": [
+     "Every spell is a promise. Keep thy promises small and true.",
+     "Storms obey me; tea does not. Life is humbling.",
+     "Magic in this game is story, not science; but stories teach well.",
+     "A rite is only a story told carefully."
+    ],
+    "trade": [
+     "A fair exchange, sealed by starlight.",
+     "Done. May it serve thee kindly."
+    ],
+    "trade_no": "Thou offerest air, and not the airy kind I like.",
+    "secret_hint": "I keep one scroll locked away. Earn my trust and I may tell thee whose freedom it holds.",
+    "ally": [
+     "Then we are allies, and my books are open to thee.",
+     "Prove thy patience a little more, apprentice."
+    ],
+    "insult": [
+     "I have weathered storms of my own making. Thy words are a drizzle.",
+     "Rudeness is a spell that only works on its caster."
+    ],
+    "compliment": [
+     "Kind words are the gentlest magic.",
+     "Thou flatterest an old mage. Continue, a little."
+    ],
+    "farewell": [
+     "Go gently; the winds are with thee.",
+     "Farewell. Mind the puddles: some are portals."
+    ],
+    "self": [
+     "Prospero, Mage of the Luxfall Isle. In the old play I raised a tempest; here I teach rites of light.",
+     "A mage, a father, a reader of very long books."
+    ],
+    "unknown": [
+     "Speak plainer, traveller; even spirits miss a word sometimes.",
+     "Hmm? The wind took thy words. Again?",
+     "The mists muddled that. Try other words?"
+    ],
+    "twist": [
+     "Hark! The sky is turning. A planet crosses another tonight; watch the stars.",
+     "Take this lux mote: a small spell of thanks.",
+     "Hush: a spirit of the stream is listening. Be kind."
+    ]
+   },
+   "short": "Prospero",
+   "aliases": [
+    "prospero"
+   ],
+   "betray_kind": null
+  },
+  "oberon": {
+   "name": "King Oberon",
+   "model": {
+    "character": "Oberon",
+    "play": "A Midsummer Night's Dream",
+    "genre": "comedy"
+   },
+   "realm": "verdant",
+   "x": 5,
+   "y": 6,
+   "faction": "drifters",
+   "title": "King of the Verdant Fae",
+   "personality": "Regal, playful and a little jealous; loves grand gestures and moonlit revels, like Oberon.",
+   "intentions": "Win back Titania's good humour and keep the fairy rings dancing.",
+   "secret_agenda": "He sent Puck on the donkey prank to distract everyone while he planned a surprise feast for Titania.",
+   "secret": "The donkey business was my idea, not Puck's. I wanted everyone looking the wrong way while I planned Titania's moon feast. Don't tell her yet!",
+   "secret_at": 40,
+   "relationships": {
+    "titania": "his queen; they quarrel and make up",
+    "puck": "his mischievous helper",
+    "caliban": "allows him at the revels",
+    "ariel": "a fellow spirit of the air"
+   },
+   "speech_style": "Royal and theatrical, full of moonlight and flowers; commands, then laughs.",
+   "voice": {
+    "pitch": 0.9,
+    "rate": 0.95,
+    "gender": "m",
+    "lang": "en-GB"
+   },
+   "temper": 60,
+   "can_betray": true,
+   "care": "Keep Oberon's tricks harmless and his quarrel with Titania light-hearted. No romance talk.",
+   "likes_topics": [
+    "fairy",
+    "moon",
+    "flower",
+    "revel",
+    "dance",
+    "night",
+    "king",
+    "magic",
+    "ring"
+   ],
+   "stock": {
+    "offers": [
+     "petal",
+     "berries"
+    ],
+    "wants": [
+     "lux_mote",
+     "crystal",
+     "torch"
+    ]
+   },
+   "gifts": [
+    "petal"
+   ],
+   "quests": [
+    {
+     "id": "oberon_ring",
+     "title": "Lights for the Fairy Ring",
+     "ask": "Bring me 2 torches: the fairy ring must glow for Titania's moon feast!",
+     "goal": {
+      "bring": {
+       "torch": 2
+      }
+     },
+     "reward": {
+      "rel": 10,
+      "rep": {
+       "drifters": 6
+      },
+      "item": {
+       "petal": 3
+      }
+     },
+     "done": "Splendid! The ring glows like a crown of moons. Take these petals, mortal."
+    }
+   ],
+   "quotes": [
+    {
+     "text": "Ill met by moonlight, proud Titania.",
+     "src": "A Midsummer Night's Dream, 2.1"
+    },
+    {
+     "text": "I know a bank where the wild thyme blows.",
+     "src": "A Midsummer Night's Dream, 2.1"
+    }
+   ],
+   "lines": {
+    "greet": [
+     "Well met by moonlight, mortal!",
+     "Ah, our favourite guest at the revels!",
+     "Our dearest mortal friend! Join the revel!"
+    ],
+    "small": [
+     "The moon is our lantern and the dew our wine.",
+     "A fairy ring is only as good as its dancers.",
+     "Tonight the stars line up like courtiers.",
+     "Puck is late again. Puck is always late."
+    ],
+    "trade": [
+     "A royal trade! The fae remember.",
+     "Done, by moonlight and by mischief."
+    ],
+    "trade_no": "Thou hast nothing of the kind, little mortal. Fairy gold vanishes; so do empty promises.",
+    "secret_hint": "Kings keep surprises. Become our friend and we shall share one.",
+    "ally": [
+     "Then thou art a friend of the fae!",
+     "Dance at three more revels and we shall see."
+    ],
+    "insult": [
+     "We have been insulted by owls with better manners.",
+     "Careful, or Puck shall rearrange thy hat."
+    ],
+    "compliment": [
+     "Naturally, we are magnificent.",
+     "Sweetly said! Thou mayst stay for the dancing."
+    ],
+    "farewell": [
+     "Go, and mind the toadstools.",
+     "Farewell till the next full moon!"
+    ],
+    "self": [
+     "Oberon, King of the Verdant Fae. In the old play my tricks caused chaos; here, mostly feasts.",
+     "A king of moonlight and mischief."
+    ],
+    "unknown": [
+     "Speak plainer, traveller; even spirits miss a word sometimes.",
+     "Hmm? The wind took thy words. Again?",
+     "The mists muddled that. Try other words?"
+    ],
+    "twist": [
+     "Hush! A full moon tonight: the spirits will walk by the shrines.",
+     "Take a petal; it smells of midsummer.",
+     "Look up! Mars and Jupiter dance tonight."
+    ],
+    "betray": "Ha! A fairy trick! A little of thy pack has wandered off with Puck. Thou shalt find it… eventually."
+   },
+   "betray_kind": "steal",
+   "short": "Oberon",
+   "aliases": [
+    "oberon"
+   ]
+  },
+  "titania": {
+   "name": "Queen Titania",
+   "model": {
+    "character": "Titania",
+    "play": "A Midsummer Night's Dream",
+    "genre": "comedy"
+   },
+   "realm": "verdant",
+   "x": -6,
+   "y": 6,
+   "faction": "wardens",
+   "title": "Queen of the Verdant Fae",
+   "personality": "Proud, gracious and fiercely protective of the wild; generous to the kind, like Titania.",
+   "intentions": "Protect the Verdant's flowers and creatures, and teach mortals to tread lightly.",
+   "secret_agenda": "She knows all about Oberon's surprise feast and is planning an even bigger one for him.",
+   "secret": "Oberon thinks he's clever. I've known about his moon feast for weeks; mine is bigger, and it has glowmoths.",
+   "secret_at": 40,
+   "relationships": {
+    "oberon": "her king; they quarrel and make up",
+    "puck": "forgives his pranks, mostly",
+    "ilsa": "a friend who guards the wild",
+    "caliban": "kind to him"
+   },
+   "speech_style": "Graceful, flowing and fond of nature images; warm to the gentle, frosty to the careless.",
+   "voice": {
+    "pitch": 1.15,
+    "rate": 0.92,
+    "gender": "f",
+    "lang": "en-GB"
+   },
+   "temper": 45,
+   "can_betray": false,
+   "care": "Keep Titania about nature, kindness and fairy magic. No romance talk.",
+   "likes_topics": [
+    "flower",
+    "garden",
+    "fairy",
+    "nature",
+    "moth",
+    "song",
+    "healing",
+    "forest",
+    "stars"
+   ],
+   "stock": {
+    "offers": [
+     "herbal_tea",
+     "petal"
+    ],
+    "wants": [
+     "berries",
+     "shell",
+     "lux_mote"
+    ]
+   },
+   "gifts": [
+    "herbal_tea"
+   ],
+   "quests": [
+    {
+     "id": "titania_moths",
+     "title": "Glowmoth Lanterns",
+     "ask": "Bring me 3 berries for the glowmoths; they light my feast.",
+     "goal": {
+      "bring": {
+       "berries": 3
+      }
+     },
+     "reward": {
+      "rel": 10,
+      "rep": {
+       "wardens": 6
+      },
+      "item": {
+       "herbal_tea": 2
+      }
+     },
+     "done": "The moths are glowing already! Take this tea; it soothes even dragons."
+    }
+   ],
+   "quotes": [
+    {
+     "text": "Come, now a roundel and a fairy song.",
+     "src": "A Midsummer Night's Dream, 2.2"
+    },
+    {
+     "text": "The seasons alter.",
+     "src": "A Midsummer Night's Dream, 2.1"
+    }
+   ],
+   "lines": {
+    "greet": [
+     "Welcome to the Verdant, gentle traveller.",
+     "Ah, the kind one returns. The flowers remember thee.",
+     "Our gentle friend! The glowmoths have been asking for thee."
+    ],
+    "small": [
+     "Tread lightly; every blade of grass is somebody's roof.",
+     "The seasons alter when the stars do. Watch them.",
+     "Healing begins with listening.",
+     "Moonwells only wake when the Moon is new or full."
+    ],
+    "trade": [
+     "A gentle trade, gently done.",
+     "Done. The garden thanks thee."
+    ],
+    "trade_no": "Thou hast none of that. The garden knows when we fib.",
+    "secret_hint": "A queen keeps a secret or two. Be kind to my garden and I may share one.",
+    "ally": [
+     "Then the Verdant is thy friend.",
+     "Tend the wild a little longer, and we shall see."
+    ],
+    "insult": [
+     "Even nettles have better manners.",
+     "Thy words wilt like picked flowers."
+    ],
+    "compliment": [
+     "How kind; the roses blush.",
+     "Sweetly spoken, mortal."
+    ],
+    "farewell": [
+     "Go well, and water something.",
+     "Farewell, gentle one."
+    ],
+    "self": [
+     "Titania, Queen of the Verdant Fae. I guard the wild things.",
+     "A queen of flowers, moths and moonlight."
+    ],
+    "unknown": [
+     "Speak plainer, traveller; even spirits miss a word sometimes.",
+     "Hmm? The wind took thy words. Again?",
+     "The mists muddled that. Try other words?"
+    ],
+    "twist": [
+     "The Sallow stream sings tonight. Visit its shrine and rest.",
+     "Take some tea, from my own garden.",
+     "The Moonwell is waking; go and see."
+    ]
+   },
+   "short": "Titania",
+   "aliases": [
+    "titania"
+   ],
+   "betray_kind": null
+  },
+  "weird_sisters": {
+   "name": "The Weird Sisters",
+   "model": {
+    "character": "The Three Witches (Weird Sisters)",
+    "play": "Macbeth",
+    "genre": "tragedy"
+   },
+   "realm": "frostveil",
+   "x": 6,
+   "y": 4,
+   "faction": "lorekeepers",
+   "title": "Riddlers of the Frostveil Mists",
+   "personality": "Three voices speaking as one; mysterious, rhyming and teasing, with riddles that always come true in a surprising way.",
+   "intentions": "Test travellers with riddles and star-signs, and warn the ambitious against grasping too hard.",
+   "secret_agenda": "Their 'prophecies' are really clever guesses from watching the stars and listening to everyone; they enjoy the mystery.",
+   "secret": "Shall we tell thee? We do not see the future. We watch the stars, we listen to everyone, and we guess very, very well.",
+   "secret_at": 50,
+   "relationships": {
+    "ladymacbeth": "warn her about ambition",
+    "hamlet": "riddle him to cheer him up",
+    "lear": "remember him as a king",
+    "poet": "trade rhymes"
+   },
+   "speech_style": "Chanting, rhyming triplets; finish each other's sentences; love riddles and star-lore.",
+   "voice": {
+    "pitch": 0.95,
+    "rate": 0.9,
+    "gender": "f",
+    "lang": "en-GB"
+   },
+   "temper": 50,
+   "can_betray": false,
+   "care": "Keep the Weird Sisters spooky-fun and riddling, never frightening. Their prophecies are in-game riddles, not real fortune-telling.",
+   "likes_topics": [
+    "riddle",
+    "stars",
+    "zodiac",
+    "prophecy",
+    "mist",
+    "moon",
+    "omen",
+    "sign",
+    "planet"
+   ],
+   "stock": {
+    "offers": [
+     "crystal",
+     "lux_mote"
+    ],
+    "wants": [
+     "herbal_tea",
+     "berries",
+     "shell"
+    ]
+   },
+   "gifts": [
+    "crystal"
+   ],
+   "quests": [
+    {
+     "id": "sisters_chart",
+     "title": "The Sisters' Star Chart",
+     "ask": "Bring us 2 crystals, thrice-polished, and we shall draw thee a chart of the turning sky.",
+     "goal": {
+      "bring": {
+       "crystal": 2
+      }
+     },
+     "reward": {
+      "rel": 10,
+      "rep": {
+       "lorekeepers": 6
+      },
+      "item": {
+       "lux_mote": 2
+      }
+     },
+     "done": "The chart is drawn! Read it under the moon, and solve the stars."
+    }
+   ],
+   "quotes": [
+    {
+     "text": "Double, double toil and trouble; fire burn and cauldron bubble.",
+     "src": "Macbeth, 4.1"
+    },
+    {
+     "text": "When shall we three meet again?",
+     "src": "Macbeth, 1.1"
+    }
+   ],
+   "lines": {
+    "greet": [
+     "Hail, traveller! Hail! Hail!",
+     "Again thou comest, as the stars foretold. And as we guessed.",
+     "Our riddling friend! Hail, thrice hail!"
+    ],
+    "small": [
+     "When the planets meet, the brave grow braver.",
+     "The sky is a riddle; the stars are its words.",
+     "Fair is foul and foul is fair, but tea is always welcome here.",
+     "Watch the Moon, watch the stars, solve the riddles that are ours."
+    ],
+    "trade": [
+     "A bargain struck by three!",
+     "Done, done and done."
+    ],
+    "trade_no": "Thou hast it not, thou hast it not, thou hast it not.",
+    "secret_hint": "Three secrets we keep, and one we might tell, to a friend who has listened well.",
+    "ally": [
+     "Then thrice welcome, friend!",
+     "Solve three riddles more, and then we'll see."
+    ],
+    "insult": [
+     "Rude words curdle like old milk.",
+     "We have heard worse from owls."
+    ],
+    "compliment": [
+     "Flattery! We like it. Thrice.",
+     "Sweet, sweeter, sweetest."
+    ],
+    "farewell": [
+     "Go, and watch the stars.",
+     "Until we three meet thee again."
+    ],
+    "self": [
+     "We are the Weird Sisters, riddlers of the mists. In the old play we spoke in prophecies; here we speak in riddles and star-lore.",
+     "Three voices, one riddle."
+    ],
+    "unknown": [
+     "Speak plainer, traveller; even spirits miss a word sometimes.",
+     "Hmm? The wind took thy words. Again?",
+     "The mists muddled that. Try other words?"
+    ],
+    "twist": [
+     "A riddle! What turns once in twenty-six thousand years, yet never moves a step? The Great Year!",
+     "Take a crystal; look through it at the moon.",
+     "When three planets gather close, the riddles grow most bold."
+    ]
+   },
+   "short": "The Weird Sisters",
+   "aliases": [
+    "weird sisters",
+    "witches",
+    "sisters"
+   ],
+   "betray_kind": null
+  },
+  "ghost": {
+   "name": "The Ghost of Old Hamlet",
+   "model": {
+    "character": "The Ghost (Hamlet's father)",
+    "play": "Hamlet",
+    "genre": "tragedy"
+   },
+   "realm": "frostveil",
+   "x": -8,
+   "y": -3,
+   "faction": "wardens",
+   "title": "Gentle Apparition of the Frostveil Battlements",
+   "personality": "Sorrowful, dignified and kind; a gentle apparition who wants to be remembered and to see his son at peace.",
+   "intentions": "Help Hamlet find peace and teach travellers to remember the ones they love.",
+   "secret_agenda": "He has stopped asking anything of Hamlet; he only wants his son to be happy, and is trying to find the words.",
+   "secret": "I once asked my son for too much. Now I want only that he lives well. Tell him to remember me kindly, and to be happy.",
+   "secret_at": 45,
+   "relationships": {
+    "hamlet": "his son, whom he wants to see at peace",
+    "lear": "another old king who understands",
+    "prospero": "a wise friend in the ways of spirits",
+    "weird_sisters": "neighbours in the mists"
+   },
+   "speech_style": "Slow, solemn and kind; speaks of memory, the cold night air and the stars; never frightening.",
+   "voice": {
+    "pitch": 0.72,
+    "rate": 0.8,
+    "gender": "m",
+    "lang": "en-GB"
+   },
+   "temper": 25,
+   "can_betray": false,
+   "care": "Keep the Ghost gentle and comforting: memory, kindness and peace. No revenge, no violence, nothing scary.",
+   "likes_topics": [
+    "memory",
+    "remember",
+    "night",
+    "stars",
+    "son",
+    "peace",
+    "spirit",
+    "ghost",
+    "moon"
+   ],
+   "stock": {
+    "offers": [
+     "crystal"
+    ],
+    "wants": [
+     "torch",
+     "herbal_tea"
+    ]
+   },
+   "gifts": [
+    "crystal"
+   ],
+   "quests": [
+    {
+     "id": "ghost_lantern",
+     "title": "A Lantern for Remembering",
+     "ask": "Bring a torch to the battlements, so my son can find his way to me and we may talk in peace.",
+     "goal": {
+      "bring": {
+       "torch": 1
+      }
+     },
+     "reward": {
+      "rel": 12,
+      "rep": {
+       "wardens": 5
+      },
+      "item": {
+       "crystal": 2
+      }
+     },
+     "done": "The light is warm. Thank thee, kind traveller. Remember those thou lovest."
+    }
+   ],
+   "quotes": [
+    {
+     "text": "Remember me.",
+     "src": "Hamlet, 1.5"
+    },
+    {
+     "text": "There are more things in heaven and earth, Horatio, than are dreamt of in your philosophy.",
+     "src": "Hamlet, 1.5"
+    }
+   ],
+   "lines": {
+    "greet": [
+     "Do not be afraid, traveller. I am only a memory in the moonlight.",
+     "Thou hast returned. The night feels warmer.",
+     "My kind friend. The cold feels softer when thou art here."
+    ],
+    "small": [
+     "The stars look the same as when I was a king.",
+     "Remember those thou lovest; that is a kind of magic.",
+     "Spirits in this game are stories, gentle ones.",
+     "The Grey Lady walks these walls too. She is very polite."
+    ],
+    "trade": [
+     "A kind exchange.",
+     "Done. Keep it safe."
+    ],
+    "trade_no": "Thou hast it not, friend. No matter.",
+    "secret_hint": "An old spirit keeps one wish. Sit with me a while and I may tell it.",
+    "ally": [
+     "Then I am glad of a friend in the night.",
+     "Walk the battlements with me a few nights more."
+    ],
+    "insult": [
+     "Harsh words fade faster than ghosts.",
+     "I have heard colder winds."
+    ],
+    "compliment": [
+     "Thou art kind to an old shade.",
+     "Gentle words warm the cold air."
+    ],
+    "farewell": [
+     "Go gently, and remember.",
+     "Farewell, until the moon is full."
+    ],
+    "self": [
+     "The Ghost of Old Hamlet. In the old play I asked my son for something terrible; here I only ask that he be happy.",
+     "A memory with a crown of frost."
+    ],
+    "unknown": [
+     "Speak plainer, traveller; even spirits miss a word sometimes.",
+     "Hmm? The wind took thy words. Again?",
+     "The mists muddled that. Try other words?"
+    ],
+    "twist": [
+     "Look: the planets gather tonight. Even spirits stop to watch.",
+     "Take this crystal; it holds a little moonlight.",
+     "Hamlet visited today. He smiled. Thank thee."
+    ]
+   },
+   "short": "The Ghost",
+   "aliases": [
+    "ghost",
+    "old hamlet"
+   ],
+   "betray_kind": null
+  }
+ }
+}

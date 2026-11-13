@@ -1,0 +1,1215 @@
+{
+ "chunk": 16,
+ "label": "Simulated life: creatures, plants and characters follow simple seeded rules. They are not alive, aware or sentient.",
+ "realms": [
+  {
+   "id": "aurelia",
+   "name": "Aurelia · First Stratum",
+   "seed": 1009,
+   "hbias": 0,
+   "mbias": 0,
+   "tbias": 0,
+   "special": "crystal",
+   "blurb": "Green isles where the Lux first fell."
+  },
+  {
+   "id": "verdant",
+   "name": "Verdant Deep · Second Stratum",
+   "seed": 2027,
+   "hbias": 40,
+   "mbias": 160,
+   "tbias": 60,
+   "special": "crystal",
+   "blurb": "Forests so old the canopy has its own weather."
+  },
+  {
+   "id": "ember",
+   "name": "Ember Reach · Third Stratum",
+   "seed": 3041,
+   "hbias": 60,
+   "mbias": -220,
+   "tbias": 260,
+   "special": "crystal",
+   "blurb": "Red dunes and glassy crystal wastes."
+  },
+  {
+   "id": "frostveil",
+   "name": "Frostveil · Fourth Stratum",
+   "seed": 4057,
+   "hbias": 30,
+   "mbias": 40,
+   "tbias": -300,
+   "special": "crystal",
+   "blurb": "Snowfields under endless aurora."
+  },
+  {
+   "id": "luxfall",
+   "name": "Luxfall · Seventh Stratum",
+   "seed": 7001,
+   "hbias": 80,
+   "mbias": 60,
+   "tbias": 40,
+   "special": "lux",
+   "blurb": "Floating highlands where light grows like grass."
+  }
+ ],
+ "biomes": {
+  "O": {
+   "name": "Ocean",
+   "colour": [
+    40,
+    96,
+    150
+   ]
+  },
+  "B": {
+   "name": "Beach",
+   "colour": [
+    222,
+    204,
+    150
+   ]
+  },
+  "M": {
+   "name": "Meadow",
+   "colour": [
+    112,
+    170,
+    84
+   ]
+  },
+  "F": {
+   "name": "Forest",
+   "colour": [
+    52,
+    112,
+    60
+   ]
+  },
+  "D": {
+   "name": "Desert",
+   "colour": [
+    214,
+    170,
+    104
+   ]
+  },
+  "T": {
+   "name": "Tundra",
+   "colour": [
+    214,
+    226,
+    232
+   ]
+  },
+  "P": {
+   "name": "Peaks",
+   "colour": [
+    130,
+    130,
+    140
+   ]
+  },
+  "C": {
+   "name": "Crystal wastes",
+   "colour": [
+    120,
+    200,
+    220
+   ]
+  },
+  "L": {
+   "name": "Lux grove",
+   "colour": [
+    240,
+    214,
+    120
+   ]
+  }
+ },
+ "features": {
+  "F": [
+   [
+    "tree",
+    250
+   ],
+   [
+    "flower",
+    300
+   ],
+   [
+    "rock",
+    320
+   ],
+   [
+    "berry",
+    350
+   ]
+  ],
+  "M": [
+   [
+    "flower",
+    60
+   ],
+   [
+    "tree",
+    90
+   ],
+   [
+    "rock",
+    110
+   ],
+   [
+    "berry",
+    140
+   ]
+  ],
+  "D": [
+   [
+    "rock",
+    40
+   ],
+   [
+    "cactus",
+    75
+   ]
+  ],
+  "T": [
+   [
+    "rock",
+    50
+   ],
+   [
+    "pine",
+    120
+   ]
+  ],
+  "B": [
+   [
+    "shell",
+    30
+   ]
+  ],
+  "C": [
+   [
+    "crystal",
+    120
+   ],
+   [
+    "rock",
+    200
+   ]
+  ],
+  "P": [
+   [
+    "rock",
+    150
+   ],
+   [
+    "crystal",
+    165
+   ]
+  ],
+  "L": [
+   [
+    "luxbloom",
+    110
+   ],
+   [
+    "tree",
+    180
+   ],
+   [
+    "flower",
+    230
+   ]
+  ],
+  "O": []
+ },
+ "harvest": {
+  "tree": "wood",
+  "pine": "wood",
+  "rock": "stone",
+  "crystal": "crystal",
+  "berry": "berries",
+  "flower": "petal",
+  "luxbloom": "lux_mote",
+  "shell": "shell",
+  "cactus": "fibre"
+ },
+ "regrow": 60,
+ "place": {
+  "sapling": {
+   "berries": 1
+  },
+  "cairn": {
+   "stone": 3
+  },
+  "lantern": {
+   "crystal": 1,
+   "wood": 1
+  },
+  "shelter": {
+   "wood": 4,
+   "stone": 2
+  }
+ },
+ "grows": {
+  "sapling": [
+   "tree",
+   30
+  ]
+ },
+ "recipes": {
+  "rope": {
+   "needs": {
+    "fibre": 2
+   },
+   "kind": "material",
+   "text": "Twisted cactus fibre."
+  },
+  "torch": {
+   "needs": {
+    "wood": 1,
+    "petal": 1
+   },
+   "kind": "item",
+   "text": "Light for night walks."
+  },
+  "axe": {
+   "needs": {
+    "wood": 2,
+    "stone": 1
+   },
+   "kind": "tool",
+   "text": "Doubles wood from trees."
+  },
+  "pickaxe": {
+   "needs": {
+    "wood": 2,
+    "stone": 2
+   },
+   "kind": "tool",
+   "text": "Doubles stone and crystal."
+  },
+  "field_net": {
+   "needs": {
+    "rope": 1,
+    "wood": 1
+   },
+   "kind": "tool",
+   "text": "Gently tag creatures for your bestiary (they are released at once)."
+  },
+  "sling": {
+   "needs": {
+    "rope": 1,
+    "stone": 2
+   },
+   "kind": "weapon",
+   "text": "Fires pebbles to scare off predators. Nothing is hurt."
+  },
+  "lux_staff": {
+   "needs": {
+    "lux_mote": 3,
+    "wood": 1
+   },
+   "kind": "weapon",
+   "text": "A make-believe glowing staff. Light it to make creatures keep their distance."
+  },
+  "herbal_tea": {
+   "needs": {
+    "petal": 2,
+    "berries": 1
+   },
+   "kind": "item",
+   "text": "A warm drink; restores energy."
+  }
+ },
+ "species": {
+  "mossback": {
+   "name": "Mossback",
+   "diet": "plants",
+   "base": [
+    2,
+    3,
+    4
+   ],
+   "cap": 40,
+   "icon": "🦔",
+   "blurb": "Slow, round grazers covered in living moss."
+  },
+  "duskwolf": {
+   "name": "Duskwolf",
+   "diet": "mossback",
+   "base": [
+    3,
+    3,
+    6
+   ],
+   "cap": 12,
+   "icon": "🐺",
+   "blurb": "Shy night hunters that chase Mossbacks."
+  },
+  "glowmoth": {
+   "name": "Glowmoth",
+   "diet": "nectar",
+   "base": [
+    4,
+    1,
+    5
+   ],
+   "cap": 20,
+   "icon": "🦋",
+   "blurb": "Pollinators; flowers spread faster where they fly."
+  }
+ },
+ "habitat": 40,
+ "factions": {
+  "wardens": {
+   "name": "Wardens of the Wild",
+   "colour": "#7dff9a",
+   "creed": "Protect living things and their balance."
+  },
+  "artificers": {
+   "name": "Artificers' Guild",
+   "colour": "#ffb35e",
+   "creed": "Build, invent and improve."
+  },
+  "lorekeepers": {
+   "name": "Lorekeepers",
+   "colour": "#b39cff",
+   "creed": "Record, test and understand."
+  },
+  "drifters": {
+   "name": "Free Drifters",
+   "colour": "#5ee7ff",
+   "creed": "Roam freely and share fairly."
+  }
+ },
+ "npcs": {
+  "ilsa": {
+   "name": "Warden Ilsa",
+   "faction": "wardens",
+   "x": 6,
+   "y": -4,
+   "likes": [
+    "petal",
+    "berries"
+   ],
+   "persona": "a calm, kind ranger who protects the Wildwood's creatures",
+   "greet": [
+    "Mind your step, traveller. The moss is growing.",
+    "Back again? The Mossbacks remember you.",
+    "Friend of the Wild! Good to see you."
+   ],
+   "nodes": {
+    "start": {
+     "text": "Duskwolves have been chasing the Mossbacks near the river. Some villagers want them driven off.",
+     "choices": [
+      {
+       "label": "Leave the wolves be. Predators keep the balance.",
+       "next": "balance",
+       "rep": {
+        "wardens": 15,
+        "drifters": 5
+       },
+       "flag": "wolves_protected",
+       "policy": {
+        "predator_cap": 12
+       }
+      },
+      {
+       "label": "Scare the wolves away from the river.",
+       "next": "scare",
+       "rep": {
+        "wardens": -5,
+        "artificers": 5
+       },
+       "flag": "wolves_scared",
+       "policy": {
+        "predator_cap": 6
+       }
+      },
+      {
+       "label": "Let's count them first, like a fair test.",
+       "next": "count",
+       "rep": {
+        "wardens": 8,
+        "lorekeepers": 10
+       },
+       "flag": "wolves_counted"
+      }
+     ]
+    },
+    "balance": {
+     "text": "Wise. Without wolves, the Mossbacks would eat every flower. Watch the numbers rise and fall over the days.",
+     "choices": [
+      {
+       "label": "I'll keep watching.",
+       "next": "end"
+      }
+     ]
+    },
+    "scare": {
+     "text": "Fewer wolves, then. But watch the meadow. More grazers means fewer flowers.",
+     "choices": [
+      {
+       "label": "We'll see what happens.",
+       "next": "end"
+      }
+     ]
+    },
+    "count": {
+     "text": "Bring me a tally from the Wildwood. Numbers before opinions.",
+     "choices": [
+      {
+       "label": "On it.",
+       "next": "end",
+       "quest": "census"
+      }
+     ]
+    }
+   }
+  },
+  "bram": {
+   "name": "Tinker Bram",
+   "faction": "artificers",
+   "x": -7,
+   "y": 5,
+   "likes": [
+    "crystal",
+    "stone"
+   ],
+   "persona": "an enthusiastic inventor who loves gadgets and safe experiments",
+   "greet": [
+    "Mind the sparks! What do you need?",
+    "Ah, my favourite tester!",
+    "Partner! I've saved you the best workbench."
+   ],
+   "nodes": {
+    "start": {
+     "text": "I want to build a lantern road through the Wildwood. More light, more travellers! What do you think?",
+     "choices": [
+      {
+       "label": "Build it. Light helps everyone.",
+       "next": "build",
+       "rep": {
+        "artificers": 15,
+        "wardens": -8
+       },
+       "flag": "lantern_road"
+      },
+      {
+       "label": "Only with dim lanterns, so the moths aren't confused.",
+       "next": "compromise",
+       "rep": {
+        "artificers": 8,
+        "wardens": 8
+       },
+       "flag": "dim_lanterns"
+      },
+      {
+       "label": "Test one lantern first and measure what it changes.",
+       "next": "test",
+       "rep": {
+        "artificers": 5,
+        "lorekeepers": 10
+       },
+       "flag": "lantern_test"
+      }
+     ]
+    },
+    "build": {
+     "text": "Splendid! Bring crystal and wood and we'll light the way.",
+     "choices": [
+      {
+       "label": "Deal.",
+       "next": "end"
+      }
+     ]
+    },
+    "compromise": {
+     "text": "Dim lanterns, eh? Fewer lumens, happier moths. Clever.",
+     "choices": [
+      {
+       "label": "Teamwork.",
+       "next": "end"
+      }
+     ]
+    },
+    "test": {
+     "text": "A control and a variable! You'd make a fine Artificer AND a Lorekeeper.",
+     "choices": [
+      {
+       "label": "Science!",
+       "next": "end"
+      }
+     ]
+    }
+   }
+  },
+  "oru": {
+   "name": "Sage Oru",
+   "faction": "lorekeepers",
+   "x": 0,
+   "y": 9,
+   "likes": [
+    "shell",
+    "lux_mote"
+   ],
+   "persona": "a thoughtful scholar who loves evidence and labels speculation honestly",
+   "greet": [
+    "Hmm? Ah, a visitor. Ask, and we shall test.",
+    "Welcome back, young scholar.",
+    "My finest student! Sit, sit."
+   ],
+   "nodes": {
+    "start": {
+     "text": "The four factions argue about the Lux Accord, the rule for sharing Aurelia. When you have spoken to Ilsa, Bram and Rook, return and we'll call the council.",
+     "choices": [
+      {
+       "label": "Call the council now.",
+       "next": "council",
+       "require": [
+        "met_ilsa",
+        "met_bram",
+        "met_rook"
+       ],
+       "flag": "council"
+      },
+      {
+       "label": "Tell me about the strata.",
+       "next": "strata",
+       "rep": {
+        "lorekeepers": 5
+       }
+      },
+      {
+       "label": "I'll return later.",
+       "next": "end"
+      }
+     ]
+    },
+    "strata": {
+     "text": "Oliver's SSR theory describes reality as layers built step by step from simple rules. It's his framework, not established science, so we test it rather than just believe it.",
+     "choices": [
+      {
+       "label": "Testing is the best way to learn.",
+       "next": "end",
+       "rep": {
+        "lorekeepers": 5
+       }
+      }
+     ]
+    },
+    "council": {
+     "text": "The council meets. Your choices are weighed…",
+     "choices": [
+      {
+       "label": "Hear the verdict.",
+       "next": "end"
+      }
+     ]
+    }
+   }
+  },
+  "rook": {
+   "name": "Rook the Drifter",
+   "faction": "drifters",
+   "x": 12,
+   "y": 11,
+   "likes": [
+    "berries",
+    "fibre"
+   ],
+   "persona": "a cheerful wanderer who trades stories and values fairness",
+   "greet": [
+    "Oi! Fancy a trade or a tale?",
+    "The road brought you back, eh?",
+    "Fellow drifter! Share the fire."
+   ],
+   "nodes": {
+    "start": {
+     "text": "Travellers are finding new strata past the edges of the map. Should maps be shared with everyone, or kept by the guilds?",
+     "choices": [
+      {
+       "label": "Share maps with everyone, for free.",
+       "next": "share",
+       "rep": {
+        "drifters": 15,
+        "artificers": -5
+       },
+       "flag": "maps_shared"
+      },
+      {
+       "label": "Guilds keep them safe, but sell copies cheaply.",
+       "next": "guild",
+       "rep": {
+        "artificers": 10,
+        "drifters": -5
+       },
+       "flag": "maps_sold"
+      },
+      {
+       "label": "Record them in the Lorekeepers' library.",
+       "next": "library",
+       "rep": {
+        "lorekeepers": 10,
+        "drifters": 5
+       },
+       "flag": "maps_library"
+      }
+     ]
+    },
+    "share": {
+     "text": "Ha! The open road for all. Here, take this tip: the far east is all crystal wastes.",
+     "choices": [
+      {
+       "label": "Thanks, Rook.",
+       "next": "end"
+      }
+     ]
+    },
+    "guild": {
+     "text": "Hmph. Fair enough, as long as they stay cheap.",
+     "choices": [
+      {
+       "label": "Cheap and safe.",
+       "next": "end"
+      }
+     ]
+    },
+    "library": {
+     "text": "A library! Everyone can read, nobody can hoard. I like it.",
+     "choices": [
+      {
+       "label": "Knowledge for all.",
+       "next": "end"
+      }
+     ]
+    }
+   }
+  }
+ },
+ "endings": {
+  "accord": {
+   "name": "The Accord of Light",
+   "text": "Every faction trusts you. The Lux Accord is signed by all four, and Aurelia is shared fairly."
+  },
+  "wardens": {
+   "name": "The Warden's Watch",
+   "text": "The Wild comes first. The Wardens guard the balance and the forests thrive."
+  },
+  "artificers": {
+   "name": "The Artificer Dawn",
+   "text": "Lantern roads and workshops spread. Aurelia gets brighter and busier."
+  },
+  "lorekeepers": {
+   "name": "The Age of Evidence",
+   "text": "Every claim is tested and recorded. The great library opens its doors."
+  },
+  "drifters": {
+   "name": "The Open Road",
+   "text": "Maps are free and roads are open. Travellers flood into new strata."
+  }
+ },
+ "appearance": {
+  "skin": [
+   "#f3d3b0",
+   "#e0b48c",
+   "#c68e5e",
+   "#a0683e",
+   "#7a4a2a",
+   "#4e2f1c"
+  ],
+  "hair": [
+   "#2b1d12",
+   "#5a3a1e",
+   "#a0642c",
+   "#e0c070",
+   "#d8d8d8",
+   "#c0392b",
+   "#2e86de",
+   "#8e44ad"
+  ],
+  "outfit": [
+   "#2e8b7a",
+   "#3a5ba0",
+   "#a0443a",
+   "#6a8a2e",
+   "#8a5aa0",
+   "#c08a2e",
+   "#444a55",
+   "#e0e0e0"
+  ],
+  "hat": [
+   "none",
+   "hood",
+   "leaf_crown",
+   "explorer",
+   "wizard (make-believe)"
+  ],
+  "cape": [
+   "none",
+   "short",
+   "long",
+   "lux"
+  ]
+ },
+ "discovery": {
+  "label_mystical": "Symbolic, in-game only (MYSTICAL/IN-GAME): magic, spirits and astrology are make-believe parts of the game's story, never established science.",
+  "principles": {
+   "energy_transfer": {
+    "cat": "scientific",
+    "domain": "heat",
+    "tier": 2,
+    "gcse": "energy is never made or destroyed, only transferred (e.g. chemical store to thermal store)",
+    "requires": []
+   },
+   "friction": {
+    "cat": "scientific",
+    "domain": "motion",
+    "tier": 1,
+    "gcse": "friction is a force that opposes motion and turns kinetic energy into heat",
+    "requires": []
+   },
+   "photosynthesis": {
+    "cat": "scientific",
+    "domain": "growth",
+    "tier": 2,
+    "gcse": "plants use light energy to turn carbon dioxide and water into glucose and oxygen",
+    "requires": [
+     "obs:mossback"
+    ]
+   },
+   "refraction": {
+    "cat": "scientific",
+    "domain": "light",
+    "tier": 2,
+    "gcse": "light changes speed and bends when it passes from one material into another",
+    "requires": [
+     "item:crystal"
+    ]
+   },
+   "natural_selection": {
+    "cat": "scientific",
+    "domain": "life",
+    "tier": 3,
+    "gcse": "individuals with helpful inherited traits survive and reproduce more, so traits spread over generations",
+    "requires": [
+     "obs:duskwolf",
+     "obs:mossback"
+    ]
+   },
+   "pollination": {
+    "cat": "scientific",
+    "domain": "growth",
+    "tier": 2,
+    "gcse": "pollinators carry pollen between flowers so plants can make seeds",
+    "requires": [
+     "obs:glowmoth"
+    ]
+   },
+   "insulation": {
+    "cat": "scientific",
+    "domain": "calm",
+    "tier": 1,
+    "gcse": "insulators slow the rate of thermal energy transfer",
+    "requires": [
+     "inv:heat"
+    ]
+   },
+   "lever": {
+    "cat": "technological",
+    "domain": "motion",
+    "tier": 1,
+    "gcse": "moment = force × distance from the pivot, so a long lever multiplies force",
+    "requires": []
+   },
+   "lens": {
+    "cat": "technological",
+    "domain": "sense",
+    "tier": 2,
+    "gcse": "a convex lens focuses light to make things look bigger or brighter",
+    "requires": [
+     "inv:light"
+    ]
+   },
+   "pulley": {
+    "cat": "technological",
+    "domain": "motion",
+    "tier": 2,
+    "gcse": "pulleys share a load between rope sections, so less force is needed over a longer distance",
+    "requires": [
+     "item:rope"
+    ]
+   },
+   "circuit": {
+    "cat": "technological",
+    "domain": "light",
+    "tier": 3,
+    "gcse": "current flows round a complete circuit; V = I × R",
+    "requires": [
+     "inv_count:2"
+    ]
+   },
+   "kiln": {
+    "cat": "technological",
+    "domain": "heat",
+    "tier": 2,
+    "gcse": "heating clay or sand to high temperature changes its structure permanently",
+    "requires": [
+     "inv:motion"
+    ]
+   },
+   "harmony": {
+    "cat": "mystical",
+    "domain": "calm",
+    "tier": 1,
+    "gcse": "a symbolic idea in the story: everything in Aurelia fits together in layers",
+    "requires": []
+   },
+   "lux_sigil": {
+    "cat": "mystical",
+    "domain": "light",
+    "tier": 2,
+    "gcse": "a make-believe glyph from the legend of the Lux",
+    "requires": [
+     "item:lux_mote"
+    ]
+   },
+   "ancestral_echo": {
+    "cat": "mystical",
+    "domain": "life",
+    "tier": 2,
+    "gcse": "a story symbol for remembering the creatures that came before",
+    "requires": [
+     "obs:mossback"
+    ]
+   },
+   "strata_resonance": {
+    "cat": "mystical",
+    "domain": "sense",
+    "tier": 3,
+    "gcse": "a symbolic idea from Oliver's SSR theory: each layer echoes the one beneath (his framework, not established science)",
+    "requires": [
+     "inv_count:2",
+     "rep:lorekeepers:10"
+    ]
+   }
+  },
+  "materials": {
+   "wood": [
+    "motion",
+    1
+   ],
+   "stone": [
+    "motion",
+    1
+   ],
+   "crystal": [
+    "light",
+    2
+   ],
+   "fibre": [
+    "motion",
+    1
+   ],
+   "rope": [
+    "motion",
+    2
+   ],
+   "petal": [
+    "growth",
+    1
+   ],
+   "berries": [
+    "life",
+    1
+   ],
+   "shell": [
+    "sense",
+    2
+   ],
+   "lux_mote": [
+    "light",
+    3
+   ]
+  },
+  "forms": {
+   "tool": [
+    "motion",
+    "light",
+    "sense",
+    "heat"
+   ],
+   "ability": [
+    "sense",
+    "motion",
+    "life",
+    "calm"
+   ],
+   "structure": [
+    "growth",
+    "light",
+    "calm",
+    "heat"
+   ],
+   "effect": [
+    "heat",
+    "life",
+    "growth",
+    "calm"
+   ],
+   "ritual": [
+    "calm",
+    "light",
+    "life",
+    "sense"
+   ]
+  },
+  "names": {
+   "domain": {
+    "heat": [
+     "Ember",
+     "Kindle",
+     "Hearth"
+    ],
+    "motion": [
+     "Swift",
+     "Lever",
+     "Stride"
+    ],
+    "growth": [
+     "Green",
+     "Bloom",
+     "Sprout"
+    ],
+    "light": [
+     "Bright",
+     "Lumen",
+     "Glim"
+    ],
+    "life": [
+     "Kin",
+     "Living",
+     "Heart"
+    ],
+    "calm": [
+     "Hush",
+     "Still",
+     "Soft"
+    ],
+    "sense": [
+     "Far",
+     "Keen",
+     "Echo"
+    ]
+   },
+   "form": {
+    "tool": [
+     "Tool",
+     "Gauge",
+     "Wrench"
+    ],
+    "ability": [
+     "Knack",
+     "Gift",
+     "Skill"
+    ],
+    "structure": [
+     "Beacon",
+     "Garden",
+     "Tower"
+    ],
+    "effect": [
+     "Tonic",
+     "Draught",
+     "Spark"
+    ],
+    "ritual": [
+     "Rite",
+     "Chant",
+     "Circle"
+    ]
+   }
+  },
+  "affinity": {
+   "wardens": [
+    "growth",
+    "life",
+    "calm"
+   ],
+   "artificers": [
+    "motion",
+    "heat",
+    "light"
+   ],
+   "lorekeepers": [
+    "sense",
+    "life",
+    "light"
+   ],
+   "drifters": [
+    "motion",
+    "sense",
+    "calm"
+   ]
+  },
+  "effects": {
+   "tool": "harvest yield +{m} for {item}",
+   "ability": {
+    "sense": "reach +{m} (harvest, build and observe from further away)",
+    "motion": "stride +{m}×2 squares per move",
+    "life": "observations reveal hidden traits",
+    "calm": "creatures stay calm near you (+{m} calm)"
+   },
+   "structure": {
+    "growth": "plants in this stratum grow faster (+{m}×5%)",
+    "light": "predators hunt less near the light (calm +{m})",
+    "calm": "creatures calmer (calm +{m})",
+    "heat": "plants keep growing in cold (+{m}×3%)"
+   },
+   "effect": "a consumable: {m} uses of double harvest",
+   "ritual": "symbolic blessing: Glowmoths spread flowers more (+{m}) and like-minded factions trust you more"
+  },
+  "max_inventions": 144
+ },
+ "canon": {
+  "source": "OmniLux Prime Doctrine, Masterpiece Edition (Nov 2026) with the SSR and CRA theses by Oliver Lux Prime Thorley",
+  "constants": {
+   "tritium_half_life_days": 4500,
+   "tritium_half_life_years": 12.32,
+   "year_ratio_num": 28125,
+   "year_ratio_den": 77,
+   "involution_shift": 72,
+   "carrier_small": 144,
+   "carrier_large": 144000,
+   "max_doublings_large": 17,
+   "precession_rounded": 26000,
+   "precession_measured": 25771.5,
+   "platonic_year": 25920,
+   "strata": 9,
+   "cra_atoms": 33,
+   "trials": 144,
+   "trial_threshold": 72
+  },
+  "labels": [
+   "FACT",
+   "SSR/CRA THEORY",
+   "MYSTICAL/IN-GAME",
+   "IN-GAME"
+  ],
+  "laws": {
+   "conservation": {
+    "name": "Conservation law",
+    "fact": "Energy is conserved: it is transferred between stores, never created from nothing.",
+    "game": "An invention's power (principle tiers × 2 + material values) may not exceed your invention budget."
+   },
+   "stratum": {
+    "name": "Stratum ascent",
+    "theory": "SSR (Thorley) describes reality as nine strata, M0 to M8 (with M∞ as a formal limit), each built from the one beneath; the CRA models this as a least fixed point reached step by step (31 of 33 atoms on the reference trace).",
+    "game": "Each invention sits on a stratum (power ÷ 6, rounded down, M0 to M8). You may build at most one stratum above the highest you have reached."
+   },
+   "harmonic": {
+    "name": "Harmonic involution",
+    "fact": "On the integers modulo 144, adding 72 twice returns every number to itself (an involution), and 144 = 2 × 72.",
+    "theory": "SSR reads the +72 involution on ℤ144 as a symmetry of the Lux lattice.",
+    "game": "If 72 × power is a whole number of 144-cycles (true when power is even), the invention is harmonic and gains +10 stability."
+   },
+   "fair_test": {
+    "name": "Fair-test law",
+    "fact": "Repeating a trial many times shows whether a result is reliable: with success chance p in n trials, the expected count is np and the spread is √(np(1−p)) (binomial distribution).",
+    "game": "Every invention is tested in 144 seeded trials (a 1/1000 scale of the doctrine's 144,000-trial protocol); it works only if more than 72 succeed."
+   },
+   "carrier": {
+    "name": "Finite carrier bound",
+    "fact": "On a finite set, growth from one item by doubling can happen at most ⌊log₂|U|⌋ times: 17 times for 144,000 items. With a chosen doubling time of 12.32 years that is 209.44 years. Unbounded exponential growth is impossible on a finite set.",
+    "game": "Each explorer can hold at most 144 inventions, and the budget grows by steps, never without limit."
+   },
+   "half_life": {
+    "name": "Half-life law",
+    "fact": "Tritium's half-life is 4500 ± 8 days (NIST), which is 12.32 years. After time t, the amount left is N = N₀ × 2^(−t/T½).",
+    "game": "Each invention has an in-game half-life of 12.32 × (stratum + 1) days, which sets how long its glow (shown on its card) lasts."
+   },
+   "year_clock": {
+    "name": "The year as a shared clock",
+    "fact": "4500 ÷ 12.32 = 28,125/77 = 365.2597… days, which is just the days-per-year used in the conversion, slightly changed by rounding.",
+    "theory": "SSR (Thorley) reads the year as a stratum where cosmic time and human time share a clock. This is an interpretation, not a discovery."
+   }
+  },
+  "formulas": {
+   "conservation": {
+    "plain": "E_in = E_useful + E_wasted",
+    "mathml": "<math display=\"block\"><mrow><msub><mi>E</mi><mtext>in</mtext></msub><mo>=</mo><msub><mi>E</mi><mtext>useful</mtext></msub><mo>+</mo><msub><mi>E</mi><mtext>wasted</mtext></msub></mrow></math>"
+   },
+   "efficiency": {
+    "plain": "efficiency = useful output ÷ total input × 100%",
+    "mathml": "<math display=\"block\"><mrow><mtext>efficiency</mtext><mo>=</mo><mfrac><mtext>useful output</mtext><mtext>total input</mtext></mfrac><mo>×</mo><mn>100</mn><mo>%</mo></mrow></math>"
+   },
+   "half_life": {
+    "plain": "N = N₀ × 2^(−t / T½)",
+    "mathml": "<math display=\"block\"><mrow><mi>N</mi><mo>=</mo><msub><mi>N</mi><mn>0</mn></msub><mo>×</mo><msup><mn>2</mn><mrow><mo>−</mo><mi>t</mi><mo>/</mo><msub><mi>T</mi><mrow><mn>1</mn><mo>/</mo><mn>2</mn></mrow></msub></mrow></msup></mrow></math>"
+   },
+   "binomial": {
+    "plain": "mean = n p,  spread σ = √(n p (1 − p))",
+    "mathml": "<math display=\"block\"><mrow><mi>μ</mi><mo>=</mo><mi>n</mi><mi>p</mi><mo>,</mo><mspace width='1em'/><mi>σ</mi><mo>=</mo><msqrt><mi>n</mi><mi>p</mi><mo>(</mo><mn>1</mn><mo>−</mo><mi>p</mi><mo>)</mo></msqrt></mrow></math>"
+   },
+   "involution": {
+    "plain": "R(k) = (k + 72) mod 144,  R(R(k)) = k",
+    "mathml": "<math display=\"block\"><mrow><mi>R</mi><mo>(</mo><mi>k</mi><mo>)</mo><mo>=</mo><mo>(</mo><mi>k</mi><mo>+</mo><mn>72</mn><mo>)</mo><mspace width='0.3em'/><mtext>mod</mtext><mspace width='0.3em'/><mn>144</mn><mo>,</mo><mspace width='1em'/><mi>R</mi><mo>(</mo><mi>R</mi><mo>(</mo><mi>k</mi><mo>)</mo><mo>)</mo><mo>=</mo><mi>k</mi></mrow></math>"
+   },
+   "year_ratio": {
+    "plain": "4500 ÷ 12.32 = 28125/77 ≈ 365.2597 days",
+    "mathml": "<math display=\"block\"><mrow><mfrac><mn>4500</mn><mn>12.32</mn></mfrac><mo>=</mo><mfrac><mn>28125</mn><mn>77</mn></mfrac><mo>≈</mo><mn>365.2597</mn></mrow></math>"
+   },
+   "carrier": {
+    "plain": "max doublings = ⌊log₂ 144000⌋ = 17",
+    "mathml": "<math display=\"block\"><mrow><mo>⌊</mo><msub><mi>log</mi><mn>2</mn></msub><mn>144000</mn><mo>⌋</mo><mo>=</mo><mn>17</mn></mrow></math>"
+   },
+   "moment": {
+    "plain": "moment = force × distance from pivot",
+    "mathml": "<math display=\"block\"><mrow><mi>M</mi><mo>=</mo><mi>F</mi><mo>×</mo><mi>d</mi></mrow></math>"
+   },
+   "photosynthesis": {
+    "plain": "6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂ (light energy)",
+    "mathml": "<math display=\"block\"><mrow><mn>6</mn><msub><mi>CO</mi><mn>2</mn></msub><mo>+</mo><mn>6</mn><msub><mi>H</mi><mn>2</mn></msub><mi>O</mi><mo>→</mo><msub><mi>C</mi><mn>6</mn></msub><msub><mi>H</mi><mn>12</mn></msub><msub><mi>O</mi><mn>6</mn></msub><mo>+</mo><mn>6</mn><msub><mi>O</mi><mn>2</mn></msub></mrow></math>"
+   },
+   "refraction": {
+    "plain": "n = c ÷ v (refractive index)",
+    "mathml": "<math display=\"block\"><mrow><mi>n</mi><mo>=</mo><mfrac><mi>c</mi><mi>v</mi></mfrac></mrow></math>"
+   },
+   "ohm": {
+    "plain": "V = I × R",
+    "mathml": "<math display=\"block\"><mrow><mi>V</mi><mo>=</mo><mi>I</mi><mo>×</mo><mi>R</mi></mrow></math>"
+   },
+   "friction_heat": {
+    "plain": "work done = force × distance (becomes heat through friction)",
+    "mathml": "<math display=\"block\"><mrow><mi>W</mi><mo>=</mo><mi>F</mi><mo>×</mo><mi>s</mi></mrow></math>"
+   },
+   "growth": {
+    "plain": "N = N₀ × 2^generations",
+    "mathml": "<math display=\"block\"><mrow><mi>N</mi><mo>=</mo><msub><mi>N</mi><mn>0</mn></msub><mo>×</mo><msup><mn>2</mn><mi>g</mi></msup></mrow></math>"
+   }
+  },
+  "principle_formula": {
+   "energy_transfer": "conservation",
+   "friction": "friction_heat",
+   "photosynthesis": "photosynthesis",
+   "refraction": "refraction",
+   "natural_selection": "growth",
+   "pollination": "growth",
+   "insulation": "efficiency",
+   "lever": "moment",
+   "lens": "refraction",
+   "pulley": "moment",
+   "circuit": "ohm",
+   "kiln": "conservation",
+   "harmony": "involution",
+   "lux_sigil": "year_ratio",
+   "ancestral_echo": "carrier",
+   "strata_resonance": "involution"
+  },
+  "no_proof": "This card describes a game invention. Nothing here is a real-world experiment or proof. SSR/CRA THEORY statements are Oliver Lux Prime Thorley's framework, not established science."
+ }
+}

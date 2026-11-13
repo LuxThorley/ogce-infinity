@@ -3,8 +3,8 @@ requires=["setuptools>=68","wheel"]
 build-backend="setuptools.build_meta"
 [project]
 name="ogce-infinity"
-version="8.3.0"
-description="OGCE Infinity v8.3 — online-first arcana, science and invention game platform"
+version="9.0.0"
+description="Strata: Lux Genesis (OGCE engine v9.0): online-first adventure, science and SSR/CRA learning game"
 requires-python=">=3.10"
 dependencies=[]
 [project.optional-dependencies]
@@ -29,7 +29,10 @@ ogce73="ogce4.v70.cli:main"
 ogce74="ogce4.v70.cli:main"
 ogce80="ogce4.v80.cli:main"
 ogce83="ogce4.v80.cli:main"
+strata="ogce4.v80.cli:main"
 [tool.setuptools.packages.find]
 include=["ogce4*"]
 [tool.pytest.ini_options]
 testpaths=["tests"]
+[tool.setuptools.package-data]
+"ogce4.v90"=["data.json", "omni.json", "bard.json", "combat.json", "genesis.json"]

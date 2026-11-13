@@ -1,0 +1,376 @@
+{
+ "label": "IN-GAME story. Oliver's SSR/CRA ideas are his theory, not established science; FACT lines are checked science.",
+ "premise": "You arrive as a newcomer in a fractured, scrambled reality. The strata (SSR layers) have slipped out of order. Climb them, uncover the hidden laws, invent with them and repair the timeline through the CRA.",
+ "objective": "Reach the Source Stratum and complete the Realignment: gather the seven core laws across the worlds, win over or outwit the Shakespearean NPCs (each has their own agenda), then choose which reality to restore.",
+ "after": "After the story the Omniverse is endless: New Genesis starts a fresh seed with deeper strata and harder challenges, and your Codex carries over.",
+ "lux": {
+  "discovery": 5,
+  "invention": 12,
+  "principle": 4,
+  "explored": 1,
+  "explored_cap": 40,
+  "ally": 10,
+  "secret": 6,
+  "quest": 6,
+  "quiz": 3,
+  "law": 30,
+  "choice": 2,
+  "choice_cap": 30,
+  "invented_move": 8,
+  "special": 2,
+  "craft": 1,
+  "craft_cap": 20,
+  "win": 1,
+  "win_cap": 25,
+  "legacy": 1,
+  "legacy_cap": 30
+ },
+ "lux_note": "Lux comes mostly from understanding: discoveries, puzzles, inventions and wise choices. Fights give a little (capped).",
+ "strata": [
+  {
+   "id": "fracture",
+   "name": "M0 · The Fracture",
+   "lux": 0,
+   "laws": 0
+  },
+  {
+   "id": "root",
+   "name": "M1 · Root Stratum",
+   "lux": 40,
+   "laws": 1
+  },
+  {
+   "id": "verdant",
+   "name": "M2 · Verdant Stratum",
+   "lux": 100,
+   "laws": 2
+  },
+  {
+   "id": "ember",
+   "name": "M3 · Ember Stratum",
+   "lux": 180,
+   "laws": 3
+  },
+  {
+   "id": "frost",
+   "name": "M4 · Frost Stratum",
+   "lux": 270,
+   "laws": 4
+  },
+  {
+   "id": "lumen",
+   "name": "M5 · Lumen Stratum",
+   "lux": 370,
+   "laws": 5
+  },
+  {
+   "id": "harmonic",
+   "name": "M6 · Harmonic Stratum",
+   "lux": 480,
+   "laws": 6
+  },
+  {
+   "id": "source",
+   "name": "M7 · The Source Stratum",
+   "lux": 600,
+   "laws": 7
+  }
+ ],
+ "deep": {
+  "per_cycle": 2,
+  "lux_step": 150,
+  "scale": 50,
+  "name": "Deep Stratum"
+ },
+ "laws": [
+  {
+   "id": "c4500",
+   "value": "4500",
+   "name": "The Law of Decay",
+   "realm": "aurelia",
+   "need": {
+    "discoveries": 1
+   },
+   "q": "Tritium's half-life is about 4,500 days. Roughly how many years is that?",
+   "options": [
+    "1.2 years",
+    "12.32 years",
+    "45 years",
+    "450 years"
+   ],
+   "answer": 1,
+   "fact": "Tritium (hydrogen-3) has a half-life of about 12.32 years, which is roughly 4,500 days.",
+   "theory": "In Oliver's SSR theory, 4500 marks the first rhythm of decay in the lattice."
+  },
+  {
+   "id": "c1232",
+   "value": "12.32",
+   "name": "The Law of Halves",
+   "realm": "verdant",
+   "need": {
+    "principles": 3
+   },
+   "q": "After two half-lives, what fraction of a radioactive sample is left?",
+   "options": [
+    "one half",
+    "one third",
+    "one quarter",
+    "none"
+   ],
+   "answer": 2,
+   "fact": "Each half-life halves what is left: after two half-lives, ½ × ½ = ¼ remains.",
+   "theory": "Oliver links 12.32 to how layers of the strata fade and renew."
+  },
+  {
+   "id": "c72",
+   "value": "72",
+   "name": "The Law of Drift",
+   "realm": "ember",
+   "need": {
+    "inventions": 1
+   },
+   "q": "Earth's axis slowly wobbles (precession). About how many years does it take to shift by one degree?",
+   "options": [
+    "7",
+    "72",
+    "720",
+    "7,200"
+   ],
+   "answer": 1,
+   "fact": "Axial precession moves about 1 degree every 71.6 years (about 72).",
+   "theory": "In Oliver's framework, 72 is the harmonic step between strata."
+  },
+  {
+   "id": "c144",
+   "value": "144",
+   "name": "The Law of Layers",
+   "realm": "frostveil",
+   "need": {
+    "allies": 1
+   },
+   "q": "144 is a square number. Which number squared makes 144?",
+   "options": [
+    "11",
+    "12",
+    "14",
+    "72"
+   ],
+   "answer": 1,
+   "fact": "12 × 12 = 144, so 144 is 12 squared (and also called a gross).",
+   "theory": "Oliver's SSR lattice has 144 layers."
+  },
+  {
+   "id": "c144000",
+   "value": "144000",
+   "name": "The Law of Trials",
+   "realm": "luxfall",
+   "need": {
+    "quiz": 2
+   },
+   "q": "Why do scientists repeat an experiment many times?",
+   "options": [
+    "to make it take longer",
+    "to make results reliable and spot mistakes",
+    "to change the answer",
+    "they do not"
+   ],
+   "answer": 1,
+   "fact": "Repeating trials makes results more reliable and shows up random errors and anomalies.",
+   "theory": "Oliver's doctrine imagines a 144,000-trial protocol; the game runs 144 seeded trials (1/1000)."
+  },
+  {
+   "id": "c26000",
+   "value": "26000",
+   "name": "The Law of the Great Year",
+   "realm": "frostveil",
+   "need": {
+    "explored": 12
+   },
+   "q": "One full precession cycle of Earth's axis takes about how long?",
+   "options": [
+    "26 years",
+    "2,600 years",
+    "26,000 years",
+    "2.6 million years"
+   ],
+   "answer": 2,
+   "fact": "A full precession cycle takes about 25,800 years (often rounded to 26,000).",
+   "theory": "Oliver calls this the Great Year, the longest rhythm of the CRA."
+  },
+  {
+   "id": "c36526",
+   "value": "365.26",
+   "name": "The Law of Return",
+   "realm": "aurelia",
+   "need": {
+    "secrets": 1
+   },
+   "q": "Why do we add a leap day roughly every four years?",
+   "options": [
+    "Earth's orbit takes about 365¼ days",
+    "the Moon speeds up",
+    "clocks run slow",
+    "for fun"
+   ],
+   "answer": 0,
+   "fact": "Earth takes about 365.26 days to orbit the Sun relative to the stars, so calendars add a leap day to keep up.",
+   "theory": "In Oliver's theory 365.26 closes the loop of the Realignment."
+  }
+ ],
+ "endings": {
+  "harmony": {
+   "name": "Harmony",
+   "need": {
+    "allies": 3
+   },
+   "hidden": false,
+   "text": "You weave the strata back together with friends at your side. Every world keeps its own voice, in tune with the rest."
+  },
+  "power": {
+   "name": "Power",
+   "need": {
+    "combat_level": 6
+   },
+   "hidden": false,
+   "text": "You take the Source for yourself and hold the strata in place by will alone. Order returns, but it answers to you."
+  },
+  "sacrifice": {
+   "name": "Sacrifice",
+   "need": {},
+   "hidden": false,
+   "text": "You pour your own Lux into the Source. Reality heals; you begin again with nothing but what you understood."
+  },
+  "stranger": {
+   "name": "The Stranger",
+   "need": {
+    "clues": 3
+   },
+   "hidden": true,
+   "text": "You realise the newcomer was never new. You have walked these strata before, and you choose to leave a door open for the next traveller."
+  }
+ },
+ "clue_hint": "Some say the poet knows who the newcomer really is…",
+ "rewards": [
+  {
+   "id": "title_newcomer",
+   "kind": "title",
+   "name": "Newcomer",
+   "need": {
+    "lux": 0
+   }
+  },
+  {
+   "id": "mat_lux_1",
+   "kind": "material",
+   "name": "3 Lux motes",
+   "need": {
+    "lux": 60
+   },
+   "grant": {
+    "lux_mote": 3
+   }
+  },
+  {
+   "id": "ability_lux_sight",
+   "kind": "ability",
+   "name": "Lux Sight (hints glow further)",
+   "need": {
+    "stratum": 1
+   }
+  },
+  {
+   "id": "cos_aura",
+   "kind": "cosmetic",
+   "name": "Lux aura",
+   "need": {
+    "stratum": 2
+   }
+  },
+  {
+   "id": "title_walker",
+   "kind": "title",
+   "name": "Stratum Walker",
+   "need": {
+    "stratum": 3
+   }
+  },
+  {
+   "id": "mat_crystal_1",
+   "kind": "material",
+   "name": "5 crystals",
+   "need": {
+    "stratum": 3
+   },
+   "grant": {
+    "crystal": 5
+   }
+  },
+  {
+   "id": "ability_strata_step",
+   "kind": "ability",
+   "name": "Strata Step (cheaper travel)",
+   "need": {
+    "stratum": 4
+   }
+  },
+  {
+   "id": "cos_prism_cape",
+   "kind": "cosmetic",
+   "name": "Prism mantle",
+   "need": {
+    "stratum": 5
+   }
+  },
+  {
+   "id": "option_hard_duels",
+   "kind": "option",
+   "name": "Hard duels (foes +2 levels, double combat XP)",
+   "need": {
+    "stratum": 5
+   }
+  },
+  {
+   "id": "title_keeper",
+   "kind": "title",
+   "name": "Law Keeper",
+   "need": {
+    "laws": 7
+   }
+  },
+  {
+   "id": "mat_lux_2",
+   "kind": "material",
+   "name": "6 Lux motes",
+   "need": {
+    "stratum": 6
+   },
+   "grant": {
+    "lux_mote": 6
+   }
+  },
+  {
+   "id": "title_realigner",
+   "kind": "title",
+   "name": "Realigner",
+   "need": {
+    "ending": 1
+   }
+  },
+  {
+   "id": "option_new_genesis",
+   "kind": "option",
+   "name": "New Genesis",
+   "need": {
+    "ending": 1
+   }
+  },
+  {
+   "id": "title_stranger",
+   "kind": "title",
+   "name": "The Stranger",
+   "need": {
+    "ending_id": "stranger"
+   }
+  }
+ ]
+}

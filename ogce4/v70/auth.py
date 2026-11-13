@@ -8,7 +8,10 @@ class AuthStore:
             db.execute("CREATE TABLE IF NOT EXISTS accounts(username TEXT PRIMARY KEY,salt BLOB NOT NULL,password_hash BLOB NOT NULL,created REAL NOT NULL)")
             db.execute("CREATE TABLE IF NOT EXISTS sessions(token_hash TEXT PRIMARY KEY,username TEXT NOT NULL,expires REAL NOT NULL)")
             db.execute("CREATE TABLE IF NOT EXISTS ws_tickets(ticket_hash TEXT PRIMARY KEY,username TEXT NOT NULL,expires REAL NOT NULL)")
-    def _db(self): return sqlite3.connect(self.database,timeout=15)
+    def _db(self):
+        db=sqlite3.connect(self.database,timeout=30)
+        db.execute("PRAGMA busy_timeout=30000")
+        return db
     @staticmethod
     def _hash(password,salt): return hashlib.pbkdf2_hmac("sha256",password.encode(),salt,310000)
     def register(self,username,password):

@@ -1,0 +1,700 @@
+{
+ "version": "9.0.0",
+ "grades": [
+  "FACT",
+  "INFERENCE",
+  "SPECULATION",
+  "BELIEF",
+  "SSR INTERPRETATION (Thorley)",
+  "OPEN CONJECTURE"
+ ],
+ "lessons": [
+  {
+   "id": "a1",
+   "mode": "adventure",
+   "title": "Energy in motion: kinetic energy",
+   "grade": "FACT",
+   "body": [
+    "Anything that moves has energy in its kinetic store. The faster it moves, the more energy it has, and speed counts twice because it is squared.",
+    "In Aurelia a thrown stone or a swinging sword carries kinetic energy. Real GCSE physics uses exactly the same equation."
+   ],
+   "equation": "E_k = ½ × m × v²",
+   "units": "E_k in joules (J), m in kilograms (kg), v in metres per second (m/s)",
+   "example": "A 2 kg stone moving at 3 m/s: E_k = ½ × 2 × 3² = 9 J.",
+   "graph": {
+    "kind": "curve",
+    "fn": "ke",
+    "x": "speed v (m/s)",
+    "y": "kinetic energy (J), m = 2 kg",
+    "xmax": 10
+   },
+   "quiz": "ke"
+  },
+  {
+   "id": "a2",
+   "mode": "adventure",
+   "title": "Campfires and efficiency",
+   "grade": "FACT",
+   "body": [
+    "Burning wood transfers energy from its chemical store. Some heats the pot (useful) and the rest warms the air (wasted).",
+    "Efficiency tells you what fraction is useful. It is always 100% or less, because energy is never created."
+   ],
+   "equation": "efficiency = useful energy out ÷ total energy in × 100%",
+   "units": "energies in joules (J); efficiency as a percentage",
+   "example": "A fire releases 2000 J and 500 J heats the stew: 500 ÷ 2000 × 100 = 25%.",
+   "graph": {
+    "kind": "bar",
+    "x": "energy (J)",
+    "y": "",
+    "bars": [
+     [
+      "useful",
+      500
+     ],
+     [
+      "wasted",
+      1500
+     ]
+    ]
+   },
+   "quiz": "efficiency"
+  },
+  {
+   "id": "a3",
+   "mode": "adventure",
+   "title": "Speed, distance and time on the map",
+   "grade": "FACT",
+   "body": [
+    "Every square on the island is 1 metre across. If you walk 12 squares in 6 seconds, you can work out your speed.",
+    "A distance–time graph with a steeper line means a faster speed. A flat line means you stood still."
+   ],
+   "equation": "speed = distance ÷ time",
+   "units": "distance in metres (m), time in seconds (s), speed in m/s",
+   "example": "12 m in 6 s gives speed = 12 ÷ 6 = 2 m/s.",
+   "graph": {
+    "kind": "line",
+    "fn": "dt",
+    "x": "time (s)",
+    "y": "distance (m) at 2 m/s",
+    "xmax": 10
+   },
+   "quiz": "speed"
+  },
+  {
+   "id": "a4",
+   "mode": "adventure",
+   "title": "Probability and expected loot",
+   "grade": "FACT",
+   "body": [
+    "Probability measures how likely something is, from 0 (impossible) to 1 (certain).",
+    "If each search has probability p of finding a crystal, then over n searches you expect about n × p crystals. Real results wobble around that number."
+   ],
+   "equation": "P(event) = favourable outcomes ÷ total outcomes;  expected number = n × p",
+   "units": "probabilities have no units",
+   "example": "p = 0.2 and 30 searches: expect 30 × 0.2 = 6 crystals.",
+   "graph": {
+    "kind": "bar",
+    "x": "crystals found in 30 searches",
+    "y": "chance",
+    "bars": [
+     [
+      "4",
+      0.13
+     ],
+     [
+      "5",
+      0.17
+     ],
+     [
+      "6",
+      0.18
+     ],
+     [
+      "7",
+      0.15
+     ],
+     [
+      "8",
+      0.11
+     ]
+    ]
+   },
+   "quiz": "expected"
+  },
+  {
+   "id": "s1",
+   "mode": "academy",
+   "title": "Fair tests: mean and range",
+   "grade": "FACT",
+   "body": [
+    "A fair test changes one thing (the independent variable), measures one thing (the dependent variable) and keeps everything else the same (control variables).",
+    "Repeat readings and take the mean. The range (biggest minus smallest) shows how spread out they are."
+   ],
+   "equation": "mean = sum of readings ÷ number of readings;  range = largest − smallest",
+   "units": "same units as the readings",
+   "example": "Readings 4, 6, 5: mean = 15 ÷ 3 = 5, range = 6 − 4 = 2.",
+   "graph": {
+    "kind": "bar",
+    "x": "trial",
+    "y": "reading",
+    "bars": [
+     [
+      "1",
+      4
+     ],
+     [
+      "2",
+      6
+     ],
+     [
+      "3",
+      5
+     ]
+    ]
+   },
+   "quiz": "mean"
+  },
+  {
+   "id": "s2",
+   "mode": "academy",
+   "title": "Uncertainty: how sure is a result?",
+   "grade": "FACT",
+   "body": [
+    "No measurement is perfect. A simple GCSE estimate of uncertainty is half the range of your repeats.",
+    "Write a result as mean ± uncertainty. Two results only clearly differ if their ranges do not overlap."
+   ],
+   "equation": "uncertainty = range ÷ 2",
+   "units": "same units as the readings",
+   "example": "Readings 12, 14, 13: mean 13, range 2, so 13 ± 1.",
+   "graph": {
+    "kind": "errorbar",
+    "x": "result",
+    "y": "value",
+    "points": [
+     [
+      "A",
+      13,
+      1
+     ],
+     [
+      "B",
+      16,
+      1
+     ]
+    ]
+   },
+   "quiz": "uncertainty"
+  },
+  {
+   "id": "s3",
+   "mode": "academy",
+   "title": "Why ice melts at 0 °C (Gibbs free energy)",
+   "grade": "FACT",
+   "body": [
+    "A change happens by itself when it lowers a quantity chemists call Gibbs free energy, G. For melting, ΔG = ΔH − TΔS.",
+    "ΔH is the energy needed to melt (6.01 kJ per mole of ice) and ΔS is the gain in disorder (22.0 J per mole per kelvin). At 273 K the two balance and ΔG = 0, so ice and water coexist. This is A-level stretch material, shown with GCSE-style substitution."
+   ],
+   "equation": "ΔG = ΔH − T × ΔS   (T in kelvin = °C + 273)",
+   "units": "ΔG and ΔH in kJ/mol, ΔS in kJ/(mol·K), T in K",
+   "example": "At 300 K: ΔG = 6.01 − 300 × 0.0220 = −0.59 kJ/mol, negative, so ice melts.",
+   "graph": {
+    "kind": "line",
+    "fn": "gibbs",
+    "x": "temperature T (K)",
+    "y": "ΔG (kJ/mol)",
+    "xmin": 250,
+    "xmax": 300
+   },
+   "quiz": "gibbs"
+  },
+  {
+   "id": "s4",
+   "mode": "academy",
+   "title": "The speed of light and the metre",
+   "grade": "FACT",
+   "body": [
+    "Since 1983 the speed of light in a vacuum has been exactly 299,792,458 m/s, because the metre is defined from it.",
+    "So the neat-looking number is a human choice about units, not a cosmic message. Oliver's doctrine makes the same point and grades it FACT."
+   ],
+   "equation": "time = distance ÷ speed;  c = 3.00 × 10⁸ m/s (3 s.f.)",
+   "units": "distance in m, time in s",
+   "example": "Moon to Earth, 3.84 × 10⁸ m: time = 3.84 × 10⁸ ÷ 3.00 × 10⁸ ≈ 1.28 s.",
+   "graph": {
+    "kind": "line",
+    "fn": "light",
+    "x": "distance (×10⁸ m)",
+    "y": "light travel time (s)",
+    "xmax": 10
+   },
+   "quiz": "light"
+  },
+  {
+   "id": "s5",
+   "mode": "academy",
+   "title": "Testing a claim fairly: the 144,000-coin test",
+   "grade": "FACT",
+   "body": [
+    "Oliver's doctrine asks a bold question: can focused intention nudge a fair coin? That idea is an OPEN CONJECTURE. Nobody has run the test, so there is no result yet.",
+    "The maths of the test, however, is standard GCSE and A-level statistics. Flip n coins and count K heads. If the coin is fair, K should be close to n ÷ 2. The z-score measures how surprising the count is. If |z| is bigger than 1.96, the result would happen by chance less than 5% of the time."
+   ],
+   "equation": "z = (2K − n) ÷ √n",
+   "units": "no units; |z| > 1.96 is 'significant at 5%'",
+   "example": "n = 10,000 and K = 5,150: z = (10,300 − 10,000) ÷ 100 = 3.0, which is significant.",
+   "graph": {
+    "kind": "curve",
+    "fn": "normal",
+    "x": "z",
+    "y": "how likely",
+    "xmin": -4,
+    "xmax": 4
+   },
+   "quiz": "zscore"
+  },
+  {
+   "id": "l1",
+   "mode": "lifelab",
+   "title": "Population growth: doubling",
+   "grade": "FACT",
+   "body": [
+    "With plenty of food, a population of tiny creatures can double each generation. This is exponential growth.",
+    "In real ecosystems, and in the Tiny Life Lab, food runs out and growth levels off. Ecologists call that limit the carrying capacity."
+   ],
+   "equation": "N = N₀ × 2ᵗ",
+   "units": "N and N₀ are numbers of creatures, t is the number of doublings",
+   "example": "Start with 5 creatures. After 3 doublings: 5 × 2³ = 40.",
+   "graph": {
+    "kind": "curve",
+    "fn": "growth",
+    "x": "generations t",
+    "y": "population (N₀ = 5)",
+    "xmax": 6
+   },
+   "quiz": "growth"
+  },
+  {
+   "id": "l2",
+   "mode": "lifelab",
+   "title": "Hash chains: the tamper-proof diary",
+   "grade": "FACT",
+   "body": [
+    "Each page of the world's diary stores a code calculated from the page before it. Change one old page and every later code stops matching.",
+    "Real systems use SHA-256. Here is a toy version you can work out by hand using remainders (modular arithmetic)."
+   ],
+   "equation": "code = (previous code × 31 + page value) mod 97",
+   "units": "whole numbers; 'mod 97' means the remainder after dividing by 97",
+   "example": "previous 10, page 5: (10 × 31 + 5) = 315, and 315 mod 97 = 24.",
+   "graph": {
+    "kind": "chain",
+    "x": "page",
+    "y": "code"
+   },
+   "quiz": "hash"
+  },
+  {
+   "id": "l3",
+   "mode": "lifelab",
+   "title": "If-then rules and the least fixed point",
+   "grade": "FACT",
+   "body": [
+    "Start with what you know. Apply every if-then rule to learn new facts. Repeat until nothing new appears.",
+    "The set you finish with is called the least fixed point. It is the smallest set that the rules cannot grow any further. Mathematicians proved (Knaster–Tarski) that it always exists for rules like these."
+   ],
+   "equation": "X₀ = ∅,  Xₙ₊₁ = Γ(Xₙ), stop when Xₙ₊₁ = Xₙ",
+   "units": "sets of facts; |X| means 'how many facts'",
+   "example": "Know a. Rules b: a and c: b. Step 1 {a}, step 2 {a, b}, step 3 {a, b, c}, then no change.",
+   "graph": {
+    "kind": "steps",
+    "x": "step",
+    "y": "facts known",
+    "points": [
+     0,
+     1,
+     2,
+     3,
+     3
+    ]
+   },
+   "quiz": "chain"
+  },
+  {
+   "id": "l4",
+   "mode": "lifelab",
+   "title": "SSR: Stratified Source Realism (Oliver's theory)",
+   "grade": "SSR INTERPRETATION (Thorley)",
+   "body": [
+    "Stratified Source Realism (SSR) is Oliver Lux Prime Thorley's philosophical framework, not established science. It treats 'everything' as something that is built up step by step, like the if-then rules, rather than as a finished list.",
+    "In SSR the world is arranged in layers called strata: M0 proto-patterns, M1 life, M2 chemistry, M3 space and time, M4 quantum information, M5 unified fields, M6 cosmology and M7+ mathematics, with M∞ as a limit marker. The maths underneath (least fixed points) is FACT. Reading it as a description of reality is SSR INTERPRETATION."
+   ],
+   "equation": "Totality = μΓ_C   (the least fixed point of the generating rule Γ_C)",
+   "units": "a set-theory statement, so there are no physical units",
+   "example": "The doctrine's computer model reaches 31 of its 33 atoms in 9 steps (graph).",
+   "graph": {
+    "kind": "steps",
+    "x": "Kleene step",
+    "y": "atoms generated",
+    "points": [
+     0,
+     5,
+     10,
+     13,
+     18,
+     21,
+     24,
+     27,
+     30,
+     31
+    ]
+   },
+   "quiz": "trace"
+  },
+  {
+   "id": "l5",
+   "mode": "lifelab",
+   "title": "CRA: the Chronological Realignment Array (Oliver's model)",
+   "grade": "SSR INTERPRETATION (Thorley)",
+   "body": [
+    "The CRA is Oliver's finite computer laboratory for SSR: 33 named 'atoms', nine strata and a set of if-then rules. It is software you can audit. It is not a time machine and it changes nothing in the real world.",
+    "Running the rules from an empty start reaches 31 atoms after 9 steps. Two atoms (timeline:aperiodic and act:non-indexical) are never produced. That gap shows the result is a least fixed point, not simply 'everything'."
+   ],
+   "equation": "percentage reached = atoms generated ÷ 33 × 100%",
+   "units": "percentage",
+   "example": "After all 9 steps: 31 ÷ 33 × 100 = 93.9% (1 d.p.).",
+   "graph": {
+    "kind": "steps",
+    "x": "Kleene step",
+    "y": "% of 33 atoms",
+    "points": [
+     0,
+     15.2,
+     30.3,
+     39.4,
+     54.5,
+     63.6,
+     72.7,
+     81.8,
+     90.9,
+     93.9
+    ]
+   },
+   "quiz": "percent"
+  }
+ ],
+ "cra_trace": [
+  0,
+  5,
+  10,
+  13,
+  18,
+  21,
+  24,
+  27,
+  30,
+  31
+ ],
+ "ranks": [
+  [
+   0,
+   "Wanderer"
+  ],
+  [
+   60,
+   "Lightseeker"
+  ],
+  [
+   160,
+   "Stratum Warden"
+  ],
+  [
+   320,
+   "Lux Lorekeeper"
+  ],
+  [
+   560,
+   "Genesis Archon"
+  ]
+ ],
+ "events": [
+  {
+   "id": "calm",
+   "name": "Quiet days",
+   "icon": "🌤️",
+   "text": "A calm spell settles over Aurelia.",
+   "boost": "none",
+   "lesson": "a3"
+  },
+  {
+   "id": "crystal_bloom",
+   "name": "Crystal Bloom",
+   "icon": "💎",
+   "text": "Crystals pulse with light. Crystal bounties pay double renown.",
+   "boost": "crystal",
+   "lesson": "a4"
+  },
+  {
+   "id": "wolf_moon",
+   "name": "Wolf Moon",
+   "icon": "🐺",
+   "text": "Moss wolves roam in packs. Hunting bounties pay double renown.",
+   "boost": "defeat",
+   "lesson": "a1"
+  },
+  {
+   "id": "meteor_shower",
+   "name": "Meteor Shower",
+   "icon": "☄️",
+   "text": "Streaks of light cross the sky. Study bounties pay double renown.",
+   "boost": "study",
+   "lesson": "s4"
+  },
+  {
+   "id": "market_fair",
+   "name": "Market Fair",
+   "icon": "🎪",
+   "text": "Travelling makers visit. Crafting bounties pay double renown.",
+   "boost": "craft",
+   "lesson": "a2"
+  },
+  {
+   "id": "aurora",
+   "name": "Aurora Veil",
+   "icon": "🌌",
+   "text": "Green light ripples overhead. The Life Lab hums; lab bounties pay double renown.",
+   "boost": "lab",
+   "lesson": "l4"
+  },
+  {
+   "id": "lux_tide",
+   "name": "Lux Tide",
+   "icon": "✨",
+   "text": "Light wells up through the strata. Every Codex lesson glows; study bounties pay double renown.",
+   "boost": "study",
+   "lesson": "l4"
+  }
+ ],
+ "seasons": [
+  "Spring",
+  "Summer",
+  "Autumn",
+  "Winter"
+ ],
+ "achievements": [
+  [
+   "first_steps",
+   "First steps",
+   "Walk 10 squares",
+   "moved",
+   10
+  ],
+  [
+   "trailblazer",
+   "Trailblazer",
+   "Walk 250 squares",
+   "moved",
+   250
+  ],
+  [
+   "gatherer",
+   "Gatherer",
+   "Collect 30 resources",
+   "gathered",
+   30
+  ],
+  [
+   "hoarder",
+   "Quartermaster",
+   "Collect 150 resources",
+   "gathered",
+   150
+  ],
+  [
+   "first_blood",
+   "Brave heart",
+   "Defeat a creature",
+   "defeated",
+   1
+  ],
+  [
+   "wolfbane",
+   "Wolfbane",
+   "Defeat 10 creatures",
+   "defeated",
+   10
+  ],
+  [
+   "maker",
+   "Maker",
+   "Craft 3 items",
+   "crafted",
+   3
+  ],
+  [
+   "builder",
+   "Builder",
+   "Build 2 campfires or shelters",
+   "built",
+   2
+  ],
+  [
+   "survivor",
+   "Survivor",
+   "Rest 5 times",
+   "rested",
+   5
+  ],
+  [
+   "chatty",
+   "Good neighbour",
+   "Say hello in chat",
+   "chats",
+   1
+  ],
+  [
+   "level5",
+   "Seasoned",
+   "Reach level 5",
+   "level",
+   5
+  ],
+  [
+   "student",
+   "Student",
+   "Pass 1 Codex lesson",
+   "lessons",
+   1
+  ],
+  [
+   "scholar",
+   "Scholar",
+   "Pass 6 Codex lessons",
+   "lessons",
+   6
+  ],
+  [
+   "polymath",
+   "Lux Polymath",
+   "Pass all 14 Codex lessons",
+   "lessons",
+   14
+  ],
+  [
+   "bounty1",
+   "Bounty hunter",
+   "Complete 1 bounty",
+   "bounties",
+   1
+  ],
+  [
+   "bounty10",
+   "Legend of the board",
+   "Complete 10 bounties",
+   "bounties",
+   10
+  ],
+  [
+   "chapter3",
+   "Storyteller",
+   "Finish 3 story chapters",
+   "chapters",
+   3
+  ],
+  [
+   "saga",
+   "Genesis complete",
+   "Finish every story chapter",
+   "chapters",
+   9
+  ],
+  [
+   "witness",
+   "Witness",
+   "See 3 different world events",
+   "events_seen",
+   3
+  ],
+  [
+   "companion",
+   "Companion of the Strata",
+   "Ask Malcolm 5 questions",
+   "malcolm",
+   5
+  ]
+ ],
+ "arcs": [
+  {
+   "id": "lantern",
+   "mode": "adventure",
+   "title": "Stratum I · The Lost Lantern of Aurelia",
+   "chapters": [
+    [
+     "Embers",
+     "Collect 12 resources to relight the old camp.",
+     "gathered",
+     12
+    ],
+    [
+     "The Moss Wolves",
+     "Defeat 3 creatures that prowl the lantern path.",
+     "defeated",
+     3
+    ],
+    [
+     "Lantern Light",
+     "Build a campfire or shelter and pass the 'Campfires and efficiency' lesson.",
+     "built+a2",
+     1
+    ]
+   ]
+  },
+  {
+   "id": "academy",
+   "mode": "academy",
+   "title": "Stratum II · The Academy of Fair Tests",
+   "chapters": [
+    [
+     "Apprentice",
+     "Pass the 'Fair tests: mean and range' lesson.",
+     "lesson:s1",
+     1
+    ],
+    [
+     "Error bars",
+     "Pass the 'Uncertainty' lesson.",
+     "lesson:s2",
+     1
+    ],
+    [
+     "The 144,000 question",
+     "Pass 'Testing a claim fairly'. It is an open question, so show it fairly.",
+     "lesson:s5",
+     1
+    ]
+   ]
+  },
+  {
+   "id": "strata",
+   "mode": "lifelab",
+   "title": "Stratum III · Climbing to the Lux",
+   "chapters": [
+    [
+     "Growing things",
+     "Pass 'Population growth: doubling'.",
+     "lesson:l1",
+     1
+    ],
+    [
+     "Rules that build",
+     "Pass 'If-then rules and the least fixed point'.",
+     "lesson:l3",
+     1
+    ],
+    [
+     "Genesis: thirty-one of thirty-three",
+     "Pass the SSR and CRA lessons (Oliver's theory).",
+     "lesson:l4+l5",
+     1
+    ]
+   ]
+  }
+ ],
+ "title": "Strata: Lux Genesis"
+}

@@ -13,7 +13,7 @@ from ..v80.persistence import MuluxStore
 from ..v82 import LivingWorld82, WorldError
 from ..v82.persistence import WorldStore82
 
-VERSION = "8.3.0"
+VERSION = "9.0.0"
 WORLD_ID_CHARS = set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-")
 SECURITY_HEADERS = {
     "X-Content-Type-Options": "nosniff",

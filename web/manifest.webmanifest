@@ -1,18 +1,38 @@
 {
-  "name": "OGCE Infinity 8.3 — Aurelia",
-  "short_name": "OGCE 8.3",
+  "name": "Strata: Lux Genesis",
+  "short_name": "Strata",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0d1b22",
-  "theme_color": "#0d1b22",
+  "background_color": "#0b1020",
+  "theme_color": "#0b1020",
   "icons": [
+    {
+      "src": "/icons/strata-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/strata-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/strata.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
     {
       "src": "/icons/ogce.svg",
       "sizes": "any",
       "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ],
-  "description": "Explore a 3D island, collect crystals, build campfires, complete quests, invent machines and test ideas like a scientist.",
-  "orientation": "any"
+  "description": "Explore the layered world of Aurelia in HD 3D: light the Lux, climb the strata, learn real GCSE science and meet Malcolm, your guide. Built on the OGCE engine (v9.0). Installable; plays offline in a private practice world.",
+  "orientation": "any",
+  "id": "/",
+  "scope": "/"
 }

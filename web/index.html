@@ -3,10 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0d1b22">
-<title>OGCE Infinity 8.3 — Aurelia</title>
+<meta name="theme-color" content="#0b1020">
+<meta name="description" content="Strata: Lux Genesis — explore the layered world of Aurelia, learn real GCSE science, and climb from Wanderer to Genesis Archon.">
+<title>Strata: Lux Genesis — Aurelia</title>
 <link rel="manifest" href="/manifest.webmanifest">
-<link rel="icon" href="/icons/ogce.svg" type="image/svg+xml">
+<link rel="icon" href="/icons/strata.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/style.css">
 <script type="module" src="/js/app.js"></script>
 </head>
@@ -18,13 +19,29 @@
 </div>
 
 <header id="topbar">
-  <div class="brand"><b>OGCE</b> Infinity <span class="ver">8.3</span></div>
+  <div class="brand"><b>Strata</b> Lux Genesis <span class="ver">9.0</span></div>
   <div class="pills">
     <span class="pill" title="The world you are playing in">🌍 <b id="world">Aurelia</b></span>
     <span class="pill" id="timepill" title="Time of day and weather">☀️ <b id="daytime">Morning</b> · <b id="weather">Clear</b></span>
     <span class="pill" id="netpill" title="Connection"><b id="netstatus">Offline</b></span>
+    <span class="pill" id="eventpill" title="World event and season (the world changes as days pass)"><span id="eventicon">🌤️</span> <b id="eventname">Quiet days</b> · <span id="season">Spring</span></span>
+    <span class="pill" id="rankpill" title="Your rank: earn renown from bounties, lessons and achievements">🏅 <b id="rankname">Wanderer</b> · <span id="renown">0</span></span>
   </div>
   <div class="topbtns">
+    <button id="omnibtn" class="iconbtn" title="Expedition: explore endless strata, wildlife, people and inventions (O)" aria-label="Expedition">🌍</button>
+    <button id="voicebtn" class="iconbtn" title="Voice: hold V (or this button) and speak. Press / to type a command." aria-label="Voice control: hold to talk">🎙️</button>
+    <button id="progressbtn" class="iconbtn" title="Progress & Codex: Lux, strata, core laws, endings (I)" aria-label="Progress and Codex">✨</button>
+    <button id="combatbtn" class="iconbtn" title="Combat skills: special moves, upgrades, invent a move" aria-label="Combat skills">⚔️</button>
+    <button id="skybtn" class="iconbtn" title="Sky &amp; Spirits: planets, magic, sacred sites, lore glyphs (5). In-game magic, not science." aria-label="Sky and Spirits">🔮</button>
+    <button id="togetherbtn" class="iconbtn" title="Together: invite-code worlds, friends, Houses, events (6)" aria-label="Together (multiplayer)">👥</button>
+    <button id="lbbtn" class="iconbtn" title="Omniversal Leaderboard" aria-label="Leaderboard">🏆</button>
+    <button id="photobtn" class="iconbtn" title="Photo mode (0)" aria-label="Photo mode">📷</button>
+    <button id="installbtn" class="iconbtn hidden" title="Install Strata as an app (works offline)" aria-label="Install app">📲</button>
+    <button id="viewbtn" class="iconbtn" title="Switch first / third person (N)" aria-label="Switch first or third person view">👁️</button>
+    <button id="journalbtn" class="iconbtn" title="Journal: story, bounties, achievements (J)" aria-label="Journal">📖</button>
+    <button id="codexbtn" class="iconbtn" title="Codex: GCSE science lessons (K)" aria-label="Codex">📘</button>
+    <button id="malcolmbtn" class="iconbtn" title="Ask Malcolm, your guide (M)" aria-label="Ask Malcolm">🤖</button>
+    <button id="soundbtn" class="iconbtn" title="Sound on/off" aria-label="Sound on or off">🔇</button>
     <button id="helpbtn" class="iconbtn" title="Controls help (H)" aria-label="Controls help">?</button>
     <button id="panelbtn" class="iconbtn" title="Show or hide the side panel" aria-label="Toggle side panel">☰</button>
   </div>
@@ -54,6 +71,7 @@
     <button id="potioncraft" title="Make a healing potion: 2 crystals (P)"><kbd>P</kbd>Make potion</button>
     <button id="drink" title="Drink a healing potion (Q)"><kbd>Q</kbd>Drink</button>
     <button id="advance" title="Let time pass (T)"><kbd>T</kbd>Wait</button>
+    <button id="chatbtn" title="Say something to nearby players (Enter)"><kbd>↵</kbd>Chat</button>
   </div>
 </div>
 
@@ -91,6 +109,7 @@
       <button id="crystalweapon" class="craft">💎 Crystal Sabre <span class="cost">5 💎 + 3 🪨 + 2 🪵</span></button>
       <button id="potioncraft2" class="craft">🧪 Healing potion <span class="cost">2 💎</span></button>
       <button id="campfire2" class="craft">🔥 Campfire <span class="cost">2 🪵 + 1 🪨</span></button>
+      <button id="shelter" class="craft">⛺ Shelter (rest spot, blocks the square) <span class="cost">4 🪵 + 2 🪨</span></button>
       <p class="small muted">Better swords hit harder: Traveller’s Blade 12 · Stone Sword 18 · Crystal Sabre 27.</p>
     </div>
 
@@ -104,8 +123,31 @@
       <label class="check"><input type="checkbox" id="opt-tips" checked> Show tips</label>
       <label class="check"><input type="checkbox" id="opt-labels" checked> Show name labels</label>
       <label class="check"><input type="checkbox" id="opt-joystick"> Always show touch joystick</label>
-      <label>Graphics <select id="opt-quality"><option value="auto">Automatic (recommended)</option><option value="2">High</option><option value="1">Medium</option><option value="0">Low (fast)</option></select></label>
+      <label>Graphics <select id="opt-quality"><option value="auto">Automatic (recommended)</option><option value="3">Ultra (desktop, HD effects)</option><option value="2">High</option><option value="1">Medium</option><option value="0">Low (fast)</option></select></label>
+      <label>Render scale <select id="opt-scale"><option value="1">100% (sharpest; native pixels on Ultra)</option><option value="0.85">85%</option><option value="0.7">70% (faster)</option><option value="0.5">50% (fastest)</option></select></label>
+      <label class="check"><input type="checkbox" id="opt-sound"> Sound and music</label>
+      <label class="check"><input type="checkbox" id="opt-music" checked> Adaptive soundtrack (when sound is on)</label>
+      <label class="check"><input type="checkbox" id="opt-director" checked> Malcolm as narrator (adapts hints and pacing)</label>
+      <button id="opt-opening" class="small">▶ Replay the opening</button>
+      <fieldset class="camset"><legend>♿ Accessibility &amp; healthy play</legend><div id="access-settings"></div></fieldset>
+      <label class="check"><input type="checkbox" id="opt-wake"> Voice wake word (“Malcolm …”)</label>
+      <label class="check"><input type="checkbox" id="opt-speak"> Spoken replies</label>
+      <label class="check"><input type="checkbox" id="opt-npcvoice" checked> Characters speak aloud (browser voices)</label>
       <label>Camera speed <input type="range" id="opt-camspeed" min="0.4" max="2" step="0.1" value="1"></label>
+      <fieldset class="camset"><legend>🎥 Camera</legend>
+        <label>Sensitivity <input type="range" id="cam-sens" min="0.2" max="3" step="0.1" value="1"></label>
+        <label>Smoothing <input type="range" id="cam-smooth" min="0" max="1" step="0.05" value="0.5"></label>
+        <label class="check"><input type="checkbox" id="cam-invx"> Invert X (left/right)</label>
+        <label class="check"><input type="checkbox" id="cam-invy"> Invert Y (up/down)</label>
+        <label>Shoulder <select id="cam-shoulder"><option value="right">Right</option><option value="centre">Centre</option><option value="left">Left</option></select></label>
+        <label>Field of view <input type="range" id="cam-fov" min="40" max="90" step="1" value="50"></label>
+        <label>First-person FOV <input type="range" id="cam-fpfov" min="55" max="100" step="1" value="74"></label>
+        <label class="check"><input type="checkbox" id="cam-bob" checked> Head bob in first person</label>
+        <div class="row wrap" id="cam-presets"></div>
+        <div class="row wrap" id="cam-slots"></div>
+        <details><summary>Camera keys (click to rebind)</summary><div id="cam-keys" class="keygrid"></div></details>
+        <p class="small muted">Drag or right-drag to orbit · wheel or pinch to zoom · Z/X rotate · Y/G tilt · L or middle-click recenters behind you · N or 👁️ switches first/third person · 7/8/9 load your saved views · gamepad right stick orbits, R3 recenters, View button switches.</p>
+      </fieldset>
       <p class="small muted">Live mode connects automatically when you sign in, so you see other players move straight away.</p>
       <label>Custom live server (advanced) <input id="wsurl" placeholder="leave empty to use this website"></label>
       <button id="connect">Reconnect live mode</button>
@@ -186,6 +228,13 @@ c: a, b</textarea>
       <button id="run-genesis">Solve the puzzle</button>
       <div id="genesis-result" class="result"></div>
     </div>
+    <div class="card">
+      <h3>The "owner says YES" rule</h3>
+      <p class="small">Some actions are too important for a computer to do alone. The game's safety rule checks whether an action needs the owner's YES first.</p>
+      <div class="row"><select id="policy-action"><option value="compute_local">Run a sum on this computer</option><option value="deploy">Put a new version online</option><option value="spend">Spend money</option><option value="send_message">Send a message for you</option></select><label class="check"><input type="checkbox" id="policy-yes"> Owner said YES</label></div>
+      <button id="policy-check">Check the rule</button>
+      <div id="policy-result" class="result"></div>
+    </div>
   </section>
 </aside>
 
@@ -194,13 +243,22 @@ c: a, b</textarea>
     <h2 id="helptitle">How to play</h2>
     <table id="keytable"></table>
     <p class="small">On a phone or tablet: use the joystick in the bottom-left corner to walk, tap the ground to walk there, drag with one finger to turn the camera and pinch to zoom.</p>
+    <h3>🎙️ Voice and typed commands</h3>
+    <p class="small">Hold <kbd>V</kbd> or the 🎙️ button and speak, or press <kbd>/</kbd> to type. Turn on the wake word in Settings to say “Malcolm, …” hands-free. Only the words you say (as text) are used: the game never records or stores audio.</p>
+    <p class="small muted" id="voice-support"></p>
+    <table id="voice-help" class="small"></table>
+    <p class="small">More keys: <kbd>J</kbd> Journal · <kbd>K</kbd> Codex · <kbd>M</kbd> Malcolm · <kbd>O</kbd> Expedition · <kbd>I</kbd> Progress &amp; Codex · <kbd>Enter</kbd> chat · <kbd>5</kbd> 🔮 Sky &amp; Spirits · <kbd>6</kbd> 👥 Together · <kbd>U</kbd> quick-chat wheel · <kbd>0</kbd> 📷 Photo mode. Every game key can be remapped (Settings → Accessibility), with one-handed layouts.</p>
+    <h3>🎥 Camera</h3>
+    <p class="small">Drag (or right-drag) to orbit 360° · mouse wheel or pinch to zoom from over-the-shoulder to a far overview · <kbd>Z</kbd>/<kbd>X</kbd> rotate · <kbd>Y</kbd>/<kbd>G</kbd> tilt from ground level up to top-down · <kbd>L</kbd>, middle-click or 🎯 recenters behind you · <kbd>N</kbd> or 👁️ switches first/third person · <kbd>7</kbd>/<kbd>8</kbd>/<kbd>9</kbd> saved views · gamepad right stick. Sensitivity, invert, smoothing, shoulder side, FOV, presets and keys are in Settings → Camera.</p>
+    <h3>⚔️ Duels</h3>
+    <p class="small">Press <kbd>F</kbd> (or tap a creature) to start a duel; say “practice” for the training golem. In a duel: <kbd>F</kbd>/left-click light attack (chain three) · <kbd>R</kbd>/right-click heavy · light-light-heavy = Breaker · hold <kbd>Shift</kbd> to block, tap it just before a hit to <b>parry</b> · <kbd>Space</kbd> dodge-roll · <kbd>1</kbd>/<kbd>2</kbd> special moves · <kbd>Esc</kbd> flee. Orange glow = heavy strike coming. Foes learn your habits, so mix it up!</p>
     <button id="helpclose" class="primary">Got it!</button>
   </div>
 </div>
 
 <div id="joinmodal" class="overlay hidden" role="dialog" aria-labelledby="jointitle">
   <div class="sheet">
-    <h2 id="jointitle">Welcome to Aurelia! 🌄</h2>
+    <h2 id="jointitle">Welcome to Strata: Lux Genesis 🌄</h2>
     <p>To play on this server you need a free account. Pick a username and a password (12+ characters — a short sentence works great).</p>
     <input id="j-username" placeholder="Username" autocomplete="username" maxlength="24">
     <input id="j-password" type="password" placeholder="Password (12+ characters)" autocomplete="new-password" maxlength="256">
@@ -210,7 +268,200 @@ c: a, b</textarea>
   </div>
 </div>
 
+
+<div id="titlescreen" class="overlay title" role="dialog" aria-labelledby="titlename">
+  <div class="titlecard">
+    <div class="strata-bands" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <h1 id="titlename">STRATA<span>Lux Genesis</span></h1>
+    <p class="tagline">Every world is built layer by layer. Light the Lux, climb the strata, and test every idea twice.</p>
+    <div class="onboard">
+      <p><b>You are a newcomer</b> in a fractured, scrambled reality. The strata (SSR layers) have slipped out of order.</p>
+      <ol>
+        <li><b>Climb the strata.</b> Earn ✨ Lux mostly by <i>understanding</i>: discoveries, puzzles, inventions and wise choices.</li>
+        <li><b>Gather the seven core laws</b> (4500 · 12.32 · 72 · 144 · 144000 · 26000 · 365.26) across the worlds, and win over or outwit the Shakespearean characters, each with their own agenda.</li>
+        <li><b>Reach the Source Stratum</b>, complete the Realignment and choose which reality to restore: Harmony, Power, Sacrifice… or something stranger.</li>
+      </ol>
+      <p class="small">Track it all on the <b>✨ Progress</b> screen (I): Lux, Strata reached, Codex, Mastery and Legacy. After the story, New Genesis opens an endless Omniverse.</p>
+    </div>
+    <button id="playbtn" class="primary big">▶ Enter Aurelia</button>
+    <p class="small muted">Version 9.0 · built on the OGCE engine · SSR and CRA are Oliver Lux Prime Thorley's theory, labelled as such. Magic is make-believe.</p>
+  </div>
+</div>
+
+<div id="eventbanner" class="hidden" role="status" aria-live="polite"></div>
+
+<div id="progress" class="overlay hidden" role="dialog" aria-labelledby="progresstitle">
+  <div class="sheet wide">
+    <div class="sheethead"><h2 id="progresstitle">✨ Progress &amp; Codex</h2><button class="iconbtn closer" data-close="progress" aria-label="Close">×</button></div>
+    <div id="pg-body">Loading…</div>
+  </div>
+</div>
+<div id="combatpanel" class="overlay hidden" role="dialog" aria-labelledby="combattitle">
+  <div class="sheet wide">
+    <div class="sheethead"><h2 id="combattitle">⚔️ Combat skills</h2><button class="iconbtn closer" data-close="combatpanel" aria-label="Close">×</button></div>
+    <div id="cp-body">Loading…</div>
+  </div>
+</div>
+<div id="duel" class="hidden" aria-live="polite">
+  <div class="duel-top"><span id="duel-name"></span><div class="bar enemy"><i id="duel-ehp"></i></div><span id="duel-ehpv" class="small"></span></div>
+  <div id="duel-msg" class="duel-msg"></div><div id="duel-combo" class="duel-combo"></div>
+  <p id="duel-adapt" class="small duel-adapt"></p>
+  <div class="duel-bars">
+    <label>❤️ <span id="duel-hpv"></span><div class="bar hp"><i id="duel-hp"></i></div></label>
+    <label>⚡ stamina<div class="bar st"><i id="duel-st"></i></div></label>
+    <label>✨ focus<div class="bar focus"><i id="duel-focus"></i></div></label>
+  </div>
+  <div class="duel-btns">
+    <button id="dt-light" title="Light attack (F / left-click)">⚔️<small>light</small></button>
+    <button id="dt-heavy" title="Heavy attack (R / right-click)">💥<small>heavy</small></button>
+    <button id="dt-block" title="Hold to block, tap just before a hit to parry (Shift)">🛡️<small>block</small></button>
+    <button id="dt-dodge" title="Dodge-roll (Space)">🌀<small>dodge</small></button>
+    <button id="duel-s1" class="special">✨1</button><button id="duel-s2" class="special">✨2</button>
+    <button id="dt-flee" title="Flee (Esc)">🏃<small>flee</small></button>
+  </div>
+  <div id="duel-result" class="duel-result hidden"></div>
+</div>
+<div id="fp-hud" aria-hidden="true"><div class="crosshair"></div><div class="fp-vignette"></div></div>
+<div id="fx-flash" aria-hidden="true"></div>
+<button id="recenterbtn" class="iconbtn floatcam" title="Recenter the camera behind you (L)" aria-label="Recenter camera">🎯</button>
+
+<div id="expedition" class="overlay full hidden" role="dialog" aria-labelledby="exptitle">
+  <div class="expwrap">
+    <div class="expmap">
+      <canvas id="expcanvas" aria-label="Expedition map. Tap a square to walk there, tap something next to you to collect it."></canvas>
+      <div class="exphud"><b id="exptitle">🌍 Expedition</b> <span id="exp-where" class="small"></span></div>
+      <div class="expzoom"><button id="exp-zin" class="iconbtn" aria-label="Zoom in">＋</button><button id="exp-zout" class="iconbtn" aria-label="Zoom out">－</button><button id="exp-home" class="iconbtn" aria-label="Centre on me">◎</button></div>
+      <div class="simlabel" id="exp-label">🧪 Simulated life: creatures, plants and characters follow simple seeded rules. They are not alive, aware or sentient.</div>
+    </div>
+    <div class="expside">
+      <div class="sheethead"><div class="tabs exptabs" role="tablist">
+        <button class="tab active" data-etab="explore">Explore</button><button class="tab" data-etab="wild">Wildlife</button><button class="tab" data-etab="people">People</button><button class="tab" data-etab="workshop">Workshop</button><button class="tab" data-etab="me">Me</button>
+      </div><button class="iconbtn closer" data-close="expedition" aria-label="Close">×</button></div>
+      <section class="etab active" id="etab-explore">
+        <label>Stratum (world)</label><select id="exp-realm"></select>
+        <p id="exp-blurb" class="small muted"></p>
+        <div class="card"><h3>Here</h3><div id="exp-here" class="small"></div><div class="row" id="exp-actions"></div></div>
+        <div class="card"><h3>Bag</h3><div id="exp-bag" class="stats"></div></div>
+        <div class="card"><h3>Craft</h3><div id="exp-recipes"></div></div>
+        <div class="card"><h3>Build</h3><div id="exp-builds" class="row"></div><p class="small muted">Pick a build, then tap a free square next to you.</p></div>
+        <p class="small muted">Walk with W A S D or the arrow keys, or tap the map. Things you collect regrow after a while. Everyone in this world shares the same land and sees your changes.</p>
+      </section>
+      <section class="etab" id="etab-wild">
+        <p class="small">The <b>Wildwood</b> habitat (the square near the start of each stratum) runs a simulation: Mossbacks graze, Duskwolves chase them, Glowmoths spread flowers. Young inherit their parents' traits with small random changes, so averages drift over generations: a model of natural selection.</p>
+        <div id="eco-census"></div><canvas id="eco-chart" width="360" height="140" aria-label="Population history chart"></canvas>
+        <h3>Recent events</h3><ul id="eco-log" class="story"></ul>
+        <h3>Bestiary</h3><div id="exp-bestiary" class="small"></div>
+        <p class="small muted">Tap a creature on the map (inside the Wildwood) to observe it.</p>
+      </section>
+      <section class="etab" id="etab-people">
+        <div id="exp-factions"></div>
+        <div id="exp-npcs"></div>
+        <div id="exp-bard" class="card hidden" aria-live="polite"></div>
+        <div id="exp-dialogue" class="card hidden"></div>
+        <div id="exp-ending"></div>
+      </section>
+      <section class="etab" id="etab-workshop">
+        <p class="small">Invent something new: combine a <b>principle</b> (a scientific, technological or mystical idea), <b>materials</b> and, if you like, an <b>observation</b> of a creature. Inventions become real in the game: tools, abilities, structures, potions-style effects or rituals.</p>
+        <p class="small muted">Mystical discoveries are symbolic and in-game only: make-believe, not real magic.</p>
+        <label>Category</label><select id="inv-cat"><option value="scientific">🔬 Scientific</option><option value="technological">⚙️ Technological</option><option value="mystical">✨ Mystical (symbolic)</option></select>
+        <label>Form</label><select id="inv-form"><option value="tool">Tool</option><option value="ability">Ability</option><option value="structure">Structure</option><option value="effect">Effect (consumable)</option><option value="ritual">Ritual (mystical only)</option></select>
+        <label>Principles (pick 1–2)</label><div id="inv-principles" class="chips"></div>
+        <label>Materials (up to 3 kinds, 8 total)</label><div id="inv-materials" class="chips"></div>
+        <label>Observation (optional)</label><select id="inv-obs"><option value="">None</option></select>
+        <div class="row"><button class="primary" id="inv-go">Try to invent</button><span id="inv-budget" class="small muted"></span></div>
+        <div id="inv-result" class="result"></div>
+        <h3>Your inventions</h3><div id="inv-list"></div>
+      </section>
+      <section class="etab" id="etab-me">
+        <h3>Your look</h3><div id="exp-look"></div><canvas id="look-preview" width="120" height="150" aria-label="Character preview"></canvas>
+        <h3>Seed a new stratum</h3>
+        <p class="small">Same name and seed always grow the same land. Share your seed with friends!</p>
+        <label>Name</label><input id="cr-name" maxlength="40" placeholder="e.g. Glass Sea">
+        <label>Seed (any word or number)</label><input id="cr-seed" maxlength="40" placeholder="lux-31">
+        <label>Warmth <span id="cr-w-v">0</span></label><input type="range" id="cr-w" min="-3" max="3" value="0">
+        <label>Wetness <span id="cr-m-v">0</span></label><input type="range" id="cr-m" min="-3" max="3" value="0">
+        <label>Height <span id="cr-h-v">0</span></label><input type="range" id="cr-h" min="-3" max="3" value="0">
+        <label class="check"><input type="checkbox" id="cr-lux"> Lux groves</label>
+        <button id="cr-go" class="primary">Create stratum</button>
+        <div id="cr-result" class="result"></div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<div id="journal" class="overlay hidden" role="dialog" aria-labelledby="journaltitle">
+  <div class="sheet wide">
+    <div class="sheethead"><h2 id="journaltitle">📖 Journal</h2><button class="iconbtn closer" data-close="journal" aria-label="Close">×</button></div>
+    <div id="j-rank" class="rankbox"></div>
+    <h3>Bounty board <span class="small muted" id="j-day"></span></h3>
+    <div id="j-bounty"></div>
+    <div id="j-offers" class="offers"></div>
+    <h3>Story arcs: three strata</h3>
+    <div id="j-arcs" class="arcs"></div>
+    <h3>Achievements <span class="small muted" id="j-achcount"></span></h3>
+    <div id="j-ach" class="achgrid"></div>
+  </div>
+</div>
+
+<div id="codex" class="overlay hidden" role="dialog" aria-labelledby="codextitle">
+  <div class="sheet wide">
+    <div class="sheethead"><h2 id="codextitle">📘 Codex of the Strata</h2><button class="iconbtn closer" data-close="codex" aria-label="Close">×</button></div>
+    <p class="small muted">GCSE-level science and maths behind the game. Each lesson has a grade tag: <b>FACT</b> means established science or maths. <b>SSR INTERPRETATION (Thorley)</b> means Oliver's own theory, not established science. Answer two questions correctly to pass a lesson.</p>
+    <div class="codexwrap"><nav id="cx-list" class="cxlist"></nav><article id="cx-lesson" class="cxlesson"></article></div>
+  </div>
+</div>
+
+<aside id="malcolm" class="hidden" aria-label="Malcolm, your guide">
+  <div class="mhead"><b>🤖 Malcolm</b> <span id="m-status" class="small muted">guide</span><button class="iconbtn closer" data-close="malcolm" aria-label="Close">×</button></div>
+  <div class="row mmodes"><button data-mode="guide" class="mmode active">Guide</button><button data-mode="explain" class="mmode">Explain</button><button data-mode="lore" class="mmode">Lore</button></div>
+  <div id="m-log" class="mlog" aria-live="polite"></div>
+  <form id="m-form" class="row"><input id="m-input" maxlength="600" placeholder="Ask about the game, the science, SSR or CRA…" autocomplete="off"><button class="primary" id="m-send">Send</button></form>
+  <p class="small muted">Malcolm is an AI guide. Never share personal details. If something is worrying you, talk to a trusted adult or Childline (0800 1111).</p>
+</aside>
+
+<form id="chatbox" class="hidden"><input id="chatinput" maxlength="240" placeholder="Say hello to nearby players (be kind; no personal details)" autocomplete="off"><button class="primary">Say</button></form>
+
+<div id="captions" class="hidden" role="status" aria-live="polite"><span id="caption-text"></span></div>
+<form id="cmdbox" class="hidden" aria-label="Type a command"><input id="cmdinput" maxlength="600" placeholder="Type a command, e.g. “go north 3”, “craft a potion”, “give me a wizard hat”" autocomplete="off"><button class="primary">Do it</button></form>
+<div id="vconfirm" class="overlay hidden" role="alertdialog" aria-labelledby="vconfirm-text"><div class="sheet"><p id="vconfirm-text"></p><div class="row"><button id="vconfirm-yes" class="primary">Confirm</button><button id="vconfirm-no">Cancel</button></div></div></div>
+<div id="srlive" class="sr-only" aria-live="assertive"></div>
+
 <div id="toast" role="status" aria-live="polite"></div>
-<noscript>OGCE needs JavaScript to run.</noscript>
+<noscript>Strata: Lux Genesis needs JavaScript to run.</noscript>
+<div id="skypanel" class="overlay hidden" role="dialog" aria-labelledby="skytitle">
+  <div class="sheet wide">
+    <div class="sheethead"><h2 id="skytitle">🔮 Sky &amp; Spirits <span class="tag mystic">MYSTICAL/IN-GAME</span></h2><button class="iconbtn closer" data-close="skypanel" aria-label="Close">×</button></div>
+    <div id="sky-body"></div>
+  </div>
+</div>
+<div id="together" class="overlay hidden" role="dialog" aria-labelledby="tgtitle">
+  <div class="sheet wide">
+    <div class="sheethead"><h2 id="tgtitle">👥 Together</h2><button class="iconbtn closer" data-close="together" aria-label="Close">×</button></div>
+    <div id="tg-tabs" class="tabs"><button data-tab="party">🌐 Room</button><button data-tab="friends">🤝 Friends &amp; privacy</button><button data-tab="house">🏰 House</button><button data-tab="hall">🏛️ Hall</button><button data-tab="events">🌘 Events &amp; trials</button></div>
+    <div id="tg-body"></div>
+  </div>
+</div>
+<div id="leaderboard" class="overlay hidden" role="dialog" aria-labelledby="lbtitle">
+  <div class="sheet">
+    <div class="sheethead"><h2 id="lbtitle">🏆 Omniversal Leaderboard</h2><button class="iconbtn closer" data-close="leaderboard" aria-label="Close">×</button></div>
+    <div id="lb-body"></div>
+  </div>
+</div>
+<div id="quickwheel" class="hidden" role="menu" aria-label="Quick chat"></div>
+<div id="photobar" class="hidden" role="toolbar" aria-label="Photo mode"></div>
+<div id="tutorialcard" class="hidden" aria-live="polite"></div>
+<div id="opening" class="hidden" role="dialog" aria-label="Opening">
+  <canvas id="opening-canvas"></canvas>
+  <div id="opening-sub" aria-live="polite"></div>
+  <button id="opening-skip">Skip ⏭</button>
+</div>
+<div id="breakmodal" class="overlay hidden" role="dialog" aria-labelledby="breaktitle">
+  <div class="sheet narrow">
+    <h2 id="breaktitle">🌿 Time for a little break?</h2>
+    <p>You’ve been exploring for <b id="break-mins">45</b> minutes. Stretch, get a drink of water, rest your eyes (look at something far away for 20 seconds).</p>
+    <p class="small muted">Nothing is lost when you stop: there are no daily timers or rewards for playing longer. Change or turn off these reminders in Settings → Accessibility.</p>
+    <div class="row"><button id="break-ok" class="primary">Thanks, carry on</button> <button id="break-pause">Pause the game</button></div>
+  </div>
+</div>
 </body>
 </html>

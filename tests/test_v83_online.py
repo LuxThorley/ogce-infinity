@@ -35,7 +35,7 @@ def test_health_ready_ticket_and_headers(tmp_path):
     try:
         with urllib.request.urlopen(base+"/health") as r:
             health=json.loads(r.read())
-            assert health["version"]=="8.3.0" and "accounts_required" in health
+            assert health["version"]=="9.0.0" and "accounts_required" in health
             assert "frame-ancestors 'none'" in r.headers["Content-Security-Policy"]
         with urllib.request.urlopen(base+"/ready") as r: assert json.loads(r.read())=={"status":"ready"}
         account=_post(base+"/api/auth/register",{"username":"onlinehero","password":"a-long-password-123"})

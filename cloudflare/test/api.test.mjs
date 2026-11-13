@@ -14,7 +14,7 @@ const call = async (app, method, path, body, headers = {}) => {
 
 test('guest mode (no service token): health, world, actions, v8.2 character, μLux', async () => {
   const app = new OGCEApp(memoryDb(), '');
-  assert.equal((await call(app, 'GET', '/health')).data.version, '8.3.0');
+  assert.equal((await call(app, 'GET', '/health')).data.version, '9.0.0');
   const w = await call(app, 'GET', '/api/world/Aurelia');
   assert.equal(w.status, 200); assert.equal(w.data.state.seed, 707);
   const mv = await call(app, 'POST', '/api/world/Aurelia/action', { player_id: 'p1', action: { type: 'move', dx: 1, dy: 0 } });
@@ -71,7 +71,7 @@ test('persistence survives a fresh app instance over the same database', async (
 test('v8.3 (v7.7 hardening): /ready, ws tickets are one-time, auth rate limit, strict world ids', async () => {
   const { RateLimiter, validWorldId } = await import('../src/app.js');
   const app = new OGCEApp(memoryDb(), '');
-  assert.equal((await call(app, 'GET', '/health')).data.version, '8.3.0');
+  assert.equal((await call(app, 'GET', '/health')).data.version, '9.0.0');
   assert.deepEqual((await call(app, 'GET', '/ready')).data, { status: 'ready' });
   assert.equal((await call(app, 'GET', '/health')).data.accounts_required, false);
   assert.equal((await call(new OGCEApp(memoryDb(), 'svc-token'), 'GET', '/health')).data.accounts_required, true);

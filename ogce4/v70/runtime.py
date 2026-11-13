@@ -7,13 +7,16 @@ class GameRuntime:
     def __init__(self, database="ogce_v70.sqlite3"):
         self.database=str(database); self.lock=threading.RLock()
         with self._db() as db:
+            db.execute("PRAGMA journal_mode=WAL")  # v7.7 hardening restored in v9.0
+            db.execute("PRAGMA synchronous=NORMAL")
             db.executescript("""
             CREATE TABLE IF NOT EXISTS worlds(id TEXT PRIMARY KEY, state TEXT NOT NULL, revision INTEGER NOT NULL);
             CREATE TABLE IF NOT EXISTS events(id INTEGER PRIMARY KEY AUTOINCREMENT, world_id TEXT NOT NULL, revision INTEGER NOT NULL, event TEXT NOT NULL, created REAL NOT NULL);
             CREATE TABLE IF NOT EXISTS players(id TEXT PRIMARY KEY, world_id TEXT NOT NULL, state TEXT NOT NULL, updated REAL NOT NULL);
             """)
     def _db(self):
-        db=sqlite3.connect(self.database, timeout=15)
+        db=sqlite3.connect(self.database, timeout=30)
+        db.execute("PRAGMA busy_timeout=30000")
         db.row_factory=sqlite3.Row
         return db
     @staticmethod
