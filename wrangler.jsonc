@@ -39,6 +39,20 @@
         "bindings": [{ "name": "OGCE_WORLD", "class_name": "OGCEWorldV2" }]
       },
       "migrations": [{ "tag": "v1", "new_sqlite_classes": ["OGCEWorldV2"] }]
+    },
+    // Strata production (owner-approved 13 Nov 2026): `npx wrangler deploy --env strata`.
+    // NEW Worker "strata-lux-genesis" with its own fresh Durable Object storage, on strata.malcolmai.live and
+    // strata.luxthorley.one (the latter goes active once luxthorley.one's nameservers point at Cloudflare).
+    // Secrets (never commit): OGCE_SERVICE_TOKEN, MALCOLM_INFINITY_BOT_TOKEN, OGCE_MALCOLM_ENABLED=yes.
+    "strata": {
+      "name": "strata-lux-genesis",
+      "workers_dev": true,
+      "routes": [{ "pattern": "strata.malcolmai.live", "custom_domain": true }],
+      "preview_urls": false,
+      "durable_objects": {
+        "bindings": [{ "name": "OGCE_WORLD", "class_name": "OGCEWorldV2" }]
+      },
+      "migrations": [{ "tag": "v1", "new_sqlite_classes": ["OGCEWorldV2"] }]
     }
   }
 }
