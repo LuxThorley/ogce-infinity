@@ -80,9 +80,9 @@ export function initDuel({ $, api, toast, renderer, world, playerId, session, sf
         const d = await api('POST', fight.trial.path, { op: 'finish', inputs: log });
         const r = d.match?.result;
         $('duel-result').innerHTML = `<b>${fight.trial.label}</b> · ✅ server-verified replay<br>Score <b>${d.score}</b>${d.board?.you ? ` · weekly rank #${d.board.you.rank}` : ''}${r ? ` · ${r.draw ? 'Draw' : r.you_won ? '🏆 Your side won the match!' : 'The other side won this time.'}` : d.match ? ' · waiting for the other side to finish' : ''}`;
-        $('duel-result').classList.remove('hidden'); fight.trial.done?.(d);
+        $('duel-result').classList.remove('hidden'); okBtn(); fight.trial.done?.(d);
       } catch (e) { toast(`Couldn't save the trial: ${e.message}`); }
-      setTimeout(end, 3200); return;
+      endLater(8000); return;
     }
     try {
       const d = await api('POST', pathW(), body({ operation: 'finish', inputs: log, claimed: outcome }));
@@ -91,11 +91,14 @@ export function initDuel({ $, api, toast, renderer, world, playerId, session, sf
       $('duel-result').innerHTML = `<b>${outcome === 'win' ? 'Victory' : outcome === 'fled' ? 'Escaped' : outcome === 'timeout' ? 'Stand-off' : 'Defeated'}</b> · ${verified ? '✅ server-verified replay' : '⚠️ server replay differed (its result counts)'}<br>
         +${a.xp} combat XP · skill level ${a.level}${a.levelled ? ' 🎉 level up!' : ''} · best combo ${stats.max_combo} · parries ${stats.parries} · perfect dodges ${stats.perfect}
         ${a.unlocked.length ? `<br>New special moves to learn: ${a.unlocked.map((s) => CB.specials[s].name).join(', ')} (open ⚔️ Combat skills)` : ''}`;
-      $('duel-result').classList.remove('hidden');
+      $('duel-result').classList.remove('hidden'); okBtn();
       if (d.world) onWorld?.(d.world);
     } catch (e) { toast(`Couldn't save the duel: ${e.message}`); }
-    setTimeout(end, 2600);
+    endLater(8000);
   }
+  // The result stays readable: Continue (or Esc/Enter via the key handler) closes it, otherwise it closes itself after a few seconds.
+  function okBtn() { const r = $('duel-result'); if (r.querySelector('#duel-ok')) return; r.insertAdjacentHTML('beforeend', '<div class="row"><button id="duel-ok" class="primary">Continue</button></div>'); r.querySelector('#duel-ok').onclick = end; r.querySelector('#duel-ok').focus?.(); }
+  function endLater(ms) { const f = fight; setTimeout(() => { if (fight === f) end(); }, ms); }
   function end() { fight = null; S = null; renderer?.setDuel(null); hud.classList.add('hidden'); $('duel-result').classList.add('hidden'); document.body.classList.remove('in-duel'); }
   function onKey(e, down) {
     if (!fight || !S) return false;
