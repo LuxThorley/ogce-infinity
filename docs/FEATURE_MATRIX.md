@@ -209,7 +209,7 @@ Before/after screenshots: `/workspace/ogce/screenshots/v83-*.png` (before) and `
 ## 10. Deferred (honest list)
 * TAA (FXAA only), more than two shadow cascades, ray-marched volumetric clouds.
 * A Python port of the Worker-only systems (rooms, social, moderation, leaderboard, director, lore). They are JS-only and tested in JS.
-* TURN relay for voice (cost risk with no spending cap; see `docs/V9_0_SAFETY.md`).
+* TURN relay for voice: Cloudflare TURN has no spending cap; Metered Open Relay's hard-capped free tier is £0 but needs a new account (Oliver's YES). See `docs/V9_0_DEPLOY_STATUS.md`.
 * Merging offline-practice progress into the server world (it would bypass server authority).
 * Full 3D rendering of the omniverse (the Expedition uses a fast 2D streaming map; the 3D world is the home island).
 * Multiplayer sync of omniverse (Expedition map) positions. (Room-mates' customised avatars ARE shown in 3D since 9.0.0: see §12.)

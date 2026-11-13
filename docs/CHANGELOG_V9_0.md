@@ -71,3 +71,7 @@ Safety, privacy and the Children's Code: `docs/V9_0_SAFETY.md` · Renderer: `doc
 
 ### Late addition (13 Nov 2026)
 * Room-mates now see each other's customised avatars (skin, hair, outfit, hat, cape) in 3D. Looks are sent as validated palette indices only (`cleanLook`, `LOOK_MAX`), in `hello`/`roster`/`joined` and a new `look` message. Test: `multiplayer.test.mjs` (JS suite now 108).
+* Fixed: the ⚔️ Combat skills panel crashed for signed-in players because of the any-weapon spells (Ember Bolt, Verdant Mend, Star Sight, Aegis Ward). Spells now get their own section and can be equipped on any weapon. Regression test in `client90.test.mjs`.
+* The duel result stays on screen with a Continue button (it closes itself after 8 s) instead of vanishing after 2.6 s.
+* Phone layout (≤600 px): status pills and toolbar each get their own row (the toolbar scrolls sideways); compact HUD and minimap; the tutorial sits below them. PWA cache `strata-v90-4`.
+* Deployment status, the strata.luxthorley.one options and the TURN findings: `docs/V9_0_DEPLOY_STATUS.md`.
