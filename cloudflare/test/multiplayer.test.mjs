@@ -277,3 +277,23 @@ test('Omniversal Leaderboard: server-authoritative scores, periods + filters, an
   assert.equal(LBd.seasons().find((s) => s.id === '2026S6').status, 'closed');
   assert.ok(Object.keys(CATEGORIES).length >= 9);
 });
+
+test('RoomHub: avatar looks are palette indices only, validated, shared in roster/joined and relayed on change', async () => {
+  const { cleanLook, LOOK_MAX } = await import('../src/rooms.js');
+  const { OMNI } = await import('../src/omniverse.js');
+  for (const [k, n] of Object.entries(LOOK_MAX)) assert.equal(OMNI.appearance[k].length, n, `LOOK_MAX.${k} matches the omniverse palette`);
+  assert.deepEqual(cleanLook({ skin: 2, hair: 3, outfit: 1, hat: 4, cape: 0, extra: 'x' }), { skin: 2, hair: 3, outfit: 1, hat: 4, cape: 0 });
+  for (const bad of [null, [], { skin: 6, hair: 0, outfit: 0, hat: 0, cape: 0 }, { skin: '#fff', hair: 0, outfit: 0, hat: 0, cape: 0 }, { skin: 1 }]) assert.equal(cleanLook(bad), null);
+  const room = { code: 'ABCDEF', kind: 'party', owner: 'a', members: { a: {}, b: {} }, settings: {} };
+  const hub = new RoomHub(), ctx = { room, rel: (p) => ({ display: p.toUpperCase() }) };
+  const look = { skin: 1, hair: 2, outfit: 3, hat: 1, cape: 2 };
+  const o1 = await hub.handle('a', { type: 'hello', look }, ctx, 1000);
+  assert.deepEqual(o1.find((m) => m.to === 'b').msg, { type: 'joined', id: 'a', name: 'A', look });
+  const o2 = await hub.handle('b', { type: 'hello', look: { skin: 99 } }, ctx, 1200);
+  const roster = o2.find((m) => m.to === 'b').msg; assert.equal(roster.type, 'roster');
+  assert.deepEqual(roster.members.find((m) => m.id === 'a').look, look); assert.equal(roster.members.find((m) => m.id === 'b').look, null);
+  const o3 = await hub.handle('b', { type: 'look', look: { ...look, hat: 3 } }, ctx, 1400);
+  assert.deepEqual(o3, [{ to: 'a', msg: { type: 'look', id: 'b', look: { ...look, hat: 3 } } }]);
+  assert.equal((await hub.handle('b', { type: 'look', look: { skin: -1 } }, ctx, 1600))[0].msg.error, 'bad_look');
+  hub.leave('a'); assert.equal(hub.live.look.a, undefined);
+});

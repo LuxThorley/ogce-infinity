@@ -10,6 +10,14 @@ import { QUICK_IDS, EMOTE_IDS, ROOM_LIMITS, sanitizePrivacy } from '../../web/js
 export class RoomError extends Error { constructor(code) { super(code); this.code = code; } }
 export const ROOM_CODE = /^(?:[A-HJ-NP-Z2-9]{6}|HB[A-Z0-9]{7})$/;
 export const roomWorld = (code) => `sw_${code}`;
+// Avatar look shared with room-mates: palette INDICES only (no free text), validated against the omniverse palette sizes.
+export const LOOK_MAX = Object.freeze({ skin: 6, hair: 8, outfit: 8, hat: 5, cape: 4 });
+export function cleanLook(l) {
+  if (!l || typeof l !== 'object' || Array.isArray(l)) return null;
+  const out = {};
+  for (const [k, n] of Object.entries(LOOK_MAX)) { const v = l[k]; if (!Number.isInteger(v) || v < 0 || v >= n) return null; out[k] = v; }
+  return out;
+}
 export const codeOfWorld = (wid) => { const m = /^sw_([A-Z0-9]{6,9})$/.exec(String(wid)); return m && ROOM_CODE.test(m[1]) ? m[1] : null; };
 const ADJ = ['Amber', 'Silver', 'Hidden', 'Singing', 'Quiet', 'Golden', 'Mirrored', 'Wandering', 'Crystal', 'Twilight', 'Verdant', 'Starlit'];
 const NOUN = ['Stratum', 'Meadow', 'Archive', 'Harbour', 'Observatory', 'Grove', 'Lattice', 'Hollow', 'Spire', 'Garden', 'Causeway', 'Atelier'];
@@ -203,7 +211,7 @@ const fin = (v, lo, hi) => (typeof v === 'number' && Number.isFinite(v) ? Math.m
  * live state (presence, voice flags) is kept in memory only; nothing about audio is ever received or stored.
  */
 export class RoomHub {
-  constructor() { this.live = { pos: {}, voice: {}, speaking: {} }; this.buckets = new Map(); this.chatT = new Map(); }
+  constructor() { this.live = { pos: {}, voice: {}, speaking: {}, look: {} }; this.buckets = new Map(); this.chatT = new Map(); }
   allow(pid, nowMs) {
     const b = this.buckets.get(pid) || { t: nowMs, tokens: ROOM_LIMITS.msgPerSec * 2 };
     b.tokens = Math.min(ROOM_LIMITS.msgPerSec * 2, b.tokens + ((nowMs - b.t) / 1000) * ROOM_LIMITS.msgPerSec); b.t = nowMs;
@@ -212,16 +220,17 @@ export class RoomHub {
   windowOk(key, n, nowMs) { const q = (this.chatT.get(key) || []).filter((t) => t > nowMs - 10000); if (q.length >= n) { this.chatT.set(key, q); return false; } q.push(nowMs); this.chatT.set(key, q); return true; }
   others(room, pid) { return Object.keys(room.members).filter((p) => p !== pid); }
   roster(room, rel) {
-    return { type: 'roster', members: Object.keys(room.members).map((p) => ({ id: p, name: rel(p)?.display ?? 'Explorer', voice: !!this.live.voice[p], speaking: !!this.live.speaking[p], pos: this.live.pos[p] ?? null })) };
+    return { type: 'roster', members: Object.keys(room.members).map((p) => ({ id: p, name: rel(p)?.display ?? 'Explorer', voice: !!this.live.voice[p], speaking: !!this.live.speaking[p], pos: this.live.pos[p] ?? null, look: this.live.look[p] ?? null })) };
   }
-  leave(pid) { delete this.live.pos[pid]; delete this.live.voice[pid]; delete this.live.speaking[pid]; }
+  leave(pid) { delete this.live.look[pid]; delete this.live.pos[pid]; delete this.live.voice[pid]; delete this.live.speaking[pid]; }
   async handle(pid, msg, ctx, nowMs = Date.now()) {
     const { room, rel } = ctx, out = [], send = (to, m) => out.push({ to, msg: m }), err = (e) => [{ to: pid, msg: { type: 'error', error: e } }];
     if (!room?.members?.[pid]) return err('not_a_member');
     if (!msg || typeof msg !== 'object' || typeof msg.type !== 'string') return err('bad_message');
     if (!this.allow(pid, nowMs)) return err('slow_down');
     switch (msg.type) {
-      case 'hello': send(pid, this.roster(room, rel)); for (const p of this.others(room, pid)) send(p, { type: 'joined', id: pid, name: rel(pid)?.display ?? 'Explorer' }); break;
+      case 'hello': { const lk = cleanLook(msg.look); if (lk) this.live.look[pid] = lk; send(pid, this.roster(room, rel)); for (const p of this.others(room, pid)) send(p, { type: 'joined', id: pid, name: rel(pid)?.display ?? 'Explorer', look: this.live.look[pid] ?? null }); break; }
+      case 'look': { const lk = cleanLook(msg.look); if (!lk) return err('bad_look'); this.live.look[pid] = lk; for (const p of this.others(room, pid)) send(p, { type: 'look', id: pid, look: lk }); break; }
       case 'pos': {
         const x = fin(msg.x, -1, 200), z = fin(msg.z, -1, 200), face = fin(msg.face, -10, 10), seq = Math.trunc(Number(msg.seq)) || 0;
         if (x === null || z === null) return err('bad_position');

@@ -376,6 +376,7 @@ export function initExpedition(ctx) {
     if (a.cape) { pc.fillStyle = a.cape === 3 ? '#ffd25e' : '#7a2e3a'; pc.fillRect(32, 60, 6, a.cape === 1 ? 30 : 60); pc.fillRect(82, 60, 6, a.cape === 1 ? 30 : 60); }
     if (a.hat) { pc.fillStyle = ['', '#3a4a5a', '#3f9a3f', '#a07a40', '#4a3aa0'][a.hat]; if (a.hat === 4) { pc.beginPath(); pc.moveTo(40, 26); pc.lineTo(80, 26); pc.lineTo(60, -4); pc.fill(); } else pc.fillRect(38, 16, 44, 10); }
     ctx.renderer && (ctx.renderer.appearance = { skin: ap.skin[a.skin], hair: ap.hair[a.hair], outfit: ap.outfit[a.outfit], hat: a.hat, cape: a.cape });
+    ctx.renderer && (ctx.renderer.lookPalette = ap, ctx.renderer.myLook = { skin: a.skin, hair: a.hair, outfit: a.outfit, hat: a.hat, cape: a.cape });
   }
   async function customise(a) { const r = await post({ operation: 'customise', appearance: a }); if (r) renderLook(); }
   for (const k of ['w', 'm', 'h']) $(`cr-${k}`).oninput = () => { $(`cr-${k}-v`).textContent = $(`cr-${k}`).value; };

@@ -67,3 +67,7 @@ Safety, privacy and the Children's Code: `docs/V9_0_SAFETY.md` · Renderer: `doc
 * Python: **219** tests (engine, omniverse, Bard, combat, genesis, mystic, v8.x regressions).
 * Browser smoke (Playwright + SwiftShader): `smoke/v90.mjs`, `v90b.mjs`, `v90c.mjs` (opening, tutorial, sky, two-player room with quick chat, leaderboard,
   photo + DoF, accessibility, offline practice) and `gfx.mjs` (all four tiers).
+
+
+### Late addition (13 Nov 2026)
+* Room-mates now see each other's customised avatars (skin, hair, outfit, hat, cape) in 3D. Looks are sent as validated palette indices only (`cleanLook`, `LOOK_MAX`), in `hello`/`roster`/`joined` and a new `look` message. Test: `multiplayer.test.mjs` (JS suite now 108).

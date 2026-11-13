@@ -604,14 +604,27 @@ music = createMusic(audio); music.start();
 setInterval(() => { // the soundtrack follows the world: time of day, combat and the in-game sky
   if (!state) return; const sky = skyState(state.tick ?? 0, state.weather);
   music.set({ day: Math.max(0, Math.min(1, sky.day ?? 1)), combat: !!duel?.active });
+  mp?.syncLook?.(); // room-mates see my customised avatar
 }, 2000);
 mysticui = initMysticUI({ $, api, toast, world: WORLD, playerId, session: () => session, renderer, audio,
   onSky: (v) => { const s = v?.sky; if (s) music.set({ element: s.element, fullMoon: s.moon?.phase === 4, alignments: (s.active || []).length }); }, markDone });
 tutorial = initTutorial({ $, done, toast, caption, onComplete: () => audio?.play('achieve') });
 tutorial.update();
 mp = initMultiplayer({ $, api, toast, session: () => session, playerId, roomCode: ROOM, caption,
+  getLook: () => renderer?.myLook || null, onLooks: (l) => { if (renderer) renderer.remoteLooks = l; },
   startTrial: (path, label) => duel.start('trial', { trial: { path, label } }),
   onVoiceAudio: (id, stream) => { const a = new Audio(); a.srcObject = stream; a.autoplay = true; a.play().catch(() => {}); return a; } });
+// Prime my avatar look (palette indices) so room-mates see it from the first hello, not only after opening the Expedition.
+(async () => {
+  if (!renderer || !ROOM) return;
+  try {
+    const meta = await api('GET', '/api/v90/omni/realms'), ap = meta?.appearance;
+    if (ap) renderer.lookPalette = ap;
+    const me = await api('GET', `/api/v90/omni/me/${WORLD}?player=${encodeURIComponent(playerId())}`);
+    const a = me?.explorer?.appearance;
+    if (ap && a && !renderer.myLook) { renderer.myLook = { skin: a.skin, hair: a.hair, outfit: a.outfit, hat: a.hat, cape: a.cape }; renderer.appearance = { skin: ap.skin[a.skin], hair: ap.hair[a.hair], outfit: ap.outfit[a.outfit], hat: a.hat, cape: a.cape }; mp?.syncLook?.(); }
+  } catch { /* optional cosmetic */ }
+})();
 director = initDirector({ api, world: WORLD, playerId, session: () => session, caption, toast, store,
   onAdjust: (d) => { if (d?.hint_level >= 2 && !tipsOn) { tipsOn = true; updateHint(); } } }); // a stuck explorer gets the hint card back (not saved)
 initInstall({ $, toast });

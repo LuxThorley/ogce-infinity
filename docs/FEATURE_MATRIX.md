@@ -184,6 +184,7 @@ Before/after screenshots: `/workspace/ogce/screenshots/v83-*.png` (before) and `
 | Quick chat + emotes on by default; opt-in free text chat with layered moderation (fails closed) | ✅ |
 | Voice chat: opt-in push-to-talk, WebRTC mesh, STUN only | ✅ (no TURN: some strict NATs cannot connect; quick chat is the fallback) |
 | Leaderboard: 9 categories, all-time/season/weekly, global/friends/House, legends, cosmetic rewards, anti-cheat | ✅ |
+| Room-mates' customised avatars in 3D | ✅ skin, hair, outfit, hat and cape travel as palette indices only (validated against the palette, no free text) in `hello`/`roster`/`joined` and a `look` message on change; the renderer draws each room-mate with their own look. |
 | Smooth remote movement | ⚠️ the world is tile-based and server-authoritative; remote players animate between tiles. The continuous `pos` channel and `Interpolator` exist and are tested but are not used by the tile world. |
 
 ## 13. Extras
@@ -211,7 +212,7 @@ Before/after screenshots: `/workspace/ogce/screenshots/v83-*.png` (before) and `
 * TURN relay for voice (cost risk with no spending cap; see `docs/V9_0_SAFETY.md`).
 * Merging offline-practice progress into the server world (it would bypass server authority).
 * Full 3D rendering of the omniverse (the Expedition uses a fast 2D streaming map; the 3D world is the home island).
-* Other players' customised appearance in 3D and multiplayer sync of omniverse positions.
+* Multiplayer sync of omniverse (Expedition map) positions. (Room-mates' customised avatars ARE shown in 3D since 9.0.0: see §12.)
 * Mechanical invention decay (the 12.32-day half-life currently appears on cards only).
 * Boats and travel across open ocean in the omniverse.
 * NPCs walking schedules and NPC-to-NPC conversations; voice-to-voice NPC chat without captions is intentionally not offered.

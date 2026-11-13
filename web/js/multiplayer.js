@@ -15,7 +15,7 @@ const FRIENDLY = { room_not_found: 'No room with that code. Check the letters an
   unauthorized: 'Sign in (free) to play together.', text_chat_off: 'Free text chat is off in your privacy settings. Quick chat still works.', text_chat_off_in_room: 'The room owner has text chat off. Quick chat still works.',
   voice_off_in_privacy: 'Turn on voice in Together → Friends & privacy first.', slow_down: 'Slow down a little 🙂', bad_room_code: 'Room codes are 6–9 letters and numbers.' };
 
-export function initMultiplayer({ $, api, toast, session, playerId, roomCode, startTrial, caption, onVoiceAudio }) {
+export function initMultiplayer({ $, api, toast, session, playerId, roomCode, startTrial, caption, onVoiceAudio, getLook, onLooks }) {
   const ov = $('together'), body = $('tg-body'), lbov = $('leaderboard'), lbBody = $('lb-body'), wheel = $('quickwheel');
   let tab = 'party', room = null, me = null, sock = null, voice = null, roster = [], speaking = new Set(), log = [];
   const say = (e) => toast(FRIENDLY[e?.message] || FRIENDLY[e] || (e?.message ? `Hmm: ${e.message.replace(/_/g, ' ')}` : String(e)));
@@ -23,15 +23,20 @@ export function initMultiplayer({ $, api, toast, session, playerId, roomCode, st
   const call = async (m, p, b) => { try { return await api(m, p, b); } catch (e) { say(e); return null; } };
 
   // ------------------------------------------------------------------ socket (shared with the live world socket)
-  function attach(s) { sock = s; if (roomCode && s?.readyState === 1) s.send(JSON.stringify({ type: 'hello' })); }
+  let sentLook = '';
+  const looks = {}; // room-mates' avatar looks (palette indices), drawn by the 3D renderer
+  function attach(s) { sock = s; if (roomCode && s?.readyState === 1) { const look = getLook?.() || null; sentLook = JSON.stringify(look); s.send(JSON.stringify({ type: 'hello', look })); } }
+  function syncLook() { if (!roomCode || sock?.readyState !== 1) return; const look = getLook?.(); const k = JSON.stringify(look || null); if (look && k !== sentLook) { sentLook = k; sock.send(JSON.stringify({ type: 'look', look })); } }
+  const setLook = (id, l) => { if (id && l && typeof l === 'object') looks[id] = l; else if (id) delete looks[id]; onLooks?.(looks); };
   const send = (m) => { if (sock?.readyState === 1) { sock.send(JSON.stringify(m)); return true; } toast('Not connected to the room yet.'); return false; };
   function push(line) { log.push(line); log = log.slice(-40); const el = $('tg-log'); if (el) { el.innerHTML = log.map((l) => `<div>${l}</div>`).join(''); el.scrollTop = 1e6; } }
   const nameOf = (id) => roster.find((r) => r.id === id)?.name || 'Explorer';
   function handle(d) {
     switch (d.type) {
-      case 'roster': roster = d.members || []; speaking = new Set(roster.filter((r) => r.speaking).map((r) => r.id)); if (tab === 'party') drawRoster(); return true;
-      case 'joined': roster = roster.filter((r) => r.id !== d.id).concat([{ id: d.id, name: d.name }]); push(`👋 <b>${esc(d.name)}</b> joined`); caption?.(`${d.name} joined the room`); drawRoster(); return true;
-      case 'left': roster = roster.filter((r) => r.id !== d.id); speaking.delete(d.id); voice?.hangup?.(d.id); push(`🚪 ${esc(nameOf(d.id))} left`); drawRoster(); return true;
+      case 'look': setLook(d.id, d.look); return true;
+      case 'roster': roster = d.members || []; for (const m of roster) setLook(m.id, m.look); speaking = new Set(roster.filter((r) => r.speaking).map((r) => r.id)); if (tab === 'party') drawRoster(); return true;
+      case 'joined': roster = roster.filter((r) => r.id !== d.id).concat([{ id: d.id, name: d.name }]); setLook(d.id, d.look); push(`👋 <b>${esc(d.name)}</b> joined`); caption?.(`${d.name} joined the room`); drawRoster(); return true;
+      case 'left': roster = roster.filter((r) => r.id !== d.id); setLook(d.id, null); speaking.delete(d.id); voice?.hangup?.(d.id); push(`🚪 ${esc(nameOf(d.id))} left`); drawRoster(); return true;
       case 'quick': { const q = QUICK.find((x) => x[0] === d.id); const who = d.you ? 'You' : d.name || nameOf(d.from); push(`<b>${esc(who)}</b>: ${esc(q?.[1] || d.id)}`); if (!d.you) caption?.(`${who}: ${q?.[1] || ''}`); return true; }
       case 'emote': { const em = EMOTES.find((x) => x[0] === d.id); const who = d.you ? 'You' : d.name || nameOf(d.from); push(`${em?.[1] || '✨'} <b>${esc(who)}</b> ${esc(d.id)}s`); return true; }
       case 'chat': { const who = d.you ? 'You' : d.name || nameOf(d.from); push(`💬 <b>${esc(who)}</b>: ${esc(d.text)}`); if (!d.you) caption?.(`${who}: ${d.text}`); return true; }
@@ -250,5 +255,5 @@ export function initMultiplayer({ $, api, toast, session, playerId, roomCode, st
     wheel.querySelectorAll('[data-q]').forEach((b) => (b.onclick = () => { send({ type: 'quick', id: b.dataset.q }); wheel.classList.add('hidden'); }));
     wheel.querySelectorAll('[data-e]').forEach((b) => (b.onclick = () => { send({ type: 'emote', id: b.dataset.e }); wheel.classList.add('hidden'); }));
   }
-  return { open, close, openLb, closeLb: () => lbov.classList.add('hidden'), attach, handle, toggleWheel, talk, get voiceOn() { return !!voice; }, get room() { return room; }, closeAll() { close(); lbov.classList.add('hidden'); wheel.classList.add('hidden'); } };
+  return { open, close, openLb, syncLook, looks, closeLb: () => lbov.classList.add('hidden'), attach, handle, toggleWheel, talk, get voiceOn() { return !!voice; }, get room() { return room; }, closeAll() { close(); lbov.classList.add('hidden'); wheel.classList.add('hidden'); } };
 }

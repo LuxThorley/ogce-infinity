@@ -461,7 +461,7 @@ export class OGCE3D {
       if ((a.x !== x || a.y !== y)) { if (Math.abs(a.x - x) + Math.abs(a.y - y) > 4) { a.rx = x; a.rz = y; } a.x = x; a.y = y; }
       Object.assign(a, extra);
     };
-    for (const [id, p] of Object.entries(state?.players || {})) upd('p:' + id, 'player', p.x, p.y, { data: p, name: p.name || id, me: id === playerId });
+    for (const [id, p] of Object.entries(state?.players || {})) upd('p:' + id, 'player', p.x, p.y, { data: p, name: p.name || id, me: id === playerId, pid: id });
     for (const c of state?.creatures || []) upd('c:' + c.id, c.species === 'silverhart' ? 'deer' : 'wolf', c.x, c.y, { data: c, name: c.name, alive: c.alive !== false });
     for (const k of [...this.actors.keys()]) if (!seen.has(k)) this.actors.delete(k);
   }
@@ -945,6 +945,12 @@ export class OGCE3D {
     }
     return items;
   }
+  // Room-mates share palette indices (validated server-side); map them through the omniverse palette once it is loaded.
+  lookOf(pid) {
+    const l = pid && this.remoteLooks?.[pid], ap = this.lookPalette;
+    if (!l || !ap) return null;
+    return { skin: ap.skin?.[l.skin], hair: ap.hair?.[l.hair], outfit: ap.outfit?.[l.outfit], hat: l.hat, cape: l.cape };
+  }
   humanoid(items, a, lbl) {
     const P = this.parts, t = this.time, p = a.data || {};
     const x = a.rx, z = a.rz, y = a.ry, f = a.face;
@@ -952,7 +958,7 @@ export class OGCE3D {
     const base = m4.trs(x, y + bob, z, f);
     const hue = a.me ? 0.48 : nameHue(a.name);
     const hex = (h) => (typeof h === 'string' && /^#[0-9a-f]{6}$/i.test(h) ? [1, 3, 5].map((i) => Math.pow(parseInt(h.slice(i, i + 2), 16) / 255, 2.2)) : null);
-    const look = a.me && this.appearance ? this.appearance : null;
+    const look = a.me ? (this.appearance || null) : this.lookOf(a.pid);
     const tunic = (look && hex(look.outfit)) || (a.me ? [0.12, 0.55, 0.62] : hueRGB(hue, 0.5, 0.45)), trim = a.me ? [0.95, 0.75, 0.25] : hueRGB((hue + 0.5) % 1, 0.4, 0.6);
     const skin = (look && hex(look.skin)) || [0.93, 0.75, 0.6], dark = [0.2, 0.18, 0.22];
     const part = (mesh, local, col, em = 0, extra = {}) => items.push({ mesh, m: m4.mul(base, local), tint: col, em, ...extra });
