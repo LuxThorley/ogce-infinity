@@ -106,3 +106,13 @@ test('remapping refuses every camera and menu key', () => {
   for (const k of Object.values(DEFAULT_KEYS).flat()) assert.ok(A.RESERVED.includes(k), `camera key ${k} must be reserved`);
   for (const k of Object.values(A.GAME_ACTIONS)) assert.ok(!A.RESERVED.includes(k), `default game key ${k} must not be reserved`);
 });
+
+test('combat panel: every special belongs to a known weapon or is an any-weapon spell the panel can render and equip', async () => {
+  const { CB } = await import('../../web/js/combat.js');
+  const weapons = new Set(Object.keys(CB.weapons));
+  for (const [id, d] of Object.entries(CB.specials)) assert.ok(weapons.has(d.weapon) || d.weapon === 'any', `${id} has weapon ${d.weapon}`);
+  assert.ok(Object.values(CB.specials).some((d) => d.weapon === 'any'), 'spells exist');
+  const src = readFileSync(new URL('../../web/js/duel.js', import.meta.url), 'utf8');
+  assert.match(src, /w === 'any' \?/, 'duel panel handles any-weapon spells (regression: panel crashed on catalog.weapons.any)');
+  assert.doesNotMatch(src, /catalog\.weapons\[w\]\.name/);
+});

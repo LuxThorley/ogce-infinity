@@ -148,10 +148,12 @@ export function initDuel({ $, api, toast, renderer, world, playerId, session, sf
     const byWeapon = {};
     for (const [id, d] of Object.entries(catalog.specials)) (byWeapon[d.weapon] ||= []).push([id, d]);
     for (const [id, d] of Object.entries(v.specials)) if (d.invented) (byWeapon[d.weapon] ||= []).push([id, d]);
-    const rows = Object.entries(byWeapon).map(([w, list]) => `<h4>${esc(catalog.weapons[w].name)}</h4>` + list.map(([id, d]) => {
-      const known = v.specials[id], lo = (v.loadout[w] || []).includes(id);
+    const wName = (w) => (w === 'any' ? '✨ Spells (make-believe magic: equip on any weapon)' : catalog.weapons[w]?.name || w);
+    const eqBtns = (id, w) => (w === 'any' ? Object.entries(catalog.weapons) : [[w, catalog.weapons[w] || { name: w }]]).map(([k, wd]) => { const on = (v.loadout[k] || []).includes(id); return `<button data-eq="${id}" data-w="${k}">${on ? '✓ ' : ''}${w === 'any' ? esc(wd.name) : on ? 'equipped' : 'Equip'}</button>`; }).join('');
+    const rows = Object.entries(byWeapon).map(([w, list]) => `<h4>${esc(wName(w))}</h4>` + list.map(([id, d]) => {
+      const known = v.specials[id];
       const btn = known ? `${known.rank < 3 ? `<button data-up="${id}">Upgrade to rank ${known.rank + 1} (${Object.entries(catalog.ranks.cost[String(known.rank + 1)]).map(([k, n]) => `${n} ${k.replace('_', ' ')}`).join(' + ')})</button>` : '<span class="tag">max rank</span>'}
-        <button data-eq="${id}" data-w="${w}">${lo ? '✓ equipped' : 'Equip'}</button>` : (d.level <= lv ? `<button class="primary" data-learn="${id}">Learn</button>` : `<span class="tag">skill level ${d.level}</span>`);
+        ${eqBtns(id, w)}` : (d.level <= lv ? `<button class="primary" data-learn="${id}">Learn</button>` : `<span class="tag">skill level ${d.level}</span>`);
       return `<div class="move${known ? ' known' : ''}"><b>${esc(d.name)}</b>${d.invented ? ' <span class="tag">your invention</span>' : ''} ${known ? `· rank ${known.rank}` : ''} · ${d.hits}× hit · ${known ? known.focus : d.focus} focus · effect: ${esc(d.effect)}<br><span class="small">${esc(d.desc)}</span><div class="row">${btn}</div></div>`;
     }).join('')).join('');
     $('cp-body').innerHTML = `
