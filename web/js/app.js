@@ -21,6 +21,7 @@ import { initPhoto } from './photo.js';
 import { playOpening, initTutorial } from './opening.js';
 import { initMysticUI } from './mysticui.js';
 import { createMusic } from './music.js';
+import { initMediaKeepalive, bgInterval } from './keepalive.js';
 import { initMultiplayer, roomFromUrl } from './multiplayer.js';
 import { createOfflineGame, createQueue, isNetworkError, initInstall } from './offline.js';
 import { initDirector } from './directorclient.js';
@@ -177,6 +178,7 @@ async function connectLive() {
       else if (d.type === 'update') { applyState(d.state, d.revision); if (d.player_id === playerId()) settleWs(null); }
       else if (d.type === 'error') settleWs(new Error(d.error));
       else if (d.type === 'v90') strata?.onUnlocked(d.unlocked);
+      else if (d.type === 'pong') { /* keepalive */ }
       else mp?.handle(d);
     };
     sock.onclose = () => { if (ws === sock) { ws = null; settleWs(new Error('connection_lost')); setNet('online'); if (session && wsRetry < 5) { clearTimeout(wsTimer); wsTimer = setTimeout(connectLive, 2000 * ++wsRetry); } } };
@@ -601,6 +603,16 @@ if (renderer) strata.refresh();
 access = initAccess({ $, store, renderer, audio, toast });
 photo = initPhoto({ $, renderer, toast, onOpen: () => { $('panel').classList.add('closed'); }, onClose: () => {} });
 music = createMusic(audio); music.start();
+// Background-robust media (tab switched, minimised, other window, inactive): resume audio on any return or gesture,
+// MediaSession so the browser treats the tab as playing media, voice-chat playback restarted if the browser paused it.
+const media = initMediaKeepalive({ audio, music, onToggle: (v) => { if (audio.on !== v) $('soundbtn')?.click(); } });
+$('soundbtn')?.addEventListener('click', () => setTimeout(media.sync, 0));
+const firstGesture = () => { if (!audio.on && store.get('sound', false)) { audio.set(true); media.sync(); } };
+window.addEventListener('pointerdown', firstGesture, { once: true, capture: true }); window.addEventListener('keydown', firstGesture, { once: true, capture: true });
+const backToLife = () => { media.kick(); mp?.resumeVoice?.(); if (document.visibilityState === 'visible' && session && !(ws && ws.readyState <= 1)) { wsRetry = 0; connectLive(); } };
+document.addEventListener('visibilitychange', backToLife); window.addEventListener('focus', backToLife); window.addEventListener('pageshow', backToLife); window.addEventListener('online', backToLife);
+// WebSocket keepalive from the background-safe ticker (answered by the Durable Object's auto-response without waking it).
+bgInterval(() => { try { if (ws && ws.readyState === 1) ws.send('{"type":"ping"}'); } catch { /* reconnect handles it */ } }, 25000);
 setInterval(() => { // the soundtrack follows the world: time of day, combat and the in-game sky
   if (!state) return; const sky = skyState(state.tick ?? 0, state.weather);
   music.set({ day: Math.max(0, Math.min(1, sky.day ?? 1)), combat: !!duel?.active });

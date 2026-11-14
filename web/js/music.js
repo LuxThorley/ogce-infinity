@@ -1,6 +1,7 @@
 // v9.0 procedural soundtrack (WebAudio only, no audio files): a generative score that adapts to the stratum you have
 // reached, the time of day, combat and the in-game sky (MYSTICAL/IN-GAME astrology: the Sun's element picks the timbre,
 // a full moon adds a shimmer, planetary alignments add a harmony voice). Off whenever sound is off.
+import { bgInterval, lookahead } from './keepalive.js';
 const MODES = { ionian: [0, 2, 4, 5, 7, 9, 11], dorian: [0, 2, 3, 5, 7, 9, 10], phrygian: [0, 1, 3, 5, 7, 8, 10], lydian: [0, 2, 4, 6, 7, 9, 11],
   mixolydian: [0, 2, 4, 5, 7, 9, 10], aeolian: [0, 2, 3, 5, 7, 8, 10], pentatonic: [0, 2, 4, 7, 9], hirajoshi: [0, 2, 3, 7, 8] };
 const STRATUM_MODE = ['pentatonic', 'ionian', 'dorian', 'mixolydian', 'lydian', 'aeolian', 'phrygian', 'hirajoshi'];
@@ -41,7 +42,9 @@ export function createMusic(audio) {
     if (!enabled || !audio.on || !audio.ctx) return;
     const c = audio.ctx, beat = 60 / plan.tempo / 2; // eighth notes
     if (nextT < c.currentTime) nextT = c.currentTime + 0.05;
-    while (nextT < c.currentTime + 0.25) {
+    // schedule on the AudioContext clock; a hidden tab may tick rarely, so look further ahead there
+    const ahead = lookahead(typeof document !== 'undefined' && document.hidden);
+    while (nextT < c.currentTime + ahead) {
       const t = nextT, L = plan.layers, s8 = step % 16;
       if (L.includes('melody') && (plan.tempo > 90 ? rnd() < 0.55 : s8 % 2 === 0 && rnd() < 0.6)) { deg = Math.max(-3, Math.min(12, deg + Math.round((rnd() - 0.5) * 4))); note(fq(deg, 1), t, beat * (plan.tempo > 90 ? 1.2 : 3), 0.05, plan.timbre); }
       if (L.includes('harmony') && s8 % 4 === 2) note(fq(deg + 2, 1), t, beat * 2.5, 0.025, 'sine');
@@ -56,7 +59,8 @@ export function createMusic(audio) {
   return {
     set(s) { st = { ...st, ...s }; plan = musicPlan(st); audio.duck?.(st.combat); },
     get plan() { return plan; }, get state() { return st; },
-    enable(v) { enabled = !!v; if (enabled && !timer) timer = setInterval(tick, 100); },
-    start() { if (!timer) timer = setInterval(tick, 100); },
+    enable(v) { enabled = !!v; if (enabled && !timer) timer = bgInterval(tick, 100); },
+    start() { if (!timer) timer = bgInterval(tick, 100); },
+    tick, get scheduledUntil() { return nextT; },
   };
 }

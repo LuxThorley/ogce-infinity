@@ -12,6 +12,7 @@ export class VoiceMesh {
   async enable() {
     if (this.on) return true;
     this.mic = await this.d.getMic(); for (const t of this.mic.getAudioTracks()) t.enabled = false; // push-to-talk: silent until held
+    this.watchMic();
     this.on = true; this.d.send({ type: 'voice', on: true }); return true;
   }
   disable() {
@@ -20,6 +21,19 @@ export class VoiceMesh {
     if (this.mic) for (const t of this.mic.getTracks()) t.stop(); this.mic = null;
     this.d.send({ type: 'voice', on: false });
   }
+  // If the OS/browser ends the microphone track (device change, permission blip, app switch on some phones),
+  // get a fresh one and swap it into every live connection without renegotiating. Tabs being hidden never stop it.
+  watchMic() {
+    for (const t of this.mic?.getAudioTracks?.() || []) t.onended = () => { if (this.on) this.reacquireMic().catch(() => this.d.onFallback?.(null, 'mic_lost')); };
+  }
+  async reacquireMic() {
+    const fresh = await this.d.getMic(); const track = fresh.getAudioTracks()[0]; if (!track) return false;
+    track.enabled = this.talking; this.mic = fresh; this.watchMic();
+    for (const rec of this.peers.values()) for (const s of rec.pc.getSenders?.() || []) if (!s.track || s.track.kind === 'audio') await s.replaceTrack?.(track);
+    return true;
+  }
+  /** Restart remote audio elements a browser paused (autoplay policy, tab restored, output device switched). */
+  resumePlayback() { let n = 0; for (const rec of this.peers.values()) if (rec.audio && rec.audio.paused && rec.audio.play) { n++; rec.audio.play().catch?.(() => {}); } return n; }
   talk(down) {
     if (!this.on || !this.mic) return false; if (this.talking === !!down) return this.talking;
     this.talking = !!down; for (const t of this.mic.getAudioTracks()) t.enabled = this.talking;
@@ -43,7 +57,11 @@ export class VoiceMesh {
     pc.onconnectionstatechange = () => {
       rec.state = pc.connectionState;
       if (pc.connectionState === 'connected') { this.d.clearTimeout(rec.timer); rec.timer = null; }
-      if (pc.connectionState === 'failed') this.fail(id, 'p2p_failed');
+      // one ICE restart (e.g. after a network change while the tab was in the background) before falling back to quick chat
+      if (pc.connectionState === 'failed') {
+        if (rec.restarted || !pc.restartIce) this.fail(id, 'p2p_failed');
+        else { rec.restarted = true; pc.restartIce(); if (this.d.me < id) this.call(id).catch(() => this.fail(id, 'p2p_failed')); rec.timer = this.d.setTimeout(() => { if (rec.state !== 'connected') this.fail(id, 'p2p_failed'); }, VOICE.connectTimeoutMs); }
+      }
     };
     rec.timer = this.d.setTimeout(() => { if (rec.state !== 'connected') this.fail(id, 'timeout'); }, VOICE.connectTimeoutMs);
     this.peers.set(id, rec); return rec;

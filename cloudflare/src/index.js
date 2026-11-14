@@ -14,6 +14,8 @@ export class OGCEWorldV2 extends DurableObject {
       transaction: (fn) => ctx.storage.transactionSync(fn),
     };
     this.app = new OGCEApp(db, env.OGCE_SERVICE_TOKEN || '', { env });
+    // Client keepalive pings are answered at the edge without waking the hibernated Durable Object.
+    try { this.ctx.setWebSocketAutoResponse(new WebSocketRequestResponsePair('{"type":"ping"}', '{"type":"pong"}')); } catch { /* older runtime / tests */ }
   }
   async fetch(request) {
     if (request.headers.get('X-OGCE-DO') === 'room') this.app.useRemoteDirectory(this.env); // per-world DO: identity + social via the main DO
@@ -42,6 +44,7 @@ export class OGCEWorldV2 extends DurableObject {
     const text = typeof raw === 'string' ? raw : new TextDecoder().decode(raw);
     if (new TextEncoder().encode(text).length > 16384) { ws.close(4409, 'message too large'); return; }
     let msg; try { msg = JSON.parse(text); } catch { ws.send(JSON.stringify({ type: 'error', error: 'invalid_json' })); return; }
+    if (msg?.type === 'ping') { ws.send('{"type":"pong"}'); return; } // keepalive (normally answered by the auto-response)
     try {
       if (meta.code && !['join', 'action'].includes(msg.type)) return await this.roomMessage(ws, meta, msg);
       if (msg.type === 'join') {
@@ -86,7 +89,10 @@ const SECURITY_HEADERS = {
   'X-Content-Type-Options': 'nosniff',
   'Referrer-Policy': 'strict-origin-when-cross-origin',
   'X-Frame-Options': 'DENY',
-  'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+  // Microphone for this origin only (voice control + voice chat); autoplay for the soundtrack; everything else stays off.
+  'Permissions-Policy': 'microphone=(self), autoplay=(self), camera=(), geolocation=(), payment=(), usb=(), serial=(), bluetooth=(), hid=(), midi=(), magnetometer=(), gyroscope=(), accelerometer=(), display-capture=(), interest-cohort=()',
+  // HSTS for this host only (no includeSubDomains, no preload). Browsers ignore it on plain http, so local dev is unaffected.
+  'Strict-Transport-Security': 'max-age=31536000',
   'Content-Security-Policy': "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' ws: wss:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'",
 };
 const withHeaders = (res) => { const r = new Response(res.body, res); for (const [k, v] of Object.entries(SECURITY_HEADERS)) r.headers.set(k, v); return r; };
@@ -97,6 +103,8 @@ function newRoomCode() { let c = ''; for (const b of crypto.getRandomValues(new 
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    // Plain http:// is redirected to https:// (never served, never a 500). Local development stays on http.
+    if (url.protocol === 'http:' && !/^(localhost|127\.0\.0\.1|\[::1\])$/.test(url.hostname)) { url.protocol = 'https:'; return new Response(null, { status: 301, headers: { Location: url.toString(), 'Strict-Transport-Security': 'max-age=31536000' } }); }
     if (url.pathname === '/health' || url.pathname === '/ready' || url.pathname === '/ws' || url.pathname.startsWith('/api/') || url.pathname.startsWith('/s/')) {
       if (url.pathname.startsWith('/api/internal/')) return withHeaders(new Response('{"error":"not_found"}', { status: 404, headers: { 'Content-Type': 'application/json' } })); // DO-to-DO only
       let fwd = request, code = null;

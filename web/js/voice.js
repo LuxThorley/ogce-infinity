@@ -6,10 +6,12 @@
 import { parseCommand, validateActions, VOICE_HELP } from './voicegrammar.js';
 
 const $ = (id) => document.getElementById(id);
+/** Backoff for restarting wake-word recognition after it ends (pure; unit-tested): 0.4 s, 0.8 s, 1.6 s … capped at 8 s. */
+export function restartDelay(n) { return Math.min(8000, 400 * Math.pow(2, Math.max(0, Math.min(5, n | 0)))); }
 export function initVoice(ctx) {
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   const supported = Boolean(SR), synth = window.speechSynthesis;
-  let rec = null, listening = false, ptt = false, wake = ctx.store.get('wake', false), speakOn = ctx.store.get('speak', false), last = null, pendingConfirm = null;
+  let rec = null, listening = false, restarts = 0, lastErr = null, ptt = false, wake = ctx.store.get('wake', false), speakOn = ctx.store.get('speak', false), last = null, pendingConfirm = null;
   const cap = $('captions'), capText = $('caption-text'), btn = $('voicebtn');
   $('voice-help').innerHTML = VOICE_HELP.map(([k, v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join('');
   if (!supported) { btn.title = 'Voice isn’t supported in this browser; type a command instead (press /)'; $('voice-support').textContent = 'Speech recognition is not available in this browser, so use the typed command box (press / ). Everything voice can do works there too.'; }
@@ -42,7 +44,7 @@ export function initVoice(ctx) {
     if (listening) return;
     rec = new SR(); rec.lang = 'en-GB'; rec.interimResults = true; rec.continuous = mode === 'wake'; rec.maxAlternatives = 1;
     rec.onresult = (e) => {
-      let interim = '', final = '';
+      restarts = 0; let interim = '', final = '';
       for (let i = e.resultIndex; i < e.results.length; i++) { const t = e.results[i][0].transcript; if (e.results[i].isFinal) final += t; else interim += t; }
       if (interim) caption(`🎙️ ${interim}`, 'live');
       if (final) {
@@ -50,11 +52,22 @@ export function initVoice(ctx) {
         else handle(final);
       }
     };
-    rec.onerror = (e) => { if (e.error === 'not-allowed' || e.error === 'service-not-allowed') { reply('Microphone permission was refused. You can type commands instead (press /).'); wake = false; ctx.store.set('wake', false); syncUi(); } listening = false; btn.classList.remove('on'); };
-    rec.onend = () => { listening = false; btn.classList.remove('on'); if (wake && !ptt) setTimeout(() => wake && start('wake'), 400); };
+    rec.onerror = (e) => { lastErr = e.error; if (e.error === 'not-allowed' || e.error === 'service-not-allowed') { reply('Microphone permission was refused. You can type commands instead (press /).'); wake = false; ctx.store.set('wake', false); syncUi(); } listening = false; btn.classList.remove('on'); };
+    // Auto-restart: browsers end recognition after silence, on tab switches ('aborted'), or on network/audio glitches.
+    // Wake-word mode restarts with backoff; push-to-talk restarts while the key/button is still held.
+    rec.onend = () => {
+      listening = false; btn.classList.remove('on');
+      if (lastErr === 'not-allowed' || lastErr === 'service-not-allowed') return;
+      const delay = restartDelay(restarts++); lastErr = null;
+      if (ptt && mode === 'ptt') setTimeout(() => ptt && start('ptt'), 150);
+      else if (wake && !ptt) setTimeout(() => wake && start('wake'), delay);
+    };
     try { rec.start(); listening = true; btn.classList.add('on'); caption(mode === 'wake' ? '🎙️ Listening for “Malcolm …”' : '🎙️ Listening…', 'live'); } catch { listening = false; }
   }
   function stop() { try { rec?.stop(); } catch { /* ignore */ } }
+  // Coming back to the tab (or the window regaining focus) re-arms wake-word listening if the browser stopped it.
+  const rearm = () => { if (document.visibilityState === 'visible' && wake && !ptt && !listening && supported) { restarts = 0; start('wake'); } };
+  document.addEventListener('visibilitychange', rearm); window.addEventListener('focus', rearm); window.addEventListener('pageshow', rearm);
 
   async function handle(text) {
     text = String(text || '').trim(); if (!text) return;

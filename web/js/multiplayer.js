@@ -56,7 +56,7 @@ export function initMultiplayer({ $, api, toast, session, playerId, roomCode, st
       const cfg = await call('GET', '/api/v90/rtc/config'); if (!cfg) return;
       voice = new VoiceMesh({ me: playerId(), send, iceServers: cfg.iceServers, getMic: () => navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true }, video: false }),
         makePeer: (c) => new RTCPeerConnection(c), onSpeaking: (id, v) => { if (v) speaking.add(id); else speaking.delete(id); drawRoster(); },
-        onFallback: (id) => push(`🔇 Couldn’t connect voice with ${esc(nameOf(id))}. Quick chat still works.`), onAudio: (id, stream) => onVoiceAudio?.(id, stream) });
+        onFallback: (id, why) => push(why === 'mic_lost' ? '🎙️ Your microphone stopped and could not be restarted. Turn voice off and on again.' : `🔇 Couldn’t connect voice with ${esc(nameOf(id))}. Quick chat still works.`), onAudio: (id, stream) => onVoiceAudio?.(id, stream) });
       try { await voice.enable(); toast('🎙️ Voice on. Press and hold “Hold to talk” to speak; you are silent otherwise.'); } catch (e) { voice = null; toast('Microphone permission was not given, so voice stays off.'); }
     } else { voice?.disable(); voice = null; }
     draw();
@@ -255,5 +255,5 @@ export function initMultiplayer({ $, api, toast, session, playerId, roomCode, st
     wheel.querySelectorAll('[data-q]').forEach((b) => (b.onclick = () => { send({ type: 'quick', id: b.dataset.q }); wheel.classList.add('hidden'); }));
     wheel.querySelectorAll('[data-e]').forEach((b) => (b.onclick = () => { send({ type: 'emote', id: b.dataset.e }); wheel.classList.add('hidden'); }));
   }
-  return { open, close, openLb, syncLook, looks, closeLb: () => lbov.classList.add('hidden'), attach, handle, toggleWheel, talk, get voiceOn() { return !!voice; }, get room() { return room; }, closeAll() { close(); lbov.classList.add('hidden'); wheel.classList.add('hidden'); } };
+  return { open, close, openLb, syncLook, looks, resumeVoice: () => voice?.resumePlayback?.() || 0, closeLb: () => lbov.classList.add('hidden'), attach, handle, toggleWheel, talk, get voiceOn() { return !!voice; }, get room() { return room; }, closeAll() { close(); lbov.classList.add('hidden'); wheel.classList.add('hidden'); } };
 }
