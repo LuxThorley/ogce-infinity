@@ -30,3 +30,12 @@ Voice is peer-to-peer WebRTC with **STUN only** (`stun.cloudflare.com`, free and
 * Snapshot of the current GoDaddy records: `docs/dns/luxthorley-snapshot-2026-11-13.txt` (21 records; no DNSSEC/DS, so the move is safe).
 * Exact copy for Cloudflare: `docs/dns/luxthorley.one.zone` (BIND import, all DNS-only) or `docs/dns/apply_luxthorley.js` (API, proxied:false).
 * **Blocked:** neither the box API token nor the Cloudflare connector has `account.zone.create`, so the zone could not be added. Oliver needs to either add `luxthorley.one` in the dashboard (Add a domain → Free plan → skip the record scan or delete what it finds), or grant Zone:Edit / zone-create to the connector. The records and the `strata.luxthorley.one` custom domain can then be applied in minutes. The nameservers to set at GoDaddy are shown only after the zone is created.
+
+## 14 Nov 2026: audio/voice robustness, headers, zone and repo security (approved by Oliver)
+* `strata-lux-genesis` version `d5966d91-7867-4493-8f89-b9a023af4309` (previous `1658b377-1435-4bb7-b277-9dda5e5bd8ca`); preview `cc398e11-a51d-4d27-82c7-690a00eac1d3`.
+  Roll back: `npx wrangler rollback --env strata 1658b377-1435-4bb7-b277-9dda5e5bd8ca`.
+* Worker headers: `Permissions-Policy: microphone=(self), autoplay=(self), …=()`, `Strict-Transport-Security: max-age=31536000`; plain http → 301 https in the Worker as well.
+* malcolmai.live zone: Always Use HTTPS **on**; HSTS **on** (max-age 31536000, no includeSubDomains, no preload). All proxied hosts (apex, www, ogce, strata) serve valid HTTPS.
+  Undo: zone settings `always_use_https=off`, `security_header.strict_transport_security.enabled=false` (browsers that saw HSTS keep it for up to a year).
+* ogce-infinity (v8.3, deployed from `main`) does not share the v9.0 code, so its Worker is unchanged (still `microphone=()`); it gets HSTS and the http→https redirect from the zone settings only.
+* GitHub LuxThorley/ogce-infinity: secret scanning + push protection on; Dependabot alerts on; ruleset `main-protection` (id 27242153) copied from LuxThorley/luxthorley: default branch, no deletion, no force push, admin bypass. CI on main is unaffected.
